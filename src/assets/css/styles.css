@@ -1,0 +1,78 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+  .bg-itech-dark {
+    background: #151316;
+  }
+  .text-itech-dark {
+    color: #151316;
+  }
+  .bg-itech-light {
+    background: #F9F7F2;
+  }
+  .text-itech-light {
+    color: #F9F7F2;
+  }
+  .bg-hacker-primary {
+    background: #4E6AFA;
+  }
+  .text-hacker-primary {
+    color: #4E6AFA;
+  }
+  .bg-hacker-tertiary {
+    background: #3175ED;
+  }
+  .text-hacker-tertiary {
+    color: #3175ED;
+  }
+  .bg-hacker-secondary {
+    background: #C7A8F4;
+  }
+  .text-hacker-secondary {
+    color: #C7A8F4;
+  }
+  .bg-hipster-primary {
+    background: #F3748A;
+  }
+  .text-hipster-primary {
+    color: #F3748A;
+  }
+  .bg-hipster-primary-dark {
+    background: #D55466;
+  }
+  .text-hipster-primary-dark {
+    color: #D55466;
+  }
+  .bg-hipster-secondary {
+    background: #64C0C1;
+  }
+  .text-hipster-secondary {
+    color: #64C0C1;
+  }
+  .bg-hipster-tertiary {
+    background: #5DB097;
+  }
+  .text-hipster-tertiary {
+    color: #5DB097;
+  }
+  .bg-hustler-primary {
+    background: #70B9A2;
+  }
+  .text-hustler-primary {
+    color: #70B9A2;
+  }
+  .bg-hustler-secondary {
+    background: #FEDF68;
+  }
+  .text-hustler-secondary {
+    color: #FEDF68;
+  }
+  .bg-huster-tertiary {
+    background: #F4D155;
+  }
+  .text-hustler-tertiary {
+    color: #F4D155;
+  }
