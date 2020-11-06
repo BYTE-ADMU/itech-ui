@@ -1,39 +1,32 @@
 <template>
   <Layout>
-  <section class="flex items-center justify-center h-screen">
-    <div class=" pt-10 pb-6">
-      <div class="flex flex-wrap">
+    <section class="flex items-center justify-center h-screen">
+
+
+      <div class="w-3/4 flex ">
+
         <div class="w-full md:w-1/2 text-center">
           <img :src="require('@/assets/img/index-unauth/section1-botWelcome.svg')" class="py-6 mx-auto" />
         </div>
-        <div class="w-full md:w-1/2 text-center">
-          <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div class="w-full md:w-1/2">
+          <h1 class="hello">Welcome back! </h1>
+          <h1 class="itech">Please fill up your deets to get started</h1>
+
             <div class="mb-4">
-              <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
-                Username
-              </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text" placeholder="Username">
+
+              <input class="border rounded-full w-full py-2 px-8 text-grey-darker" id="username" type="text" placeholder="Email">
             </div>
             <div class="mb-6">
-              <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
-                Password
-              </label>
-              <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
-              <p class="text-red text-xs italic">Please choose a password.</p>
+
+              <input class=" border border-red rounded-full  w-full py-2 px-8 text-grey-darker mb-3" id="password" type="password" placeholder="Password">
             </div>
-            <div class="flex items-center justify-between">
-              <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">
-                Sign In
-              </button>
-              <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
-                Forgot Password?
-              </a>
-            </div>
+
+                    <button class="right-0 getStarted uppercase ...">Login</button>
           </div>
-        </div>
+
 
       </div>
-    </div>
+
   </section>
 </Layout>
   </template>
@@ -47,5 +40,34 @@
   </script>
 
   <style scoped>
+    .hello {
+      font-family: Objectivity;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+    }
 
+    .itech {
+      font-family: Neue Machina;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 70px;
+    }
+
+    .getStarted {
+      width:165px;
+      height: 40px;
+      left: 847px;
+      top: 458px;
+      float: right;
+      background: #64C0C1;
+      border-radius: 50px;
+      font-family: Objectivity;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 0.2em;
+      color: #F9F7F2;
+    }
   </style>
