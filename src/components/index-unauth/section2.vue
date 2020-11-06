@@ -1,5 +1,5 @@
 <template>
-<section class=" h-screen">
+<section id="section2" class=" h-screen">
 
   <div class="w-100 bg-white font-sans leading-normal tracking-normal">
 

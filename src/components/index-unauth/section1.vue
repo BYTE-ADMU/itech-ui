@@ -10,7 +10,7 @@
       <div class="py-40">
         <h1 class="hello">Hello! Welcome to </h1>
         <h1 class="itech">ITECH</h1>
-        <button class="getStarted uppercase ...">Get Started</button>
+        <a href="#section2"><button class="getStarted uppercase ...">Get Started</button></a>
         <g-link class="nav__link text-lg font-bold" to="/login/">
           <h1 class="mt-4 orLogIn">or <strong>Log In</strong> here</h1>
         </g-link>
