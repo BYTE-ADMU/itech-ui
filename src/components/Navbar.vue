@@ -47,7 +47,4 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-#navbar {
-  background: #F2F4FA;
-}
 </style>

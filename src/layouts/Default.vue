@@ -2,9 +2,7 @@
 <div class="layout">
   <Navbar />
 
-  <div style="height:100vh">
-    <slot />
-  </div>
+  <slot />
 
   <Footer />
 
