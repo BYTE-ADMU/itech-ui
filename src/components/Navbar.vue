@@ -1,6 +1,5 @@
 <template>
 <nav class="nav flex items-center justify-between flex-wrap bg-white px-64 py-5 shadow-md">
-
   <div class="flex items-center flex-no-shrink text-white">
     <g-link class="nav__link" to="/"><img :src="require('@/assets/img/logo-primary.svg')" class="w-40 py-2" /></g-link>
   </div>
@@ -47,4 +46,16 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+@font-face {
+  font-family: Objectivity;
+  src: url('../assets/font/Objectivity-Medium.otf');
+}
+@font-face {
+  font-family: Neue Machina;
+  src: url('../assets/font/NeueMachina-Ultrabold.woff');
+}
+
+nav {
+  font-family: Neue Machina;
+}
 </style>

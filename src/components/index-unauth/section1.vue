@@ -31,6 +31,14 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+@font-face {
+  font-family: Objectivity;
+  src: url('../../assets/font/Objectivity-Medium.otf');
+}
+@font-face {
+  font-family: Neue Machina;
+  src: url('../../assets/font/NeueMachina-Ultrabold.woff');
+}
 .hello {
   font-family: Objectivity;
   font-style: normal;
