@@ -1,19 +1,18 @@
 <template>
 <footer class="bg-hacker-primary bottom-0 px-64 text-white">
-  <div class=" pt-10 pb-6">
+  <div class="pt-10 pb-6">
     <div class="flex flex-wrap">
       <div class="w-full md:w-1/5 text-center md:text-left">
-        <h5 class="uppercase mb-6 font-bold">About
+        <h5 class="uppercase mb-6 font-bold">
+          About
           <hr class="w-10 mt-3" />
         </h5>
-
-        </hr />
         <ul class="mb-4">
           <li class="mt-2">
             <a href="#" class="hover:underline  ">ITECH</a>
           </li>
           <li class="mt-2">
-            <a href="#" class="hover:underline  ">Vision,Mission</a>
+            <a href="#" class="hover:underline  ">Vision, Mission</a>
           </li>
           <li class="mt-2">
             <a href="#" class="hover:underline  ">Meet the Authors</a>
