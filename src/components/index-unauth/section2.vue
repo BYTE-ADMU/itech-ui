@@ -5,7 +5,7 @@
       <div class="carousel-inner relative overflow-hidden w-full">
 
         <div v-for="slide in slides" v-bind:key="slide.id">
-          <!--Slide 1-->
+          <!--Slide Component-->
           <input class="carousel-open" type="radio" v-bind:id="[slide.slideOrder]" name="carousel" aria-hidden="true" hidden="" checked="checked">
           <div class="carousel-item absolute opacity-0" v-bind:class="[slide.classes]" style="height:100vh; ">
             <div class="block h-full w-full text-white text-center flex flex-col">
@@ -60,20 +60,6 @@
             </div>
           </div>
         </div>
-
-
-
-        <!--Slide 2-->
-        <!-- <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item absolute opacity-0" style="height:100vh; background: linear-gradient(283.99deg, #FF7B92 7.28%, #E13894 100%);">
-          <div class="block h-full w-full text-white text-5xl text-center"></div>
-        </div> -->
-
-        <!--Slide 3-->
-        <!-- <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item absolute opacity-0" style="height:100vh; background: linear-gradient(283.99deg, #B0CA88 7.28%, #70B9A2 100%);">
-          <div class="block h-full w-full text-white text-5xl text-center"></div>
-        </div> -->
 
         <!-- Add additional indicators for each slide-->
         <ol class="carousel-indicators">
