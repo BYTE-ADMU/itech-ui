@@ -22,19 +22,34 @@ export default Vue.extend({
           id: 0,
           slideOrder: 'carousel-1',
           becomeWhat: "Hacker",
-          classes: "slide1"
+          classes: [
+            "slide1", //BG Color
+            "t1",
+            "t2",
+            "t3"
+          ]
         },
         {
           id: 1,
           slideOrder: 'carousel-2',
           becomeWhat: "Hipster",
-          classes: "slide2"
+          classes: [
+            "slide2", //BG Color
+            "t3",
+            "t1",
+            "t2"
+          ]
         },
         {
           id: 2,
           slideOrder: 'carousel-3',
           becomeWhat: "Hustler",
-          classes: "slide3"
+          classes: [
+            "slide3", //BG Color
+            "t2",
+            "t3",
+            "t1"
+          ]
         },
       ],
 
@@ -127,7 +142,7 @@ export default Vue.extend({
   margin: 0;
   padding: 0;
   position: absolute;
-  bottom: 2%;
+  bottom: 10%;
   left: 0;
   right: 0;
   text-align: center;
