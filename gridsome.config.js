@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production")
 
 module.exports = {
   siteName: "ITECH",
-  icon: './src/assets/img/logo-white.svg',
+  icon: './src/assets/img/BB3-Primary.svg',
   plugins: [],
   css: {
     loaderOptions: {
