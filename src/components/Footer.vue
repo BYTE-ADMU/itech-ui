@@ -8,7 +8,12 @@
         </div>
         <div class="w-2/3">
           <p
-            style="font-size: 6rem; font-family: objectivity; font-weight: bold"
+            style="
+              margin-top: -20px;
+              font-size: 6rem;
+              font-family: objectivity;
+              font-weight: bold;
+            "
           >
             ITECH
           </p>
@@ -43,23 +48,13 @@
       <!-- START: FIRST INNER COLUMN -->
       <div class="grid grid-cols-2 gap-2 ...">
         <div>
-          <img
-            :src="require('@/assets/img/BB3-PrimaryWithWhiteText.svg')"
-            class="w-32 py-6"
-          />
-          <h5 class="mb-6 font-bold uppercase">
-            About
+          <h5 class="mb-6 font-bold">
+            Home
             <hr class="w-10 mt-3" />
           </h5>
           <ul class="mb-4">
             <li class="mt-2">
-              <a href="#" class="hover:underline">ITECH</a>
-            </li>
-            <li class="mt-2">
-              <a href="#" class="hover:underline">Vision, Mission</a>
-            </li>
-            <li class="mt-2">
-              <a href="#" class="hover:underline">Meet the Authors</a>
+              <a href="#" class="hover:underline">Meet the Team</a>
             </li>
           </ul>
         </div>
@@ -67,23 +62,27 @@
 
         <!-- START: SECOND INNER COLUMN -->
         <div>
-          <img
-            :src="require('@/assets/img/BB3-PrimaryWithWhiteText.svg')"
-            class="w-32 py-6"
-          />
-          <h5 class="mb-6 font-bold uppercase">
-            About
+          <h5 class="mb-6 font-bold">
+            The 3Hs
             <hr class="w-10 mt-3" />
           </h5>
           <ul class="mb-4">
             <li class="mt-2">
-              <a href="#" class="hover:underline">ITECH</a>
+              <a href="#" class="hover:underline"
+                ><i class="fab fa-hacker-news-square"></i
+              ></a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Vision, Mission</a>
+              <a href="#" class="hover:underline">Hacker</a>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Meet the Authors</a>
+              <a href="#" class="hover:underline">Hipster</a>
+            </li>
+            <li class="mt-2">
+              <a href="#" class="hover:underline">Hustler</a>
+            </li>
+            <li class="mt-2">
+              <a href="#" class="hover:underline">Unicorns</a>
             </li>
           </ul>
         </div>
@@ -91,11 +90,13 @@
       <!-- START: SECOND INNER COLUMN -->
       <!-- START: SECOND COLUMN -->
 
-      <div>
-        <img
-          :src="require('@/assets/img/BB3-PrimaryWithWhiteText.svg')"
-          style="width: 100%"
-        />
+      <div class="p-6 thirdColumnCard">
+        <p class="my-2 thirdColumnHeader">Stay in the loop</p>
+        <p class="my-2">
+          There is always more ways to be come a shiny BYTE unicorn! Keep up
+          with the latest opportunities in the discord server.
+        </p>
+        <button class="my-2 left-0 getStarted uppercase ...">Login</button>
       </div>
       <!-- END: THIRD COLUMN -->
     </div>
@@ -109,3 +110,33 @@
     </div>
   </footer>
 </template>
+
+<style scoped>
+.thirdColumnCard {
+  background: #6b83ff;
+  border-radius: 8px;
+}
+
+.thirdColumnHeader {
+  font-family: Neue Machina;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 44px;
+}
+
+.getStarted {
+  width: 165px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 50px;
+  font-family: Objectivity;
+  font-weight: 700;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 0.2em;
+  color: #6b83ff;
+}
+</style>
+
+
