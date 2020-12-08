@@ -3,7 +3,7 @@
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
         <img
-          :src="require('@/assets/img/index-unauth/section1-botWelcome.svg')"
+          :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
           class="py-6 mx-auto"
         />
       </div>
