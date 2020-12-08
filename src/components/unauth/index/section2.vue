@@ -89,14 +89,6 @@ export default Vue.extend({
   background-size: cover;
 }
 
-.font-objectivity {
-  font-family: Objectivity;
-}
-
-.font-neuemachina {
-  font-family: Neue Machina;
-}
-
 .big-box {
   width: 20rem;
   height: 20rem;

@@ -10,42 +10,32 @@
         </div>
 
         <div class="w-full md:w-1/2">
-          <h1 class="form_header font-neuemachina">Beep Boop!</h1>
+          <h1 class="form_header font-neuemachina">Coming right up!</h1>
           <h1 class="mb-10 form_text font-objectivity">
-            Glad you're back! Kindly place your info so we can get going!
+            BB3 got your back! All you have to do is fill up your new password
+            and confirm to get started
           </h1>
 
           <div class="form_inputs">
             <input
               class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker"
-              id="username"
-              type="text"
-              placeholder="email"
+              id="old_password"
+              type="paddword"
+              placeholder="old password"
             />
             <input
               class="w-full px-8 py-4 mb-3 mb-6 border rounded-md border-red text-grey-darker"
-              id="password"
+              id="new_password"
               type="password"
-              placeholder="password"
+              placeholder="new password"
             />
           </div>
 
-          <div class="float-right">
-            <g-link
-              class="text-lg text-right font-objectivity nav__link"
-              to="/forgot_password/"
-            >
-              <h1 class="my-4 subbutton" style="color: #c0c0c0">
-                forgot password?
-              </h1>
-            </g-link>
-
-            <button
-              class="px-16 py-4 form_button uppercase font-objectivity ..."
-            >
-              Let's Go
-            </button>
-          </div>
+          <button
+            class="px-16 py-4 float-right form_button uppercase font-objectivity ..."
+          >
+            Ready!
+          </button>
         </div>
       </div>
     </section>
@@ -54,9 +44,10 @@
 
   <script>
 export default {
-  name: "login",
+  name: "forgot_password",
   metaInfo: {
-    title: "Login",
+    title: "Forgot Password",
   },
 };
 </script>
+

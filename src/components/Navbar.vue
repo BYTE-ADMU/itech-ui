@@ -36,7 +36,9 @@
       <g-link class="mx-8 text-lg font-bold uppercase nav__link" to="/login/">Calendar</g-link>
     </div> -->
       <div>
-        <g-link class="ml-8 text-lg font-bold uppercase nav__link" to="/login/"
+        <g-link
+          class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
+          to="/login/"
           >Login</g-link
         >
       </div>
@@ -57,18 +59,3 @@ export default Vue.extend({
   name: "Navbar",
 });
 </script>
-
-<style scoped>
-@font-face {
-  font-family: Objectivity;
-  src: url("../assets/font/Objectivity-Medium.otf");
-}
-@font-face {
-  font-family: Neue Machina;
-  src: url("../assets/font/NeueMachina-Ultrabold.woff");
-}
-
-nav {
-  font-family: Neue Machina;
-}
-</style>
