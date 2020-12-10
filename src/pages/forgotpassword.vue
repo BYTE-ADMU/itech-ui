@@ -9,7 +9,7 @@
           />
         </div>
 
-        <div class="w-full md:w-1/2">
+        <div class="w-full mt-10 md:w-1/2">
           <h1 class="form_header font-neuemachina">Coming right up!</h1>
           <h1 class="mb-10 form_text font-objectivity">
             BB3 got your back! All you have to do is fill up your new password

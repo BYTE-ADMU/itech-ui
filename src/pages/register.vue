@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <section class="flex items-center justify-center h-screen">
+    <!-- <section class="flex items-center justify-center h-screen">
       <div class="flex w-3/4">
         <div class="w-full text-center md:w-1/2">
           <img
@@ -9,7 +9,7 @@
           />
         </div>
 
-        <div class="w-full mt-20 md:w-1/2">
+        <div class="w-full mt-24 md:w-1/2">
           <h1 class="form_header font-neuemachina">Hi! I am Bit Bot 3,</h1>
           <h1 class="mb-10 form_text font-objectivity">
             but you can call me BB3! I’d like to know your name!
@@ -31,7 +31,7 @@
           </button>
         </div>
       </div>
-    </section>
+    </section> -->
   </Layout>
 </template>
 

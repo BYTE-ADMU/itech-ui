@@ -9,7 +9,7 @@
           />
         </div>
 
-        <div class="w-full md:w-1/2">
+        <div class="w-full mt-10 md:w-1/2">
           <h1 class="form_header font-neuemachina">Beep Boop!</h1>
           <h1 class="mb-10 form_text font-objectivity">
             Glad you're back! Kindly place your info so we can get going!
@@ -33,7 +33,7 @@
           <div class="float-right">
             <g-link
               class="text-lg text-right font-objectivity nav__link"
-              to="/forgot_password/"
+              to="/forgotpassword/"
             >
               <h1 class="my-4 subbutton" style="color: #c0c0c0">
                 forgot password?
