@@ -1,18 +1,19 @@
 <template>
   <Layout>
     <section class="flex items-center justify-center h-screen">
+      <img
+        :src="require('@/assets/img/unauth/login.svg')"
+        class="w-full h-full"
+        style="position: absolute"
+      />
       <div class="flex w-3/4">
-        <div class="w-full text-center md:w-1/2">
-          <img
-            :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
-            class="py-6 mx-auto"
-          />
-        </div>
+        <div class="w-full text-center md:w-1/2"></div>
 
         <div class="w-full mt-10 md:w-1/2">
           <h1 class="form_header font-neuemachina">Beep Boop!</h1>
           <h1 class="mb-10 form_text font-objectivity">
-            Glad you're back! Kindly place your info so we can get going!
+            Welcome back ITECH-er! Are you ready to learn more about Hacker.
+            Hipster, and Hustler?
           </h1>
 
           <div class="form_inputs">
@@ -43,7 +44,7 @@
             <button
               class="px-16 py-4 form_button uppercase font-objectivity ..."
             >
-              Let's Go
+              Yes I Am
             </button>
           </div>
         </div>
