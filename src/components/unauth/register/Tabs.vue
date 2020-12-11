@@ -1,9 +1,10 @@
 <template lang="html">
 <section >
   <Tab class="flex items-center justify-center h-screen">
+    <div><g-link to="/"><button class="float-left" style="position: absolute; left:150px; top:150px; font-size:40px"><</button></g-link></div>
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab1.svg')" class="py-6 mx-auto"/>
       </div>
 
       <div class="w-full mt-24 md:w-1/2">
@@ -26,7 +27,7 @@
       <div class="w-full text-center">
         <h1 class="form_header font-neuemachina" style="margin-top:-120px">Hi! I am Bit Bot 3,</h1>
         <h1 class="mb-10 form_text font-objectivity">but you can call me BB3! I’d like to know your name!</h1>
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab2.svg')" class="py-6 mx-auto"/>
         <button class="px-16 py-4 form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)'>That's Cool!</button>
       </div>    
     </div>
@@ -36,7 +37,7 @@
       <div><button @click='selectTab(selectedIndex-1)' class="float-left" style="position: absolute; left:150px; top:150px; font-size:40px"><</button></div>
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab3.svg')" class="py-6 mx-auto"/>
       </div>
 
       <div class="w-full mt-24 md:w-1/2">
@@ -60,7 +61,7 @@
       <div class="w-full text-center">
         <h1 class="form_header font-neuemachina" style="margin-top:-120px">Thanks!</h1>
         <h1 class="mb-10 form_text font-objectivity">We’ll need that to keep track of all your progress, favorite finds, and your points whenever you finish a topic</h1>
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab4.svg')" class="py-6 mx-auto"/>
         <button class="px-16 py-4 form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)'>That's Cool!</button>
       </div>    
     </div>
@@ -70,7 +71,7 @@
       <div><button @click='selectTab(selectedIndex-1)' class="float-left" style="position: absolute; left:150px; top:150px; font-size:40px"><</button></div>
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab5.svg')" class="py-6 mx-auto"/>
       </div>
 
       <div class="w-full mt-24 md:w-1/2">
@@ -95,7 +96,7 @@
       <div class="w-full text-center">
         <h1 class="form_header font-neuemachina" style="margin-top:-120px">IT’S JUST FOR YOU!</h1>
         <h1 class="mb-10 form_text font-objectivity">ITECH is only for BYTE members and ITE students. This is one of the places BYTE builds young tech entrepreneurs</h1>
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab6.svg')" class="py-6 mx-auto"/>
         <button class="px-16 py-4 form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)'>That's Cool!</button>
       </div>    
     </div>
@@ -105,7 +106,7 @@
     <div><button @click='selectTab(selectedIndex-1)' class="float-left" style="position: absolute; left:150px; top:150px; font-size:40px"><</button></div>
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab7.svg')" class="py-6 mx-auto"/>
       </div>
 
       <div class="w-full mt-24 md:w-1/2">
@@ -128,7 +129,7 @@
     <div><button @click='selectTab(selectedIndex-1)' class="float-left" style="position: absolute; left:150px; top:150px; font-size:40px"><</button></div>
     <div class="flex w-3/4">
       <div class="w-full text-center md:w-1/2">
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab8.svg')" class="py-6 mx-auto"/>
       </div>
 
       <div class="w-full mt-24 md:w-1/2">
@@ -153,7 +154,7 @@
       <div class="w-full text-center">
         <h1 class="form_header font-neuemachina" style="margin-top:-120px">We are finally done!</h1>
         <h1 class="mb-10 form_text font-objectivity">Now, explore ITECH, see what you love and watch out for new topics! Beep Boop friend.</h1>
-        <img :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')" class="py-6 mx-auto"/>
+        <img :src="require('@/assets/img/unauth/register/Tab9.svg')" class="py-6 mx-auto"/>
         <button class="px-16 py-4 form_button uppercase font-objectivity ..." >Let's Start!</button>
       </div>    
     </div>
