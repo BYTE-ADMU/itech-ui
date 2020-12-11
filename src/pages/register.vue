@@ -1,24 +1,90 @@
 <template>
   <Layout>
-    <div class="h-screen">
-      <tabs :mode="mode">
-        <tab>Tab 1</tab>
-        <tab>Tab 2</tab>
-        <tab>Tab 3</tab>
-        <tab>Tab 4</tab>
-      </tabs>
-    </div>
+    <Tabs v-bind:tabsData="tabsData"></Tabs>
   </Layout>
 </template>
 
 <script>
-import Tab from "~/components/unauth/register/Tab.vue";
 import Tabs from "~/components/unauth/register/Tabs.vue";
 
 export default {
-  components: {
-    Tab,
-    Tabs,
+  name: "register",
+  metaInfo: { title: "Register" },
+  components: { Tabs },
+  data() {
+    return {
+      tabsData: [
+        {
+          id: 1,
+          image: "Tab1.svg",
+          header: "Hi! I am Bit Bot 3,",
+          text: "but you can call me BB3! I’d like to know your name!",
+          buttonText: "That's Me!",
+        },
+        {
+          id: 2,
+          image: "Tab2.svg",
+          header: "Nice to meet you!",
+          text:
+            "Here in ITECH you can learn a bunch of cool stuff related to Hacker, Hipster, and Hustler tracks of ITE!",
+          buttonText: "That's Cool",
+        },
+        {
+          id: 3,
+          image: "Tab3.svg",
+          header: "Okay! But first,",
+          text: "May I know your OBF email? ",
+          buttonText: "That's It!",
+        },
+        {
+          id: 4,
+          image: "Tab4.svg",
+          header: "Thanks!",
+          text:
+            "We’ll need that to keep track of all your progress, favorite finds, and your points whenever you finish a topic",
+          buttonText: "That's Cool",
+        },
+        {
+          id: 5,
+          image: "Tab5.svg",
+          header: "Now, an important note",
+          text:
+            "Let’s create a top secret password and don’t forget to confirm!",
+          buttonText: "Secret Enough",
+        },
+        {
+          id: 6,
+          image: "Tab6.svg",
+          header: "IT’S JUST FOR YOU!",
+          text:
+            "ITECH is only for BYTE members and ITE students. This is one of the places BYTE builds young tech entrepreneurs",
+          buttonText: "That's Cool",
+        },
+        {
+          id: 7,
+          image: "Tab7.svg",
+          header: "Just curious...",
+          text:
+            "BYTE is filled with people of different background so what is your year and course? ",
+          buttonText: "Secret Enough",
+        },
+        {
+          id: 8,
+          image: "Tab8.svg",
+          header: "We are almost done!",
+          text: "I wanna know what time you want to get reminders to study!",
+          buttonText: "Perfect",
+        },
+        {
+          id: 9,
+          image: "Tab9.svg",
+          header: "We are finally done!",
+          text:
+            "Now, explore ITECH, see what you love and watch out for new topics! Beep Boop friend.",
+          buttonText: "Let's Start",
+        },
+      ],
+    };
   },
 };
 </script>
