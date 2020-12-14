@@ -16,6 +16,7 @@ export default {
       tabsData: [
         {
           id: 1,
+          isLayoutCentered: false,
           image: "Tab1.svg",
           header: "Hi! I am Bit Bot 3,",
           text: "but you can call me BB3! I’d like to know your name!",
@@ -23,6 +24,7 @@ export default {
         },
         {
           id: 2,
+          isLayoutCentered: true,
           image: "Tab2.svg",
           header: "Nice to meet you!",
           text:
@@ -31,6 +33,7 @@ export default {
         },
         {
           id: 3,
+          isLayoutCentered: false,
           image: "Tab3.svg",
           header: "Okay! But first,",
           text: "May I know your OBF email? ",
@@ -38,6 +41,7 @@ export default {
         },
         {
           id: 4,
+          isLayoutCentered: true,
           image: "Tab4.svg",
           header: "Thanks!",
           text:
@@ -46,6 +50,7 @@ export default {
         },
         {
           id: 5,
+          isLayoutCentered: false,
           image: "Tab5.svg",
           header: "Now, an important note",
           text:
@@ -54,6 +59,7 @@ export default {
         },
         {
           id: 6,
+          isLayoutCentered: true,
           image: "Tab6.svg",
           header: "IT’S JUST FOR YOU!",
           text:
@@ -62,6 +68,7 @@ export default {
         },
         {
           id: 7,
+          isLayoutCentered: false,
           image: "Tab7.svg",
           header: "Just curious...",
           text:
@@ -70,6 +77,7 @@ export default {
         },
         {
           id: 8,
+          isLayoutCentered: false,
           image: "Tab8.svg",
           header: "We are almost done!",
           text: "I wanna know what time you want to get reminders to study!",
@@ -77,6 +85,7 @@ export default {
         },
         {
           id: 9,
+          isLayoutCentered: true,
           image: "Tab9.svg",
           header: "We are finally done!",
           text:
