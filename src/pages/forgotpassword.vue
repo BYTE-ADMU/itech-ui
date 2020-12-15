@@ -3,15 +3,15 @@
     <section class="h-screen" style="overflow-y: hidden">
       <div class="w-full" style="position: absolute; top: 50%">
         <div class="flex items-center justify-center">
-          <div class="flex w-3/4" style="margin-top: -140px">
+          <div class="flex w-3/4" style="margin-top: -180px">
             <div class="w-full mr-20 text-center md:w-1/2">
               <img
                 :src="require('@/assets/img/unauth/forgotpassword/image.svg')"
-                class="py-6 mx-auto"
+                class="mx-auto"
               />
             </div>
 
-            <div class="w-full mt-10 md:w-1/2">
+            <div class="w-full mt-20 md:w-1/2">
               <h1 class="form_header font-neuemachina">Coming right up!</h1>
               <h1 class="mb-10 form_text font-objectivity">
                 BB3 got your back! All you have to do is fill up your new

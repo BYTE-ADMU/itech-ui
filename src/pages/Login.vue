@@ -1,12 +1,12 @@
 <template>
   <Layout>
-    <section class="h-screen" style="overflow-y: hidden">
+    <section class="h-screen" style="overflow: hidden">
       <div class="w-full" style="position: absolute; top: 50%">
         <div class="flex items-center justify-center">
-          <div class="flex w-3/4" style="margin-top: -80px">
+          <div class="flex w-3/4" style="margin-top: -120px">
             <div class="w-full mr-20 text-center md:w-1/2"></div>
 
-            <div class="w-full mt-10 md:w-1/2">
+            <div class="w-full md:w-1/2">
               <h1 class="form_header font-neuemachina">Beep Boop!</h1>
               <h1 class="mb-10 form_text font-objectivity">
                 Welcome back ITECH-er! Are you ready to learn more about Hacker.
