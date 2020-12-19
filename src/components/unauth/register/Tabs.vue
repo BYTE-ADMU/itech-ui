@@ -40,6 +40,7 @@
                   <div class="mb-10">
                   <span class="overflow-y-hidden">
                     <select v-model="user.year" class="w-1/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
+                      <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
@@ -55,7 +56,8 @@
               
                   <span class="overflow-y-hidden">
                     <select v-model="user.course" class="w-8/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
-                      <option>Information Technology</option>
+                      <option disabled hidden value="">Information Technology</option>
+                      <option value="Information Technology">Information Technology</option>
                       <option>Course 2</option>
                       <option>Course 3</option>
                       <option>Course 4</option>
@@ -73,6 +75,7 @@
                   <div class="mb-10">
                   <span class="overflow-y-hidden">
                     <select v-model="user.time" class="w-3/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
+                      <option disabled hidden value="">00:00</option>
                       <option v-bind:times="times" v-for="time in times" :key="time.id" :value="time.value">{{time.value}}</option>
                     </select>
                     <button class="w-1/12 py-5 text-white bg-pink-200 rounded-r-md ">
@@ -85,6 +88,7 @@
               
                   <span class="overflow-y-hidden">
                     <select v-model="user.timeAMPM" class="w-2/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
+                      <option disabled hidden value="">AM</option>
                       <option>AM</option>
                       <option>PM</option>
                     </select>
