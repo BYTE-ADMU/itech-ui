@@ -13,7 +13,6 @@
           <div class="flex w-3/4">
             <!-- START: IMAGE -->
             <div class="w-full text-center md:w-1/2 ">
-            {{isDisabled}}
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="py-6 mx-auto"/>
             </div>
             <!-- END: IMAGE -->
