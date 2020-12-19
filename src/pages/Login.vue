@@ -16,15 +16,17 @@
               <div class="form_inputs">
                 <input
                   class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker"
-                  id="username"
+                  id="email"
                   type="text"
                   placeholder="email"
+                  v-model="user.email"
                 />
                 <input
                   class="w-full px-8 py-4 mb-3 mb-6 border rounded-md border-red text-grey-darker"
                   id="password"
                   type="password"
                   placeholder="password"
+                  v-model="user.password"
                 />
               </div>
 
@@ -39,6 +41,7 @@
                 </g-link>
 
                 <button
+                  :disabled="!isFormComplete"
                   class="px-16 py-4 form_button uppercase font-objectivity ..."
                 >
                   Yes I Am
@@ -66,6 +69,19 @@ export default {
   name: "login",
   metaInfo: {
     title: "Login",
+  },
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  computed: {
+    isFormComplete() {
+      return this.user.email && this.user.password;
+    },
   },
 };
 </script>

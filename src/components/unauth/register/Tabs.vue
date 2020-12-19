@@ -201,7 +201,6 @@ export default {
         (this.user.time && this.user.timeAMPM && this.selectedIndex === 7)
       ) {
         this.isCompleted = !this.isCompleted;
-        console.log(this.isCompleted);
         return this.isCompleted;
       }
     },
