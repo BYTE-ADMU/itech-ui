@@ -24,16 +24,19 @@
                   id="old_password"
                   type="paddword"
                   placeholder="old password"
+                  v-model="user.oldPassword"
                 />
                 <input
                   class="w-full px-8 py-4 mb-3 mb-6 border rounded-md border-red text-grey-darker"
                   id="new_password"
                   type="password"
                   placeholder="new password"
+                  v-model="user.newPassword"
                 />
               </div>
 
               <button
+                :disabled="!isFormComplete"
                 class="px-16 py-4 float-right form_button uppercase font-objectivity ..."
               >
                 Ready!
@@ -56,6 +59,19 @@ export default {
   name: "forgot_password",
   metaInfo: {
     title: "Forgot Password",
+  },
+  data() {
+    return {
+      user: {
+        oldPassword: "",
+        newPassword: "",
+      },
+    };
+  },
+  computed: {
+    isFormComplete() {
+      return this.user.oldPassword && this.user.newPassword;
+    },
   },
 };
 </script>
