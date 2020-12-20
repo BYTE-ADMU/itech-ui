@@ -12,6 +12,7 @@ import Section2 from "~/components/unauth/index/section2.vue";
 import Section3 from "~/components/unauth/index/section3.vue";
 
 export default {
+  name: "unauth-index",
   metaInfo: {
     title: "Home",
   },
@@ -23,5 +24,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+

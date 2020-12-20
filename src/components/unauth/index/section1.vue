@@ -9,13 +9,20 @@
       </div>
       <div class="w-full text-center md:w-1/2">
         <div class="py-40">
-          <h1 class="hello">Hello! Welcome to</h1>
-          <h1 class="itech">ITECH</h1>
-          <a href="#section2"
-            ><button class="getStarted uppercase ...">Get Started</button></a
-          >
-          <g-link class="text-lg font-bold nav__link" to="/login/">
-            <h1 class="mt-4 orLogIn">or <strong>Log In</strong> here</h1>
+          <h1 class="font-objectivity index_text">Hello! Welcome to</h1>
+          <h1 class="font-neuemachina index_header">ITECH</h1>
+
+          <g-link to="/register/"
+            ><button
+              class="font-objectivity rounded-md index_button uppercase ..."
+            >
+              Get Started
+            </button>
+          </g-link>
+          <g-link class="text-lg font-objectivity nav__link" to="/login/">
+            <h1 class="mt-4 index_subbutton">
+              or <strong>Log In</strong> here
+            </h1>
           </g-link>
         </div>
       </div>
@@ -32,28 +39,24 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.hello {
-  font-family: Objectivity;
+.index_text {
   font-style: normal;
   font-weight: 500;
   font-size: 40px;
 }
 
-.itech {
-  font-family: Neue Machina;
+.index_header {
   font-style: normal;
   font-weight: 900;
   font-size: 110px;
 }
 
-.getStarted {
+.index_button {
   width: 413px;
   height: 40px;
   left: 847px;
   top: 458px;
   background: #64c0c1;
-  border-radius: 50px;
-  font-family: Objectivity;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -62,8 +65,7 @@ export default Vue.extend({
   color: #f9f7f2;
 }
 
-.orLogIn {
-  font-family: Objectivity;
+.index_subbutton {
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
