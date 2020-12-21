@@ -6,7 +6,10 @@
             <!-- Featured & New On ITECH -->
             <div class="flex flex-col w-9/12">
                 <featureEntry />
-                <div class="flex mt-4 justify-between">
+                <h3 class="text-xl mt-4 font-objectivity mx-2 font-bold uppercase">
+                    New On ITECH
+                </h3>
+                <div class="flex mt-1 justify-between">
                     <articleEntry />
                     <articleEntry />
                     <articleEntry />
@@ -21,32 +24,50 @@
             </div>
         </div>
         <!-- Featured Courses & Playlists-->
-        <div class="flex justify-between">
-            <div class="flex mt-4 justify-between space-x-4">
-                <articleEntry />
-                <articleEntry />
-                <articleEntry />
+        <div class="flex w-full mt-4">
+            <div class="w-3/12">
+                <h2 class="text-4xl font-neuemachina p-2">
+                    Featured Courses & Playlists ✨
+                </h2>
             </div>
+            <playlistEntry />
+            <playlistEntry />
+            <playlistEntry />
         </div>
         <!-- Hacker -->
-        <div class="flex">
-            <div class="flex mt-4 justify-between space-x-4">
+        <div class="flex w-full mt-4">
+            <div class="flex flex-col w-3/12 px-2">
+                <div class="w-full bg-red-400 h-48">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="flex justify-between w-9/12">
                 <articleEntry />
                 <articleEntry />
                 <articleEntry />
             </div>
         </div>
         <!-- Hipster -->
-        <div class="flex">
-            <div class="flex mt-4 justify-between space-x-4">
+        <div class="flex w-full mt-4">
+            <div class="flex flex-col w-3/12 px-2">
+                <div class="w-full bg-red-400 h-48">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="flex justify-between w-9/12">
                 <articleEntry />
                 <articleEntry />
                 <articleEntry />
             </div>
         </div>
         <!-- Hustler -->
-        <div class="flex">
-            <div class="flex mt-4 justify-between space-x-4">
+        <div class="flex w-full mt-4">
+            <div class="flex flex-col w-3/12 px-2">
+                <div class="w-full bg-red-400 h-48">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="flex justify-between w-9/12">
                 <articleEntry />
                 <articleEntry />
                 <articleEntry />
