@@ -40,12 +40,14 @@
                   </h1>
                 </g-link>
 
-                <button
-                  :disabled="!isFormComplete"
-                  class="px-16 py-4 form_button uppercase font-objectivity ..."
-                >
-                  Yes I Am
-                </button>
+                <g-link to="/dashboard">
+                  <button
+                    :disabled="!isFormComplete"
+                    class="px-16 py-4 form_button uppercase font-objectivity ..."
+                  >
+                    Yes I Am
+                  </button>
+                </g-link>
               </div>
             </div>
           </div>

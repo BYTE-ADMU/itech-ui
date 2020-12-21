@@ -1,7 +1,7 @@
 <template>
-    <div class='flex flex-col w-1/3 bg-gray-600 h-48 mx-2'>
+    <div class='flex flex-col w-1/3 bg-gray-300 rounded-t-lg h-48 mx-2'>
         <!-- PUT IMAGE AND DETAILS INSIDE -->
-        <div class="w-full rounded-lg bg-blue-400 h-40">
+        <div class="w-full rounded-lg bg-blue-400 h-32">
             &nbsp;
         </div>
         &nbsp;

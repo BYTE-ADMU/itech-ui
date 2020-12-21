@@ -2,7 +2,7 @@
     <Layout>
     <!-- ROOT -->
     <div class="flex flex-col container mx-auto min-h-screen w-screen py-20">
-        <div class="flex w-full justify-between items-center">
+        <div class="flex w-full justify-between items-start">
             <!-- Featured & New On ITECH -->
             <div class="flex flex-col w-9/12">
                 <featureEntry />
@@ -16,17 +16,12 @@
                 </div>
             </div>
             <!-- Topic of the Week -->
-            <div class="flex flex-col w-3/12">
-                <h2 class='text-4xl font-neuemachina mb-4 mx-2'>
-                    Topic of the Week ✨
-                </h2>
-                <playlistTall />
-            </div>
+            <playlistTall />
         </div>
         <!-- Featured Courses & Playlists-->
         <div class="flex w-full mt-4">
             <div class="w-3/12">
-                <h2 class="text-4xl font-neuemachina p-2">
+                <h2 class="text-4xl font-neuemachina p-2 mx-auto">
                     Featured Courses & Playlists ✨
                 </h2>
             </div>
@@ -35,44 +30,72 @@
             <playlistEntry />
         </div>
         <!-- Hacker -->
-        <div class="flex w-full mt-4">
-            <div class="flex flex-col w-3/12 px-2">
-                <div class="w-full bg-red-400 h-48">
-                    &nbsp;
+        <div class="flex w-full mt-4 items-center">
+            <bitbotFeature />
+            <div class="flex flex-col w-9/12">
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Topics
+                </h5>
+                <div class="flex justify-between mb-2">
+                    <articleHeader />
+                    <articleHeader />
+                    <articleHeader />
                 </div>
-            </div>
-            <div class="flex justify-between w-9/12">
-                <articleEntry />
-                <articleEntry />
-                <articleEntry />
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Articles
+                </h5>
+                <div class="flex justify-between">
+                    <articleEntry />
+                    <articleEntry />
+                    <articleEntry />
+                </div>
             </div>
         </div>
         <!-- Hipster -->
-        <div class="flex w-full mt-4">
-            <div class="flex flex-col w-3/12 px-2">
-                <div class="w-full bg-red-400 h-48">
-                    &nbsp;
+        <div class="flex w-full mt-4 items-center">
+            <bitbotFeature />
+            <div class="flex flex-col w-9/12">
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Topics
+                </h5>
+                <div class="flex justify-between mb-2">
+                    <articleHeader />
+                    <articleHeader />
+                    <articleHeader />
                 </div>
-            </div>
-            <div class="flex justify-between w-9/12">
-                <articleEntry />
-                <articleEntry />
-                <articleEntry />
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Articles
+                </h5>
+                <div class="flex justify-between">
+                    <articleEntry />
+                    <articleEntry />
+                    <articleEntry />
+                </div>
             </div>
         </div>
         <!-- Hustler -->
-        <div class="flex w-full mt-4">
-            <div class="flex flex-col w-3/12 px-2">
-                <div class="w-full bg-red-400 h-48">
-                    &nbsp;
+        <div class="flex w-full mt-4 items-center">
+            <bitbotFeature />
+            <div class="flex flex-col w-9/12">
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Topics
+                </h5>
+                <div class="flex justify-between mb-2">
+                    <articleHeader />
+                    <articleHeader />
+                    <articleHeader />
+                </div>
+                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                    Articles
+                </h5>
+                <div class="flex justify-between">
+                    <articleEntry />
+                    <articleEntry />
+                    <articleEntry />
                 </div>
             </div>
-            <div class="flex justify-between w-9/12">
-                <articleEntry />
-                <articleEntry />
-                <articleEntry />
-            </div>
         </div>
+        <!-- END COMPONENTS -->
     </div>
     </Layout>
 </template>
@@ -81,6 +104,8 @@ import articleEntry from '../components/auth/dashboard/articleEntry';
 import featureEntry from '../components/auth/dashboard/featureEntry';
 import playlistEntry from '../components/auth/dashboard/playlistEntry';
 import playlistTall from '../components/auth/dashboard/playlistTall';
+import bitbotFeature from '../components/auth/dashboard/bitbotFeature';
+import articleHeader from '../components/auth/dashboard/articleHeader';
 
 export default {
     name: 'Catalogue',
@@ -88,7 +113,9 @@ export default {
         articleEntry,
         featureEntry,
         playlistEntry,
-        playlistTall
+        playlistTall,
+        bitbotFeature,
+        articleHeader,
     }
 }
 </script>
