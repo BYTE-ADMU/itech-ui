@@ -40,7 +40,7 @@
                   </h1>
                 </g-link>
 
-                <g-link to="/dashboard">
+                <g-link to="/dashboard/">
                   <button
                     :disabled="!isFormComplete"
                     class="px-16 py-4 form_button uppercase font-objectivity ..."

@@ -31,7 +31,7 @@
         </div>
         <!-- Hacker -->
         <div class="flex w-full mt-4 items-center">
-            <bitbotFeature />
+            <bitbotFeature bb3="hacker" />
             <div class="flex flex-col w-9/12">
                 <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
                     Topics
@@ -53,7 +53,7 @@
         </div>
         <!-- Hipster -->
         <div class="flex w-full mt-4 items-center">
-            <bitbotFeature />
+            <bitbotFeature bb3="hipster" />
             <div class="flex flex-col w-9/12">
                 <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
                     Topics
@@ -75,7 +75,7 @@
         </div>
         <!-- Hustler -->
         <div class="flex w-full mt-4 items-center">
-            <bitbotFeature />
+            <bitbotFeature bb3="hustler" />
             <div class="flex flex-col w-9/12">
                 <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
                     Topics
