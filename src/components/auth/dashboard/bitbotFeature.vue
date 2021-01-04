@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col w-3/12 px-2">
         <div :class="botStyle">
-            <h2 class="text-feature text-white font-neuemachina px-4 leading-tight">
+            <h2 class="text-feature text-white font-neuemachina px-4 leading-tight select-none">
                 {{ botWord }}
             </h2>
             <img :src="botImage" class="bitBot" />

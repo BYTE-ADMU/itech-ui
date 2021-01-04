@@ -119,3 +119,9 @@ export default {
     }
 }
 </script>
+
+<style>
+div > .tg {
+    filter: brightness(80%)
+}
+</style>
