@@ -1,6 +1,6 @@
 <template>
     <div class='w-3/12 heighter self-center'>
-        <div class="flex flex-col justify-between h-full mx-2 rounded-lg">
+        <div class="flex flex-col justify-between h-full mx-2 rounded-lg ">
             <h2 class='text-5xl font-neuemachina'>
                 Topic of the Week ✨
             </h2>
@@ -14,6 +14,7 @@
                     </p>
                 </div>
                 <img :src="playlistImage" class="object-cover rounded-lg tg" />
+                <img :src="require('@/assets/img/bitbots/bbwhite.svg')" class="absolute whitebb" />
             </div>
         </div>
     </div>
@@ -43,5 +44,9 @@ export default {
 }
 .h-tall {
     height: 400px;
+}
+.whitebb {
+    top: 290px;
+    right: 0;
 }
 </style>

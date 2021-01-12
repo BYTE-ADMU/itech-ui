@@ -1,11 +1,13 @@
 <template>
     <div class="flex flex-col w-3/12 px-2">
-        <div :class="botStyle">
-            <h2 class="text-feature text-white font-neuemachina px-4 leading-tight select-none">
-                {{ botWord }}
-            </h2>
-            <img :src="botImage" class="bitBot" />
-        </div>
+        <g-link :to="articleSet">
+            <div :class="botStyle">
+                <h2 class="text-feature text-white font-neuemachina px-4 leading-tight select-none">
+                    {{ botWord }}
+                </h2>
+                <img :src="botImage" class="bitBot" />
+            </div>
+        </g-link>
     </div>
 </template>
 <script>
@@ -63,6 +65,19 @@ export default {
                     return hustler
                 default:
                     return hacker
+            }
+        },
+        articleSet() {
+            const type = this.bb3;
+            switch(type) {
+                case 'hacker':
+                    return ''
+                case 'hipster':
+                    return ''
+                case 'hustler':
+                    return ''
+                default:
+                    return ''
             }
         }
     }
