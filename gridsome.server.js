@@ -23,7 +23,8 @@ module.exports = function (api) {
         path:'/articles/' + eachArticle.id,
         title:eachArticle.title,
         author:eachArticle.author,
-        date:eachArticle.date,
+        publishedDate:eachArticle.publishedDate,
+        lastEditedDate:eachArticle.lastEditedDate,
         content:eachArticle.content,
       })
     }
