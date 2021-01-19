@@ -22,14 +22,14 @@ module.exports = function (api) {
         id:article.id,
         path:'/articles/' + article.id,
         title:article.title,
-        author:article.author,
+        author:article.authors[0].name,
         publishedDate:article.published_at,
         lastEditedDate:article.updatedAt,
         content:article.content,
         sources:article.sources,
         thumbnailImage:article.thumbnailImage.url,
         featuredImage:article.featuredImage.url,
-        category: article.category
+        category: article.categories[0].name,
       })
     }
   })
