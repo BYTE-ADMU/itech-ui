@@ -23,12 +23,13 @@ module.exports = function (api) {
         path:'/articles/' + article.id,
         title:article.title,
         author:article.author,
-        publishedDate:article.publishedDate,
-        lastEditedDate:article.lastEditedDate,
+        publishedDate:article.published_at,
+        lastEditedDate:article.updatedAt,
         content:article.content,
         sources:article.sources,
         thumbnailImage:article.thumbnailImage.url,
-        featuredImage:article.featuredImage.url
+        featuredImage:article.featuredImage.url,
+        category: article.category
       })
     }
   })
