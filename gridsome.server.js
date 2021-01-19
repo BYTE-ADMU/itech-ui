@@ -17,15 +17,18 @@ module.exports = function (api) {
       path:'/articles/:id'
     });
 
-    for (const eachArticle of data){
+    for (const article of data){
       collection.addNode({
-        id:eachArticle.id,
-        path:'/articles/' + eachArticle.id,
-        title:eachArticle.title,
-        author:eachArticle.author,
-        publishedDate:eachArticle.publishedDate,
-        lastEditedDate:eachArticle.lastEditedDate,
-        content:eachArticle.content,
+        id:article.id,
+        path:'/articles/' + article.id,
+        title:article.title,
+        author:article.author,
+        publishedDate:article.publishedDate,
+        lastEditedDate:article.lastEditedDate,
+        content:article.content,
+        sources:article.sources,
+        thumbnailImage:article.thumbnailImage.url,
+        featuredImage:article.featuredImage.url
       })
     }
   })

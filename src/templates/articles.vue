@@ -1,75 +1,64 @@
 <template lang="html">
   <Layout>
-    <section class="flex justify-center h-screen my-24">
-    <div class="flex w-3/4">
-      <div class="w-full px-24">
-        <!-- START: First Row -->
-        <p class="mb-5 article-title">{{$page.articles.title}}</p>
-        <!-- END: First Row -->
+    <section class="flex justify-center min-h-screen my-24">
+      <div class="w-full mx-64">
+        <div class="mx-24 mb-12">
+        <!-- START: First Row --><p class="mb-5 article-title">{{$page.articles.title}}</p> <!-- END: First Row -->
 
-        <!-- START: Second Row -->
-        <div class="flex">
-        <!-- Start: Article Author and Dates -->
-        <div class="w-full">
-        <div class="flex items-center text-black no-underline hover:underline">
-          <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
-          <div class="ml-5">
-            <p class="author-name">{{$page.articles.author}}</p>
-            <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
-            <p class="article-lastEditedDate">Last Edited on {{formatDate($page.articles.lastEditedDate)}}</p>
+        <!-- START: Second Row --><div class="flex">
+          <!-- Start: Article Author and Dates -->
+          <div class="w-full">
+          <div class="flex items-center text-black no-underline hover:underline">
+            <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
+            <div class="ml-5">
+              <p class="author-name">{{$page.articles.author}}</p>
+              <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
+              <p class="article-lastEditedDate">Last Edited on {{formatDate($page.articles.lastEditedDate)}}</p>
+            </div>
+          </div>  
           </div>
-        </div>  
-        </div>
-        <!-- End: Article Author and Dates -->
+          <!-- End: Article Author and Dates -->
 
-        <!-- Start:Icons -->
-        <div class="w-full">
-        <div class="flex float-right">
-            <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
-              ><img :src="require('@/assets/img/icons/Twitter_Outline.svg')"
-            /></a>
-            <a
-              href="https://www.facebook.com/byteadmu/"
-              target="_blank"
-              class="mx-2"
-              ><img :src="require('@/assets/img/icons/Facebook_Outline.svg')"
-            /></a>
-                        <a
-              href="https://www.facebook.com/byteadmu/"
-              target="_blank"
-              class="mx-2"
-              ><img :src="require('@/assets/img/icons/Bookmark.svg')"
-            /></a>
-          </div>
-          </div>
-        <!-- End:Icons -->
+          <!-- Start:Icons -->
+          <div class="w-full">
+          <div class="flex float-right">
+              <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
+                ><img :src="require('@/assets/img/icons/Twitter_Outline.svg')"
+              /></a>
+              <a
+                href="https://www.facebook.com/byteadmu/"
+                target="_blank"
+                class="mx-2"
+                ><img :src="require('@/assets/img/icons/Facebook_Outline.svg')"
+              /></a>
+                          <a
+                href="https://www.facebook.com/byteadmu/"
+                target="_blank"
+                class="mx-2"
+                ><img :src="require('@/assets/img/icons/Bookmark.svg')"
+              /></a>
+            </div>
+            </div>
+          <!-- End:Icons -->
+        </div><!-- END: Second Row -->    
         </div>
-        <!-- END: Second Row -->      
+        
+        <img class="w-full mb-24" :src="`http://localhost:1337${$page.articles.featuredImage}`" />
+
+        <VueMarkdown class="mb-24 article-content" :source="$page.articles.content"/>
+        <VueMarkdown class="mb-24 article-sources" :source="$page.articles.sources"/>
+
+        <div class="flex justify-center w-full">
+          <div>
+            <svg width="214" height="10" viewBox="0 0 214 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="106" cy="5" r="5" fill="#151316"/>
+              <circle cx="209" cy="5" r="5" fill="#151316"/>
+              <circle cx="5" cy="5" r="5" fill="#151316"/>
+            </svg>
+          </div>
+        </div>
       </div>
-    <!--END: First Row -->
-
-      
-    </div>  
-  </section>
-
-
-<!-- FIRST ROW -->
-<p class="article-title">{{$page.articles.title}}</p>
-<!-- FIRST ROW -->
-
-
-                    
-<!-- START: Author and Article Information -->
-                    <div class="flex items-center text-black no-underline hover:underline">
-                        <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
-                        <div class="ml-5">
-                          <p class="author-name">{{$page.articles.author}}</p>
-                          <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
-                          <p class="article-lastEditedDate">Last Edited on {{formatDate($page.articles.lastEditedDate)}}</p>
-                        </div>
-                    </div>
-      <!-- END: Author and Article Information -->
-    
+    </section>
   </Layout>
 </template>
 
@@ -81,18 +70,26 @@ query($id:ID!){
       author,
       publishedDate,
       lastEditedDate,
-      content
+      content,
+      sources,
+      featuredImage,
+      thumbnailImage,
     }
   }
 </page-query>
 
 <script>
+import VueMarkdown from "vue-markdown";
 import moment from "moment";
 export default {
   metaInfo() {
     return {
       title: this.$page.article.title,
     };
+  },
+
+  components: {
+    VueMarkdown,
   },
 
   methods: {
@@ -142,6 +139,23 @@ export default {
   font-size: 12px;
   line-height: 15px;
   color: #b4b4b4;
+}
+
+.article-content {
+  font-family: HK Grotesk;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 40px;
+}
+
+.article-sources {
+  font-family: HK Grotesk;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 40px;
+  color: #8c8c8c;
 }
 </style>
 
