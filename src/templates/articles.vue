@@ -1,14 +1,65 @@
 <template lang="html">
   <Layout>
-    <div  class="min-h-screen">
+    <section class="flex justify-center h-screen my-24">
+    <div class="flex w-3/4">
+      <div class="w-full px-24">
+        <!-- START: First Row -->
+        <p class="mb-5 article-title">{{$page.articles.title}}</p>
+        <!-- END: First Row -->
 
-    
+        <!-- START: Second Row -->
+        <div class="flex">
+        <!-- Start: Article Author and Dates -->
+        <div class="w-full">
+        <div class="flex items-center text-black no-underline hover:underline">
+          <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
+          <div class="ml-5">
+            <p class="author-name">{{$page.articles.author}}</p>
+            <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
+            <p class="article-lastEditedDate">Last Edited on {{formatDate($page.articles.lastEditedDate)}}</p>
+          </div>
+        </div>  
+        </div>
+        <!-- End: Article Author and Dates -->
 
-   
-       <p class="article-title">{{$page.articles.title}}</p>
+        <!-- Start:Icons -->
+        <div class="w-full">
+        <div class="flex float-right">
+            <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
+              ><img :src="require('@/assets/img/icons/Twitter_Outline.svg')"
+            /></a>
+            <a
+              href="https://www.facebook.com/byteadmu/"
+              target="_blank"
+              class="mx-2"
+              ><img :src="require('@/assets/img/icons/Facebook_Outline.svg')"
+            /></a>
+                        <a
+              href="https://www.facebook.com/byteadmu/"
+              target="_blank"
+              class="mx-2"
+              ><img :src="require('@/assets/img/icons/Bookmark.svg')"
+            /></a>
+          </div>
+          </div>
+        <!-- End:Icons -->
+        </div>
+        <!-- END: Second Row -->      
+      </div>
+    <!--END: First Row -->
 
-       <!-- START: Author and Article Information -->
+      
+    </div>  
+  </section>
+
+
+<!-- FIRST ROW -->
+<p class="article-title">{{$page.articles.title}}</p>
+<!-- FIRST ROW -->
+
+
                     
+<!-- START: Author and Article Information -->
                     <div class="flex items-center text-black no-underline hover:underline">
                         <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
                         <div class="ml-5">
@@ -18,10 +69,7 @@
                         </div>
                     </div>
       <!-- END: Author and Article Information -->
-
-    <!-- <p>by {{$page.articles.author}} ({{formatDate($page.articles.date)}})</p>
-    <p>Content: {{$page.articles.content}}</p> -->
-    </div>
+    
   </Layout>
 </template>
 
@@ -57,11 +105,6 @@ export default {
 
 <style scoped>
 .article-title {
-  position: absolute;
-  width: 996px;
-  height: 64px;
-  left: 222px;
-  top: 226px;
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
