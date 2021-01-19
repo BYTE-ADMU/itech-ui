@@ -13,7 +13,7 @@
             <!-- Start: Article Author and Dates -->
             <div class="w-full">
               <div class="flex items-center text-black no-underline">
-                <img alt="author-image" class="block rounded-full author-image" src="https://picsum.photos/32/32/?random">
+                <img alt="author-image" class="block rounded-full author-image" :src="`http://localhost:1337${$page.articles.profileImage}`">
                 <div class="ml-5">
                   <p class="author-name">{{$page.articles.author}}</p>
                   <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
@@ -115,6 +115,7 @@ query($id:ID!){
       id,
       title,
       author,
+      profileImage,
       publishedDate,
       lastEditedDate,
       content,

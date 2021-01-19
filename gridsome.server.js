@@ -23,6 +23,7 @@ module.exports = function (api) {
         path:'/articles/' + article.id,
         title:article.title,
         author:article.authors[0].name,
+        profileImage:article.authors[0].profileImage.url,
         publishedDate:article.published_at,
         lastEditedDate:article.updatedAt,
         content:article.content,
@@ -32,7 +33,8 @@ module.exports = function (api) {
         category: article.categories[0].name,
       })
     }
-  })
+  }
+)
 
   api.createPages(({ createPage }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/
