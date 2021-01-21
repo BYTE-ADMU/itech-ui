@@ -1,15 +1,15 @@
 <template>
     <Layout>
     <!-- ROOT -->
-    <div class="flex flex-col container mx-auto min-h-screen w-screen py-20">
-        <div class="flex w-full justify-between items-start">
+    <div class="container flex flex-col w-screen min-h-screen py-20 mx-auto">
+        <div class="flex items-start justify-between w-full">
             <!-- Featured & New On ITECH -->
             <div class="flex flex-col w-9/12">
                 <featureEntry />
-                <h3 class="text-xl mt-4 font-objectivity mx-2 font-bold uppercase">
+                <h3 class="mx-2 mt-4 text-xl font-bold uppercase font-objectivity">
                     New On ITECH
                 </h3>
-                <div class="flex mt-1 justify-between">
+                <div class="flex justify-between mt-1">
                     <articleEntry />
                     <articleEntry />
                     <articleEntry />
@@ -21,7 +21,7 @@
         <!-- Featured Courses & Playlists-->
         <div class="flex w-full mt-4">
             <div class="w-3/12">
-                <h2 class="text-4xl font-neuemachina p-2 mx-auto">
+                <h2 class="p-2 mx-auto text-4xl font-neuemachina">
                     Featured Courses & Playlists ✨
                 </h2>
             </div>
@@ -30,10 +30,10 @@
             <playlistEntry />
         </div>
         <!-- Hacker -->
-        <div class="flex w-full mt-4 items-center">
+        <div class="flex items-center w-full mt-4">
             <bitbotFeature bb3="hacker" />
             <div class="flex flex-col w-9/12">
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Topics
                 </h5>
                 <div class="flex justify-between mb-2">
@@ -41,7 +41,7 @@
                     <articleHeader />
                     <articleHeader />
                 </div>
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Articles
                 </h5>
                 <div class="flex justify-between">
@@ -52,10 +52,10 @@
             </div>
         </div>
         <!-- Hipster -->
-        <div class="flex w-full mt-4 items-center">
+        <div class="flex items-center w-full mt-4">
             <bitbotFeature bb3="hipster" />
             <div class="flex flex-col w-9/12">
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Topics
                 </h5>
                 <div class="flex justify-between mb-2">
@@ -63,7 +63,7 @@
                     <articleHeader />
                     <articleHeader />
                 </div>
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Articles
                 </h5>
                 <div class="flex justify-between">
@@ -74,10 +74,10 @@
             </div>
         </div>
         <!-- Hustler -->
-        <div class="flex w-full mt-4 items-center">
+        <div class="flex items-center w-full mt-4">
             <bitbotFeature bb3="hustler" />
             <div class="flex flex-col w-9/12">
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Topics
                 </h5>
                 <div class="flex justify-between mb-2">
@@ -85,7 +85,7 @@
                     <articleHeader />
                     <articleHeader />
                 </div>
-                <h5 class="text-md uppercase font-objectivity font-bold mx-2 mb-1">
+                <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
                     Articles
                 </h5>
                 <div class="flex justify-between">
