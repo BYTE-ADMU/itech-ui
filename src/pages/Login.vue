@@ -39,15 +39,13 @@
                     forgot password?
                   </h1>
                 </g-link>
-
-                <g-link to="/dashboard/">
-                  <button
-                    :disabled="!isFormComplete"
-                    class="px-16 py-4 form_button uppercase font-objectivity ..."
-                  >
-                    Yes I Am
-                  </button>
-                </g-link>
+                <button
+                  @click="login"
+                  :disabled="!isFormComplete"
+                  class="px-16 py-4 form_button uppercase font-objectivity ..."
+                >
+                  Yes I Am
+                </button>
               </div>
             </div>
           </div>
@@ -66,7 +64,9 @@
   </Layout>
 </template>
 
-  <script>
+<script>
+
+
 export default {
   name: "login",
   metaInfo: {
@@ -79,6 +79,14 @@ export default {
         password: "",
       },
     };
+  },
+  methods: {
+    async login() {
+      await this.$store.dispatch('login', this.user);
+      if (this.$store.state.isAuthenticated) {
+        this.$router.replace('/dashboard');
+      }
+    }
   },
   computed: {
     isFormComplete() {
