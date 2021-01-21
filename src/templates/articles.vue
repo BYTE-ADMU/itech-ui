@@ -13,7 +13,7 @@
             <!-- Start: Article Author and Dates -->
             <div class="w-full">
               <div class="flex items-center text-black no-underline">
-                <img alt="author-image" class="block rounded-full author-image" :src="`http://localhost:1337${$page.thisArticle.profileImage}`">
+                <img alt="author-image" class="block rounded-full author-image" :src="`${$store.state.API_URL}${$page.thisArticle.profileImage}`">
                 <div class="ml-5">
                   <p class="author-name">{{$page.thisArticle.author}}</p>
                   <p class="article-publishedDate">Published on {{formatDate($page.thisArticle.publishedDate)}}</p>

@@ -10,7 +10,7 @@ const axios = require('axios');
 module.exports = function (api) {
   api.loadSource( async actions => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-    const {data} = await axios.get('http://localhost:1337/articles');
+    const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/articles');
 
     const articles = actions.addCollection({
       typeName:'articles',

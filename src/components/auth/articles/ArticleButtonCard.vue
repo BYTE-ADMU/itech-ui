@@ -9,7 +9,7 @@
     </div>
     <div class="w-1/4">
       <img
-        :src="`http://localhost:1337${article.node.thumbnailImage}`"
+        :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
         class="object-cover h-full rounded-lg"
         style="width: 116px"
       />
