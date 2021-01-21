@@ -1,8 +1,7 @@
 <template>
   <Layout>
-    <p v-for="article in $page.allArticles.edges" :key="article.node.id">
-      {{ article.node.title }}
-
+    <p v-for="article in hackerArticles" :key="article.node.id">
+      {{ article.node.title }} Hekki
       <button @click="$router.push(`/articles/${article.node.id}`)">
         More Info
       </button>
@@ -18,7 +17,10 @@
       edges{
         node{
           id,
+          category,
           title,
+          author,
+          thumbnailImage
         }
       }
     }
@@ -37,38 +39,18 @@ export default {
   data() {
     return {
       tab: 0,
+      articles: [],
     };
   },
 
   mounted() {
-    this.events = this.$page.events.edges;
+    this.articles = this.$page.allArticles.edges;
   },
 
-  watch: {
-    tab(val) {
-      if (this.tab === 0) {
-        this.showAllEvents();
-      } else {
-        this.showEventsByType(val);
-      }
-    },
-  },
-
-  methods: {
-    showAllEvents() {
-      this.events = this.$page.events.edges;
-    },
-    showEventsByType(val) {
-      this.events = this.$page.events.edges.filter((edge) => {
-        return edge.node.category === val;
-      });
-    },
-    formatDate(date) {
-      return moment(date).format("MMMM Do YYYY, h:mm a");
-    },
-    getEvents(searchText) {
-      return this.events.filter((edge) => {
-        return edge.node.title.toLowerCase().includes(searchText.toLowerCase());
+  computed: {
+    hackerArticles() {
+      return this.articles.filter((article) => {
+        return article.node.category.includes("Hacker");
       });
     },
   },
