@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "articleEntry",
+  name: "ArticleButtonCard",
   props: ["article"],
 };
 </script>

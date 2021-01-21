@@ -12,13 +12,13 @@ module.exports = function (api) {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     const {data} = await axios.get('http://localhost:1337/articles');
 
-    const collection = actions.addCollection({
+    const articles = actions.addCollection({
       typeName:'articles',
       path:'/articles/:id'
     });
 
     for (const article of data){
-      collection.addNode({
+      articles.addNode({
         id:article.id,
         path:'/articles/' + article.id,
         title:article.title,
@@ -31,6 +31,7 @@ module.exports = function (api) {
         thumbnailImage:article.thumbnailImage.url,
         featuredImage:article.featuredImage.url,
         category: article.categories[0].name,
+        comments:article.comments
       })
     }
   }

@@ -71,7 +71,7 @@
           </div>
         <!-- END: DIVIDER -->
 
-        <!-- START: Second Row --><div class="flex">
+        <!-- START: Next Articles and Comments Section--> <div class="flex">
             <!-- Start: Article Author and Dates -->
             <div class="w-full mx-24">
               <div class="flex items-center">
@@ -89,12 +89,30 @@
             </div>
             <!-- END: FIRST COLUMN -->
 
-            <!-- Start:Icons -->
-            <div class="w-full bg-black">
-              Comment Section
+            <!-- START:SECOND -->
+            <div class="w-full">
+              <form class="w-full max-w-xl px-4 pt-2 bg-white rounded-lg">
+                <div class="flex flex-wrap mb-6 -mx-3">
+                  <div class="mb-5">
+                    <p class="comment-header">Have a question? A comment?</p>
+                    <p class="comment-subheader">Leave one below!</p>
+                  </div>
+
+                  <div class="w-full">
+                    <textarea class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded resize-none focus:outline-none focus:bg-white" name="body" required></textarea>
+                  </div>
+                  <div class="w-full">
+
+                      <input type='submit' class="float-right comment-button" value='Post Comment'>
+                  </div>
+                </div>
+              </form>
+                <div v-for="comment in $page.thisArticle.comments" v-bind:key="comment.id">
+                  <CommentCard v-bind:comment="comment"></CommentCard>
+                </div>
             </div>
-            <!-- End:Icons -->
-          </div><!-- END: Second Row --> 
+            <!-- END:SECOND COLUMN -->
+          </div><!-- END: Next Articles and Comments Section--> 
 
 
 
@@ -105,6 +123,7 @@
 
 <script>
 import ArticleButtonCard from "../components/auth/articles/ArticleButtonCard";
+import CommentCard from "../components/auth/articles/CommentCard";
 import VueMarkdown from "vue-markdown";
 
 import moment from "moment";
@@ -119,6 +138,7 @@ export default {
   components: {
     VueMarkdown,
     ArticleButtonCard,
+    CommentCard,
   },
 
   methods: {
@@ -142,7 +162,11 @@ query($id:ID!){
     sources,
     featuredImage,
     thumbnailImage,
+    comments{
+      comment
+    }
   },
+  
   nextArticles:allArticles(limit:3){
     edges{
       node{
@@ -217,6 +241,41 @@ query($id:ID!){
   font-size: 36px;
   line-height: 44px;
   color: #151316;
+}
+
+.comment-header {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #151316;
+}
+
+.comment-subheader {
+  font-family: Objectivity;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  /* or 167% */
+
+  color: #8c8c8c;
+}
+
+.comment-button {
+  padding: 10px 18px;
+
+  /* ITECH Blue */
+
+  background: #4e6afa;
+  border-radius: 5px;
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: white;
 }
 </style>
 
