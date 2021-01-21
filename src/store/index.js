@@ -9,6 +9,7 @@ const store = new Vuex.Store({
         API_URL: 'https://calm-everglades-39473.herokuapp.com',
         token: '',
         user: {},
+        isAuthenticated: false,
     },
     mutations: {
         setToken(state, token) {
@@ -16,17 +17,31 @@ const store = new Vuex.Store({
         },
         setUser(state, user) {
             state.user = user;
+        },
+        toggleAuthenticated(state) {
+            state.isAuthenticated != state.isAuthenticated;
         }
     },
     actions: {
-        login({state, commit}, username, password) {
-            const { data } = await axios.post(`${state.API_URL}/auth/local`, {
-                identifier: username,
-                password: password,
-            });
+        async login ({state, commit}, {email, password}) {
+            let data = {}
 
-            commit('setToken', data.jwt);
-            commit('setUser', data.user);
+            try {
+                const response = await axios.post(`${state.API_URL}/auth/local`, {
+                    identifier: email,
+                    password: password,
+                });
+
+                data = response.data;
+
+                commit('setToken', data.jwt);
+                commit('setUser', data.user);
+                commit('toggleAuthenticated');
+
+                // this.$router.push('/dashboard') doesn't work
+            } catch(e) {
+                console.log(e)
+            }
         }
     },
     modules: {
