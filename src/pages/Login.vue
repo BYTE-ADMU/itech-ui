@@ -42,6 +42,7 @@
 
                 <g-link to="/dashboard/">
                   <button
+                    @click="login"
                     :disabled="!isFormComplete"
                     class="px-16 py-4 form_button uppercase font-objectivity ..."
                   >
@@ -66,7 +67,9 @@
   </Layout>
 </template>
 
-  <script>
+<script>
+
+
 export default {
   name: "login",
   metaInfo: {
@@ -79,6 +82,11 @@ export default {
         password: "",
       },
     };
+  },
+  methods: {
+    login() {
+      this.$store.dispatch('login');
+    }
   },
   computed: {
     isFormComplete() {
