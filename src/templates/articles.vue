@@ -49,7 +49,7 @@
         <!-- END: ARTICLE INFO -->
 
         <!-- START: FEATURED IMAGE -->
-          <img class="w-full mb-24" :src="`http://localhost:1337${$page.thisArticle.featuredImage}`" />
+          <img class="w-full mb-24" :src="`${$store.state.API_URL}${$page.thisArticle.featuredImage}`" />
         <!-- END: FEATURED IMAGE -->
         
         <!-- START: ARTICLE CONTENT -->
@@ -131,7 +131,7 @@ import moment from "moment";
 export default {
   metaInfo() {
     return {
-      title: this.$page.article.title,
+      title: this.$page.thisArticle.title,
     };
   },
 
