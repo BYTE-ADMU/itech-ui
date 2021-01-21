@@ -6,18 +6,18 @@
         <!-- START: ARTICLE INFO -->
         <div class="mx-24 mb-12">
           <!-- START: First Row -->
-            <p class="mb-5 article-title">{{$page.articles.title}}</p> 
+            <p class="mb-5 article-title">{{$page.thisArticle.title}}</p> 
           <!-- END: First Row -->
 
           <!-- START: Second Row --><div class="flex">
             <!-- Start: Article Author and Dates -->
             <div class="w-full">
               <div class="flex items-center text-black no-underline">
-                <img alt="author-image" class="block rounded-full author-image" :src="`http://localhost:1337${$page.articles.profileImage}`">
+                <img alt="author-image" class="block rounded-full author-image" :src="`http://localhost:1337${$page.thisArticle.profileImage}`">
                 <div class="ml-5">
-                  <p class="author-name">{{$page.articles.author}}</p>
-                  <p class="article-publishedDate">Published on {{formatDate($page.articles.publishedDate)}}</p>
-                  <p class="article-lastEditedDate">Last Edited on {{formatDate($page.articles.lastEditedDate)}}</p>
+                  <p class="author-name">{{$page.thisArticle.author}}</p>
+                  <p class="article-publishedDate">Published on {{formatDate($page.thisArticle.publishedDate)}}</p>
+                  <p class="article-lastEditedDate">Last Edited on {{formatDate($page.thisArticle.lastEditedDate)}}</p>
                 </div>
               </div>  
             </div>
@@ -49,12 +49,14 @@
         <!-- END: ARTICLE INFO -->
 
         <!-- START: FEATURED IMAGE -->
-          <img class="w-full mb-24" :src="`http://localhost:1337${$page.articles.featuredImage}`" />
+          <img class="w-full mb-24" :src="`http://localhost:1337${$page.thisArticle.featuredImage}`" />
         <!-- END: FEATURED IMAGE -->
         
         <!-- START: ARTICLE CONTENT -->
-          <VueMarkdown class="mb-24 article-content" :source="$page.articles.content"/>
-          <VueMarkdown class="mb-24 article-sources" :source="$page.articles.sources"/>
+        <div class="mx-24">
+          <VueMarkdown class="mb-24 article-content" :source="$page.thisArticle.content"/>
+          <VueMarkdown class="mb-24 article-sources" :source="$page.thisArticle.sources"/>
+        </div>
         <!-- END: ARTICLE CONTENT -->
 
         <!-- START: DIVIDER -->
@@ -71,33 +73,25 @@
 
         <!-- START: Second Row --><div class="flex">
             <!-- Start: Article Author and Dates -->
-            <div class="w-full">
+            <div class="w-full mx-24">
               <div class="flex items-center">
+                <!-- START: FIRST COLUMN -->
+                <div class="w-full">
                 <p class="whats-next">What's Next?</p>
+                <hr class="my-5" />
+                  
+                  <div v-for="article in $page.nextArticles.edges" v-bind:key="article.node.id">
+                    <ArticleButtonCard v-bind:article="article"></ArticleButtonCard>
+                  </div>
+                </div>
                 
               </div>  
             </div>
-            <!-- End: Article Author and Dates -->
+            <!-- END: FIRST COLUMN -->
 
             <!-- Start:Icons -->
-            <div class="w-full">
-              <div class="flex float-right">
-                <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Twitter_Outline.svg')"
-                /></a>
-                <a
-                  href="https://www.facebook.com/byteadmu/"
-                  target="_blank"
-                  class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Facebook_Outline.svg')"
-                /></a>
-                            <a
-                  href="https://www.facebook.com/byteadmu/"
-                  target="_blank"
-                  class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Bookmark.svg')"
-                /></a>
-              </div>
+            <div class="w-full bg-black">
+              Comment Section
             </div>
             <!-- End:Icons -->
           </div><!-- END: Second Row --> 
@@ -109,26 +103,12 @@
   </Layout>
 </template>
 
-<page-query>
-query($id:ID!){
-    articles(id:$id){
-      id,
-      title,
-      author,
-      profileImage,
-      publishedDate,
-      lastEditedDate,
-      content,
-      sources,
-      featuredImage,
-      thumbnailImage,
-    }
-  }
-</page-query>
-
 <script>
+import ArticleButtonCard from "../components/auth/articles/ArticleButtonCard";
 import VueMarkdown from "vue-markdown";
+
 import moment from "moment";
+
 export default {
   metaInfo() {
     return {
@@ -138,6 +118,7 @@ export default {
 
   components: {
     VueMarkdown,
+    ArticleButtonCard,
   },
 
   methods: {
@@ -147,6 +128,33 @@ export default {
   },
 };
 </script>
+
+<page-query>
+query($id:ID!){
+  thisArticle: articles(id:$id){
+    id,
+    title,
+    author,
+    profileImage,
+    publishedDate,
+    lastEditedDate,
+    content,
+    sources,
+    featuredImage,
+    thumbnailImage,
+  },
+  nextArticles:allArticles(limit:3){
+    edges{
+      node{
+        id,
+        title,
+        author,
+        thumbnailImage
+      }
+    }
+  }
+}
+</page-query>
 
 <style scoped>
 .article-title {
@@ -191,16 +199,12 @@ export default {
 
 .article-content {
   font-family: HK Grotesk;
-  font-style: normal;
-  font-weight: normal;
   font-size: 24px;
   line-height: 40px;
 }
 
 .article-sources {
   font-family: HK Grotesk;
-  font-style: italic;
-  font-weight: bold;
   font-size: 24px;
   line-height: 40px;
   color: #8c8c8c;
