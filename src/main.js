@@ -8,5 +8,6 @@ import store from './store';
 export default function (Vue, {appOptions, router, head, isClient }) {
   // Set default layout as a global component
   appOptions.store = store;
+  appOptions.router = router;
   Vue.component('Layout', DefaultLayout);
 }

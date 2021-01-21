@@ -81,8 +81,11 @@ export default {
     };
   },
   methods: {
-    login() {
-      this.$store.dispatch('login', this.user);
+    async login() {
+      await this.$store.dispatch('login', this.user);
+      if (this.$store.state.isAuthenticated) {
+        this.$router.replace('/dashboard');
+      }
     }
   },
   computed: {

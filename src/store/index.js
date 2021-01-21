@@ -10,6 +10,7 @@ const store = new Vuex.Store({
         token: '',
         user: {},
         isAuthenticated: false,
+        savedArticles: [],
     },
     mutations: {
         setToken(state, token) {
@@ -19,7 +20,7 @@ const store = new Vuex.Store({
             state.user = user;
         },
         toggleAuthenticated(state) {
-            state.isAuthenticated != state.isAuthenticated;
+            state.isAuthenticated = true;
         }
     },
     actions: {
@@ -38,7 +39,6 @@ const store = new Vuex.Store({
                 commit('setUser', data.user);
                 commit('toggleAuthenticated');
 
-                // this.$router.push('/dashboard') doesn't work
             } catch(e) {
                 console.log(e)
             }
