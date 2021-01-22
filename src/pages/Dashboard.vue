@@ -212,7 +212,10 @@ import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
 
 export default {
-  name: "Catalogue",
+  name: "Dashboard",
+  metaInfo: {
+    title: "Dashboard",
+  },
   data() {
     return {
       newOnItech: [],
