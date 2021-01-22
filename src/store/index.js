@@ -32,7 +32,8 @@ const store = new Vuex.Store({
                     identifier: email,
                     password: password,
                 });
-
+                
+                alert("Logged In!");
                 data = response.data;
                 
                 try {
