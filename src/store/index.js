@@ -36,16 +36,17 @@ const store = new Vuex.Store({
                 data = response.data;
                 
                 try {
-                    const response = await axios.get(`${state.API_URL}/ITECHUsers`);
+                    const response = await axios.get(`${state.API_URL}/user-informations`);
                     const profiles = response.data;
                     const myProfile = profiles.filter(profile => profile.email == email);
 
                     if (myProfile.length == 0) {
                         try {
-                            const res = await axios.post(`${state.API_URL}/ITECHUsers`, {
+                            const res = await axios.post(`${state.API_URL}/user-informations`, {
                                 email,
                                 course: 'BYTE',
                                 school_id_number: password,
+                                username: '',
                             });
                         } catch (e) {
                             console.log(e);
