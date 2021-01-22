@@ -1,14 +1,19 @@
 <template>
-  <nav
-    class="flex flex-wrap items-center justify-between px-64 py-5 bg-white shadow-md nav"
-  >
-    <div class="flex items-center text-white flex-no-shrink">
-      <g-link class="nav__link" to="/"
-        ><img
-          :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-          class="w-40 py-2"
-      /></g-link>
+  <nav class="flex flex-wrap items-center justify-between px-64 py-5 bg-white shadow-md nav">
+    <!-- LINK CONDITION START -->
+    <div v-if="!isAuthenticated" class="flex items-center text-white flex-no-shrink">
+      <g-link class="nav__link" to="/">
+        <img :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+        class="w-40 py-2"/>
+      </g-link>
     </div>
+    <div v-else class="flex items-center text-white flex-no-shrink">
+      <g-link class="nav__link" to="/dashboard">
+        <img :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+        class="w-40 py-2"/>
+      </g-link>
+    </div>
+    <!-- LINK CONDITION END -->
     <div class="block lg:hidden">
       <button
         class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white"
@@ -26,29 +31,22 @@
 
     <div class="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow"></div>
-      <!-- <div>
-      <g-link class="mx-8 text-lg font-bold uppercase nav__link" to="/login/">Topics</g-link>
-    </div>
-    <div>
-      <g-link class="mx-8 text-lg font-bold uppercase nav__link" to="/login/">Profile</g-link>
-    </div>
-    <div>
-      <g-link class="mx-8 text-lg font-bold uppercase nav__link" to="/login/">Calendar</g-link>
-    </div> -->
-      <div>
+      <div v-if="!isAuthenticated">
         <g-link
-          class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
-          to="/login/"
-          >Login</g-link
-        >
+        class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
+        to="/login/">
+          Login
+        </g-link>
+      </div>
+      <div class="flex" v-else>
+        <a href="#" class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link">
+          My List
+        </a>
+        <p class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link">
+          {{ identifier }}
+        </p>
       </div>
     </div>
-
-    <!--
-<div class="container flex items-center justify-between px-10 py-5 mx-auto">
-  <g-link class="nav__link" to="/"><img :src="require('@/assets/img/logo-primary.svg')" class="w-40 py-2" /></g-link>
-  <g-link class="text-lg font-bold uppercase nav__link" to="/login/">Login</g-link>
-</div> -->
   </nav>
 </template>
 
@@ -57,5 +55,13 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "Navbar",
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
+    },
+    identifier() {
+      return this.$store.state.user.email;
+    }
+  }
 });
 </script>
