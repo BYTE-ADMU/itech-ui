@@ -91,12 +91,19 @@
       <!-- START: SECOND COLUMN -->
 
       <div class="p-6 thirdColumnCard">
-        <p class="my-2 thirdColumnHeader">Stay in the loop</p>
-        <p class="my-2">
-          There is always more ways to be come a shiny BYTE unicorn! Keep up
-          with the latest opportunities in the discord server.
+        <p class="my-2 thirdColumnHeader">Share your thoughts</p>
+        <p class="mt-2 mb-5">
+          Have any thoughts on ITECH? Share your suggestions, comments, or
+          reports to help the ITECH team tweak, pivot, and polish the platform
+          to fit all your needs! Thank you for helping ITECH grow ✨
         </p>
-        <button class="my-2 left-0 getStarted uppercase ...">Login</button>
+        <a
+          class="mt-12 mb-5 px-4 py-4 left-0 getStarted uppercase ..."
+          target="_blank"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeSOI0HZtXYGRCu9Kfybq66BpYdHUCn2vQZTLlXAjKCqYXngQ/viewform"
+        >
+          Send Feedback
+        </a>
       </div>
       <!-- END: THIRD COLUMN -->
     </div>
@@ -126,13 +133,12 @@
 }
 
 .getStarted {
-  width: 165px;
   height: 40px;
   background: #ffffff;
   border-radius: 50px;
   font-family: Objectivity;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   text-align: center;
   letter-spacing: 0.2em;
   color: #6b83ff;

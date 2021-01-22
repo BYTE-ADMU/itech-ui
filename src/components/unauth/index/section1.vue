@@ -12,18 +12,22 @@
           <h1 class="font-objectivity index_text">Hello! Welcome to</h1>
           <h1 class="font-neuemachina index_header">ITECH</h1>
 
-          <g-link to="/register/"
+          <g-link to="/login/"
             ><button
               class="font-objectivity rounded-md index_button uppercase ..."
             >
               Get Started
             </button>
           </g-link>
-          <g-link class="text-lg font-objectivity nav__link" to="/login/">
+          <a
+            class="text-lg font-objectivity nav__link"
+            href="https://tinyurl.com/ITECHPreRegistrationForm"
+            target="_blank"
+          >
             <h1 class="mt-4 index_subbutton">
-              or <strong>Log In</strong> here
+              Don't have credentials yet?<strong> Click</strong> here
             </h1>
-          </g-link>
+          </a>
         </div>
       </div>
     </div>
