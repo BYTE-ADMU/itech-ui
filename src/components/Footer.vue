@@ -7,14 +7,7 @@
           <img :src="require('@/assets/img/BB3-Primary.svg')" class="w-11/12" />
         </div>
         <div class="w-2/3">
-          <p
-            style="
-              margin-top: -20px;
-              font-size: 6rem;
-              font-family: objectivity;
-              font-weight: bold;
-            "
-          >
+          <p class="itechFooter">
             ITECH
           </p>
           <div style="margin-top: -10px" class="flex">
@@ -142,6 +135,12 @@
   text-align: center;
   letter-spacing: 0.2em;
   color: #6b83ff;
+}
+.itechFooter{
+  margin-top: -20px;
+  font-size: 6rem;
+  font-family: objectivity;
+  font-weight: bold;
 }
 </style>
 
