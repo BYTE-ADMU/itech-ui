@@ -1,6 +1,6 @@
 <template lang="html">
   <Layout>
-    <section class="flex justify-center min-h-screen my-24">
+    <section class="flex justify-center min-h-screen mt-16 mb-32">
       <div class="w-full mx-64">
         <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link> / <g-link to="/dashboard/">Course</g-link></p>
 
