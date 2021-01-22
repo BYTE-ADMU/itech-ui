@@ -1,5 +1,8 @@
 <template>
-  <button class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg">
+  <g-link
+    class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+    :to="`/articles/${article.node.id}`"
+  >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
     <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
       <img
@@ -12,7 +15,7 @@
       {{ article.node.title }}
     </p>
     <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
-  </button>
+  </g-link>
 </template>
 
 <script>

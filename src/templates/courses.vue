@@ -7,9 +7,7 @@
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-full">
-          <cover :category="this.$router.history.current.path" />
-        </div>
+        <div class="flex flex-col w-full">Courses Page</div>
       </div>
 
       <!-- Featured Courses & Playlists-->
@@ -49,13 +47,7 @@
       >
         Course 2
       </h3>
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
+      <div class="flex justify-between mt-1 mb-24"></div>
 
       <h3
         class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
@@ -63,14 +55,7 @@
       >
         Course 3
       </h3>
-
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
+      <div class="flex justify-between mt-1 mb-24"></div>
 
       <h3
         class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
@@ -78,14 +63,7 @@
       >
         Course 4
       </h3>
-
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
+      <div class="flex justify-between mt-1 mb-24"></div>
       <!-- END COMPONENTS -->
     </div>
   </Layout>
@@ -114,7 +92,6 @@
 
 //START: SCRIPT
 <script>
-import cover from "../components/auth/categories/cover";
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
@@ -140,7 +117,6 @@ export default {
   computed: {},
 
   components: {
-    cover,
     articleEntry,
     playlistEntry,
     playlistTall,

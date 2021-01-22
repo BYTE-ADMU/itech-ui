@@ -1,45 +1,45 @@
 <template>
-    <a href="#" to="">
-        <div class='bg-gray-400 feature-height mx-2 rounded-lg relative tg'>
-            <div class="px-5 py-3 absolute w-full h-full group rounded-lg z-30">
-                <p class='text-white text-xl uppercase
-                font-objectivity py-3 w-48 relative hover:opacity-100'>
-                    Featured
-                </p>
-                <p class='text-white text-3xl py-3 font-objectivity
-                w-full relative font-medium hover:opacity-100'>
-                    {{ articleTitle }}
-                </p>
-                <p class='text-white text-lg font-objectivity py-1 w-48 relative hover:opacity-100'>
-                    Author
-                </p>
-                <p class="text-white font-objectivity py-3 absolute bottom-0 font-light hover:opacity-100">
-                    The description is placed here.
-                </p>
-            </div>
-            <img :src="resource" class="object-cover w-full h-full rounded-lg tg relative" />
-        </div>
-    </a>
+  <g-link :to="`/articles/${article.node.id}`">
+    <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
+      <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
+        <p
+          class="relative w-48 py-3 text-xl text-white uppercase font-objectivity hover:opacity-100"
+        >
+          Featured
+        </p>
+        <p
+          class="relative w-full py-3 text-3xl font-medium text-white font-objectivity hover:opacity-100"
+        >
+          {{ article.node.title }}
+        </p>
+        <p
+          class="relative w-48 py-1 text-lg text-white font-objectivity hover:opacity-100"
+        >
+          {{ article.node.author }}
+        </p>
+        <p
+          class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
+        >
+          {{ article.node.title }} description.
+        </p>
+      </div>
+      <img
+        :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+        class="relative object-cover w-full h-full rounded-lg tg"
+      />
+    </div>
+  </g-link>
 </template>
 
 <script>
 export default {
-    name: 'featureEntry',
-    props: {
-        resource: {
-            type: String,
-            default: 'https://picsum.photos/960/350'
-        },
-        articleTitle: {
-            type: String,
-            default: 'Title of the Article',
-        }
-    },
+  name: "featureEntry",
+  props: ["article"],
 };
 </script>
 
 <style scoped>
 .feature-height {
-    height: 350px;
+  height: 350px;
 }
 </style>

@@ -2,6 +2,7 @@
   <Layout>
     <section class="flex justify-center min-h-screen my-24">
       <div class="w-full mx-64">
+        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link> / <g-link to="/dashboard/">Course</g-link></p>
 
         <!-- START: ARTICLE INFO -->
         <div class="mx-24 mb-12">
@@ -276,6 +277,16 @@ query($id:ID!){
   font-weight: normal;
   font-size: 16px;
   color: white;
+}
+
+.breadcrumb {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #c9c9c9;
 }
 </style>
 

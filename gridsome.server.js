@@ -56,6 +56,26 @@ api.loadSource( async actions => {
   }
 )
 
+api.loadSource( async actions => {
+  // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+  const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/courses');
+
+  const courses = actions.addCollection({
+    typeName:'courses',
+    path:'/courses/:name'
+  });
+
+  for (const course of data){
+    courses.addNode({
+      id:course.id,
+      path:'/courses/' + course.id,
+      name:course.name,
+      articles:course.articles
+    });
+    }
+  }
+)
+
   api.createPages(({ createPage }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/
 

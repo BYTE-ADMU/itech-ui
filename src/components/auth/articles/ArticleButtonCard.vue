@@ -1,5 +1,9 @@
 <template>
-  <div class="flex w-full mb-6 rounded-lg" style="height: 116px">
+  <g-link
+    class="flex w-full mb-6 rounded-lg"
+    style="height: 116px"
+    :to="`/articles/${article.node.id}`"
+  >
     <div class="w-3/4 pr-2">
       <p class="mb-2 card-topic">Topic</p>
       <p class="mb-2 card-title">
@@ -14,7 +18,7 @@
         style="width: 116px"
       />
     </div>
-  </div>
+  </g-link>
 </template>
 
 <script>

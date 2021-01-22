@@ -8,31 +8,21 @@
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
         <div class="flex flex-col w-9/12">
-          <featureEntry />
+          <featureEntry
+            v-for="article in featuredArticle"
+            v-bind:key="article.node.id"
+            v-bind:article="article"
+          />
 
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
             New On ITECH
           </h3>
           <div class="flex justify-between mt-1 mb-24">
-            <button
+            <articleEntry
               v-for="article in newOnItech"
               v-bind:key="article.node.id"
-              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
-              @click="$router.push(`/articles/${article.node.id}`)"
-            >
-              <!-- PUT IMAGE AND DETAILS INSIDE -->
-              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
-                <img
-                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
-                  class="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-              <p class="mb-2 articleEntry-topic">Topic</p>
-              <p class="mb-2 articleEntry-title">
-                {{ article.node.title }}
-              </p>
-              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
-            </button>
+              v-bind:article="article"
+            ></articleEntry>
           </div>
         </div>
         <!-- Topic of the Week -->
@@ -68,25 +58,11 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <button
+            <articleEntry
               v-for="article in threeHackerArticles"
               v-bind:key="article.node.id"
-              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
-              @click="$router.push(`/articles/${article.node.id}`)"
-            >
-              <!-- PUT IMAGE AND DETAILS INSIDE -->
-              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
-                <img
-                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
-                  class="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-              <p class="mb-2 articleEntry-topic">Topic</p>
-              <p class="mb-2 articleEntry-title">
-                {{ article.node.title }}
-              </p>
-              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
-            </button>
+              v-bind:article="article"
+            ></articleEntry>
           </div>
         </div>
       </div>
@@ -106,25 +82,11 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <button
+            <articleEntry
               v-for="article in threeHipsterArticles"
               v-bind:key="article.node.id"
-              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
-              @click="$router.push(`/articles/${article.node.id}`)"
-            >
-              <!-- PUT IMAGE AND DETAILS INSIDE -->
-              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
-                <img
-                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
-                  class="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-              <p class="mb-2 articleEntry-topic">Topic</p>
-              <p class="mb-2 articleEntry-title">
-                {{ article.node.title }}
-              </p>
-              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
-            </button>
+              v-bind:article="article"
+            ></articleEntry>
           </div>
         </div>
       </div>
@@ -144,25 +106,11 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <button
+            <articleEntry
               v-for="article in threeHustlerArticles"
               v-bind:key="article.node.id"
-              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
-              @click="$router.push(`/articles/${article.node.id}`)"
-            >
-              <!-- PUT IMAGE AND DETAILS INSIDE -->
-              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
-                <img
-                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
-                  class="object-cover w-full h-full rounded-lg"
-                />
-              </div>
-              <p class="mb-2 articleEntry-topic">Topic</p>
-              <p class="mb-2 articleEntry-title">
-                {{ article.node.title }}
-              </p>
-              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
-            </button>
+              v-bind:article="article"
+            ></articleEntry>
           </div>
         </div>
       </div>
@@ -205,6 +153,7 @@
 
 //START: SCRIPT
 <script>
+import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
@@ -245,6 +194,10 @@ export default {
       });
     },
 
+    featuredArticle() {
+      return this.articles.slice(0, 1);
+    },
+
     threeHackerArticles() {
       return this.hackerArticles.slice(0, 3);
     },
@@ -257,6 +210,7 @@ export default {
   },
 
   components: {
+    articleEntry,
     featureEntry,
     playlistEntry,
     playlistTall,
