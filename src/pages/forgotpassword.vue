@@ -46,9 +46,8 @@
         </div>
       </div>
       <img
-        :src="require('@/assets/img/unauth/forgotpassword/waves.svg')"
-        class="w-full"
-        style="position: absolute"
+        :src="require('@/assets/img/unauth/forgotpassword/fwaves.svg')"
+        class="w-full absolute"
       />
     </section>
   </Layout>
@@ -75,4 +74,3 @@ export default {
   },
 };
 </script>
-
