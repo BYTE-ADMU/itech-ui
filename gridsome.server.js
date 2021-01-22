@@ -17,12 +17,6 @@ module.exports = function (api) {
       path:'/articles/:id'
     });
 
-    /* const categories = actions.addCollection({
-      typeName:'categories',
-      path:'/categories/:category'
-    });
-    */
-
     for (const article of data){
       articles.addNode({
         id:article.id,
@@ -39,17 +33,33 @@ module.exports = function (api) {
         category: article.categories[0].name,
         comments:article.comments
       });
+    }
 
-      /* categories.addNode({
-        id:article.id,
-        path:'/categories/' + article.categories[0].name,
-        category: article.categories[0].name,
-      }) */
+  }
+)
+
+api.loadSource( async actions => {
+  // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+  const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/articles');
+
+  const categories = actions.addCollection({
+    typeName:'categories',
+    path:'/articles/:name'
+  });
+
+  for (const category of data){
+    categories.addNode({
+      id:category.id,
+      path:'/categories/' + category.categories[0].name,
+    });
     }
   }
 )
 
   api.createPages(({ createPage }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/
+
   })
+
+  
 }
