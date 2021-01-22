@@ -17,6 +17,11 @@ module.exports = function (api) {
       path:'/articles/:id'
     });
 
+        const categories = actions.addCollection({
+      typeName:'categories',
+      path:'/categories/:category'
+    });
+
     for (const article of data){
       articles.addNode({
         id:article.id,
@@ -32,6 +37,12 @@ module.exports = function (api) {
         featuredImage:article.featuredImage.url,
         category: article.categories[0].name,
         comments:article.comments
+      });
+
+      categories.addNode({
+        id:article.id,
+        path:'/categories/' + article.categories[0].name,
+        category: article.categories[0].name,
       })
     }
   }
