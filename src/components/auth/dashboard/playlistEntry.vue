@@ -32,7 +32,7 @@ export default {
     },
     articleTitle: {
       type: String,
-      default: "Title of the Article",
+      default: "Title of the Playlist",
     },
   },
 };

@@ -14,11 +14,25 @@
             New On ITECH
           </h3>
           <div class="flex justify-between mt-1 mb-24">
-            <articleEntry
+            <button
               v-for="article in newOnItech"
               v-bind:key="article.node.id"
-              v-bind:article="article"
-            />
+              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+              @click="$router.push(`/articles/${article.node.id}`)"
+            >
+              <!-- PUT IMAGE AND DETAILS INSIDE -->
+              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
+                <img
+                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </div>
+              <p class="mb-2 articleEntry-topic">Topic</p>
+              <p class="mb-2 articleEntry-title">
+                {{ article.node.title }}
+              </p>
+              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
+            </button>
           </div>
         </div>
         <!-- Topic of the Week -->
@@ -54,9 +68,25 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <articleEntry v-bind:article="hackerArticles[0]" />
-            <articleEntry v-bind:article="hackerArticles[1]" />
-            <articleEntry v-bind:article="hackerArticles[2]" />
+            <button
+              v-for="article in threeHackerArticles"
+              v-bind:key="article.node.id"
+              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+              @click="$router.push(`/articles/${article.node.id}`)"
+            >
+              <!-- PUT IMAGE AND DETAILS INSIDE -->
+              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
+                <img
+                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </div>
+              <p class="mb-2 articleEntry-topic">Topic</p>
+              <p class="mb-2 articleEntry-title">
+                {{ article.node.title }}
+              </p>
+              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
+            </button>
           </div>
         </div>
       </div>
@@ -76,9 +106,25 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <articleEntry v-bind:article="hipsterArticles[0]" />
-            <articleEntry v-bind:article="hipsterArticles[1]" />
-            <articleEntry v-bind:article="hipsterArticles[2]" />
+            <button
+              v-for="article in threeHipsterArticles"
+              v-bind:key="article.node.id"
+              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+              @click="$router.push(`/articles/${article.node.id}`)"
+            >
+              <!-- PUT IMAGE AND DETAILS INSIDE -->
+              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
+                <img
+                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </div>
+              <p class="mb-2 articleEntry-topic">Topic</p>
+              <p class="mb-2 articleEntry-title">
+                {{ article.node.title }}
+              </p>
+              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
+            </button>
           </div>
         </div>
       </div>
@@ -98,9 +144,25 @@
             Articles
           </h5>
           <div class="flex justify-between">
-            <articleEntry v-bind:article="hustlerArticles[0]" />
-            <articleEntry v-bind:article="hustlerArticles[1]" />
-            <articleEntry v-bind:article="hustlerArticles[2]" />
+            <button
+              v-for="article in threeHustlerArticles"
+              v-bind:key="article.node.id"
+              class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+              @click="$router.push(`/articles/${article.node.id}`)"
+            >
+              <!-- PUT IMAGE AND DETAILS INSIDE -->
+              <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
+                <img
+                  :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+                  class="object-cover w-full h-full rounded-lg"
+                />
+              </div>
+              <p class="mb-2 articleEntry-topic">Topic</p>
+              <p class="mb-2 articleEntry-title">
+                {{ article.node.title }}
+              </p>
+              <p class="mb-2 articleEntry-author">{{ article.node.author }}</p>
+            </button>
           </div>
         </div>
       </div>
@@ -143,7 +205,6 @@
 
 //START: SCRIPT
 <script>
-import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
@@ -155,6 +216,7 @@ export default {
   data() {
     return {
       newOnItech: [],
+      articles: [],
     };
   },
 
@@ -179,10 +241,19 @@ export default {
         return article.node.category.includes("Hustler");
       });
     },
+
+    threeHackerArticles() {
+      return this.hackerArticles.slice(0, 3);
+    },
+    threeHipsterArticles() {
+      return this.hipsterArticles.slice(0, 3);
+    },
+    threeHustlerArticles() {
+      return this.hustlerArticles.slice(0, 3);
+    },
   },
 
   components: {
-    articleEntry,
     featureEntry,
     playlistEntry,
     playlistTall,
@@ -196,5 +267,39 @@ export default {
 <style>
 div > .tg {
   filter: brightness(80%);
+}
+
+.h-pic {
+  height: 8.5rem;
+}
+
+.articleEntry-topic {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  /* or 138% */
+
+  /* ITECH Teal */
+
+  color: #64c0c1;
+}
+
+.articleEntry-title {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.articleEntry-author {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
 }
 </style>
