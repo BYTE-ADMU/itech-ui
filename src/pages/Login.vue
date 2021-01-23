@@ -1,74 +1,97 @@
 <template>
-<Layout>
-  <section class="flex items-center justify-center h-screen">
+  <Layout>
+    <section class="h-screen" style="overflow: hidden">
+      <div class="w-full" style="position: absolute; top: 50%">
+        <div class="flex items-center justify-center">
+          <div class="flex w-3/4" style="margin-top: -120px">
+            <div class="w-full mr-20 text-center md:w-1/2"></div>
 
+            <div class="w-full md:w-1/2">
+              <h1 class="form_header font-neuemachina">Beep Boop!</h1>
+              <h1 class="mb-10 form_text font-objectivity">
+                Welcome back ITECH-er! Are you ready to learn more about Hacker.
+                Hipster, and Hustler?
+              </h1>
 
-    <div class="w-3/4 flex ">
+              <div class="form_inputs">
+                <input
+                  class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker"
+                  id="email"
+                  type="text"
+                  placeholder="email"
+                  v-model="user.email"
+                />
+                <input
+                  class="w-full px-8 py-4 mb-3 mb-6 border rounded-md border-red text-grey-darker"
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  v-model="user.password"
+                />
+              </div>
 
-      <div class="w-full md:w-1/2 text-center">
-        <img :src="require('@/assets/img/index-unauth/section1-botWelcome.svg')" class="py-6 mx-auto" />
-      </div>
-
-      <div class="w-full md:w-1/2">
-        <h1 class="hello">Welcome back! </h1>
-        <h1 class="itech">Please fill up your deets to get started</h1>
-
-        <div class="mb-4">
-
-          <input class="border rounded-full w-full py-2 px-8 text-grey-darker" id="username" type="text" placeholder="Email">
+              <div class="float-right">
+                <g-link
+                  class="text-lg text-right font-objectivity nav__link"
+                  to="/forgotpassword/"
+                >
+                  <h1 class="my-4 subbutton" style="color: #c0c0c0">
+                    forgot password?
+                  </h1>
+                </g-link>
+                <button
+                  @click="login"
+                  :disabled="!isFormComplete"
+                  class="px-16 py-4 form_button uppercase font-objectivity ..."
+                >
+                  Yes I Am
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="mb-6">
-
-          <input class=" border border-red rounded-full  w-full py-2 px-8 text-grey-darker mb-3" id="password" type="password" placeholder="Password">
-        </div>
-
-        <button class="right-0 getStarted uppercase ...">Login</button>
       </div>
-
-
-    </div>
-
-  </section>
-</Layout>
+      <img
+        :src="require('@/assets/img/unauth/login/waves.svg')"
+        class="w-full"
+        style="position: absolute"
+      />
+      <img
+        :src="require('@/assets/img/unauth/login/loginBG.svg')"
+        class="w-full"
+      />
+    </section>
+  </Layout>
 </template>
 
-  <script>
-  export default {
-    metaInfo: {
-      title: 'Login'
-    }
-  }
-  </script>
+<script>
 
-  <style scoped>
-    .hello {
-      font-family: Objectivity;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 40px;
-    }
 
-    .itech {
-      font-family: Neue Machina;
-      font-style: normal;
-      font-weight: 900;
-      font-size: 70px;
+export default {
+  name: "login",
+  metaInfo: {
+    title: "Login",
+  },
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    async login() {
+      await this.$store.dispatch('login', this.user);
+      if (this.$store.state.isAuthenticated) {
+        this.$router.replace('/dashboard');
+      }
     }
-
-    .getStarted {
-      width:165px;
-      height: 40px;
-      left: 847px;
-      top: 458px;
-      float: right;
-      background: #64C0C1;
-      border-radius: 50px;
-      font-family: Objectivity;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 18px;
-      text-align: center;
-      letter-spacing: 0.2em;
-      color: #F9F7F2;
-    }
-  </style>
+  },
+  computed: {
+    isFormComplete() {
+      return this.user.email && this.user.password;
+    },
+  },
+};
+</script>
