@@ -77,9 +77,3 @@ export default Vue.extend({
   text-align: center;
 }
 </style>
-
-
-
-
-
-
