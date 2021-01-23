@@ -38,23 +38,7 @@ module.exports = function (api) {
   }
 )
 
-api.loadSource( async actions => {
-  // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-  const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/articles');
 
-  const categories = actions.addCollection({
-    typeName:'categories',
-    path:'/articles/:name'
-  });
-
-  for (const category of data){
-    categories.addNode({
-      id:category.id,
-      path:'/categories/' + category.categories[0].name,
-    });
-    }
-  }
-)
 
 api.loadSource( async actions => {
   // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
