@@ -29,64 +29,13 @@
 
       <hr class="mt-12 mb-6" />
 
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 1
-      </h3>
       <div class="flex justify-between mt-1 mb-24">
         <articleEntry
-          v-for="article in $page.nextArticles.edges"
+          v-for="article in filteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
         ></articleEntry>
       </div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 2
-      </h3>
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 3
-      </h3>
-
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 4
-      </h3>
-
-      <div class="flex justify-between mt-1 mb-24">
-        <articleEntry
-          v-for="article in $page.nextArticles.edges"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-      </div>
-      <!-- END COMPONENTS -->
     </div>
   </Layout>
 </template>
@@ -95,7 +44,7 @@
 // START: PAGE QUERY
 <page-query>
   query {
-    nextArticles:allArticles(order:DESC,limit:4){
+    nextArticles:allArticles(order:DESC){
       edges{
         node{
           publishedDate,
@@ -134,10 +83,16 @@ export default {
   },
 
   mounted() {
-    this.articles = this.$page.allArticles.edges;
+    this.articles = this.$page.nextArticles.edges;
   },
 
-  computed: {},
+  computed: {
+    filteredArticles() {
+      return this.articles.filter((article) => {
+        return article.node.category.includes("Hustler");
+      });
+    },
+  },
 
   components: {
     cover,

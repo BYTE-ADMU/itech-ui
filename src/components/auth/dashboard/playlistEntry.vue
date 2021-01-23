@@ -6,7 +6,7 @@
           class="relative w-48 py-1 mt-12 text-lg font-medium text-white font-objectivity hover:opacity-100"
           style="font-size: 24px"
         >
-          {{ articleTitle }}
+          <!-- {{ articleTitle }} -->Coming Soon
         </p>
         <p
           class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
