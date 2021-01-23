@@ -3,7 +3,7 @@
 // Learn more: https://gridsome.org/docs/server-api/
 
 // Changes here require a server restart.
-// To restart press CTRL + C in terminal and run `gridsome develop`
+// To restart press CTRL + C in terminal and run `gridsome develop` hello
 
 const axios = require('axios');
 

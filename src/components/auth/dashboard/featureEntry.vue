@@ -20,7 +20,7 @@
         <p
           class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
         >
-          {{ article.node.title }} description.
+          {{ article.node.title }} <!-- Description -->
         </p>
       </div>
       <img
