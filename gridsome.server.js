@@ -31,7 +31,6 @@ module.exports = function (api) {
         thumbnailImage:article.thumbnailImage.url,
         featuredImage:article.featuredImage.url,
         category: article.categories[0].name,
-        comments:article.comments
       });
     }
 

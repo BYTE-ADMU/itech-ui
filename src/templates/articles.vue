@@ -163,9 +163,6 @@ query($id:ID!){
     sources,
     featuredImage,
     thumbnailImage,
-    comments{
-      comment
-    }
   },
   
   nextArticles:allArticles(limit:3){

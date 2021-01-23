@@ -8,8 +8,8 @@
       /> -->
     </div>
     <div class="w-3/4 pl-2">
-      <p class="mb-2 comment-username">{{ comment.username }}</p>
-      <p class="mb-2 comment-comment">{{ comment.comment }}</p>
+      <!-- <p class="mb-2 comment-username">{{ comment.username }}</p>
+      <p class="mb-2 comment-comment">{{ comment.comment }}</p> -->
     </div>
   </div>
 </template>
