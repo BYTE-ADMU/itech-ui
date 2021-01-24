@@ -56,7 +56,7 @@
         
         <!-- START: ARTICLE CONTENT -->
         <div class="mx-24 overflow-hidden">
-          <VueMarkdown class="mb-24 article-content" :source="$page.thisArticle.content"/>
+          <VueMarkdown class="max-w-screen-sm mb-24 article-content" :source="$page.thisArticle.content"/>
           <div class="mb-24 article-sources">
             <b><i>Sources:</i></b><br/>
             <VueMarkdown class="max-w-screen-sm" :source="$page.thisArticle.sources"/>
