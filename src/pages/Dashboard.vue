@@ -27,7 +27,7 @@
         </div>
         <!-- Topic of the Week -->
         <playlistTall
-          v-for="course in featuredCourse"
+          v-for="course in this.$page.featuredCourse.edges"
           v-bind:key="course.node.id"
           v-bind:course="course"
         />
@@ -43,7 +43,7 @@
           </h2>
         </div>
         <playlistEntry
-          v-for="course in threefeaturedCourses"
+          v-for="course in this.$page.threeFeaturedCourses.edges"
           v-bind:key="course.node.id"
           v-bind:course="course"
         />
@@ -152,7 +152,20 @@
       }
     }
   },
-  allCourses(order:DESC){
+  threeFeaturedCourses:allCourses(order:DESC,limit:3){
+      edges{
+        node{
+          id,
+          categories,
+          name,
+          thumbnail,
+          articles{
+            id
+          }
+        }
+      }
+    },
+    featuredCourse:allCourses(order:DESC,limit:1){
       edges{
         node{
           id,
@@ -219,9 +232,9 @@ export default {
       return this.articles.slice(0, 1);
     },
 
-    featuredCourse() {
-      return this.courses.slice(0, 1);
-    },
+    // featuredCourse() {
+    //   return this.courses.slice(0, 1);
+    // },
 
     threeHackerArticles() {
       return this.hackerArticles.slice(0, 3);
@@ -231,10 +244,6 @@ export default {
     },
     threeHustlerArticles() {
       return this.hustlerArticles.slice(0, 3);
-    },
-
-    threefeaturedCourses() {
-      return this.courses.slice(0, 3);
     },
   },
 

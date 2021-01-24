@@ -1,5 +1,8 @@
 <template>
-  <div class="self-center w-3/12 heighter">
+  <g-link
+    :to="`/courses/${course.node.id}`"
+    class="self-center w-3/12 heighter"
+  >
     <div class="flex flex-col justify-between h-full mx-2 rounded-lg">
       <h2 class="text-5xl font-neuemachina">Topic of the Week ✨</h2>
       <div class="relative bg-gray-800 rounded-lg h-tall">
@@ -18,7 +21,7 @@
         />
       </div>
     </div>
-  </div>
+  </g-link>
 </template>
 <script>
 export default {
