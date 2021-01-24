@@ -6,7 +6,7 @@
     <!-- PUT IMAGE AND DETAILS INSIDE -->
     <div class="w-full mb-2 bg-blue-400 rounded-lg h-pic">
       <img
-        :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+        :src="article.node.thumbnailImage"
         class="object-cover w-full h-full rounded-lg"
       />
     </div>

@@ -20,11 +20,12 @@
         <p
           class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
         >
-          {{ article.node.title }} <!-- Description -->
+          {{ article.node.title }}
+          <!-- Description -->
         </p>
       </div>
       <img
-        :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+        :src="article.node.thumbnailImage"
         class="relative object-cover w-full h-full rounded-lg tg"
       />
     </div>

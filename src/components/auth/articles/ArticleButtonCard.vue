@@ -13,7 +13,7 @@
     </div>
     <div class="w-1/4">
       <img
-        :src="`${$store.state.API_URL}${article.node.thumbnailImage}`"
+        :src="article.node.thumbnailImage"
         class="object-cover h-full rounded-lg"
         style="width: 116px"
       />
