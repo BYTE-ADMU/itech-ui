@@ -26,7 +26,11 @@
           </div>
         </div>
         <!-- Topic of the Week -->
-        <playlistTall />
+        <playlistTall
+          v-for="course in featuredCourse"
+          v-bind:key="course.node.id"
+          v-bind:course="course"
+        />
       </div>
 
       <hr class="mb-12" />
@@ -38,9 +42,11 @@
             Featured Courses & Playlists ✨
           </h2>
         </div>
-        <playlistEntry />
-        <playlistEntry />
-        <playlistEntry />
+        <playlistEntry
+          v-for="course in threefeaturedCourses"
+          v-bind:key="course.node.id"
+          v-bind:course="course"
+        />
       </div>
       <!-- Hacker -->
       <div class="flex items-center w-full mt-8 mb-8">
@@ -128,7 +134,7 @@
         node{
           publishedDate,
           id,
-          category,
+          categories,
           title,
           author,
           thumbnailImage,
@@ -145,7 +151,21 @@
         thumbnailImage
       }
     }
-  }
+  },
+  allCourses(order:DESC){
+      edges{
+        node{
+          id,
+          categories,
+          name,
+          thumbnail,
+          articles{
+            id
+          }
+        }
+      }
+    }    
+
 }
 
 </page-query>
@@ -175,27 +195,32 @@ export default {
   mounted() {
     this.newOnItech = this.$page.newOnItech.edges;
     this.articles = this.$page.allArticles.edges;
+    this.courses = this.$page.allCourses.edges;
   },
 
   computed: {
     hackerArticles() {
       return this.articles.filter((article) => {
-        return article.node.category.includes("Hacker");
+        return article.node.categories.includes("Hacker");
       });
     },
     hipsterArticles() {
       return this.articles.filter((article) => {
-        return article.node.category.includes("Hipster");
+        return article.node.categories.includes("Hipster");
       });
     },
     hustlerArticles() {
       return this.articles.filter((article) => {
-        return article.node.category.includes("Hustler");
+        return article.node.categories.includes("Hustler");
       });
     },
 
     featuredArticle() {
       return this.articles.slice(0, 1);
+    },
+
+    featuredCourse() {
+      return this.courses.slice(0, 1);
     },
 
     threeHackerArticles() {
@@ -206,6 +231,10 @@ export default {
     },
     threeHustlerArticles() {
       return this.hustlerArticles.slice(0, 3);
+    },
+
+    threefeaturedCourses() {
+      return this.courses.slice(0, 3);
     },
   },
 

@@ -8,6 +8,7 @@
 const axios = require('axios');
 
 module.exports = function (api) {
+  //START: ARTICLES
   api.loadSource( async actions => {
     // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
     const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/articles');
@@ -19,45 +20,124 @@ module.exports = function (api) {
 
     for (const article of data){
       articles.addNode({
-        id:article.id,
+        //PATH
         path:'/articles/' + article.id,
+        // ARTICLE INFORMATION
+        id:article.id,
         title:article.title,
-        author:article.authors[0].name,
-        profileImage:article.authors[0].profileImage.url,
+        description: article.description,
         publishedDate:article.published_at,
         lastEditedDate:article.updatedAt,
+        // AUTHORS INFORMATION
+        author:article.author.name,
+        profileImage:article.author.profileImage.url,
+        //CONTENTS
         content:article.content,
         sources:article.sources,
+        //IMAGES
         thumbnailImage:article.thumbnailImage.url,
         featuredImage:article.featuredImage.url,
-        category: article.categories[0].name,
+        //RELATED COLLECTIONS
+        categories:article.categories[0].name,
+        courses:article.courses[0],
       });
     }
-
   }
 )
+  //END: ARTICLES
 
 
+  //START: CATEGORIES
+  api.loadSource( async actions => {
+    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+    const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/categories');
 
-api.loadSource( async actions => {
-  // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
-  const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/courses');
-
-  const courses = actions.addCollection({
-    typeName:'courses',
-    path:'/courses/:name'
-  });
-
-  for (const course of data){
-    courses.addNode({
-      id:course.id,
-      path:'/courses/' + course.id,
-      name:course.name,
-      articles:course.articles
+    const categories = actions.addCollection({
+      typeName:'categories',
+      path:'/categories/:name'
     });
+
+    for (const category of data){
+      categories.addNode({
+        //PATH
+        path:'/categories/' + category.name,
+        // ARTICLE INFORMATION
+        id:category.id,
+        name:category.name,
+        description: category.description,
+        //RELATED COLLECTIONS
+        topics:category.topics,
+        courses:category.courses,
+        articles:category.articles,
+      });
     }
   }
 )
+  //END: CATEGORIES
+
+
+
+   //START: TOPICS
+   api.loadSource( async actions => {
+    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+    const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/topics');
+
+    const topics = actions.addCollection({
+      typeName:'topics',
+      path:'/topics/:name'
+    });
+
+    for (const topic of data){
+      topics.addNode({
+        //PATH
+        path:'/topics/' + topic.name,
+        // ARTICLE INFORMATION
+        id:topic.id,
+        name:topic.name,
+        description: topic.description,
+        thumbnail:topic.thumbnail.url,
+        //RELATED COLLECTIONS
+        courses:topic.courses,
+        categories:topic.categories[0].name,
+      });
+    }
+  }
+)
+  //END: TOPICS
+
+
+
+     //START: COURSES
+     api.loadSource( async actions => {
+      // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+      const {data} = await axios.get('https://calm-everglades-39473.herokuapp.com/courses');
+  
+      const courses = actions.addCollection({
+        typeName:'courses',
+        path:'/courses/:id'
+      });
+  
+      for (const course of data){
+        courses.addNode({
+          //PATH
+          path:'/courses/' + course.id,
+          // ARTICLE INFORMATION
+          id:course.id,
+          name:course.name,
+          description: course.description,
+          thumbnail:course.thumbnail.url,
+          //RELATED COLLECTIONS
+          articles:course.articles,
+          categories:course.categories[0].name,
+        });
+      }
+    }
+  )
+    //END: COURSES
+
+
+
+
 
   api.createPages(({ createPage }) => {
     // Use the Pages API here: https://gridsome.org/docs/pages-api/

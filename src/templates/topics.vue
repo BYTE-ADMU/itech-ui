@@ -8,23 +8,8 @@
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
         <div class="flex flex-col w-full">
-          <cover :category="this.$router.history.current.path" />
+          <cover :course="$page.thisCourse" />
         </div>
-      </div>
-
-                  <!-- Featured Courses & Playlists-->
-      <div class="flex w-full mt-12">
-        <div class="w-3/12">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Courses & Playlists ✨
-          </h2>
-          <p class="p-2 mt-10 text-l font-objectivity">
-            Readily-set series of articles and videos you can go through!
-          </p>
-        </div>
-        <playlistEntry />
-        <playlistEntry />
-        <playlistEntry />
       </div>
 
       <hr class="mt-12 mb-6" />
@@ -43,37 +28,47 @@
 
 // START: PAGE QUERY
 <page-query>
-  query {
-    nextArticles:allArticles(order:DESC){
+query($id:ID!){
+  thisCourse: courses(id:$id){
+    id,
+    name,
+    description
+  },
+
+    allArticles(order:DESC){
       edges{
         node{
           publishedDate,
           id,
-          category,
+          categories,
           title,
           author,
           thumbnailImage,
+          courses{
+            id,
+            name
+          }
         }
       }
-    }
+    }    
   }
+
 
 </page-query>
 // END : PAGE QUERY
 
 //START: SCRIPT
 <script>
-import cover from "../../components/auth/categories/cover";
-import articleEntry from "../../components/auth/dashboard/articleEntry";
-import playlistEntry from "../../components/auth/dashboard/playlistEntry";
-import playlistTall from "../../components/auth/dashboard/playlistTall";
-import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
-import articleHeader from "../../components/auth/dashboard/articleHeader";
+import cover from "../components/auth/courses/cover";
+import articleEntry from "../components/auth/dashboard/articleEntry";
+import playlistTall from "../components/auth/dashboard/playlistTall";
+import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
+import articleHeader from "../components/auth/dashboard/articleHeader";
 
 export default {
-  name: "Hustler",
+  name: "Courses",
   metaInfo: {
-    title: "Categories",
+    title: "Courses",
   },
 
   data() {
@@ -83,13 +78,13 @@ export default {
   },
 
   mounted() {
-    this.articles = this.$page.nextArticles.edges;
+    this.articles = this.$page.allArticles.edges;
   },
 
   computed: {
     filteredArticles() {
       return this.articles.filter((article) => {
-        return article.node.category.includes("Hipster");
+        return article.node.courses.id.includes(this.$page.thisCourse.id);
       });
     },
   },
@@ -97,7 +92,6 @@ export default {
   components: {
     cover,
     articleEntry,
-    playlistEntry,
     playlistTall,
     bitbotFeature,
     articleHeader,
