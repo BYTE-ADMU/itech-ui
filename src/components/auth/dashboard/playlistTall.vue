@@ -14,7 +14,10 @@
             {{ itemCount }} Items
           </p>
         </div>
-        <img :src="course.node.thumbnail" class="object-cover rounded-lg tg" />
+        <img
+          :src="course.node.thumbnail"
+          class="object-cover h-full rounded-lg tg"
+        />
         <img
           :src="require('@/assets/img/bitbots/bbwhite.svg')"
           class="absolute whitebb"
