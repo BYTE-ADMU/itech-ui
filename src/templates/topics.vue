@@ -21,11 +21,12 @@
         Related
       </h3>
 
-      <div class="flex justify-between mt-1 mb-24">
+      <div class="flex flex-row flex-wrap mt-1 mb-24">
         <articleEntry
           v-for="article in filteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
+          class="w-1/4 my-12"
         ></articleEntry>
       </div>
     </div>
@@ -98,7 +99,7 @@ export default {
     filteredArticles() {
       return this.articles.filter((article) => {
         return article.node.courses.id.includes(
-          this.$page.thisTopic.courses.id
+          this.$page.thisTopic.courses[0].id
         );
       });
     },
