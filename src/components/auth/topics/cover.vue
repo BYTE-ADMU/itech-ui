@@ -13,7 +13,7 @@
           <p class="text-white font-objectivity">Articles</p>
         </div>
         <div class="flex items-center w-2/3 px-40 text-white">
-          <p>{{ topic.description }}</p>
+          <!-- <p>{{ topic.description }}</p> -->
         </div>
       </div>
     </div>

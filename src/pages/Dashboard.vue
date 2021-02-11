@@ -55,10 +55,14 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
-          <div class="flex justify-between mb-2">
-            <articleHeader />
-            <articleHeader />
-            <articleHeader />
+
+          <div class="grid grid-cols-3 mb-2">
+            <articleHeader
+              v-for="topic in threeHackerTopics"
+              v-bind:key="topic.node.id"
+              v-bind:topic="topic.node"
+            ></articleHeader>
+            <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -79,10 +83,12 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
-          <div class="flex justify-between mb-2">
-            <articleHeader />
-            <articleHeader />
-            <articleHeader />
+          <div class="grid grid-cols-3 mb-2">
+            <articleHeader
+              v-for="topic in threeHipsterTopics"
+              v-bind:key="topic.node.id"
+              v-bind:topic="topic.node"
+            ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -103,10 +109,12 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
-          <div class="flex justify-between mb-2">
-            <articleHeader />
-            <articleHeader />
-            <articleHeader />
+          <div class="grid grid-cols-3 mb-2">
+            <articleHeader
+              v-for="topic in threeHustlerTopics"
+              v-bind:key="topic.node.id"
+              v-bind:topic="topic.node"
+            ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -129,6 +137,22 @@
 // START: PAGE QUERY
 <page-query>
   query {
+    allTopics(order:DESC){
+      edges{
+        node{
+          publishedDate,
+          id,
+          categories,
+          name,
+          thumbnail,
+          description,
+          courses{
+            id,
+            name
+          }
+        }
+      }
+    },
     allArticles(order:DESC){
       edges{
         node{
@@ -177,7 +201,7 @@
           }
         }
       }
-    }    
+    },
 
 }
 
@@ -202,13 +226,16 @@ export default {
     return {
       newOnItech: [],
       articles: [],
+      topics: [],
+      courses: [],
     };
   },
 
   mounted() {
     this.newOnItech = this.$page.newOnItech.edges;
     this.articles = this.$page.allArticles.edges;
-    this.courses = this.$page.allCourses.edges;
+    this.courses = this.$page.allArticles.edges;
+    this.topics = this.$page.allTopics.edges;
   },
 
   computed: {
@@ -244,6 +271,33 @@ export default {
     },
     threeHustlerArticles() {
       return this.hustlerArticles.slice(0, 3);
+    },
+
+    // TOPICS
+    hackerTopics() {
+      return this.topics.filter((topic) => {
+        return topic.node.categories.includes("Hacker");
+      });
+    },
+    hipsterTopics() {
+      return this.topics.filter((topic) => {
+        return topic.node.categories.includes("Hipster");
+      });
+    },
+    hustlerTopics() {
+      return this.topics.filter((topic) => {
+        return topic.node.categories.includes("Hustler");
+      });
+    },
+
+    threeHackerTopics() {
+      return this.hackerTopics.slice(0, 3);
+    },
+    threeHipsterTopics() {
+      return this.hipsterTopics.slice(0, 3);
+    },
+    threeHustlerTopics() {
+      return this.hustlerTopics.slice(0, 3);
     },
   },
 
