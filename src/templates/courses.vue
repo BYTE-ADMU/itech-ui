@@ -21,11 +21,13 @@
         Related
       </h3>
 
-      <div class="flex justify-between mt-1 mb-24">
+      <div v-if="isEmpty">No Articles Yet</div>
+      <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
         <articleEntry
           v-for="article in filteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
+          class="w-full"
         ></articleEntry>
       </div>
     </div>
@@ -92,9 +94,21 @@ export default {
 
   computed: {
     filteredArticles() {
-      return this.articles.filter((article) => {
-        return article.node.courses.id.includes(this.$page.thisCourse.id);
-      });
+      if (this.articles.length > 0) {
+        return this.articles.filter((article) => {
+          return article.node.courses.id.includes(this.$page.thisCourse.id);
+        });
+      } else {
+        return (filteredArticles = []);
+      }
+    },
+
+    isEmpty() {
+      if (this.articles.length > 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
   },
 
