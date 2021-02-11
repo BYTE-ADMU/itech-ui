@@ -7,64 +7,27 @@
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-full">Courses Page</div>
-      </div>
-
-      <!-- Featured Courses & Playlists-->
-      <div class="flex w-full mt-12">
-        <div class="w-3/12">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Courses & Playlists ✨
-          </h2>
-          <p class="p-2 mt-10 text-l font-objectivity">
-            Readily-set series of articles and videos you can go through!
-          </p>
+        <div class="flex flex-col w-full">
+          <cover :course="$page.thisCourse" />
         </div>
-        <playlistEntry />
-        <playlistEntry />
-        <playlistEntry />
       </div>
 
       <hr class="mt-12 mb-6" />
 
       <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
+        class="mb-4 text-xl font-bold uppercase font-objectivity"
         style="color: #9d9d9d"
       >
-        Course 1
+        Related
       </h3>
+
       <div class="flex justify-between mt-1 mb-24">
         <articleEntry
-          v-for="article in $page.nextArticles.edges"
+          v-for="article in filteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
         ></articleEntry>
       </div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 2
-      </h3>
-      <div class="flex justify-between mt-1 mb-24"></div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 3
-      </h3>
-      <div class="flex justify-between mt-1 mb-24"></div>
-
-      <h3
-        class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Course 4
-      </h3>
-      <div class="flex justify-between mt-1 mb-24"></div>
-      <!-- END COMPONENTS -->
     </div>
   </Layout>
 </template>
@@ -72,36 +35,49 @@
 
 // START: PAGE QUERY
 <page-query>
-  query {
-    nextArticles:allArticles(order:DESC,limit:4){
+query($id:ID!){
+  thisCourse: courses(id:$id){
+    id,
+    name,
+    description
+  },
+
+    allArticles(order:DESC){
       edges{
         node{
           publishedDate,
           id,
-          category,
+          categories,
           title,
           author,
           thumbnailImage,
+          courses{
+            id,
+            name
+          }
         }
       }
-    }
+    }    
   }
+
 
 </page-query>
 // END : PAGE QUERY
 
 //START: SCRIPT
 <script>
+import cover from "../components/auth/courses/cover";
 import articleEntry from "../components/auth/dashboard/articleEntry";
-import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
 
 export default {
-  name: "Catalogue",
-  metaInfo: {
-    title: "Categories",
+  name: "Courses",
+  metaInfo() {
+    return {
+      title: this.$page.thisCourse.name,
+    };
   },
 
   data() {
@@ -114,11 +90,17 @@ export default {
     this.articles = this.$page.allArticles.edges;
   },
 
-  computed: {},
+  computed: {
+    filteredArticles() {
+      return this.articles.filter((article) => {
+        return article.node.courses.id.includes(this.$page.thisCourse.id);
+      });
+    },
+  },
 
   components: {
+    cover,
     articleEntry,
-    playlistEntry,
     playlistTall,
     bitbotFeature,
     articleHeader,

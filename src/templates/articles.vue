@@ -2,7 +2,7 @@
   <Layout>
     <section class="flex justify-center min-h-screen mt-16 mb-32">
       <div class="w-full mx-64">
-        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link> / <g-link to="/dashboard/">Course</g-link></p>
+        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link> / <g-link :to="`/courses/${$page.thisArticle.courses.id}`">{{$page.thisArticle.courses.name}}</g-link></p>
 
         <!-- START: ARTICLE INFO -->
         <div class="mx-24 mb-12">
@@ -167,6 +167,10 @@ query($id:ID!){
     sources,
     featuredImage,
     thumbnailImage,
+    courses{
+      id,
+      name
+    }
   },
   
   nextArticles:allArticles(limit:3){
