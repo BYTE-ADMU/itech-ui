@@ -1,7 +1,7 @@
 <template>
   <g-link :to="`/topics/${topic.name}`" class="w-full">
     <div class="flex flex-col h-16 mx-2 rounded-lg">
-      <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
+      <div class="absolute z-30 px-5 py-3 rounded-lg group">
         <p
           class="relative text-lg font-medium text-white font-objectivity hover:opacity-100"
           style="font-size: 17px"
