@@ -10,9 +10,9 @@
             Topics
           </h5>
           <div class="flex justify-between mb-2">
+            <!-- <articleHeader />
             <articleHeader />
-            <articleHeader />
-            <articleHeader />
+            <articleHeader /> -->
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -32,9 +32,9 @@
             Topics
           </h5>
           <div class="flex justify-between mb-2">
+            <!-- <articleHeader />
             <articleHeader />
-            <articleHeader />
-            <articleHeader />
+            <articleHeader /> -->
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -54,9 +54,9 @@
             Topics
           </h5>
           <div class="flex justify-between mb-2">
+            <!-- <articleHeader />
             <articleHeader />
-            <articleHeader />
-            <articleHeader />
+            <articleHeader /> -->
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
@@ -82,7 +82,7 @@ export default {
   components: {
     // articleEntry,
     bitbotFeature,
-    articleHeader,
+    // articleHeader,
   },
 };
 </script>

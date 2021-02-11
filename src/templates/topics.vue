@@ -1,4 +1,3 @@
-//START: TEMPLATE
 <template>
   <Layout>
     <!-- ROOT -->
@@ -33,9 +32,7 @@
     </div>
   </Layout>
 </template>
-//END: TEMPLATE
 
-// START: PAGE QUERY
 <page-query>
 query($id:ID!){
   thisTopic: topics(id:$id){
@@ -68,21 +65,17 @@ query($id:ID!){
 
 
 </page-query>
-// END : PAGE QUERY
 
-//START: SCRIPT
 <script>
 import cover from "../components/auth/topics/cover";
 import articleEntry from "../components/auth/dashboard/articleEntry";
-import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
-import articleHeader from "../components/auth/dashboard/articleHeader";
 
 export default {
   name: "Courses",
   metaInfo() {
     return {
-      title: this.$page.thisCourse.name,
+      title: this.$page.thisTopic.name,
     };
   },
 
@@ -121,13 +114,10 @@ export default {
   components: {
     cover,
     articleEntry,
-    playlistTall,
     bitbotFeature,
-    articleHeader,
   },
 };
 </script>
-//END: SCRIPT
 
 <style>
 div > .tg {
