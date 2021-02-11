@@ -91,7 +91,7 @@ module.exports = function (api) {
       topics.addNode({
         //PATH
         path: '/topics/' + topic.name,
-        // ARTICLE INFORMATION
+        // TOPIC INFORMATION
         publishedDate: topic.published_at,
         id: topic.id,
         name: topic.name,
@@ -122,7 +122,7 @@ module.exports = function (api) {
       courses.addNode({
         //PATH
         path: '/courses/' + course.id,
-        // ARTICLE INFORMATION
+        // COURSE INFORMATION
         publishedDate: courses.published_at,
         id: course.id,
         name: course.name,
