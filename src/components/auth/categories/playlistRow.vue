@@ -17,36 +17,13 @@
         </g-link>
       </div>
 
-      <div class="flex justify-between">
-        <!-- <articleEntry
-          v-for="article in playlistfilteredArticles"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry> -->
-
+      <div class="grid grid-cols-4 gap-4 mb-16">
         <articleEntry
-          v-for="article in a1"
+          v-for="article in playlistFilteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
+          class="w-full"
         ></articleEntry>
-
-        <articleEntry
-          v-for="article in a2"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-
-        <articleEntry
-          v-for="article in a3"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry>
-
-        <!-- <articleEntry
-          v-for="article in a4"
-          v-bind:key="article.node.id"
-          v-bind:article="article"
-        ></articleEntry> -->
       </div>
     </div>
     <hr class="mt-16 mb-2" />
@@ -64,42 +41,38 @@ export default {
   },
 
   computed: {
-    courseArticles() {
-      return this.course.node.articles;
-    },
-
     //START: MY BRAIN GONE DRY, MUST FIX SA FUTURE NA LANG AHHAHA
     a1() {
       return this.articles.filter((article) => {
-        return article.node.id.includes(this.courseArticles[0].id);
+        return article.node.id.includes(this.course.node.articles[0].id);
       });
     },
 
     a2() {
       return this.articles.filter((article) => {
-        return article.node.id.includes(this.courseArticles[1].id);
+        return article.node.id.includes(this.course.node.articles[1].id);
       });
     },
 
     a3() {
       return this.articles.filter((article) => {
-        return article.node.id.includes(this.courseArticles[2].id);
+        return article.node.id.includes(this.course.node.articles[2].id);
       });
     },
 
     a4() {
       return this.articles.filter((article) => {
-        return article.node.id.includes(this.courseArticles[3].id);
+        return article.node.id.includes(this.course.node.articles[3].id);
       });
     },
 
-    playlistfilteredArticles() {
-      playlistfilteredArticles[0] = this.a1[0];
-      playlistfilteredArticles[1] = this.a2[0];
-      playlistfilteredArticles[2] = this.a3[0];
-      playlistfilteredArticles[3] = this.a4[0];
-      console.log(playlistfilteredArticles);
-      return playlistfilteredArticles;
+    playlistFilteredArticles() {
+      let playlistFilteredArticles = [];
+      playlistFilteredArticles[0] = this.a1[0];
+      playlistFilteredArticles[1] = this.a2[0];
+      playlistFilteredArticles[2] = this.a3[0];
+      // playlistfilteredArticles[3] = this.a4[0];
+      return playlistFilteredArticles;
     },
     //START: MY BRAIN GONE DRY, MUST FIX SA FUTURE NA LANG AHHAHA
   },
