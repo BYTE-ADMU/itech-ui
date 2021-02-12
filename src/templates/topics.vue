@@ -20,7 +20,7 @@
         Related
       </h3>
 
-      <div v-if="!articles.length > 0">No Articles Yet</div>
+      <div v-if="!this.articles.length > 0">No Articles Yet</div>
       <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
         <articleEntry
           v-for="article in filteredArticles"
@@ -99,6 +99,14 @@ export default {
         });
       } else {
         return [];
+      }
+    },
+
+    isEmpty() {
+      if (this.articles.length > 0) {
+        return false;
+      } else {
+        return true;
       }
     },
   },

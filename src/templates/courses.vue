@@ -21,7 +21,7 @@
         Related
       </h3>
 
-      <div v-if="isEmpty">No Articles Yet</div>
+      <div v-if="!$page.thisCourse.articles.length > 0">No Articles Yet</div>
       <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
         <articleEntry
           v-for="article in filteredArticles"
@@ -41,7 +41,11 @@ query($id:ID!){
   thisCourse: courses(id:$id){
     id,
     name,
-    description
+    description,
+    articles{
+      id,
+      title
+    }
   },
 
     allArticles(order:DESC){
@@ -94,22 +98,32 @@ export default {
 
   computed: {
     filteredArticles() {
-      if (this.articles.length > 0) {
+      if (this.$page.thisCourse.articles.length > 0) {
         return this.articles.filter((article) => {
-          return article.node.courses.id.includes(this.$page.thisCourse.id);
+          if (article.node.courses != null) {
+            if (article.node.courses.id.includes(this.$page.thisCourse.id)) {
+              // console.log(article.node.title + " = " + article.node.courses);
+              return article;
+            }
+          }
         });
-      } else {
-        return (filteredArticles = []);
       }
+
+      return [];
     },
 
-    isEmpty() {
-      if (this.articles.length > 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
+    // filteredArticles() {
+    //   if (this.$page.thisCourse.articles.length > 0) {
+    //     return this.articles.filter((article) => {
+    //       if (article.node.courses.id.includes(this.$page.thisCourse.id)) {
+    //         console.log(article.node.title);
+    //         return article;
+    //       }
+    //     });
+    //   }
+
+    //   return [];
+    // },
   },
 
   components: {

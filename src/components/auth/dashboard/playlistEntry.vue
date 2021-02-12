@@ -11,7 +11,8 @@
         <p
           class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
         >
-          {{ itemCount }} Items
+          {{ itemCount }} <span v-if="itemCount > 1">Items</span
+          ><span v-else>Item</span>
         </p>
       </div>
       <img
