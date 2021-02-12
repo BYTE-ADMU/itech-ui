@@ -33,7 +33,7 @@
       <hr class="mt-12 mb-2" />
 
       <playlistRow
-        v-for="course in filteredCourses"
+        v-for="course in courses"
         v-bind:key="course.node.id"
         v-bind:course="course"
         v-bind:articles="$page.allArticles.edges"

@@ -17,7 +17,7 @@
         </g-link>
       </div>
 
-      <div class="grid grid-cols-4 gap-4 mb-16">
+      <div class="grid grid-cols-4 gap-4">
         <articleEntry
           v-for="article in playlistFilteredArticles"
           v-bind:key="article.node.id"
@@ -26,7 +26,7 @@
         ></articleEntry>
       </div>
     </div>
-    <hr class="mt-16 mb-2" />
+    <hr class="mt-12 mb-2" />
   </div>
 </template>
 
