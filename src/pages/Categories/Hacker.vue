@@ -80,13 +80,13 @@
 </page-query>
 
 <script>
-import cover from "../components/auth/categories/cover";
-import playlistRow from "../components/auth/categories/playlistRow";
-import articleEntry from "../components/auth/dashboard/articleEntry";
-import playlistEntry from "../components/auth/dashboard/playlistEntry";
-import playlistTall from "../components/auth/dashboard/playlistTall";
-import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
-import articleHeader from "../components/auth/dashboard/articleHeader";
+import cover from "../../components/auth/categories/cover";
+import playlistRow from "../../components/auth/categories/playlistRow";
+import articleEntry from "../../components/auth/dashboard/articleEntry";
+import playlistEntry from "../../components/auth/dashboard/playlistEntry";
+import playlistTall from "../../components/auth/dashboard/playlistTall";
+import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
+import articleHeader from "../../components/auth/dashboard/articleHeader";
 
 export default {
   name: "Categories",
