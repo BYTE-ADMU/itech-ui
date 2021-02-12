@@ -1,6 +1,6 @@
 <template>
   <g-link
-    class="flex flex-col w-1/3 h-48 mx-2 rounded-t-lg"
+    class="flex flex-col w-1/3 h-48 mx-2 mb-12 rounded-t-lg"
     :to="`/articles/${article.node.id}`"
   >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
