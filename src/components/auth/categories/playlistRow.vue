@@ -19,7 +19,7 @@
 
       <div class="grid grid-cols-4 gap-4">
         <articleEntry
-          v-for="article in playlistFilteredArticles"
+          v-for="article in limitFilteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
           class="w-full"
@@ -42,38 +42,27 @@ export default {
 
   computed: {
     //START: MY BRAIN GONE DRY, MUST FIX SA FUTURE NA LANG AHHAHA
-    a1() {
-      return this.articles.filter((article) => {
-        return article.node.id.includes(this.course.node.articles[0].id);
-      });
+    filteredArticles() {
+      if (this.course.node.articles.length > 0) {
+        return this.articles.filter((article) => {
+          if (article.node.courses != null) {
+            if (article.node.courses.id.includes(this.course.node.id)) {
+              // console.log(article.node.title + " = " + article.node.courses);
+              return article;
+            }
+          }
+        });
+      }
+
+      return [];
     },
 
-    a2() {
-      return this.articles.filter((article) => {
-        return article.node.id.includes(this.course.node.articles[1].id);
-      });
-    },
+    limitFilteredArticles() {
+      if (this.filteredArticles.length > 4) {
+        return this.filteredArticles.slice(0, 4);
+      }
 
-    a3() {
-      return this.articles.filter((article) => {
-        return article.node.id.includes(this.course.node.articles[2].id);
-      });
-    },
-
-    a4() {
-      return this.articles.filter((article) => {
-        return article.node.id.includes(this.course.node.articles[3].id);
-      });
-    },
-
-    playlistFilteredArticles() {
-      let playlistFilteredArticles = [];
-      playlistFilteredArticles[0] = this.a1[0];
-      playlistFilteredArticles[1] = this.a2[0];
-      playlistFilteredArticles[2] = this.a3[0];
-
-      // playlistfilteredArticles[3] = this.a4[0];
-      return playlistFilteredArticles;
+      return this.filteredArticles;
     },
     //START: MY BRAIN GONE DRY, MUST FIX SA FUTURE NA LANG AHHAHA
   },

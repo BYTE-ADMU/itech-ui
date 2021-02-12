@@ -32,7 +32,7 @@
       <hr class="mt-12 mb-2" />
 
       <playlistRow
-        v-for="course in courses"
+        v-for="course in filteredCourses"
         v-bind:key="course.node.id"
         v-bind:course="course"
         v-bind:articles="$page.allArticles.edges"
@@ -52,6 +52,10 @@
           title,
           author,
           thumbnailImage,
+          courses{
+            id,
+            name,
+          }
         }
       }
     }    
@@ -64,7 +68,8 @@
           name,
           thumbnail,
           articles{
-            id
+            id,
+            title
           }
         }
       }
