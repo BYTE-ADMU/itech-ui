@@ -93,20 +93,15 @@ export default {
     filteredArticles() {
       if (this.articles.length > 0) {
         return this.articles.filter((article) => {
-          return article.node.courses.id.includes(
-            this.$page.thisTopic.courses[0].id
-          );
+          if (article.node.courses != null) {
+            console.log(article.node.courses.name);
+            return article.node.courses.id.includes(
+              this.$page.thisTopic.courses[0].id
+            );
+          }
         });
       } else {
         return [];
-      }
-    },
-
-    isEmpty() {
-      if (this.articles.length > 0) {
-        return false;
-      } else {
-        return true;
       }
     },
   },
