@@ -1,4 +1,3 @@
-//START: TEMPLATE
 <template>
   <Layout>
     <!-- ROOT -->
@@ -41,9 +40,7 @@
     </div>
   </Layout>
 </template>
-//END: TEMPLATE
 
-// START: PAGE QUERY
 <page-query>
   query {
     allArticles(order:DESC){
@@ -76,9 +73,7 @@
 
 
 </page-query>
-// END : PAGE QUERY
 
-//START: SCRIPT
 <script>
 import cover from "../components/auth/categories/cover";
 import playlistRow from "../components/auth/categories/playlistRow";
@@ -148,7 +143,6 @@ export default {
   },
 };
 </script>
-//END: SCRIPT
 
 <style>
 div > .tg {

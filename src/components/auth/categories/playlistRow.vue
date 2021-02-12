@@ -71,6 +71,7 @@ export default {
       playlistFilteredArticles[0] = this.a1[0];
       playlistFilteredArticles[1] = this.a2[0];
       playlistFilteredArticles[2] = this.a3[0];
+
       // playlistfilteredArticles[3] = this.a4[0];
       return playlistFilteredArticles;
     },
