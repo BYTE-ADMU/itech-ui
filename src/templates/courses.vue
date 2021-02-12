@@ -111,19 +111,6 @@ export default {
 
       return [];
     },
-
-    // filteredArticles() {
-    //   if (this.$page.thisCourse.articles.length > 0) {
-    //     return this.articles.filter((article) => {
-    //       if (article.node.courses.id.includes(this.$page.thisCourse.id)) {
-    //         console.log(article.node.title);
-    //         return article;
-    //       }
-    //     });
-    //   }
-
-    //   return [];
-    // },
   },
 
   components: {
