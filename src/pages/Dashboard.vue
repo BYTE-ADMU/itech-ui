@@ -1,8 +1,4 @@
 //START: TEMPLATE
-
-
-
-
 <template>
   <Layout>
     <!-- ROOT -->
@@ -356,8 +352,6 @@ div > .tg {
   line-height: 20px;
 }
 </style>
-
-
 
 
 

@@ -1,16 +1,25 @@
 <template>
-  <nav class="flex flex-wrap items-center justify-between px-64 py-5 bg-white shadow-md nav">
+  <nav
+    class="flex flex-wrap items-center justify-between px-64 py-5 bg-white shadow-md nav"
+  >
     <!-- LINK CONDITION START -->
-    <div v-if="!isAuthenticated" class="flex items-center text-white flex-no-shrink">
+    <div
+      v-if="!isAuthenticated"
+      class="flex items-center text-white flex-no-shrink"
+    >
       <g-link class="nav__link" to="/">
-        <img :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-        class="w-40 py-2"/>
+        <img
+          :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+          class="w-40 py-2"
+        />
       </g-link>
     </div>
     <div v-else class="flex items-center text-white flex-no-shrink">
       <g-link class="nav__link" to="/dashboard">
-        <img :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-        class="w-40 py-2"/>
+        <img
+          :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+          class="w-40 py-2"
+        />
       </g-link>
     </div>
     <!-- LINK CONDITION END -->
@@ -31,15 +40,20 @@
 
     <div class="flex-grow block w-full lg:flex lg:items-center lg:w-auto">
       <div class="text-sm lg:flex-grow"></div>
+
       <div v-if="!isAuthenticated">
         <g-link
-        class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
-        to="/login/">
+          class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
+          to="/login/"
+        >
           Login
         </g-link>
       </div>
       <div class="flex" v-else>
-        <a href="#" class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link">
+        <a
+          href="#"
+          class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link"
+        >
           My List
         </a>
         <p class="ml-8 text-lg font-bold uppercase font-neuemachina nav__link">
@@ -55,13 +69,16 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "Navbar",
+
   computed: {
     isAuthenticated() {
+      console.log(this.$store.state.isAuthenticated);
       return this.$store.state.isAuthenticated;
     },
     identifier() {
+      console.log(this.$store.state.user.email);
       return this.$store.state.user.email;
-    }
-  }
+    },
+  },
 });
 </script>
