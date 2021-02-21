@@ -2,7 +2,7 @@
   <Layout>
     <section class="flex justify-center min-h-screen mt-16 mb-32">
       <div class="w-full mx-64">
-        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link> / <g-link v-if="$page.thisArticle.courses !== null" :to="`/courses/${$page.thisArticle.courses.id}`">{{$page.thisArticle.courses.name}}</g-link></p>
+        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link><g-link v-if="$page.thisArticle.courses !== null" :to="`/courses/${$page.thisArticle.courses.id}`"> / {{$page.thisArticle.courses.name}}</g-link></p>
 
         <!-- START: ARTICLE INFO -->
         <div class="mx-24 mb-12">
@@ -56,10 +56,10 @@
         
         <!-- START: ARTICLE CONTENT -->
         <div class="mx-24 overflow-hidden">
-          <VueMarkdown class="max-w-screen-sm mb-24 article-content" :source="$page.thisArticle.content"/>
+          <VueMarkdown class="mb-24 article-content" :source="$page.thisArticle.content"/>
           <div class="mb-24 article-sources">
             <b><i>Sources:</i></b><br/>
-            <VueMarkdown class="max-w-screen-sm" :source="$page.thisArticle.sources"/>
+            <VueMarkdown  :source="$page.thisArticle.sources"/>
           </div>
         </div>
         <!-- END: ARTICLE CONTENT -->
