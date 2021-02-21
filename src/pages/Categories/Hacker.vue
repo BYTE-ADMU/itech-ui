@@ -12,12 +12,12 @@
       </div>
 
       <!-- Featured Courses & Playlists-->
-      <div class="flex w-full mt-12">
-        <div class="w-3/12">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
+      <div class="sm:flex w-full mt-12">
+        <div class="w-full sm:w-3/12">
+          <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina">
             Courses ✨
           </h2>
-          <p class="p-2 mt-10 text-l font-objectivity">
+          <p class="p-2 mb-5 sm:mt-10 text-l font-objectivity">
             Readily-set series of articles and videos you can go through!
           </p>
         </div>
@@ -31,7 +31,7 @@
 
       <hr class="mt-12 mb-2" />
 
-      <h2 class="p-6 text-4xl font-neuemachina">
+      <h2 class="p-6 text-2xl lg:text-4xl font-neuemachina">
         Articles ✨
       </h2>
 

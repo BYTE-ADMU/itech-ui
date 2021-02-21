@@ -1,15 +1,15 @@
 <template>
   <g-link :to="`/courses/${course.node.id}`" class="w-3/12">
-    <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
-      <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
+    <div class="relative mx-2 bg-gray-400 rounded-xl feature-height tg m-5 sm:m-1">
+      <div class="absolute z-30 w-full h-full px-10 sm:px-5 py-3 rounded-lg group">
         <p
-          class="relative w-48 py-1 mt-12 text-lg font-medium text-white font-objectivity hover:opacity-100"
-          style="font-size: 24px"
+          class="relative w-min py-1 mt-12 text-3xl sm:text-lg md:text-xl lg:text-2xl font-medium text-white font-objectivity hover:opacity-100"
+          
         >
           {{ course.node.name }}
         </p>
         <p
-          class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
+          class="absolute sm:bottom-0 py-0 sm:py-3 font-light text-white font-objectivity hover:opacity-100"
         >
           {{ itemCount }} <span v-if="itemCount > 1">Items</span
           ><span v-else>Item</span>
@@ -17,7 +17,7 @@
       </div>
       <img
         :src="course.node.thumbnail"
-        class="relative object-cover w-full h-full rounded-lg tg"
+        class="relative object-cover w-full h-full rounded-xl tg"
       />
     </div>
   </g-link>
