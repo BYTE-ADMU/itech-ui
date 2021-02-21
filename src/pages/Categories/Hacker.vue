@@ -15,7 +15,7 @@
       <div class="flex w-full mt-12">
         <div class="w-3/12">
           <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Courses & Playlists ✨
+            Courses ✨
           </h2>
           <p class="p-2 mt-10 text-l font-objectivity">
             Readily-set series of articles and videos you can go through!
@@ -31,12 +31,18 @@
 
       <hr class="mt-12 mb-2" />
 
-      <playlistRow
-        v-for="course in filteredCourses"
-        v-bind:key="course.node.id"
-        v-bind:course="course"
-        v-bind:articles="$page.allArticles.edges"
-      ></playlistRow>
+      <h2 class="p-6 text-4xl font-neuemachina">
+        Articles ✨
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <articleEntry
+          v-for="article in filteredArticles"
+          v-bind:key="article.node.id"
+          v-bind:article="article"
+          class="w-full mb-2"
+        ></articleEntry>
+      </div>
     </div>
   </Layout>
 </template>

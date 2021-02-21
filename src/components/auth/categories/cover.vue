@@ -93,13 +93,13 @@ export default {
     categoryDescription() {
       switch (this.category) {
         case "/categories/hacker":
-          return "Find out how to become a Hacker! Learn tech-related skills like web and mobile development in this track!";
+          return "Hackers turn a tech idea into a product, whether it be a website or an application, using different programming languages and techniques.";
         case "/categories/hipster":
-          return "Find out how to become a Hipster! Learn design-related skills like product design and mobile development in this track!";
+          return "Design is at the core of being a hipster. If you're interested in marketing, design systems, or web & mobile design, this track is for you!";
         case "/categories/hustler":
-          return "Find out how to become a Hustler! Learn the ins and outs of business such as marketing and entrepreneurship in this track!";
+          return "Being a hustler entails knowledge about building a business from the idea to its execution and management. Entrepreneurship and finance are some of the topics that are tackled under this track.";
         default:
-          return "Find out how to become a Hacker! Learn tech-related skills like web and mobile development in this track!";
+          return "Hackers turn a tech idea into a product, whether it be a website or an application, using different programming languages and techniques.";
       }
     },
   },
