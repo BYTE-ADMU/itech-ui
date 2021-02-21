@@ -40,7 +40,7 @@
           v-for="article in filteredArticles"
           v-bind:key="article.node.id"
           v-bind:article="article"
-          class="w-full mb-2"
+          class="w-full mb-0 sm:mb-1 md:mb-2"
         ></articleEntry>
       </div>
     </div>
