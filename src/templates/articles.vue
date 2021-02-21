@@ -196,6 +196,13 @@ query($id:ID!){
   color: #151316;
 }
 
+.article-content {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  color: #151316;
+}
+
 .author-image {
   width: 65px;
   height: 65px;
