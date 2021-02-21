@@ -1,9 +1,9 @@
 <template>
   <g-link :to="`/courses/${course.node.id}`" class="w-3/12">
     <div class="relative mx-2 bg-gray-400 rounded-xl feature-height tg m-5 sm:m-1">
-      <div class="absolute z-30 w-full h-full px-10 sm:px-5 py-3 rounded-lg group">
+      <div class="absolute z-30 w-full h-full px-10 sm:px-5 rounded-lg group">
         <p
-          class="relative w-min py-1 mt-12 text-3xl sm:text-lg md:text-xl lg:text-2xl font-medium text-white font-objectivity hover:opacity-100"
+          class="relative w-min py-1 mt-12 text-3xl sm:text-lg md:text-md lg:text-2xl font-medium text-white font-objectivity hover:opacity-100"
           
         >
           {{ course.node.name }}
