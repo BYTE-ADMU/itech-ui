@@ -3,18 +3,18 @@
     <div :class="coverStyle">
       <img :src="botStyle" class="bitBot" />
 
-      <div class="flex w-full h-full">
-        <div class="flex items-center w-1/2 pl-56">
+      <div class="block lg:flex w-full h-full">
+        <div class="flex lg:items-center w-full sm:w-1/2 pl-6 sm:pl-10 pt-6 sm:pt-10 lg:pt-0 lg:pl-56">
           <div>
             <h2
               class="leading-tight text-white select-none text-feature font-neuemachina"
             >
               {{ categoryText }}
             </h2>
-            <p class="text-white font-objectivity">Articles & Courses</p>
+            <p class="text-white text-2xl lg:text-base font-objectivity">Articles & Courses</p>
           </div>
         </div>
-        <div class="flex items-center w-1/2 px-40 text-white">
+        <div class="flex lg:items-center w-full sm:w-3/4 lg:w-1/2 px-6 sm:pl-10 pt-3 lg:pt-0 lg:px-12 xl:px-40 text-white">
           <p>
             {{ categoryDescription }}
           </p>
@@ -116,18 +116,67 @@ export default {
   height: 204px;
 }
 .hackerStyle {
-  background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
+  background: linear-gradient(-283.99deg, #4e6afa 7.28%, #9298ff 100%);
 }
 .hipsterStyle {
-  background: linear-gradient(283.99deg, #ff7b92 7.28%, #e13894 100%);
+  background: linear-gradient(-283.99deg, #ff7b92 7.28%, #e13894 100%);
   border-radius: 10px;
 }
 .hustlerStyle {
-  background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
+  background: linear-gradient(-283.99deg, #b0ca88 7.28%, #70b9a2 100%);
   border-radius: 10px;
 }
 .text-feature {
   font-size: 79px;
   line-height: 71px;
+}
+
+@media screen and (max-width: 1023px) {
+  .heighter {
+    height: 250px;
+  }
+
+  .bitBot {
+    top: 100px;
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .heighter {
+    height: 270px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .bitBot {
+    right: 0;
+    width: 160px;
+    top: 215px;
+  }
+
+  .heighter {
+    height: 370px;
+  }
+
+  .text-feature {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .text-feature {
+    font-size: 3rem;
+    line-height: 45px;
+  }
+
+  .bitBot {
+    width: 120px;
+    top: 170px;
+  }
+
+  .heighter {
+    height: 310px;
+  }
 }
 </style>
