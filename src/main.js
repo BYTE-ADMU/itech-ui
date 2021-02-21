@@ -12,8 +12,6 @@ export default function (Vue, { appOptions, router, head, isClient }) {
 
   if (process.isClient) {
     router.beforeEach((to, from, next) => {
-
-      // Do stuff before next page load
       if (
         to.path.includes("dashboard") ||
         to.path.includes("topics") ||
@@ -26,7 +24,7 @@ export default function (Vue, { appOptions, router, head, isClient }) {
           next();
         }
       } else {
-        next(); // make sure to always call next()!
+        next();
       }
     });
   }
