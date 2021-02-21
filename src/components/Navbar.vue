@@ -72,11 +72,9 @@ export default Vue.extend({
 
   computed: {
     isAuthenticated() {
-      console.log(this.$store.state.isAuthenticated);
       return this.$store.state.isAuthenticated;
     },
     identifier() {
-      console.log(this.$store.state.user.email);
       return this.$store.state.user.email;
     },
   },
