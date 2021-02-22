@@ -1,62 +1,6 @@
 <template>
   <Layout>
     <section>
-      <!-- <div class="w-full flex">
-        <div class="flex">
-          <div class="flex w-4/5">
-            <div class="w-full text-center md:w-1/2"></div>
-
-            <img
-            :src="require('@/assets/img/unauth/login/Login-Illustration.svg')"
-            class="w-full"
-            />  
-
-            <div class="w-full md:w-1/2">
-              <h1 class="form_header font-neuemachina">Beep Boop!</h1>
-              <h1 class="mb-10 form_text font-objectivity">
-                Welcome back ITECH-er! Are you ready to learn more about Hacker.
-                Hipster, and Hustler?
-              </h1>
-
-              <div class="form_inputs">
-                <input
-                  class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker"
-                  id="email"
-                  type="text"
-                  placeholder="email"
-                  v-model="user.email"
-                />
-                <input
-                  class="w-full px-8 py-4 mb-3 mb-6 border rounded-md border-red text-grey-darker"
-                  id="password"
-                  type="password"
-                  placeholder="password"
-                  v-model="user.password"
-                />
-              </div>
-
-              <div class="float-right">
-                <g-link
-                  class="text-lg text-right font-objectivity nav__link"
-                  to="/forgotpassword/"
-                >
-                  <h1 class="my-4 subbutton" style="color: #c0c0c0">
-                    forgot password?
-                  </h1>
-                </g-link>
-                <button
-                  @click="login"
-                  :disabled="!isFormComplete"
-                  class="px-16 py-4 form_button uppercase font-objectivity ..."
-                >
-                  Submit
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
       <div class="grid md:flex w-screen p-16 items-center">
         <img
             :src="require('@/assets/img/unauth/login/Login-Illustration.svg')"
