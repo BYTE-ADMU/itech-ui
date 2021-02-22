@@ -63,6 +63,6 @@ export default {
 }
 
 .minWidth {
-  min-width: 150px;
+  min-width: 206px;
 }
 </style>
