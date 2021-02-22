@@ -60,7 +60,7 @@
       <div class="grid md:flex w-screen p-16 items-center">
         <img
             :src="require('@/assets/img/unauth/login/Login-Illustration.svg')"
-            class="ml-6 md:ml-0 md:w-1/2 lg:w-3/5"
+            class="block mx-auto md:ml-0 w-3/4 md:w-1/2 lg:w-3/5"
           />  
 
           <div class="md:w-2/5 lg:mr-16">
