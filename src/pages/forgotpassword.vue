@@ -37,7 +37,7 @@
             :disabled="!isFormComplete"
             class="block mx-auto md:float-right px-8 py-3 form_button uppercase font-objectivity ..."
           >
-            Ready!
+            Submit
           </button>
         </div>
       </div>
