@@ -1,6 +1,6 @@
 <template>
   <g-link
-    class="flex sm:flex-col w-1/3 mx-2 md:mb-6 rounded-lg shadow-md p-2"
+    class="flex sm:flex-col w-1/3 md:mb-6 rounded-lg shadow-md p-2"
     :to="`/articles/${article.node.id}`"
   >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
@@ -64,5 +64,22 @@ export default {
 
 .minWidth {
   min-width: 206px;
+}
+
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+  .minWidth {
+    min-width: 150px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .articleEntry-title {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .minWidth {
+    min-width: 130px;
+  }
 }
 </style>
