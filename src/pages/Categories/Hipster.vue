@@ -2,16 +2,16 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="p-6 container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
-        <!-- Featured & New On ITECH -->
+        <!-- CATEGORY COVER -->
         <div class="flex flex-col w-full">
           <cover :category="this.$router.history.current.path" />
         </div>
       </div>
 
-      <!-- Featured Courses & Playlists-->
+      <!-- COURSES-->
       <div class="sm:flex w-full mt-12">
         <div class="w-full sm:w-3/12">
           <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina">
@@ -31,7 +31,8 @@
 
       <hr class="mt-12 mb-2" />
 
-      <h2 class="p-6 text-2xl lg:text-4xl font-neuemachina">
+      <!-- ARTICLES -->
+      <h2 class="pY-6 text-2xl lg:text-4xl font-neuemachina">
         Articles ✨
       </h2>
 
