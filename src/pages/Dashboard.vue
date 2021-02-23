@@ -3,11 +3,11 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen px-20 py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-9/12">
+        <div class="flex flex-col w-auto">
           <featureEntry
             v-for="article in featuredArticle"
             v-bind:key="article.node.id"
@@ -25,50 +25,46 @@
             ></articleEntry>
           </div>
         </div>
-        <!-- Topic of the Week -->
-        <playlistTall
-          v-for="course in this.$page.featuredCourse.edges"
-          v-bind:key="course.node.id"
-          v-bind:course="course"
-        />
       </div>
 
       <hr class="mb-12" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="flex w-full mt-4">
+      <div class="flex mt-8 mb-8">
         <div class="w-3/12">
           <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Featured Courses & Playlists ✨
+            Featured Courses ✨
           </h2>
         </div>
-        <playlistEntry
+        <div class="grid grid-cols-3 gap-4 w-9/12">
+        <playlistEntry class="w-full"
           v-for="course in this.$page.threeFeaturedCourses.edges"
           v-bind:key="course.node.id"
           v-bind:course="course"
         />
+        </div>
       </div>
       <!-- Hacker -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="flex w-full mt-8 mb-8">
         <bitbotFeature bb3="hacker" />
-        <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+        <div class="grid grid-col w-9/12">
+          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
-          </h5>
+          </h5> -->
 
-          <div class="grid grid-cols-3 mb-2">
+          <!-- <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHackerTopics"
               v-bind:key="topic.node.id"
               v-bind:topic="topic.node"
-            ></articleHeader>
+            ></articleHeader> -->
             <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <!-- </div> -->
+          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
-            <articleEntry
+          <div class="grid grid-cols-3 gap-4">
+            <articleEntry class="w-full"
               v-for="article in threeHackerArticles"
               v-bind:key="article.node.id"
               v-bind:article="article"
@@ -80,21 +76,21 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hipster" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
-          </h5>
-          <div class="grid grid-cols-3 mb-2">
+          </h5> -->
+          <!-- <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHipsterTopics"
               v-bind:key="topic.node.id"
               v-bind:topic="topic.node"
             ></articleHeader>
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          </div> -->
+          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
-            <articleEntry
+          <div class="grid grid-cols-3 gap-4">
+            <articleEntry class="w-full"
               v-for="article in threeHipsterArticles"
               v-bind:key="article.node.id"
               v-bind:article="article"
@@ -106,7 +102,7 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hustler" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
           <div class="grid grid-cols-3 mb-2">
@@ -115,12 +111,12 @@
               v-bind:key="topic.node.id"
               v-bind:topic="topic.node"
             ></articleHeader>
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          </div> -->
+          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
-            <articleEntry
+          <div class="grid grid-cols-3 gap-4">
+            <articleEntry class="w-full"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.node.id"
               v-bind:article="article"
@@ -165,7 +161,7 @@
         }
       }
     },
-    newOnItech:allArticles(order:DESC,limit:3){
+    newOnItech:allArticles(order:DESC,limit:4){
     edges{
       node{
         publishedDate,
@@ -215,7 +211,7 @@ import featureEntry from "../components/auth/dashboard/featureEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
-import articleHeader from "../components/auth/dashboard/articleHeader";
+// import articleHeader from "../components/auth/dashboard/articleHeader";
 
 export default {
   name: "Dashboard",
@@ -307,7 +303,7 @@ export default {
     playlistEntry,
     playlistTall,
     bitbotFeature,
-    articleHeader,
+    // articleHeader,
   },
 };
 </script>

@@ -34,13 +34,13 @@ export default {
       const type = this.bb3;
       switch (type) {
         case "hacker":
-          return "hack er";
+          return "Hacker";
         case "hipster":
-          return "hips ter";
+          return "Hipster";
         case "hustler":
-          return "hust ler";
+          return "Hustler";
         default:
-          return "hack er";
+          return "Hacker";
       }
     },
     botStyle() {
@@ -93,10 +93,11 @@ export default {
 .bitBot {
   height: 160px;
   position: absolute;
-  left: 145px;
+  top: 165px;
+  left: 65px;
 }
 .heighter {
-  height: 350px;
+  height: 300px;
 }
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
@@ -110,7 +111,7 @@ export default {
   border-radius: 10px;
 }
 .text-feature {
-  font-size: 90px;
-  line-height: 90px;
+  font-size: 45px;
+  line-height: 70px;
 }
 </style>

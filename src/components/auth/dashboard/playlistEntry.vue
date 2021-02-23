@@ -1,5 +1,5 @@
 <template>
-  <g-link :to="`/courses/${course.node.id}`" class="w-3/12">
+  <g-link :to="`/courses/${course.node.id}`">
     <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
       <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
         <p
