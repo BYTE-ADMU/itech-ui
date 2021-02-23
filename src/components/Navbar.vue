@@ -72,10 +72,10 @@ export default Vue.extend({
 
   computed: {
     isAuthenticated() {
-      return this.$store.state.isAuthenticated;
+      return this.$store.state.userStore.isAuthenticated;
     },
     identifier() {
-      return this.$store.state.user.email;
+      return this.$store.state.userStore.user.email;
     },
   },
 });
