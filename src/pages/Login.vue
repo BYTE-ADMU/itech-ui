@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <section>
-      <div class="grid md:flex w-screen p-16 items-center">
+      <div class="grid md:flex w-screen py-8 px-8 sm:px-12 lg:px-16 items-center">
         <img
             :src="require('@/assets/img/unauth/login/Login-Illustration.svg')"
             class="block mx-auto md:ml-0 w-3/4 md:w-1/2 lg:w-3/5"
