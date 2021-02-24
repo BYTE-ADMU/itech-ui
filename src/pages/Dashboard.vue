@@ -236,6 +236,7 @@ export default {
     this.articles = this.$page.allArticles.edges;
     this.courses = this.$page.allArticles.edges;
     this.topics = this.$page.allTopics.edges;
+    this.$store.dispatch("articlesStore/getArticles");
   },
 
   computed: {
@@ -298,6 +299,11 @@ export default {
     },
     threeHustlerTopics() {
       return this.hustlerTopics.slice(0, 3);
+    },
+
+    storeArticles() {
+      console.log(this.$store.state.articlesStore.articles);
+      return this.$store.state.articlesStore.articles;
     },
   },
 
