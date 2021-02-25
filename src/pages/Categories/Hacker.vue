@@ -82,17 +82,26 @@ export default {
   data() {
     return {
       isLoading: true,
+      category: "Hacker",
     };
   },
 
   async mounted() {
+    this.category = await this.getCategory();
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
   },
 
-  computed: {
-    category() {
+  watch: {
+    "$router.history.current.path": async function () {
+      console.log("fired");
+      this.category = await this.getCategory();
+    },
+  },
+
+  methods: {
+    getCategory() {
       switch (this.$router.history.current.path) {
         case "/categories/hacker":
           return "Hacker";
@@ -104,7 +113,9 @@ export default {
           return "Hacker";
       }
     },
+  },
 
+  computed: {
     courses() {
       const data = this.$store.state.coursesStore.courses;
       return data;

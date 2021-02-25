@@ -28,7 +28,65 @@ export default {
 <style>
 @font-face {
   font-family: Objectivity;
-  src: url("../assets/font/Objectivity-Medium.otf");
+  src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-BoldSlanted.otf")
+    format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Medium.otf")
+    format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-MediumSlanted.otf")
+    format("truetype");
+  font-weight: medium;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Regular.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-RegularSlanted.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Light.otf")
+    format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Light.otf")
+    format("truetype");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {

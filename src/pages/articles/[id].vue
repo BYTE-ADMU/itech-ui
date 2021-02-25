@@ -1,12 +1,12 @@
 <template lang="html">
   <Layout>
     <section class="flex justify-center min-h-screen pt-16 pb-32">
-      <div class="w-full">
-        <div v-if="article === null" class="w-2/3 mx-auto">
+      <div class="container w-screen">
+        <div v-if="article === null" >
           <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>
-        <div v-else class="w-2/3 mx-auto">
+        <div v-else >
           <p class="mb-10 breadcrumb">
             <g-link to="/dashboard/">Home</g-link
             ><g-link
@@ -28,7 +28,7 @@
             <div class="flex">
               <!-- Start: Article Author and Dates -->
               <div class="w-full">
-                <div class="flex items-center text-black no-underline">
+                <div class="flex items-center text-black no-underline sm:w-full">
                   <g-image
                     alt="author-image"
                     class="block rounded-full author-image"
@@ -88,11 +88,13 @@
           <!-- END: FEATURED IMAGE -->
 
           <!-- START: ARTICLE CONTENT -->
-          <div class="mx-24 overflow-hidden">
+          <div class="mx-24 overflow-hidden" >
             <VueMarkdown
-              class="mb-24 article-content"
+              class="mb-24 article-content "
+              style="font-family:Objectivity; font-weight:normal"
               :source="article.content"
             />
+
             <div class="mb-24 overflow-auto article-sources">
               <VueMarkdown :source="article.sources" />
             </div>
@@ -127,7 +129,8 @@
                   <p class="whats-next">What's Next?</p>
                   <hr class="my-5" />
 
-                  <div v-for="article in nextArticles" v-bind:key="article.id">
+                  <div v-if="nextArticles === null">Loading...</div>
+                  <div v-else v-for="article in nextArticles" v-bind:key="article.id">
                     <ArticleButtonCard
                       v-bind:article="article"
                     ></ArticleButtonCard>
@@ -203,6 +206,7 @@ export default {
     return {
       title: "Loading...",
       article: null,
+      nextArticles: null,
     };
   },
 
@@ -211,17 +215,18 @@ export default {
     this.article = data;
     this.title = data.title;
 
+    this.nextArticles = await this.getNextArticles();
+
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
   },
 
-  computed: {
-    nextArticles() {
-      return this.$store.state.articlesStore.articles.slice(0, 3);
-    },
-    id() {
-      return this.$route.params.id;
+  watch: {
+    "$route.params.id": async function (id) {
+      this.article = await this.getArticle(id);
+      this.nextArticles = await this.getNextArticles();
+      this.title = this.article.title;
     },
   },
 
@@ -233,15 +238,24 @@ export default {
       return data;
     },
 
+    async getNextArticles() {
+      let i = 0;
+      const selectedData = [];
+      while (i < 3) {
+        selectedData.push(
+          this.$store.state.articlesStore.articles[
+            Math.floor(
+              Math.random() * this.$store.state.articlesStore.articles.length
+            )
+          ]
+        );
+        i++;
+      }
+      return selectedData;
+    },
+
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
-    },
-  },
-
-  watch: {
-    id(newId, oldId) {
-      this.article = this.getArticle(newId);
-      this.title = this.getArticle(newId).title;
     },
   },
 };
@@ -250,8 +264,8 @@ export default {
 <style scoped>
 .article-title {
   font-family: Objectivity;
+  font-weight: bold;
   font-style: normal;
-  font-weight: normal;
   font-size: 48px;
   line-height: 64px;
   color: #151316;
@@ -261,7 +275,18 @@ export default {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
+  font-size: 24px;
   color: #151316;
+  line-height: 40px;
+}
+
+.article-sources {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: italic;
+  font-size: 24px;
+  color: #8c8c8c;
+  line-height: 40px;
 }
 
 .author-image {
@@ -271,8 +296,8 @@ export default {
 
 .author-name {
   font-family: Objectivity;
+  font-weight: bold;
   font-style: normal;
-  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
 }
@@ -295,23 +320,10 @@ export default {
   color: #b4b4b4;
 }
 
-.article-content {
-  font-family: HK Grotesk;
-  font-size: 24px;
-  line-height: 40px;
-}
-
-.article-sources {
-  font-family: HK Grotesk;
-  font-size: 24px;
-  line-height: 40px;
-  color: #8c8c8c;
-}
-
 .whats-next {
   font-family: Objectivity;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 36px;
   line-height: 44px;
   color: #151316;
