@@ -20,7 +20,7 @@ const coursesStore = {
     async getCourses({ state, commit }) {
       await axios.get(`${state.API_URL}/courses${state.SORT}`)
         .then(response => {
-          commit('SET_COURSES', response.data.reverse())
+          commit('SET_COURSES', response.data)
         })
     }
   },

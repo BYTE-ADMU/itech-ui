@@ -20,7 +20,7 @@ const articlesStore = {
     async getArticles({ state, commit }) {
       await axios.get(`${state.API_URL}/articles${state.SORT}`)
         .then(response => {
-          commit('SET_ARTICLES', response.data.reverse())
+          commit('SET_ARTICLES', response.data)
         })
     }
   },

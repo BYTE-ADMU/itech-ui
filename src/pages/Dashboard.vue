@@ -169,24 +169,22 @@ export default {
   computed: {
     //START: GET DATA FROM STORE
     categories() {
-      const data = this.$store.state.categoriesStore.categories;
+      const data = this.$store.state.categoriesStore.categories.reverse();
       return data;
     },
 
     topics() {
-      const data = this.$store.state.topicsStore.topics;
+      const data = this.$store.state.topicsStore.topics.reverse();
       return data;
     },
 
     courses() {
-      const data = this.$store.state.coursesStore.courses;
+      const data = this.$store.state.coursesStore.courses.reverse();
       return data;
     },
 
     articles() {
-      const data = this.$store.state.articlesStore.articles.sort(
-        (a, b) => b.published_at - a.published_at
-      );
+      const data = this.$store.state.articlesStore.articles.reverse();
       return data;
     },
     //END: GET DATA FROM STORE

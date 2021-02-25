@@ -20,7 +20,7 @@ const categoriesStore = {
     async getCategories({ state, commit }) {
       await axios.get(`${state.API_URL}/categories${state.SORT}`)
         .then(response => {
-          commit('SET_CATEGORIES', response.data.reverse())
+          commit('SET_CATEGORIES', response.data)
         })
     }
   },
