@@ -100,6 +100,10 @@ export default {
     const data = await this.getTopic(this.$route.params.id);
     this.topic = data;
     this.title = data.name;
+
+    this.$store.dispatch("articlesStore/getArticles");
+    this.$store.dispatch("coursesStore/getCourses");
+    this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {

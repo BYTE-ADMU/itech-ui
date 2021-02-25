@@ -85,10 +85,11 @@ export default {
     };
   },
 
-  // async mounted() {
-  //   await this.$store.dispatch("articlesStore/getArticles");
-  //   await this.$store.dispatch("coursesStore/getCourses");
-  // },
+  async mounted() {
+    this.$store.dispatch("articlesStore/getArticles");
+    this.$store.dispatch("coursesStore/getCourses");
+    this.$store.dispatch("topicsStore/getTopics");
+  },
 
   computed: {
     category() {

@@ -82,6 +82,10 @@ export default {
     const data = await this.getCourse(this.$route.params.id);
     this.course = data;
     this.title = data.name;
+
+    this.$store.dispatch("articlesStore/getArticles");
+    this.$store.dispatch("coursesStore/getCourses");
+    this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {

@@ -210,6 +210,10 @@ export default {
     const data = await this.getArticle(this.$route.params.id);
     this.article = data;
     this.title = data.title;
+
+    this.$store.dispatch("articlesStore/getArticles");
+    this.$store.dispatch("coursesStore/getCourses");
+    this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {
