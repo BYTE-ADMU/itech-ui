@@ -1,8 +1,8 @@
 <template lang="html">
   <Layout>
-    <section class="flex justify-center min-h-screen mt-16 mb-32">
+    <section class="flex justify-center min-h-screen pt-16 pb-32">
       <div class="w-full">
-        <div v-if="article === null">
+        <div v-if="article === null" class="w-2/3 mx-auto">
           <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>

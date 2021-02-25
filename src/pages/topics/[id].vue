@@ -2,7 +2,7 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen pt-10 pb-20 mx-auto mb-24"
     >
       <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>

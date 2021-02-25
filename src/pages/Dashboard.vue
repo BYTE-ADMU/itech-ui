@@ -3,7 +3,7 @@
     <!-- ROOT -->
     <div
       v-if="articles === null && courses === null && topics === null"
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="flex flex-col w-2/3 min-h-screen py-20 mx-auto mb-24"
     >
       <Loader />
     </div>
