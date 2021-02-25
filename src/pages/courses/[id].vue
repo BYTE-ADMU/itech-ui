@@ -44,7 +44,12 @@ import articleHeader from "../../components/auth/dashboard/articleHeader";
 import axios from "axios";
 
 export default {
-  name: "Courses",
+  name: "Course",
+  metaInfo() {
+    return {
+      title: this.course.name,
+    };
+  },
 
   components: {
     cover,
@@ -52,12 +57,6 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
-  },
-
-  metaInfo() {
-    return {
-      title: this.course.name,
-    };
   },
 
   data() {
@@ -97,8 +96,8 @@ export default {
   },
 
   methods: {
-    getCourse(id) {
-      axios
+    async getCourse(id) {
+      await axios
         .get(`https://calm-everglades-39473.herokuapp.com/courses/${id}`)
         .then((response) => {
           this.course = response.data;

@@ -11,11 +11,11 @@
             {{ itemCount }} Items
           </p>
         </div>
-        <img
+        <g-image
           :src="course.thumbnail.url"
           class="object-cover h-full rounded-lg tg"
         />
-        <img
+        <g-image
           :src="require('@/assets/img/bitbots/bbwhite.svg')"
           class="absolute whitebb"
         />

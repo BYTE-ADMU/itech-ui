@@ -16,7 +16,7 @@
           ><span v-else>Item</span>
         </p>
       </div>
-      <img
+      <g-image
         :src="course.thumbnail.url"
         class="relative object-cover w-full h-full rounded-xl tg"
       />

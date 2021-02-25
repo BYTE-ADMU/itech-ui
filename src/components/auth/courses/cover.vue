@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mb-12">
     <div class="relative w-full hustlerStyle heighter rounded-xl">
-      <img :src="bitbot" class="bitBot" />
+      <g-image :src="bitbot" class="bitBot" />
 
         <div class="flex items-center w-full h-full pl-56">
           <div>

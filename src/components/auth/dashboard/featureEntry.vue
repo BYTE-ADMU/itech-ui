@@ -24,7 +24,7 @@
           <!-- Description -->
         </p>
       </div>
-      <img
+      <g-image
         :src="article.thumbnailImage.url"
         class="relative object-cover w-full h-full rounded-lg tg"
       />

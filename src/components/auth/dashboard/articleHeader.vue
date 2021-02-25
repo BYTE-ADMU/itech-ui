@@ -15,7 +15,7 @@
           <!-- {{ itemCount }} Items -->
         </p>
       </div>
-      <img
+      <g-image
         :src="topic.thumbnail.url"
         class="relative object-cover w-full h-full rounded-lg tg"
       />

@@ -7,7 +7,7 @@
     <div
       class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
     >
-      <img
+      <g-image
         :src="article.thumbnailImage.url"
         class="object-cover w-full h-full rounded-lg"
       />

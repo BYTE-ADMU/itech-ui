@@ -12,7 +12,7 @@
       <p class="mb-2 card-author">{{ article.author.name }}</p>
     </div>
     <div class="w-1/4">
-      <img
+      <g-image
         :src="article.thumbnailImage.url"
         class="object-cover h-full rounded-lg"
         style="width: 116px"

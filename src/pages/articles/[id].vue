@@ -14,7 +14,7 @@
             <!-- Start: Article Author and Dates -->
             <div class="w-full">
               <div class="flex items-center text-black no-underline">
-                <img alt="author-image" class="block rounded-full author-image" :src="article.author.profileImage.url">
+                <g-image alt="author-image" class="block rounded-full author-image" :src="article.author.profileImage.url"/>
                 <div class="ml-5">
                   <p class="author-name">{{article.author.name}}</p>
                   <p class="article-publishedDate">Published on {{formatDate(article.published_at)}}</p>
@@ -28,19 +28,19 @@
             <div class="w-full">
               <div class="flex float-right">
                 <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Twitter_Outline.svg')"
-                /></a>
+                  ><g-image :src="require('@/assets/img/icons/Twitter_Outline.svg')"/>
+                  </a>
                 <a
                   href="https://www.facebook.com/byteadmu/"
                   target="_blank"
                   class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Facebook_Outline.svg')"
+                  ><g-image :src="require('@/assets/img/icons/Facebook_Outline.svg')"
                 /></a>
                             <a
                   href="https://www.facebook.com/byteadmu/"
                   target="_blank"
                   class="mx-2"
-                  ><img :src="require('@/assets/img/icons/Bookmark.svg')"
+                  ><g-image :src="require('@/assets/img/icons/Bookmark.svg')"
                 /></a>
               </div>
             </div>
@@ -51,14 +51,13 @@
 
         <!-- START: FEATURED IMAGE -->
         
-          <img class="w-full mb-24 overflow-auto" :src="article.featuredImage.url" />
+          <g-image class="w-full mb-24 overflow-auto" :src="article.featuredImage.url" />
         <!-- END: FEATURED IMAGE -->
         
         <!-- START: ARTICLE CONTENT -->
         <div class="mx-24 overflow-hidden">
           <VueMarkdown class="mb-24 article-content" :source="article.content"/>
           <div class="mb-24 article-sources">
-            <b><i>Sources:</i></b><br/>
             <VueMarkdown  :source="article.sources"/>
           </div>
         </div>
@@ -135,16 +134,17 @@ import moment from "moment";
 import axios from "axios";
 
 export default {
-  components: {
-    VueMarkdown,
-    ArticleButtonCard,
-    CommentCard,
-  },
-
+  name: "Article",
   metaInfo() {
     return {
       title: this.article.title,
     };
+  },
+
+  components: {
+    VueMarkdown,
+    ArticleButtonCard,
+    CommentCard,
   },
 
   data() {
@@ -153,8 +153,9 @@ export default {
     };
   },
 
-  mounted() {
-    this.getArticle(this.$route.params.id);
+  async mounted() {
+    const data = await this.getArticle(this.$route.params.id);
+    this.article = data;
   },
 
   computed: {
@@ -167,12 +168,11 @@ export default {
   },
 
   methods: {
-    getArticle(id) {
-      axios
-        .get(`https://calm-everglades-39473.herokuapp.com/articles/${id}`)
-        .then((response) => {
-          this.article = response.data;
-        });
+    async getArticle(id) {
+      const { data } = await axios.get(
+        `https://calm-everglades-39473.herokuapp.com/articles/${id}`
+      );
+      return data;
     },
 
     formatDate(date) {
@@ -181,8 +181,8 @@ export default {
   },
 
   watch: {
-    id(newValue, oldValue) {
-      this.getArticle(newValue);
+    id(newId, oldId) {
+      this.article = this.getArticle(newId);
     },
   },
 };
