@@ -10,12 +10,14 @@ const coursesStore = {
   }),
 
   // to handle state
-  getters: {},
+  getters: {
+    allCourses: (state) => state.courses,
+  },
 
   //to handle actions
   actions: {
-    getCourses({ state, commit }) {
-      axios.get(`${state.API_URL}/courses`)
+    async getCourses({ state, commit }) {
+      await axios.get(`${state.API_URL}/courses`)
         .then(response => {
           commit('SET_COURSES', response.data)
         })
@@ -24,9 +26,7 @@ const coursesStore = {
 
   // to handle mutations
   mutations: {
-    SET_COURSES(state, courses) {
-      state.courses = courses
-    },
+    SET_COURSES: (state, courses) => state.courses = courses,
   }
 }
 

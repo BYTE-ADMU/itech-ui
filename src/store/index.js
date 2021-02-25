@@ -29,7 +29,7 @@ const store = new Vuex.Store({
 store.state.userStore;
 store.state.categoriesStore;
 store.state.topicsStore;
-store.state.courseStore;
+store.state.coursesStore;
 store.state.articlesStore;
 
 export default store;

@@ -10,12 +10,14 @@ const categoriesStore = {
   }),
 
   // to handle state
-  getters: {},
+  getters: {
+    allCategories: (state) => state.categories,
+  },
 
   //to handle actions
   actions: {
-    getCategories({ state, commit }) {
-      axios.get(`${state.API_URL}/topics`)
+    async getCategories({ state, commit }) {
+      await axios.get(`${state.API_URL}/categories`)
         .then(response => {
           commit('SET_CATEGORIES', response.data)
         })
@@ -24,9 +26,7 @@ const categoriesStore = {
 
   // to handle mutations
   mutations: {
-    SET_CATEGORIES(state, categories) {
-      state.categories = categories
-    },
+    SET_CATEGORIES: (state, categories) => state.categories = categories,
   }
 }
 

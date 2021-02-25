@@ -10,12 +10,14 @@ const articlesStore = {
   }),
 
   // to handle state
-  getters: {},
+  getters: {
+    allArticles: (state) => state.articles,
+  },
 
   //to handle actions
   actions: {
-    getArticles({ state, commit }) {
-      axios.get(`${state.API_URL}/articles`)
+    async getArticles({ state, commit }) {
+      await axios.get(`${state.API_URL}/articles`)
         .then(response => {
           commit('SET_ARTICLES', response.data)
         })
@@ -24,9 +26,7 @@ const articlesStore = {
 
   // to handle mutations
   mutations: {
-    SET_ARTICLES(state, articles) {
-      state.articles = articles
-    },
+    SET_ARTICLES: (state, articles) => state.articles = articles,
   }
 }
 

@@ -1,4 +1,3 @@
-//START: TEMPLATE
 <template>
   <Layout>
     <!-- ROOT -->
@@ -10,7 +9,7 @@
         <div class="flex flex-col w-9/12">
           <featureEntry
             v-for="article in featuredArticle"
-            v-bind:key="article.node.id"
+            v-bind:key="article.id"
             v-bind:article="article"
           />
 
@@ -20,15 +19,15 @@
           <div class="flex justify-between mt-1 mb-24">
             <articleEntry
               v-for="article in newOnItech"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
         </div>
         <!-- Topic of the Week -->
         <playlistTall
-          v-for="course in this.$page.featuredCourse.edges"
-          v-bind:key="course.node.id"
+          v-for="course in featuredCourse"
+          v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
@@ -43,8 +42,8 @@
           </h2>
         </div>
         <playlistEntry
-          v-for="course in this.$page.threeFeaturedCourses.edges"
-          v-bind:key="course.node.id"
+          v-for="course in threeFeaturedCourses"
+          v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
@@ -59,8 +58,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHackerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
             <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
           </div>
@@ -70,7 +69,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHackerArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -86,8 +85,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHipsterTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
@@ -96,7 +95,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHipsterArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -112,8 +111,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHustlerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
@@ -122,7 +121,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHustlerArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -132,83 +131,7 @@
     </div>
   </Layout>
 </template>
-//END: TEMPLATE
 
-// START: PAGE QUERY
-<page-query>
-  query {
-    allTopics(order:DESC){
-      edges{
-        node{
-          publishedDate,
-          id,
-          categories,
-          name,
-          thumbnail,
-          description,
-          courses{
-            id,
-            name
-          }
-        }
-      }
-    },
-    allArticles(order:DESC){
-      edges{
-        node{
-          publishedDate,
-          id,
-          categories,
-          title,
-          author,
-          thumbnailImage,
-        }
-      }
-    },
-    newOnItech:allArticles(order:DESC,limit:3){
-    edges{
-      node{
-        publishedDate,
-        id,
-        title,
-        author,
-        thumbnailImage
-      }
-    }
-  },
-  threeFeaturedCourses:allCourses(order:DESC,limit:3){
-      edges{
-        node{
-          id,
-          categories,
-          name,
-          thumbnail,
-          articles{
-            id
-          }
-        }
-      }
-    },
-    featuredCourse:allCourses(order:DESC,limit:1){
-      edges{
-        node{
-          id,
-          categories,
-          name,
-          thumbnail,
-          articles{
-            id
-          }
-        }
-      }
-    },
-
-}
-
-</page-query>
-// END : PAGE QUERY
-
-//START: SCRIPT
 <script>
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
@@ -222,37 +145,63 @@ export default {
   metaInfo: {
     title: "Dashboard",
   },
-  data() {
-    return {
-      newOnItech: [],
-      articles: [],
-      topics: [],
-      courses: [],
-    };
+
+  components: {
+    articleEntry,
+    featureEntry,
+    playlistEntry,
+    playlistTall,
+    bitbotFeature,
+    articleHeader,
   },
 
-  mounted() {
-    this.newOnItech = this.$page.newOnItech.edges;
-    this.articles = this.$page.allArticles.edges;
-    this.courses = this.$page.allArticles.edges;
-    this.topics = this.$page.allTopics.edges;
-    this.$store.dispatch("articlesStore/getArticles");
+  async mounted() {
+    // this.newOnItech = this.$page.newOnItech.edges;
+    // this.articles = this.$page.allArticles.edges;
+    // this.courses = this.$page.allArticles.edges;
+    // this.topics = this.$page.allTopics.edges;
+    await this.$store.dispatch("articlesStore/getArticles");
+    await this.$store.dispatch("coursesStore/getCourses");
+    await this.$store.dispatch("topicsStore/getTopics");
+    await this.$store.dispatch("categoriesStore/getCategories");
   },
 
   computed: {
+    //START: GET DATA FROM STORE
+    categories() {
+      const data = this.$store.state.categoriesStore.categories;
+      return data;
+    },
+
+    topics() {
+      const data = this.$store.state.topicsStore.topics;
+      return data;
+    },
+
+    courses() {
+      const data = this.$store.state.coursesStore.courses;
+      return data;
+    },
+
+    articles() {
+      const data = this.$store.state.articlesStore.articles;
+      return data;
+    },
+    //END: GET DATA FROM STORE
+
     hackerArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hacker");
+        return article.categories[0].name.includes("Hacker");
       });
     },
     hipsterArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hipster");
+        return article.categories[0].name.includes("Hipster");
       });
     },
     hustlerArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hustler");
+        return article.categories[0].name.includes("Hustler");
       });
     },
 
@@ -260,9 +209,16 @@ export default {
       return this.articles.slice(0, 1);
     },
 
-    // featuredCourse() {
-    //   return this.courses.slice(0, 1);
-    // },
+    newOnItech() {
+      return this.articles.slice(0, 3);
+    },
+    featuredCourse() {
+      return this.courses.slice(0, 1);
+    },
+
+    threeFeaturedCourses() {
+      return this.courses.slice(0, 3);
+    },
 
     threeHackerArticles() {
       return this.hackerArticles.slice(0, 3);
@@ -277,17 +233,17 @@ export default {
     // TOPICS
     hackerTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hacker");
+        return topic.categories[0].name.includes("Hacker");
       });
     },
     hipsterTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hipster");
+        return topic.categories[0].name.includes("Hipster");
       });
     },
     hustlerTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hustler");
+        return topic.categories[0].name.includes("Hustler");
       });
     },
 
@@ -300,24 +256,9 @@ export default {
     threeHustlerTopics() {
       return this.hustlerTopics.slice(0, 3);
     },
-
-    storeArticles() {
-      console.log(this.$store.state.articlesStore.articles);
-      return this.$store.state.articlesStore.articles;
-    },
-  },
-
-  components: {
-    articleEntry,
-    featureEntry,
-    playlistEntry,
-    playlistTall,
-    bitbotFeature,
-    articleHeader,
   },
 };
 </script>
-//END: SCRIPT
 
 <style>
 div > .tg {

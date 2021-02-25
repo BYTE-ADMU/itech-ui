@@ -1,22 +1,23 @@
 <template>
-  <g-link :to="`/courses/${course.node.id}`" class="w-3/12">
-    <div class="relative mx-2 bg-gray-400 rounded-xl feature-height tg m-5 sm:m-1">
-      <div class="absolute z-30 w-full h-full px-10 sm:px-5 rounded-lg group">
+  <g-link :to="`/courses/${course.id}`" class="w-3/12">
+    <div
+      class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1"
+    >
+      <div class="absolute z-30 w-full h-full px-10 rounded-lg sm:px-5 group">
         <p
-          class="relative w-min py-1 mt-12 text-3xl sm:text-lg md:text-md lg:text-2xl font-medium text-white font-objectivity hover:opacity-100"
-          
+          class="relative py-1 mt-12 text-3xl font-medium text-white w-min sm:text-lg md:text-md lg:text-2xl font-objectivity hover:opacity-100"
         >
-          {{ course.node.name }}
+          {{ course.name }}
         </p>
         <p
-          class="absolute sm:bottom-0 py-0 sm:py-3 font-light text-white font-objectivity hover:opacity-100"
+          class="absolute py-0 font-light text-white sm:bottom-0 sm:py-3 font-objectivity hover:opacity-100"
         >
           {{ itemCount }} <span v-if="itemCount > 1">Items</span
           ><span v-else>Item</span>
         </p>
       </div>
       <img
-        :src="course.node.thumbnail"
+        :src="course.thumbnail.url"
         class="relative object-cover w-full h-full rounded-xl tg"
       />
     </div>
@@ -30,7 +31,7 @@ export default {
 
   computed: {
     itemCount() {
-      return this.course.node.articles.length;
+      return this.course.articles.length;
     },
   },
 };

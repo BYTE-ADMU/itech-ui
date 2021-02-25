@@ -2,23 +2,23 @@
   <Layout>
     <section class="flex justify-center min-h-screen mt-16 mb-32">
       <div class="w-full mx-64">
-        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link><g-link v-if="$page.thisArticle.courses !== null" :to="`/courses/${$page.thisArticle.courses.id}`"> / {{$page.thisArticle.courses.name}}</g-link></p>
+        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link><g-link v-if="article.courses.length !== 0" :to="`/courses/${article.courses[0].id}`"> / {{article.courses[0].name}}</g-link></p>
 
         <!-- START: ARTICLE INFO -->
         <div class="mx-24 mb-12">
           <!-- START: First Row -->
-            <p class="mb-5 article-title">{{$page.thisArticle.title}}</p> 
+            <p class="mb-5 article-title">{{article.title}}</p> 
           <!-- END: First Row -->
 
           <!-- START: Second Row --><div class="flex">
             <!-- Start: Article Author and Dates -->
             <div class="w-full">
               <div class="flex items-center text-black no-underline">
-                <img alt="author-image" class="block rounded-full author-image" :src="$page.thisArticle.profileImage">
+                <img alt="author-image" class="block rounded-full author-image" :src="article.author.profileImage.url">
                 <div class="ml-5">
-                  <p class="author-name">{{$page.thisArticle.author}}</p>
-                  <p class="article-publishedDate">Published on {{formatDate($page.thisArticle.publishedDate)}}</p>
-                  <p class="article-lastEditedDate">Last Edited on {{formatDate($page.thisArticle.lastEditedDate)}}</p>
+                  <p class="author-name">{{article.author.name}}</p>
+                  <p class="article-publishedDate">Published on {{formatDate(article.published_at)}}</p>
+                  <p class="article-lastEditedDate">Last Edited on {{formatDate(article.updatedAt)}}</p>
                 </div>
               </div>  
             </div>
@@ -51,15 +51,15 @@
 
         <!-- START: FEATURED IMAGE -->
         
-          <img class="w-full mb-24 overflow-auto" :src="$page.thisArticle.featuredImage" />
+          <img class="w-full mb-24 overflow-auto" :src="article.featuredImage.url" />
         <!-- END: FEATURED IMAGE -->
         
         <!-- START: ARTICLE CONTENT -->
         <div class="mx-24 overflow-hidden">
-          <VueMarkdown class="mb-24 article-content" :source="$page.thisArticle.content"/>
+          <VueMarkdown class="mb-24 article-content" :source="article.content"/>
           <div class="mb-24 article-sources">
             <b><i>Sources:</i></b><br/>
-            <VueMarkdown  :source="$page.thisArticle.sources"/>
+            <VueMarkdown  :source="article.sources"/>
           </div>
         </div>
         <!-- END: ARTICLE CONTENT -->
@@ -85,7 +85,7 @@
                 <p class="whats-next">What's Next?</p>
                 <hr class="my-5" />
                   
-                  <div v-for="article in $page.nextArticles.edges" v-bind:key="article.node.id">
+                  <div v-for="article in nextArticles" v-bind:key="article.id">
                     <ArticleButtonCard v-bind:article="article"></ArticleButtonCard>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                   </div>
                 </div>
               </form>
-                <div v-for="comment in $page.thisArticle.comments" v-bind:key="comment.id">
+                <div v-for="comment in article.comments" v-bind:key="comment.id">
                   <CommentCard v-bind:comment="comment"></CommentCard>
                 </div>
             </div>
@@ -127,64 +127,66 @@
 </template>
 
 <script>
-import ArticleButtonCard from "../components/auth/articles/ArticleButtonCard";
-import CommentCard from "../components/auth/articles/CommentCard";
+import ArticleButtonCard from "../../components/auth/articles/ArticleButtonCard";
+import CommentCard from "../../components/auth/articles/CommentCard";
 import VueMarkdown from "vue-markdown";
 
 import moment from "moment";
+import axios from "axios";
 
 export default {
-  metaInfo() {
-    return {
-      title: this.$page.thisArticle.title,
-    };
-  },
-
   components: {
     VueMarkdown,
     ArticleButtonCard,
     CommentCard,
   },
 
+  metaInfo() {
+    return {
+      title: this.article.title,
+    };
+  },
+
+  data() {
+    return {
+      article: [],
+    };
+  },
+
+  mounted() {
+    this.getArticle(this.$route.params.id);
+  },
+
+  computed: {
+    nextArticles() {
+      return this.$store.state.articlesStore.articles.slice(0, 3);
+    },
+    id() {
+      return this.$route.params.id;
+    },
+  },
+
   methods: {
+    getArticle(id) {
+      axios
+        .get(`https://calm-everglades-39473.herokuapp.com/articles/${id}`)
+        .then((response) => {
+          this.article = response.data;
+        });
+    },
+
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
     },
   },
+
+  watch: {
+    id(newValue, oldValue) {
+      this.getArticle(newValue);
+    },
+  },
 };
 </script>
-
-<page-query>
-query($id:ID!){
-  thisArticle: articles(id:$id){
-    id,
-    title,
-    author,
-    profileImage,
-    publishedDate,
-    lastEditedDate,
-    content,
-    sources,
-    featuredImage,
-    thumbnailImage,
-    courses{
-      id,
-      name
-    }
-  },
-  
-  nextArticles:allArticles(limit:3){
-    edges{
-      node{
-        id,
-        title,
-        author,
-        thumbnailImage
-      }
-    }
-  }
-}
-</page-query>
 
 <style scoped>
 .article-title {

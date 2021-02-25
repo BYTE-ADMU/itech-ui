@@ -2,18 +2,18 @@
   <g-link
     class="flex w-full mb-6 rounded-lg"
     style="height: 116px"
-    :to="`/articles/${article.node.id}`"
+    :to="`/articles/${article.id}`"
   >
     <div class="w-3/4 pr-2">
       <p class="mb-2 card-topic">Topic</p>
       <p class="mb-2 card-title">
-        {{ article.node.title }}
+        {{ article.title }}
       </p>
-      <p class="mb-2 card-author">{{ article.node.author }}</p>
+      <p class="mb-2 card-author">{{ article.author.name }}</p>
     </div>
     <div class="w-1/4">
       <img
-        :src="article.node.thumbnailImage"
+        :src="article.thumbnailImage.url"
         class="object-cover h-full rounded-lg"
         style="width: 116px"
       />

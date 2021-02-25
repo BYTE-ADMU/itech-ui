@@ -14,8 +14,8 @@ const topicsStore = {
 
   //to handle actions
   actions: {
-    getTopics({ state, commit }) {
-      axios.get(`${state.API_URL}/topics`)
+    async getTopics({ state, commit }) {
+      await axios.get(`${state.API_URL}/topics`)
         .then(response => {
           commit('SET_TOPICS', response.data)
         })

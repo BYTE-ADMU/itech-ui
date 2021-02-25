@@ -1,23 +1,24 @@
 <template>
   <g-link
-    class="flex sm:flex-col w-1/3 md:mb-6 rounded-lg shadow-md p-2"
-    :to="`/articles/${article.node.id}`"
+    class="flex w-1/3 p-2 rounded-lg shadow-md sm:flex-col md:mb-6"
+    :to="`/articles/${article.id}`"
   >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
-    <div class="block w-1/3 minWidth sm:w-full sm:mb-2 bg-blue-400 rounded-lg h-pic">
+    <div
+      class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
+    >
       <img
-        :src="article.node.thumbnailImage"
+        :src="article.thumbnailImage.url"
         class="object-cover w-full h-full rounded-lg"
       />
     </div>
     <div class="p-3 my-auto">
       <p class="sm:mb-2 articleEntry-topic">Topic</p>
       <p class="sm:mb-2 articleEntry-title">
-      {{ article.node.title }}
+        {{ article.title }}
       </p>
-      <p class="sm:mb-2 articleEntry-author">{{ article.node.author }}</p>
+      <p class="sm:mb-2 articleEntry-author">{{ article.author.name }}</p>
     </div>
-    
   </g-link>
 </template>
 
