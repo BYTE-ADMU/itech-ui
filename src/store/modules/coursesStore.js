@@ -6,6 +6,7 @@ const coursesStore = {
   // to handle state
   state: () => ({
     API_URL: 'https://calm-everglades-39473.herokuapp.com',
+    SORT: '?_sort=published_at',
     courses: []
   }),
 
@@ -17,9 +18,9 @@ const coursesStore = {
   //to handle actions
   actions: {
     async getCourses({ state, commit }) {
-      await axios.get(`${state.API_URL}/courses`)
+      await axios.get(`${state.API_URL}/courses${state.SORT}`)
         .then(response => {
-          commit('SET_COURSES', response.data)
+          commit('SET_COURSES', response.data.reverse())
         })
     }
   },

@@ -184,7 +184,9 @@ export default {
     },
 
     articles() {
-      const data = this.$store.state.articlesStore.articles;
+      const data = this.$store.state.articlesStore.articles.sort(
+        (a, b) => b.published_at - a.published_at
+      );
       return data;
     },
     //END: GET DATA FROM STORE

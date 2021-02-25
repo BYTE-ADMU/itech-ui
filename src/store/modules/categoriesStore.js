@@ -6,6 +6,7 @@ const categoriesStore = {
   // to handle state
   state: () => ({
     API_URL: 'https://calm-everglades-39473.herokuapp.com',
+    SORT: '?_sort=published_at',
     categories: []
   }),
 
@@ -17,9 +18,9 @@ const categoriesStore = {
   //to handle actions
   actions: {
     async getCategories({ state, commit }) {
-      await axios.get(`${state.API_URL}/categories`)
+      await axios.get(`${state.API_URL}/categories${state.SORT}`)
         .then(response => {
-          commit('SET_CATEGORIES', response.data)
+          commit('SET_CATEGORIES', response.data.reverse())
         })
     }
   },
