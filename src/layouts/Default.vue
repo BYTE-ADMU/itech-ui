@@ -116,12 +116,12 @@ export default {
 
 .form_button {
   background: #64c0c1;
-  border-radius: 50px;
+  border-radius: 34px;
+  font-family: Objectivity;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
-  letter-spacing: 0.2em;
   color: #f9f7f2;
 }
 
