@@ -4,6 +4,10 @@
     <div
       class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
     >
+      <p class="mb-10 breadcrumb">
+        <button @click="$router.go(-1)">Back</button>
+      </p>
+
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
         <div class="flex flex-col w-full">
@@ -151,5 +155,15 @@ export default {
 <style>
 div > .tg {
   filter: brightness(80%);
+}
+
+.breadcrumb {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #c9c9c9;
 }
 </style>
