@@ -6,7 +6,7 @@
           <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>
-        <div v-else class="w-5/6 mx-auto">
+        <div v-else class="w-2/3 mx-auto">
           <p class="mb-10 breadcrumb">
             <g-link to="/dashboard/">Home</g-link
             ><g-link
