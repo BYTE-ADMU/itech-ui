@@ -2,7 +2,7 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="p-6 container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen p-6 py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- CATEGORY COVER -->
@@ -12,7 +12,7 @@
       </div>
 
       <!-- COURSES-->
-      <div class="sm:flex w-full mt-12">
+      <div class="w-full mt-12 sm:flex">
         <div class="w-full sm:w-3/12">
           <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina">
             Courses ✨
@@ -24,7 +24,7 @@
 
         <playlistEntry
           v-for="course in threeFilteredCourses"
-          v-bind:key="course.node.id"
+          v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
@@ -32,14 +32,12 @@
       <hr class="mt-12 mb-2" />
 
       <!-- ARTICLES -->
-      <h2 class="pY-6 text-2xl lg:text-4xl font-neuemachina">
-        Articles ✨
-      </h2>
+      <h2 class="py-6 text-2xl lg:text-4xl font-neuemachina">Articles ✨</h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <articleEntry
           v-for="article in filteredArticles"
-          v-bind:key="article.node.id"
+          v-bind:key="article.id"
           v-bind:article="article"
           class="w-full mb-0 sm:mb-1 md:mb-2"
         ></articleEntry>
@@ -48,43 +46,7 @@
   </Layout>
 </template>
 
-<page-query>
-  query {
-    allArticles(order:DESC){
-      edges{
-        node{
-          publishedDate,
-          id,
-          categories,
-          title,
-          author,
-          thumbnailImage,
-          courses{
-            id,
-            name,
-          }
-        }
-      }
-    }    
 
-    allCourses(order:DESC){
-      edges{
-        node{
-          id,
-          categories,
-          name,
-          thumbnail,
-          articles{
-            id,
-            title
-          }
-        }
-      }
-    }    
-  }
-
-
-</page-query>
 
 <script>
 import cover from "../../components/auth/categories/cover";
@@ -96,40 +58,27 @@ import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../../components/auth/dashboard/articleHeader";
 
 export default {
+  components: {
+    cover,
+    playlistRow,
+    articleEntry,
+    playlistEntry,
+    playlistTall,
+    bitbotFeature,
+    articleHeader,
+  },
+
   name: "Categories",
   metaInfo: {
     title: "Categories",
   },
 
-  data() {
-    return {
-      articles: [],
-      courses: [],
-    };
-  },
-
-  mounted() {
-    this.articles = this.$page.allArticles.edges;
-    this.courses = this.$page.allCourses.edges;
+  async mounted() {
+    await this.$store.dispatch("articlesStore/getArticles");
+    await this.$store.dispatch("coursesStore/getCourses");
   },
 
   computed: {
-    filteredArticles() {
-      return this.articles.filter((article) => {
-        return article.node.categories.includes(this.category);
-      });
-    },
-
-    filteredCourses() {
-      return this.courses.filter((course) => {
-        return course.node.categories.includes(this.category);
-      });
-    },
-
-    threeFilteredCourses() {
-      return this.filteredCourses.slice(0, 3);
-    },
-
     category() {
       switch (this.$router.history.current.path) {
         case "/categories/hacker":
@@ -142,16 +91,32 @@ export default {
           return "Hacker";
       }
     },
-  },
 
-  components: {
-    cover,
-    playlistRow,
-    articleEntry,
-    playlistEntry,
-    playlistTall,
-    bitbotFeature,
-    articleHeader,
+    courses() {
+      const data = this.$store.state.coursesStore.courses;
+      return data;
+    },
+
+    articles() {
+      const data = this.$store.state.articlesStore.articles;
+      return data;
+    },
+
+    filteredArticles() {
+      return this.articles.filter((article) => {
+        return article.categories[0].name.includes(this.category);
+      });
+    },
+
+    filteredCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.includes(this.category);
+      });
+    },
+
+    threeFilteredCourses() {
+      return this.filteredCourses.slice(0, 3);
+    },
   },
 };
 </script>
