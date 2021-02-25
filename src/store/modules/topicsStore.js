@@ -15,11 +15,11 @@ const topicsStore = {
 
   //to handle actions
   actions: {
-    async getTopics({ state, commit }) {
-      await axios.get(`${state.API_URL}/topics${state.SORT}`)
-        .then(response => {
-          commit('SET_TOPICS', response.data)
-        })
+    getTopics({ state, commit }) {
+      axios.get(`${state.API_URL}/topics${state.SORT}`).then(response => {
+        commit('SET_TOPICS', response.data);
+        return response.data;
+      })
     }
   },
 

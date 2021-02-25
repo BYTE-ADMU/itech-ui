@@ -1,6 +1,7 @@
 <template>
   <Layout>
     <!-- ROOT -->
+
     <div
       class="container flex flex-col w-screen min-h-screen p-6 py-20 mx-auto mb-24"
     >
@@ -49,6 +50,7 @@
 
 
 <script>
+// import Loader from "../../components/Loader";
 import cover from "../../components/auth/categories/cover";
 import playlistRow from "../../components/auth/categories/playlistRow";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
@@ -59,6 +61,7 @@ import articleHeader from "../../components/auth/dashboard/articleHeader";
 
 export default {
   components: {
+    // Loader,
     cover,
     playlistRow,
     articleEntry,
@@ -73,10 +76,16 @@ export default {
     title: "Categories",
   },
 
-  async mounted() {
-    await this.$store.dispatch("articlesStore/getArticles");
-    await this.$store.dispatch("coursesStore/getCourses");
+  data() {
+    return {
+      isLoading: true,
+    };
   },
+
+  // async mounted() {
+  //   await this.$store.dispatch("articlesStore/getArticles");
+  //   await this.$store.dispatch("coursesStore/getCourses");
+  // },
 
   computed: {
     category() {

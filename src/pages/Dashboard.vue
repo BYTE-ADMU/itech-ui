@@ -2,6 +2,14 @@
   <Layout>
     <!-- ROOT -->
     <div
+      v-if="articles === null && courses === null && topics === null"
+      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+    >
+      <Loader />
+    </div>
+
+    <div
+      v-else
       class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
@@ -131,12 +139,15 @@
 </template>
 
 <script>
+import Loader from "../components/Loader";
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
+
+import axios from "axios";
 
 export default {
   name: "Dashboard",
@@ -145,6 +156,7 @@ export default {
   },
 
   components: {
+    Loader,
     articleEntry,
     featureEntry,
     playlistEntry,
@@ -153,39 +165,41 @@ export default {
     articleHeader,
   },
 
+  data() {
+    return {
+      topics: null,
+      courses: null,
+      articles: null,
+    };
+  },
+
   async mounted() {
-    // this.newOnItech = this.$page.newOnItech.edges;
-    // this.articles = this.$page.allArticles.edges;
-    // this.courses = this.$page.allArticles.edges;
-    // this.topics = this.$page.allTopics.edges;
-    await this.$store.dispatch("articlesStore/getArticles");
-    await this.$store.dispatch("coursesStore/getCourses");
-    await this.$store.dispatch("topicsStore/getTopics");
-    await this.$store.dispatch("categoriesStore/getCategories");
+    this.topics = await this.getTopics();
+    this.courses = await this.getCourses();
+    this.articles = await this.getArticles();
+    // this.articles = await this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {
-    //START: GET DATA FROM STORE
-    categories() {
-      const data = this.$store.state.categoriesStore.categories.reverse();
-      return data;
-    },
+    // START: GET DATA FROM STORE
+    // topics() {
+    //   const data = this.$store.state.topicsStore.topics.reverse();
+    //   return data;
+    // },
 
-    topics() {
-      const data = this.$store.state.topicsStore.topics.reverse();
-      return data;
-    },
+    // courses() {
+    //   const data = this.$store.state.coursesStore.courses.reverse();
+    //   return data;
+    // },
 
-    courses() {
-      const data = this.$store.state.coursesStore.courses.reverse();
-      return data;
-    },
+    // articles() {
+    //   const data = this.$store.state.articlesStore.articles.reverse();
+    //   return data;
+    // },
 
-    articles() {
-      const data = this.$store.state.articlesStore.articles.reverse();
-      return data;
-    },
-    //END: GET DATA FROM STORE
+    // END: GET DATA FROM STORE
 
     hackerArticles() {
       return this.articles.filter((article) => {
@@ -254,6 +268,30 @@ export default {
     },
     threeHustlerTopics() {
       return this.hustlerTopics.slice(0, 3);
+    },
+  },
+
+  methods: {
+    async getTopics() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/topics?_sort=published_at`
+      // );
+      const data = this.$store.state.topicsStore.topics.reverse();
+      return data;
+    },
+    async getCourses() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/courses?_sort=published_at`
+      // );
+      const data = this.$store.state.coursesStore.courses.reverse();
+      return data;
+    },
+    async getArticles() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/articles?_sort=published_at`
+      // );
+      const data = this.$store.state.articlesStore.articles.reverse();
+      return data;
     },
   },
 };

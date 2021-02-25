@@ -17,11 +17,11 @@ const coursesStore = {
 
   //to handle actions
   actions: {
-    async getCourses({ state, commit }) {
-      await axios.get(`${state.API_URL}/courses${state.SORT}`)
-        .then(response => {
-          commit('SET_COURSES', response.data)
-        })
+    getCourses({ state, commit }) {
+      axios.get(`${state.API_URL}/courses${state.SORT}`).then(response => {
+        commit('SET_COURSES', response.data);
+        return response.data;
+      })
     }
   },
 

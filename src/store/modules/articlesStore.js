@@ -17,11 +17,11 @@ const articlesStore = {
 
   //to handle actions
   actions: {
-    async getArticles({ state, commit }) {
-      await axios.get(`${state.API_URL}/articles${state.SORT}`)
-        .then(response => {
-          commit('SET_ARTICLES', response.data)
-        })
+    getArticles({ state, commit }) {
+      axios.get(`${state.API_URL}/articles${state.SORT}`).then(response => {
+        commit('SET_ARTICLES', response.data);
+        return response.data;
+      })
     }
   },
 

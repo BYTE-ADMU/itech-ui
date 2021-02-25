@@ -1,95 +1,139 @@
 <template lang="html">
   <Layout>
     <section class="flex justify-center min-h-screen mt-16 mb-32">
-      <div class="w-full mx-64">
-        <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link><g-link v-if="article.courses.length !== 0" :to="`/courses/${article.courses[0].id}`"> / {{article.courses[0].name}}</g-link></p>
+      <div class="w-full">
+        <div v-if="article === null">
+          <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
+          <Loader/>
+        </div>
+        <div v-else class="w-5/6 mx-auto">
+          <p class="mb-10 breadcrumb">
+            <g-link to="/dashboard/">Home</g-link
+            ><g-link
+              v-if="article.courses.length !== 0"
+              :to="`/courses/${article.courses[0].id}`"
+            >
+              / {{ article.courses[0].name }}</g-link
+            >
+          </p>
 
-        <!-- START: ARTICLE INFO -->
-        <div class="mx-24 mb-12">
-          <!-- START: First Row -->
-            <p class="mb-5 article-title">{{article.title}}</p> 
-          <!-- END: First Row -->
+          <div class="mx-24 mb-12">
+            <!-- START: ARTICLE INFO -->
 
-          <!-- START: Second Row --><div class="flex">
-            <!-- Start: Article Author and Dates -->
-            <div class="w-full">
-              <div class="flex items-center text-black no-underline">
-                <g-image alt="author-image" class="block rounded-full author-image" :src="article.author.profileImage.url"/>
-                <div class="ml-5">
-                  <p class="author-name">{{article.author.name}}</p>
-                  <p class="article-publishedDate">Published on {{formatDate(article.published_at)}}</p>
-                  <p class="article-lastEditedDate">Last Edited on {{formatDate(article.updatedAt)}}</p>
+            <!-- START: First Row -->
+            <p class="mb-5 article-title">{{ article.title }}</p>
+            <!-- END: First Row -->
+
+            <!-- START: Second Row -->
+            <div class="flex">
+              <!-- Start: Article Author and Dates -->
+              <div class="w-full">
+                <div class="flex items-center text-black no-underline">
+                  <g-image
+                    alt="author-image"
+                    class="block rounded-full author-image"
+                    :src="article.author.profileImage.url"
+                  />
+                  <div class="ml-5">
+                    <p class="author-name">{{ article.author.name }}</p>
+                    <p class="article-publishedDate">
+                      Published on {{ formatDate(article.published_at) }}
+                    </p>
+                    <p class="article-lastEditedDate">
+                      Last Edited on {{ formatDate(article.updatedAt) }}
+                    </p>
+                  </div>
                 </div>
-              </div>  
-            </div>
-            <!-- End: Article Author and Dates -->
-
-            <!-- Start:Icons -->
-            <div class="w-full">
-              <div class="flex float-right">
-                <a href="https://twitter.com/byteadmu" target="_blank" class="mx-2"
-                  ><g-image :src="require('@/assets/img/icons/Twitter_Outline.svg')"/>
-                  </a>
-                <a
-                  href="https://www.facebook.com/byteadmu/"
-                  target="_blank"
-                  class="mx-2"
-                  ><g-image :src="require('@/assets/img/icons/Facebook_Outline.svg')"
-                /></a>
-                            <a
-                  href="https://www.facebook.com/byteadmu/"
-                  target="_blank"
-                  class="mx-2"
-                  ><g-image :src="require('@/assets/img/icons/Bookmark.svg')"
-                /></a>
               </div>
+              <!-- End: Article Author and Dates -->
+
+              <!-- Start:Icons -->
+              <div class="w-full">
+                <div class="flex float-right">
+                  <a
+                    href="https://twitter.com/byteadmu"
+                    target="_blank"
+                    class="mx-2"
+                    ><g-image
+                      :src="require('@/assets/img/icons/Twitter_Outline.svg')"
+                    />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/byteadmu/"
+                    target="_blank"
+                    class="mx-2"
+                    ><g-image
+                      :src="require('@/assets/img/icons/Facebook_Outline.svg')"
+                  /></a>
+                  <a
+                    href="https://www.facebook.com/byteadmu/"
+                    target="_blank"
+                    class="mx-2"
+                    ><g-image :src="require('@/assets/img/icons/Bookmark.svg')"
+                  /></a>
+                </div>
+              </div>
+              <!-- End:Icons -->
             </div>
-            <!-- End:Icons -->
-          </div><!-- END: Second Row -->    
-        </div>
-        <!-- END: ARTICLE INFO -->
-
-        <!-- START: FEATURED IMAGE -->
-        
-          <g-image class="w-full mb-24 overflow-auto" :src="article.featuredImage.url" />
-        <!-- END: FEATURED IMAGE -->
-        
-        <!-- START: ARTICLE CONTENT -->
-        <div class="mx-24 overflow-hidden">
-          <VueMarkdown class="mb-24 article-content" :source="article.content"/>
-          <div class="mb-24 article-sources">
-            <VueMarkdown  :source="article.sources"/>
+            <!-- END: Second Row -->
           </div>
-        </div>
-        <!-- END: ARTICLE CONTENT -->
+          <!-- END: ARTICLE INFO -->
 
-        <!-- START: DIVIDER -->
+          <!-- START: FEATURED IMAGE -->
+
+          <g-image
+            class="w-full mb-24 overflow-auto"
+            :src="article.featuredImage.url"
+          />
+          <!-- END: FEATURED IMAGE -->
+
+          <!-- START: ARTICLE CONTENT -->
+          <div class="mx-24 overflow-hidden">
+            <VueMarkdown
+              class="mb-24 article-content"
+              :source="article.content"
+            />
+            <div class="mb-24 overflow-auto article-sources">
+              <VueMarkdown :source="article.sources" />
+            </div>
+          </div>
+          <!-- END: ARTICLE CONTENT -->
+
+          <!-- START: DIVIDER -->
           <div class="flex justify-center w-full mb-24">
             <div>
-              <svg width="214" height="10" viewBox="0 0 214 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="106" cy="5" r="5" fill="#151316"/>
-                <circle cx="209" cy="5" r="5" fill="#151316"/>
-                <circle cx="5" cy="5" r="5" fill="#151316"/>
+              <svg
+                width="214"
+                height="10"
+                viewBox="0 0 214 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="106" cy="5" r="5" fill="#151316" />
+                <circle cx="209" cy="5" r="5" fill="#151316" />
+                <circle cx="5" cy="5" r="5" fill="#151316" />
               </svg>
             </div>
           </div>
-        <!-- END: DIVIDER -->
+          <!-- END: DIVIDER -->
 
-        <!-- START: Next Articles and Comments Section--> <div class="flex">
+          <!-- START: Next Articles and Comments Section-->
+          <div class="flex">
             <!-- Start: Article Author and Dates -->
             <div class="w-full mx-24">
               <div class="flex items-center">
                 <!-- START: FIRST COLUMN -->
                 <div class="w-full">
-                <p class="whats-next">What's Next?</p>
-                <hr class="my-5" />
-                  
+                  <p class="whats-next">What's Next?</p>
+                  <hr class="my-5" />
+
                   <div v-for="article in nextArticles" v-bind:key="article.id">
-                    <ArticleButtonCard v-bind:article="article"></ArticleButtonCard>
+                    <ArticleButtonCard
+                      v-bind:article="article"
+                    ></ArticleButtonCard>
                   </div>
                 </div>
-                
-              </div>  
+              </div>
             </div>
             <!-- END: FIRST COLUMN -->
 
@@ -103,29 +147,36 @@
                   </div>
 
                   <div class="w-full">
-                    <textarea class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded resize-none focus:outline-none focus:bg-white" name="body" required></textarea>
+                    <textarea
+                      class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded resize-none focus:outline-none focus:bg-white"
+                      name="body"
+                      required
+                    ></textarea>
                   </div>
                   <div class="w-full">
-
-                      <input type='submit' class="float-right comment-button" value='Post Comment'>
+                    <input
+                      type="submit"
+                      class="float-right comment-button"
+                      value="Post Comment"
+                    />
                   </div>
                 </div>
               </form>
-                <div v-for="comment in article.comments" v-bind:key="comment.id">
-                  <CommentCard v-bind:comment="comment"></CommentCard>
-                </div>
+              <div v-for="comment in article.comments" v-bind:key="comment.id">
+                <CommentCard v-bind:comment="comment"></CommentCard>
+              </div>
             </div>
             <!-- END:SECOND COLUMN -->
-          </div><!-- END: Next Articles and Comments Section--> 
-
-
-
+          </div>
+          <!-- END: Next Articles and Comments Section-->
+        </div>
       </div>
     </section>
   </Layout>
 </template>
 
 <script>
+import Loader from "../../components/Loader";
 import ArticleButtonCard from "../../components/auth/articles/ArticleButtonCard";
 import CommentCard from "../../components/auth/articles/CommentCard";
 import VueMarkdown from "vue-markdown";
@@ -137,11 +188,12 @@ export default {
   name: "Article",
   metaInfo() {
     return {
-      title: this.article.title,
+      title: this.title,
     };
   },
 
   components: {
+    Loader,
     VueMarkdown,
     ArticleButtonCard,
     CommentCard,
@@ -149,13 +201,15 @@ export default {
 
   data() {
     return {
-      article: [],
+      title: "Loading...",
+      article: null,
     };
   },
 
   async mounted() {
     const data = await this.getArticle(this.$route.params.id);
     this.article = data;
+    this.title = data.title;
   },
 
   computed: {
@@ -183,6 +237,7 @@ export default {
   watch: {
     id(newId, oldId) {
       this.article = this.getArticle(newId);
+      this.title = this.getArticle(newId).title;
     },
   },
 };
@@ -303,4 +358,3 @@ export default {
   color: #c9c9c9;
 }
 </style>
-

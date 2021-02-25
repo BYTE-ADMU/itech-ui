@@ -7,30 +7,36 @@
       <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>
       </p>
-      <div class="flex items-start justify-between w-full">
-        <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-full">
-          <cover :course="course" />
-        </div>
+
+      <div v-if="course === null">
+        <Loader />
       </div>
+      <div v-else>
+        <div class="flex items-start justify-between w-full">
+          <!-- Featured & New On ITECH -->
+          <div class="flex flex-col w-full">
+            <cover :course="course" />
+          </div>
+        </div>
 
-      <hr class="mt-12 mb-6" />
+        <hr class="mt-12 mb-6" />
 
-      <h3
-        class="mb-4 text-xl font-bold uppercase font-objectivity"
-        style="color: #9d9d9d"
-      >
-        Related
-      </h3>
+        <h3
+          class="mb-4 text-xl font-bold uppercase font-objectivity"
+          style="color: #9d9d9d"
+        >
+          Related
+        </h3>
 
-      <div v-if="!course.articles.length > 0">No Articles Yet</div>
-      <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
-        <articleEntry
-          v-for="article in filteredArticles"
-          v-bind:key="article.id"
-          v-bind:article="article"
-          class="w-full"
-        ></articleEntry>
+        <div v-if="!course.articles.length > 0">No Articles Yet</div>
+        <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
+          <articleEntry
+            v-for="article in filteredArticles"
+            v-bind:key="article.id"
+            v-bind:article="article"
+            class="w-full"
+          ></articleEntry>
+        </div>
       </div>
     </div>
   </Layout>
@@ -38,6 +44,8 @@
 
 
 <script>
+import Loader from "../../components/Loader";
+
 import cover from "../../components/auth/courses/cover";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
@@ -50,11 +58,12 @@ export default {
   name: "Course",
   metaInfo() {
     return {
-      title: this.course.name,
+      title: this.title,
     };
   },
 
   components: {
+    Loader,
     cover,
     articleEntry,
     playlistTall,
@@ -64,13 +73,15 @@ export default {
 
   data() {
     return {
-      course: [],
+      title: "Loading...",
+      course: null,
     };
   },
 
   async mounted() {
-    await this.getCourse(this.$route.params.id);
-    await this.$store.dispatch("articlesStore/getArticles");
+    const data = await this.getCourse(this.$route.params.id);
+    this.course = data;
+    this.title = data.name;
   },
 
   computed: {
@@ -100,17 +111,17 @@ export default {
 
   methods: {
     async getCourse(id) {
-      await axios
-        .get(`https://calm-everglades-39473.herokuapp.com/courses/${id}`)
-        .then((response) => {
-          this.course = response.data;
-        });
+      const { data } = await axios.get(
+        `https://calm-everglades-39473.herokuapp.com/courses/${id}`
+      );
+      return data;
     },
   },
 
   watch: {
-    id(newValue, oldValue) {
-      this.getCourse(newValue);
+    id(newId, oldId) {
+      this.topic = this.getCourse(newId);
+      this.title = this.getCourse(newId).name;
     },
   },
 };

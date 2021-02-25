@@ -17,8 +17,8 @@ const categoriesStore = {
 
   //to handle actions
   actions: {
-    async getCategories({ state, commit }) {
-      await axios.get(`${state.API_URL}/categories${state.SORT}`)
+    getCategories({ state, commit }) {
+      axios.get(`${state.API_URL}/categories${state.SORT}`)
         .then(response => {
           commit('SET_CATEGORIES', response.data)
         })
