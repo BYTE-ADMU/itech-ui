@@ -2,12 +2,11 @@
 <template>
   <Layout>
     <!-- ROOT -->
-    <div
-      class="container flex flex-col w-screen min-h-screen px-20 py-20 mx-auto mb-24"
+    <div class="container flex flex-col w-screen min-h-screen px-10 py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-auto">
+        <div class="flex flex-col w-full">
           <featureEntry
             v-for="article in featuredArticle"
             v-bind:key="article.node.id"
@@ -17,7 +16,7 @@
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
             New On ITECH
           </h3>
-          <div class="flex justify-between mt-1 mb-24">
+          <div class="flex justify-between mt-1 mb-20 flex-col sm:flex-row w-full">
             <articleEntry
               v-for="article in newOnItech"
               v-bind:key="article.node.id"
@@ -30,13 +29,13 @@
       <hr class="mb-12" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="flex mt-8 mb-8">
-        <div class="w-3/12">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
+      <div class="flex flex-col sm:flex-row mt-8 mb-8">
+        <div class="w-full sm:w-3/12">
+          <h2 class="p-2 mx-auto text-2xl sm:text-2xl md:text-4xl font-neuemachina">
             Featured Courses ✨
           </h2>
         </div>
-        <div class="grid grid-cols-3 gap-4 w-9/12">
+        <div class="grid grid-col sm:grid-cols-3 gap-4 w-full">
         <playlistEntry class="w-full"
           v-for="course in this.$page.threeFeaturedCourses.edges"
           v-bind:key="course.node.id"
@@ -45,9 +44,9 @@
         </div>
       </div>
       <!-- Hacker -->
-      <div class="flex w-full mt-8 mb-8">
+      <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hacker" />
-        <div class="grid grid-col w-9/12">
+        <div class="grid grid-col w-full">
           <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5> -->
@@ -60,10 +59,10 @@
             ></articleHeader> -->
             <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
           <!-- </div> -->
-          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
+          <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-4">
             <articleEntry class="w-full"
               v-for="article in threeHackerArticles"
               v-bind:key="article.node.id"
@@ -73,9 +72,9 @@
         </div>
       </div>
       <!-- Hipster -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hipster" />
-        <div class="flex flex-col w-9/12">
+        <div class="flex flex-col w-full">
           <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5> -->
@@ -86,10 +85,10 @@
               v-bind:topic="topic.node"
             ></articleHeader>
           </div> -->
-          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
+          <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-4">
             <articleEntry class="w-full"
               v-for="article in threeHipsterArticles"
               v-bind:key="article.node.id"
@@ -99,9 +98,9 @@
         </div>
       </div>
       <!-- Hustler -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hustler" />
-        <div class="flex flex-col w-9/12">
+        <div class="flex flex-col w-full">
           <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
@@ -112,10 +111,10 @@
               v-bind:topic="topic.node"
             ></articleHeader>
           </div> -->
-          <h5 class="mx-2 mt-auto mb-2 font-bold uppercase text-md font-objectivity">
+          <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-4">
             <articleEntry class="w-full"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.node.id"

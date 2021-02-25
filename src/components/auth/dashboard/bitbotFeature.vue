@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-3/12 px-2">
+  <div class="flex flex-col w-full lg:w-3/12 px-2">
     <g-link :to="`/categories/${bb3}`">
       <div :class="botStyle">
         <h2
@@ -93,7 +93,7 @@ export default {
 .bitBot {
   height: 160px;
   position: absolute;
-  top: 165px;
+  top: 150px;
   left: 65px;
 }
 .heighter {
