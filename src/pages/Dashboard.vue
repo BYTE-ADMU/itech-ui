@@ -8,9 +8,8 @@
         <!-- Featured & New On ITECH -->
         <div class="flex flex-col w-9/12">
           <featureEntry
-            v-for="article in featuredArticle"
-            v-bind:key="article.id"
-            v-bind:article="article"
+            v-bind:key="featuredArticle.id"
+            v-bind:article="featuredArticle"
           />
 
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
@@ -26,9 +25,8 @@
         </div>
         <!-- Topic of the Week -->
         <playlistTall
-          v-for="course in featuredCourse"
-          v-bind:key="course.id"
-          v-bind:course="course"
+          v-bind:key="featuredCourse.id"
+          v-bind:course="featuredCourse"
         />
       </div>
 
@@ -206,14 +204,15 @@ export default {
     },
 
     featuredArticle() {
-      return this.articles.slice(0, 1);
+      return this.articles[Math.floor(Math.random() * this.articles.length)];
+    },
+
+    featuredCourse() {
+      return this.courses[Math.floor(Math.random() * this.courses.length)];
     },
 
     newOnItech() {
       return this.articles.slice(0, 3);
-    },
-    featuredCourse() {
-      return this.courses.slice(0, 1);
     },
 
     threeFeaturedCourses() {
