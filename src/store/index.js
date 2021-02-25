@@ -64,6 +64,23 @@ const store = new Vuex.Store({
             } catch(e) {
                 console.log(e)
             }
+        },
+        async register({state, commit}, {username, email, password}) {
+            axios
+                .post(`${state.API_URL}/auth/local/register`, {
+                    username,
+                    email,
+                    password,
+                })
+                .then(response => {
+                    commit('setUser', response.data.user);
+                    commit('setToken', response.data.jwt);
+                    commit('toggleAuthenticated');
+                })
+                .catch(error => {
+                    // Handle error.
+                    console.log('An error occurred:', error.response);
+                });
         }
     },
     modules: {

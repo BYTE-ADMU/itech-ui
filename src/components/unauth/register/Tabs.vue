@@ -144,6 +144,7 @@
 
 <script>
 import Tab from "./Tab.vue";
+
 export default {
   components: { Tab },
   props: ["tabsData"],
@@ -223,6 +224,17 @@ export default {
         tab.isActive = index === i;
       });
     },
+    async register() {
+      const regObj = {
+        username: this.user.username,
+        email: this.user.email,
+        password: this.user.password,
+      }
+      await this.$store.dispatch('register', regObj);
+      if (this.$store.state.isAuthenticated) {
+        this.$router.replace('/dashboard');
+      }
+    }
   },
 };
 </script>
