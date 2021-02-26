@@ -149,5 +149,15 @@ export default {
 div > .tg {
   filter: brightness(80%);
 }
+
+.breadcrumb {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #c9c9c9;
+}
 </style>
 

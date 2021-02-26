@@ -5,7 +5,7 @@
     :to="`/articles/${article.id}`"
   >
     <div class="w-3/4 pr-2">
-      <p class="mb-2 card-topic">Topic</p>
+      <p v-bind:class="articleTopic" class="mb-2 card-topic">Topic</p>
       <p class="mb-2 card-title">
         {{ article.title }}
       </p>
@@ -25,6 +25,21 @@
 export default {
   name: "ArticleButtonCard",
   props: ["article"],
+
+  computed: {
+    articleTopic() {
+      switch (this.article.categories[0].name.toLowerCase()) {
+        case "hacker":
+          return "hackerColor";
+        case "hipster":
+          return "hipsterColor";
+        case "hustler":
+          return "hustlerColor";
+        default:
+          return "hustlerColor";
+      }
+    },
+  },
 };
 </script>
 
@@ -35,11 +50,6 @@ export default {
   font-weight: normal;
   font-size: 13px;
   line-height: 18px;
-  /* or 138% */
-
-  /* ITECH Teal */
-
-  color: #64c0c1;
 }
 
 .card-title {
@@ -56,5 +66,15 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.hackerColor {
+  color: #4e6afa;
+}
+.hipsterColor {
+  color: #f3748a;
+}
+.hustlerColor {
+  color: #40a5a6;
 }
 </style> 

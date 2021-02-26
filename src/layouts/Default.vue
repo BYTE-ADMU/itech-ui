@@ -96,6 +96,8 @@ export default {
 
 .font-objectivity {
   font-family: Objectivity;
+  font-weight:normal;
+  font-style:normal;
 }
 
 .font-neuemachina {

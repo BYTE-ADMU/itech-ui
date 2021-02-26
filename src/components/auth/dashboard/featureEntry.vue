@@ -13,7 +13,7 @@
           <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
         <p
-          class="relative w-48 py-1 text-lg text-white featured-author-name hover:opacity-100"
+          class="relative py-1 text-lg text-white featured-author-name hover:opacity-100"
         >
           {{ article.author.name }}
         </p>
