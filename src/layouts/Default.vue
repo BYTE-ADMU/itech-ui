@@ -94,10 +94,20 @@ export default {
   src: url("../assets/font/NeueMachina-Ultrabold.woff");
 }
 
+.hackerColor {
+  color: #4e6afa;
+}
+.hipsterColor {
+  color: #f3748a;
+}
+.hustlerColor {
+  color: #40a5a6;
+}
+
 .font-objectivity {
   font-family: Objectivity;
-  font-weight:normal;
-  font-style:normal;
+  font-weight: normal;
+  font-style: normal;
 }
 
 .font-neuemachina {

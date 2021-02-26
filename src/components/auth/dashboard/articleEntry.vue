@@ -13,7 +13,21 @@
       />
     </div>
     <div class="p-3 my-auto">
-      <p class="sm:mb-2 articleEntry-topic">Topic</p>
+      <g-link
+        v-if="article.courses.length > 0"
+        :to="`/courses/${article.courses[0].id}`"
+        class="sm:mb-2 articleEntry-topic truncate ..."
+        v-bind:class="articleTopic"
+        >{{ article.courses[0].name }}</g-link
+      >
+      <g-link
+        v-else
+        :to="`/categories/${article.categories[0].name}`"
+        class="sm:mb-2 articleEntry-topic truncate ..."
+        v-bind:class="articleTopic"
+        >{{ article.categories[0].name }}</g-link
+      >
+
       <p class="sm:mb-2 articleEntry-title">
         {{ article.title }}
       </p>
@@ -26,9 +40,34 @@
 export default {
   name: "ArticleEntry",
   props: ["article"],
+
+  computed: {
+    articleTopic() {
+      switch (this.article.categories[0].name.toLowerCase()) {
+        case "hacker":
+          return "hackerColor";
+        case "hipster":
+          return "hipsterColor";
+        case "hustler":
+          return "hustlerColor";
+        default:
+          return "hustlerColor";
+      }
+    },
+  },
 };
 </script>
 <style scoped>
+.hackerColor {
+  color: #4e6afa;
+}
+.hipsterColor {
+  color: #f3748a;
+}
+.hustlerColor {
+  color: #40a5a6;
+}
+
 .h-pic {
   height: 8.5rem;
 }
@@ -39,11 +78,6 @@ export default {
   font-weight: normal;
   font-size: 13px;
   line-height: 18px;
-  /* or 138% */
-
-  /* ITECH Teal */
-
-  color: #64c0c1;
 }
 
 .articleEntry-title {

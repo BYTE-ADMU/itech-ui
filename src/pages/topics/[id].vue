@@ -59,6 +59,7 @@
           ></articleEntry>
         </div>
       </div>
+      {{ filteredArticles }}
     </div>
   </Layout>
 </template>
@@ -93,13 +94,16 @@ export default {
     return {
       title: "Loading...",
       topic: null,
+      filteredCourses: null,
     };
   },
 
   async mounted() {
-    const data = await this.getTopic(this.$route.params.id);
-    this.topic = data;
-    this.title = data.name;
+    const topicData = await this.getTopic(this.$route.params.id);
+    this.topic = topicData;
+    this.title = topicData.name;
+
+    this.articles = await this.getFilteredArticles(topicData.courses);
 
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
@@ -120,6 +124,11 @@ export default {
       const data = this.$store.state.coursesStore.courses;
       return data;
     },
+
+    filteredArticles() {
+      const data = this.getFilteredArticles(this.topic.courses);
+      return data;
+    },
   },
 
   methods: {
@@ -130,16 +139,27 @@ export default {
       return data;
     },
 
-    getFilteredArticles(id) {
-      if (this.articles.length > 0) {
-        return this.articles.filter((article) => {
-          if (article.courses[0] != null) {
-            return article.courses[0].id.includes(id);
+    async getArticle(id) {
+      const { data } = await axios.get(
+        `https://calm-everglades-39473.herokuapp.com/articles/${id}`
+      );
+      return data;
+    },
+
+    async getFilteredArticles(courses) {
+      const filteredArticles = [];
+      if (courses.length > 0) {
+        for (const eachCourse of courses) {
+          for (const eachArticle of eachCourse.articles) {
+            const { data } = await axios.get(
+              `https://calm-everglades-39473.herokuapp.com/articles/${eachArticle}`
+            );
+            filteredArticles.push(data);
           }
-        });
-      } else {
-        return [];
+        }
       }
+      console.log(filteredArticles);
+      return filteredArticles;
     },
 
     getFilteredCourses(topic) {
@@ -158,8 +178,8 @@ export default {
     },
 
     topic(newTopic, oldTopic) {
-      this.filteredArticles = this.getFilteredArticles(newTopic.courses[0].id);
       this.filteredCourses = this.getFilteredCourses(newTopic);
+      this.filteredArticles = this.getFilteredArticles(newTopic.courses);
     },
   },
 };

@@ -5,7 +5,22 @@
     :to="`/articles/${article.id}`"
   >
     <div class="w-3/4 pr-2">
-      <p v-bind:class="articleTopic" class="mb-2 card-topic">Topic</p>
+      <g-link
+        v-if="article.courses.length > 0"
+        :to="`/courses/${article.courses[0].id}`"
+        v-bind:class="articleTopic"
+        class="mb-2 card-topic truncate ..."
+        >{{ article.courses[0].name }}</g-link
+      >
+
+      <g-link
+        v-else
+        :to="`/categories/${article.categories[0].name}`"
+        v-bind:class="articleTopic"
+        class="mb-2 card-topic truncate ..."
+        >{{ article.categories[0].name }}</g-link
+      >
+
       <p class="mb-2 card-title">
         {{ article.title }}
       </p>
@@ -66,15 +81,5 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
-}
-
-.hackerColor {
-  color: #4e6afa;
-}
-.hipsterColor {
-  color: #f3748a;
-}
-.hustlerColor {
-  color: #40a5a6;
 }
 </style> 
