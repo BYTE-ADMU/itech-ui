@@ -25,7 +25,6 @@ const userStore = {
           password: password,
         });
 
-        alert("Logged In!");
         data = response.data;
 
         try {
@@ -56,6 +55,9 @@ const userStore = {
       } catch (e) {
         console.log(e)
       }
+    },
+    async logout({ state, commit }) {
+      commit('toggleLogout');
     }
   },
 
@@ -71,6 +73,10 @@ const userStore = {
 
     toggleAuthenticated(state) {
       state.isAuthenticated = true
+    },
+
+    toggleLogout(state) {
+      state.isAuthenticated = false;
     }
   }
 }

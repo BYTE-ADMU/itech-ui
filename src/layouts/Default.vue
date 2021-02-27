@@ -28,7 +28,65 @@ export default {
 <style>
 @font-face {
   font-family: Objectivity;
-  src: url("../assets/font/Objectivity-Medium.otf");
+  src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-BoldSlanted.otf")
+    format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Medium.otf")
+    format("truetype");
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-MediumSlanted.otf")
+    format("truetype");
+  font-weight: medium;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Regular.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-RegularSlanted.otf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Light.otf")
+    format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Light.otf")
+    format("truetype");
+  font-weight: 300;
+  font-style: italic;
 }
 
 @font-face {
@@ -36,8 +94,20 @@ export default {
   src: url("../assets/font/NeueMachina-Ultrabold.woff");
 }
 
+.hackerColor {
+  color: #4e6afa;
+}
+.hipsterColor {
+  color: #f3748a;
+}
+.hustlerColor {
+  color: #40a5a6;
+}
+
 .font-objectivity {
   font-family: Objectivity;
+  font-weight: normal;
+  font-style: normal;
 }
 
 .font-neuemachina {
@@ -58,12 +128,12 @@ export default {
 
 .form_button {
   background: #64c0c1;
-  border-radius: 50px;
+  border-radius: 34px;
+  font-family: Objectivity;
   font-style: normal;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
-  letter-spacing: 0.2em;
   color: #f9f7f2;
 }
 

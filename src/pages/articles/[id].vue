@@ -1,13 +1,20 @@
 <template lang="html">
   <Layout>
     <section class="flex justify-center min-h-screen pt-16 pb-32">
-      <div class="w-full">
-        <div v-if="article === null" class="w-2/3 mx-auto">
+      <div class="w-screen md:container">
+
+        <!-- START:LOADER -->
+        <div v-if="article === null" >
           <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>
-        <div v-else class="w-2/3 mx-auto">
-          <p class="mb-10 breadcrumb">
+         <!-- END:LOADER -->
+         
+
+      <!-- START:ARTICLE -->
+        <div v-else >
+          <!-- START: BREADCRUMB -->
+          <p class="px-12 mb-10 md:px-0 breadcrumb">
             <g-link to="/dashboard/">Home</g-link
             ><g-link
               v-if="article.courses.length !== 0"
@@ -16,19 +23,18 @@
               / {{ article.courses[0].name }}</g-link
             >
           </p>
+           <!-- END: BREADCRUMB -->
 
-          <div class="mx-24 mb-12">
-            <!-- START: ARTICLE INFO -->
+          <div class="px-12 mb-12 md:px-24">
 
-            <!-- START: First Row -->
+            <!-- START: TITLE -->
             <p class="mb-5 article-title">{{ article.title }}</p>
-            <!-- END: First Row -->
+            <!-- END: TITLE -->
 
             <!-- START: Second Row -->
-            <div class="flex">
-              <!-- Start: Article Author and Dates -->
-              <div class="w-full">
-                <div class="flex items-center text-black no-underline">
+                    <div class="grid grid-cols-1 md:gap-2 md:grid-cols-2 md:container ">
+<!-- Start: Article Author and Dates -->
+              <div class="flex items-center w-full">
                   <g-image
                     alt="author-image"
                     class="block rounded-full author-image"
@@ -43,13 +49,12 @@
                       Last Edited on {{ formatDate(article.updatedAt) }}
                     </p>
                   </div>
-                </div>
               </div>
               <!-- End: Article Author and Dates -->
 
               <!-- Start:Icons -->
               <div class="w-full">
-                <div class="flex float-right">
+                <div class="flex items-center mt-6 md:mt-0 md:float-right">
                   <a
                     href="https://twitter.com/byteadmu"
                     target="_blank"
@@ -74,6 +79,11 @@
                 </div>
               </div>
               <!-- End:Icons -->
+        </div>
+
+        
+            <div class="flex">
+              
             </div>
             <!-- END: Second Row -->
           </div>
@@ -88,11 +98,13 @@
           <!-- END: FEATURED IMAGE -->
 
           <!-- START: ARTICLE CONTENT -->
-          <div class="mx-24 overflow-hidden">
+          <div class="px-12 overflow-hidden md:px-24" >
             <VueMarkdown
-              class="mb-24 article-content"
+              class="mb-24 article-content "
+              style="font-family:Objectivity; font-weight:normal"
               :source="article.content"
             />
+
             <div class="mb-24 overflow-auto article-sources">
               <VueMarkdown :source="article.sources" />
             </div>
@@ -117,59 +129,15 @@
           </div>
           <!-- END: DIVIDER -->
 
-          <!-- START: Next Articles and Comments Section-->
-          <div class="flex">
-            <!-- Start: Article Author and Dates -->
-            <div class="w-full mx-24">
-              <div class="flex items-center">
-                <!-- START: FIRST COLUMN -->
-                <div class="w-full">
-                  <p class="whats-next">What's Next?</p>
-                  <hr class="my-5" />
-
-                  <div v-for="article in nextArticles" v-bind:key="article.id">
-                    <ArticleButtonCard
-                      v-bind:article="article"
-                    ></ArticleButtonCard>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- END: FIRST COLUMN -->
-
-            <!-- START:SECOND -->
-            <div class="w-full">
-              <form class="w-full max-w-xl px-4 pt-2 bg-white rounded-lg">
-                <div class="flex flex-wrap mb-6 -mx-3">
-                  <div class="mb-5">
-                    <p class="comment-header">Have a question? A comment?</p>
-                    <p class="comment-subheader">Leave one below!</p>
-                  </div>
-
-                  <div class="w-full">
-                    <textarea
-                      class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded resize-none focus:outline-none focus:bg-white"
-                      name="body"
-                      required
-                    ></textarea>
-                  </div>
-                  <div class="w-full">
-                    <input
-                      type="submit"
-                      class="float-right comment-button"
-                      value="Post Comment"
-                    />
-                  </div>
-                </div>
-              </form>
-              <div v-for="comment in article.comments" v-bind:key="comment.id">
-                <CommentCard v-bind:comment="comment"></CommentCard>
-              </div>
-            </div>
-            <!-- END:SECOND COLUMN -->
-          </div>
-          <!-- END: Next Articles and Comments Section-->
+          <!-- START: NEXT ARTICLES & COMMENTS SECTION-->
+        <div class="grid grid-cols-1 px-12 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
+          <CommentSection class="block mb-24 md:hidden" :comments="article.comments"/>
+          <NextArticlesSection :nextArticles="nextArticles"/>
+          <CommentSection class="hidden md:block" :comments="article.comments"/>
         </div>
+          <!-- END: NEXT ARTICLES & COMMENTS SECTION-->
+          </div>
+      <!-- END:ARTICLE -->
       </div>
     </section>
   </Layout>
@@ -177,8 +145,8 @@
 
 <script>
 import Loader from "../../components/Loader";
-import ArticleButtonCard from "../../components/auth/articles/ArticleButtonCard";
-import CommentCard from "../../components/auth/articles/CommentCard";
+import NextArticlesSection from "../../components/auth/articles/NextArticlesSection";
+import CommentSection from "../../components/auth/articles/CommentSection";
 import VueMarkdown from "vue-markdown";
 
 import moment from "moment";
@@ -195,14 +163,15 @@ export default {
   components: {
     Loader,
     VueMarkdown,
-    ArticleButtonCard,
-    CommentCard,
+    NextArticlesSection,
+    CommentSection,
   },
 
   data() {
     return {
       title: "Loading...",
       article: null,
+      nextArticles: null,
     };
   },
 
@@ -211,17 +180,18 @@ export default {
     this.article = data;
     this.title = data.title;
 
+    this.nextArticles = await this.getNextArticles();
+
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
   },
 
-  computed: {
-    nextArticles() {
-      return this.$store.state.articlesStore.articles.slice(0, 3);
-    },
-    id() {
-      return this.$route.params.id;
+  watch: {
+    "$route.params.id": async function (id) {
+      this.article = await this.getArticle(id);
+      this.nextArticles = await this.getNextArticles();
+      this.title = this.article.title;
     },
   },
 
@@ -233,15 +203,24 @@ export default {
       return data;
     },
 
+    async getNextArticles() {
+      let i = 0;
+      const selectedData = [];
+      while (i < 3) {
+        selectedData.push(
+          this.$store.state.articlesStore.articles[
+            Math.floor(
+              Math.random() * this.$store.state.articlesStore.articles.length
+            )
+          ]
+        );
+        i++;
+      }
+      return selectedData;
+    },
+
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
-    },
-  },
-
-  watch: {
-    id(newId, oldId) {
-      this.article = this.getArticle(newId);
-      this.title = this.getArticle(newId).title;
     },
   },
 };
@@ -250,8 +229,8 @@ export default {
 <style scoped>
 .article-title {
   font-family: Objectivity;
+  font-weight: bold;
   font-style: normal;
-  font-weight: normal;
   font-size: 48px;
   line-height: 64px;
   color: #151316;
@@ -261,7 +240,18 @@ export default {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
+  font-size: 24px;
   color: #151316;
+  line-height: 40px;
+}
+
+.article-sources {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: italic;
+  font-size: 24px;
+  color: #8c8c8c;
+  line-height: 40px;
 }
 
 .author-image {
@@ -271,8 +261,8 @@ export default {
 
 .author-name {
   font-family: Objectivity;
+  font-weight: bold;
   font-style: normal;
-  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
 }
@@ -293,63 +283,6 @@ export default {
   font-size: 12px;
   line-height: 15px;
   color: #b4b4b4;
-}
-
-.article-content {
-  font-family: HK Grotesk;
-  font-size: 24px;
-  line-height: 40px;
-}
-
-.article-sources {
-  font-family: HK Grotesk;
-  font-size: 24px;
-  line-height: 40px;
-  color: #8c8c8c;
-}
-
-.whats-next {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 44px;
-  color: #151316;
-}
-
-.comment-header {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-
-  color: #151316;
-}
-
-.comment-subheader {
-  font-family: Objectivity;
-  font-style: italic;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 20px;
-  /* or 167% */
-
-  color: #8c8c8c;
-}
-
-.comment-button {
-  padding: 10px 18px;
-
-  /* ITECH Blue */
-
-  background: #4e6afa;
-  border-radius: 5px;
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  color: white;
 }
 
 .breadcrumb {

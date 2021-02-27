@@ -87,6 +87,7 @@ export default {
     async login() {
       await this.$store.dispatch("userStore/login", this.user);
       if (this.$store.state.userStore.isAuthenticated) {
+        alert("You have logged in!");
         this.$router.replace("/dashboard/");
       }
     },

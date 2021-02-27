@@ -5,7 +5,22 @@
     :to="`/articles/${article.id}`"
   >
     <div class="w-3/4 pr-2">
-      <p class="mb-2 card-topic">Topic</p>
+      <g-link
+        v-if="article.courses.length > 0"
+        :to="`/courses/${article.courses[0].id}`"
+        v-bind:class="articleTopic"
+        class="mb-2 card-topic truncate ..."
+        >{{ article.courses[0].name }}</g-link
+      >
+
+      <g-link
+        v-else
+        :to="`/categories/${article.categories[0].name}`"
+        v-bind:class="articleTopic"
+        class="mb-2 card-topic truncate ..."
+        >{{ article.categories[0].name }}</g-link
+      >
+
       <p class="mb-2 card-title">
         {{ article.title }}
       </p>
@@ -14,7 +29,7 @@
     <div class="w-1/4">
       <g-image
         :src="article.thumbnailImage.url"
-        class="object-cover h-full rounded-lg"
+        class="float-right object-cover h-full rounded-lg"
         style="width: 116px"
       />
     </div>
@@ -25,6 +40,21 @@
 export default {
   name: "ArticleButtonCard",
   props: ["article"],
+
+  computed: {
+    articleTopic() {
+      switch (this.article.categories[0].name.toLowerCase()) {
+        case "hacker":
+          return "hackerColor";
+        case "hipster":
+          return "hipsterColor";
+        case "hustler":
+          return "hustlerColor";
+        default:
+          return "hustlerColor";
+      }
+    },
+  },
 };
 </script>
 
@@ -35,11 +65,6 @@ export default {
   font-weight: normal;
   font-size: 13px;
   line-height: 18px;
-  /* or 138% */
-
-  /* ITECH Teal */
-
-  color: #64c0c1;
 }
 
 .card-title {
