@@ -1,16 +1,16 @@
 <template>
   <g-link
-    class="flex flex-row sm:flex-col w-9/12 h-48 mx-1 mb-12 rounded"
+    class="flex flex-row sm:flex-col w-full mx-1 mt-2 mb-2 rounded"
     :to="`/articles/${article.node.id}`"
   >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
-    <div class="w-48 sm:w-full h-24 sm:h-full mb-2 rounded-lg">
+    <div class="block w-1/3 minWidth sm:w-full sm:mb-2 rounded-lg h-pic">
       <img
         :src="article.node.thumbnailImage"
         class="object-cover w-full h-full rounded-lg"
       />
     </div>
-    <div class="flex flex-col mx-3 mt-2 mb-1">
+    <div class="flex flex-col mx-3 mt-2 mb-2">
       <p class="mb-2 articleEntry-topic">Topic</p>
       <p class="flex flex-col mb-2 articleEntry-title">
         {{ article.node.title }}

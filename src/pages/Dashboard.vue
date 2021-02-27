@@ -16,7 +16,7 @@
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
             New On ITECH
           </h3>
-          <div class="flex justify-between mt-1 mb-20 flex-col sm:flex-row w-full">
+          <div class="flex justify-between mt-1 sm:mb-20 flex-col sm:flex-row w-full">
             <articleEntry
               v-for="article in newOnItech"
               v-bind:key="article.node.id"
@@ -35,7 +35,7 @@
             Featured Courses ✨
           </h2>
         </div>
-        <div class="grid grid-col sm:grid-cols-3 gap-4 w-full">
+        <div class="grid grid-col sm:grid-cols-3 gap-4 w-full sm:w-9/12">
         <playlistEntry class="w-full"
           v-for="course in this.$page.threeFeaturedCourses.edges"
           v-bind:key="course.node.id"
@@ -114,7 +114,7 @@
           <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-col sm:grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-2">
             <articleEntry class="w-full"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.node.id"
