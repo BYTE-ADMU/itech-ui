@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <form class="w-full max-w-xl px-4 pt-2 bg-white rounded-lg">
+    <form class="w-full max-w-xl px-4 pt-2 mx-auto bg-white rounded-lg">
       <div class="flex flex-wrap mb-6 -mx-3">
         <div class="mb-5">
           <p class="comment-header">Have a question? A comment?</p>

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full mx-auto">
     <p class="whats-next">What's Next?</p>
     <hr class="my-5" />
 

@@ -29,7 +29,7 @@
     <div class="w-1/4">
       <g-image
         :src="article.thumbnailImage.url"
-        class="object-cover h-full rounded-lg"
+        class="float-right object-cover h-full rounded-lg"
         style="width: 116px"
       />
     </div>
