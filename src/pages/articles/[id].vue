@@ -1,7 +1,7 @@
 <template lang="html">
   <Layout>
     <section class="flex justify-center min-h-screen pt-16 pb-32">
-      <div class="w-screen md:container">
+      <div class="w-screen lg:px-10 2xl:px-0 md:container">
 
         <!-- START:LOADER -->
         <div v-if="article === null" >

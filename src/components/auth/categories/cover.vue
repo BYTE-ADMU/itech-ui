@@ -3,18 +3,24 @@
     <div :class="coverStyle">
       <img :src="botStyle" class="bitBot" />
 
-      <div class="block lg:flex w-full h-full">
-        <div class="flex lg:items-center w-full sm:w-1/2 pl-6 sm:pl-10 pt-6 sm:pt-10 lg:pt-0 lg:pl-56">
+      <div class="block w-full h-full lg:flex">
+        <div
+          class="flex w-full pt-6 pl-6 lg:items-center sm:w-1/2 sm:pl-10 sm:pt-10 lg:pt-0 lg:pl-56"
+        >
           <div>
             <h2
               class="leading-tight text-white select-none text-feature font-neuemachina"
             >
               {{ categoryText }}
             </h2>
-            <p class="text-white text-2xl lg:text-base font-objectivity">Articles & Courses</p>
+            <p class="text-2xl text-white lg:text-base font-objectivity">
+              Articles & Courses
+            </p>
           </div>
         </div>
-        <div class="flex lg:items-center w-full sm:w-3/4 lg:w-1/2 px-6 sm:pl-10 pt-3 lg:pt-0 lg:px-12 xl:px-40 text-white">
+        <div
+          class="flex w-full px-6 pt-3 text-white lg:items-center sm:w-3/4 lg:w-1/2 sm:pl-10 lg:pt-0 lg:px-12 xl:px-40"
+        >
           <p>
             {{ categoryDescription }}
           </p>
@@ -80,13 +86,13 @@ export default {
     categoryText() {
       switch (this.category) {
         case "/categories/hacker":
-          return "hacker";
+          return "Hacker";
         case "/categories/hipster":
-          return "hipster";
+          return "Hipster";
         case "/categories/hustler":
-          return "hustler";
+          return "Hustler";
         default:
-          return "hacker";
+          return "Hacker";
       }
     },
 
