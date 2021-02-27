@@ -4,17 +4,19 @@
       <img :src="bitbot" class="bitBot" />
 
       <div class="flex items-center w-full h-full pl-56">
-        <div class="w-1/3">
+        <div class="w-full">
           <h2
             class="leading-tight text-white select-none text-feature font-neuemachina"
           >
             {{ topic.name }}
           </h2>
-          <p class="text-white font-objectivity">Articles</p>
+          <p class="mt-4 text-white font-objectivity">
+            {{ topic.description }}
+          </p>
         </div>
-        <div class="flex items-center w-2/3 px-40 text-white">
-          <!-- <p>{{ topic.description }}</p> -->
-        </div>
+        <!-- <div class="flex items-center w-2/3 px-40 text-white">
+          <p>{{ topic.description }}</p>
+        </div> -->
       </div>
     </div>
   </div>

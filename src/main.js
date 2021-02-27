@@ -3,7 +3,7 @@
 require("~/assets/css/styles.css");
 
 import DefaultLayout from '~/layouts/Default.vue'
-import store from './store';
+import store from './store/index';
 
 export default function (Vue, { appOptions, router, head, isClient }) {
   // Set default layout as a global component
@@ -18,7 +18,7 @@ export default function (Vue, { appOptions, router, head, isClient }) {
         to.path.includes("courses") ||
         to.path.includes("articles")
       ) {
-        if (!store.state.isAuthenticated) {
+        if (!store.state.userStore.isAuthenticated) {
           next("/login/");
         } else {
           next();
@@ -28,6 +28,9 @@ export default function (Vue, { appOptions, router, head, isClient }) {
       }
     });
   }
+
+
+
 
   Vue.component('Layout', DefaultLayout);
 }
