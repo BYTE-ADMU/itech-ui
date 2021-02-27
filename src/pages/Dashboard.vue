@@ -23,8 +23,9 @@
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
             New On ITECH
           </h3>
-          <div class="flex justify-between mt-1 mb-24">
+          <div class="grid grid-cols-3 gap-4 mt-1 mb-24">
             <articleEntry
+              class="w-full"
               v-for="article in newOnItech"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -41,13 +42,14 @@
       <hr class="mb-12" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="flex w-full mt-4">
-        <div class="w-3/12">
+      <div class="grid w-full grid-cols-4 gap-2 mt-4">
+        <div class="w-full">
           <h2 class="p-2 mx-auto text-4xl font-neuemachina">
             Featured Courses & Playlists ✨
           </h2>
         </div>
         <playlistEntry
+          class="w-full"
           v-for="course in threeFeaturedCourses"
           v-bind:key="course.id"
           v-bind:course="course"
@@ -61,7 +63,7 @@
             Topics
           </h5>
 
-          <div class="grid grid-cols-3 mb-2">
+          <div class="grid grid-cols-3 gap-2 mb-2">
             <articleHeader
               v-for="topic in threeHackerTopics"
               v-bind:key="topic.id"
@@ -72,8 +74,9 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
+          <div class="grid grid-cols-3 gap-4">
             <articleEntry
+              class="w-full"
               v-for="article in threeHackerArticles"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -88,7 +91,7 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
-          <div class="grid grid-cols-3 mb-2">
+          <div class="grid grid-cols-3 gap-2 mb-2">
             <articleHeader
               v-for="topic in threeHipsterTopics"
               v-bind:key="topic.id"
@@ -98,8 +101,9 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
+          <div class="grid grid-cols-3 gap-4">
             <articleEntry
+              class="w-full"
               v-for="article in threeHipsterArticles"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -114,7 +118,7 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Topics
           </h5>
-          <div class="grid grid-cols-3 mb-2">
+          <div class="grid grid-cols-3 gap-2 mb-2">
             <articleHeader
               v-for="topic in threeHustlerTopics"
               v-bind:key="topic.id"
@@ -124,8 +128,9 @@
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="flex justify-between">
+          <div class="grid grid-cols-3 gap-4">
             <articleEntry
+              class="w-full"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.id"
               v-bind:article="article"
