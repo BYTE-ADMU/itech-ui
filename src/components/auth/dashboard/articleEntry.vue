@@ -12,7 +12,7 @@
         class="object-cover w-full h-full rounded-lg"
       />
     </div>
-    <div class="p-3 my-auto">
+    <div class="p-3 my-auto overflow-hidden">
       <g-link
         v-if="article.courses.length > 0"
         :to="`/courses/${article.courses[0].id}`"

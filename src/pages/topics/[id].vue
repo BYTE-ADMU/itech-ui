@@ -59,7 +59,6 @@
           ></articleEntry>
         </div>
       </div>
-      {{ filteredArticles }}
     </div>
   </Layout>
 </template>
@@ -95,6 +94,7 @@ export default {
       title: "Loading...",
       topic: null,
       filteredCourses: null,
+      filteredArticles: [],
     };
   },
 
@@ -102,8 +102,6 @@ export default {
     const topicData = await this.getTopic(this.$route.params.id);
     this.topic = topicData;
     this.title = topicData.name;
-
-    this.articles = await this.getFilteredArticles(topicData.courses);
 
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
@@ -124,10 +122,17 @@ export default {
       const data = this.$store.state.coursesStore.courses;
       return data;
     },
+  },
 
-    filteredArticles() {
-      const data = this.getFilteredArticles(this.topic.courses);
-      return data;
+  watch: {
+    id(newId, oldId) {
+      this.topic = this.getTopic(newId);
+      this.title = this.getTopic(newId).name;
+    },
+
+    topic(newTopic, oldTopic) {
+      this.filteredCourses = this.getFilteredCourses(newTopic);
+      this.getFilteredArticles(newTopic.courses);
     },
   },
 
@@ -147,19 +152,28 @@ export default {
     },
 
     async getFilteredArticles(courses) {
-      const filteredArticles = [];
       if (courses.length > 0) {
         for (const eachCourse of courses) {
-          for (const eachArticle of eachCourse.articles) {
-            const { data } = await axios.get(
-              `https://calm-everglades-39473.herokuapp.com/articles/${eachArticle}`
-            );
-            filteredArticles.push(data);
+          console.log(eachCourse.name + ": ");
+          console.log(eachCourse);
+          for (const eachCourseArticle of eachCourse.articles) {
+            // const { data } = await axios.get(
+            //   `https://calm-everglades-39473.herokuapp.com/articles/${eachArticle}`
+            // );
+            console.log(eachCourseArticle);
+
+            for (const eachArticle of this.$store.state.articlesStore
+              .articles) {
+              if (eachArticle.id === eachCourseArticle) {
+                console.log(eachArticle);
+                this.filteredArticles.push(eachArticle);
+              }
+            }
           }
         }
+        return this.filteredArticles;
       }
-      console.log(filteredArticles);
-      return filteredArticles;
+      return this.filteredArticles;
     },
 
     getFilteredCourses(topic) {
@@ -168,18 +182,6 @@ export default {
       } else {
         return [];
       }
-    },
-  },
-
-  watch: {
-    id(newId, oldId) {
-      this.topic = this.getTopic(newId);
-      this.title = this.getTopic(newId).name;
-    },
-
-    topic(newTopic, oldTopic) {
-      this.filteredCourses = this.getFilteredCourses(newTopic);
-      this.filteredArticles = this.getFilteredArticles(newTopic.courses);
     },
   },
 };
