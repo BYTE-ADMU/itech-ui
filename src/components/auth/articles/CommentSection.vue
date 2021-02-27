@@ -9,7 +9,7 @@
 
         <div class="w-full">
           <textarea
-            class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded resize-none focus:outline-none focus:bg-white"
+            class="w-full h-20 px-3 py-2 font-medium leading-normal border border-gray-400 rounded-lg resize-none focus:outline-none focus:bg-white"
             name="body"
             required
           ></textarea>
@@ -17,8 +17,8 @@
         <div class="w-full">
           <input
             type="submit"
-            class="float-right comment-button"
-            value="Post Comment"
+            class="block float-right px-8 py-3 text-sm comment-button form_button"
+            value="Comment"
           />
         </div>
       </div>
@@ -64,12 +64,14 @@ export default {
 
 .comment-button {
   padding: 10px 18px;
-  background: #4e6afa;
-  border-radius: 5px;
+  background-color: #64c0c1;
+  border-radius: 34px;
+
+  color: #f9f7f2;
+
   font-family: Objectivity;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 16px;
-  color: white;
 }
 </style>

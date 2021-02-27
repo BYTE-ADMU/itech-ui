@@ -157,7 +157,7 @@ div > .tg {
   font-size: 16px;
   line-height: 24px;
 
-  color: #c9c9c9;
+  color: #dbdad5;
 }
 </style>
 
