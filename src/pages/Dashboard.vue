@@ -1,17 +1,23 @@
-//START: TEMPLATE
 <template>
   <Layout>
     <!-- ROOT -->
     <div
+      v-if="articles === null && courses === null && topics === null"
+      class="flex flex-col w-2/3 min-h-screen py-20 mx-auto mb-24"
+    >
+      <Loader />
+    </div>
+
+    <div
+      v-else
       class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
         <div class="flex flex-col w-9/12">
           <featureEntry
-            v-for="article in featuredArticle"
-            v-bind:key="article.node.id"
-            v-bind:article="article"
+            v-bind:key="featuredArticle.id"
+            v-bind:article="featuredArticle"
           />
 
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
@@ -20,16 +26,15 @@
           <div class="flex justify-between mt-1 mb-24">
             <articleEntry
               v-for="article in newOnItech"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
         </div>
         <!-- Topic of the Week -->
         <playlistTall
-          v-for="course in this.$page.featuredCourse.edges"
-          v-bind:key="course.node.id"
-          v-bind:course="course"
+          v-bind:key="featuredCourse.id"
+          v-bind:course="featuredCourse"
         />
       </div>
 
@@ -43,8 +48,8 @@
           </h2>
         </div>
         <playlistEntry
-          v-for="course in this.$page.threeFeaturedCourses.edges"
-          v-bind:key="course.node.id"
+          v-for="course in threeFeaturedCourses"
+          v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
@@ -59,8 +64,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHackerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
             <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
           </div>
@@ -70,7 +75,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHackerArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -86,8 +91,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHipsterTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
@@ -96,7 +101,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHipsterArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -112,8 +117,8 @@
           <div class="grid grid-cols-3 mb-2">
             <articleHeader
               v-for="topic in threeHustlerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
+              v-bind:key="topic.id"
+              v-bind:topic="topic"
             ></articleHeader>
           </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
@@ -122,7 +127,7 @@
           <div class="flex justify-between">
             <articleEntry
               v-for="article in threeHustlerArticles"
-              v-bind:key="article.node.id"
+              v-bind:key="article.id"
               v-bind:article="article"
             ></articleEntry>
           </div>
@@ -132,84 +137,9 @@
     </div>
   </Layout>
 </template>
-//END: TEMPLATE
 
-// START: PAGE QUERY
-<page-query>
-  query {
-    allTopics(order:DESC){
-      edges{
-        node{
-          publishedDate,
-          id,
-          categories,
-          name,
-          thumbnail,
-          description,
-          courses{
-            id,
-            name
-          }
-        }
-      }
-    },
-    allArticles(order:DESC){
-      edges{
-        node{
-          publishedDate,
-          id,
-          categories,
-          title,
-          author,
-          thumbnailImage,
-        }
-      }
-    },
-    newOnItech:allArticles(order:DESC,limit:3){
-    edges{
-      node{
-        publishedDate,
-        id,
-        title,
-        author,
-        thumbnailImage
-      }
-    }
-  },
-  threeFeaturedCourses:allCourses(order:DESC,limit:3){
-      edges{
-        node{
-          id,
-          categories,
-          name,
-          thumbnail,
-          articles{
-            id
-          }
-        }
-      }
-    },
-    featuredCourse:allCourses(order:DESC,limit:1){
-      edges{
-        node{
-          id,
-          categories,
-          name,
-          thumbnail,
-          articles{
-            id
-          }
-        }
-      }
-    },
-
-}
-
-</page-query>
-// END : PAGE QUERY
-
-//START: SCRIPT
 <script>
+import Loader from "../components/Loader";
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
@@ -217,51 +147,91 @@ import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
 
+import axios from "axios";
+
 export default {
   name: "Dashboard",
   metaInfo: {
     title: "Dashboard",
   },
+
+  components: {
+    Loader,
+    articleEntry,
+    featureEntry,
+    playlistEntry,
+    playlistTall,
+    bitbotFeature,
+    articleHeader,
+  },
+
   data() {
     return {
-      newOnItech: [],
-      articles: [],
-      topics: [],
-      courses: [],
+      topics: null,
+      courses: null,
+      articles: null,
     };
   },
 
-  mounted() {
-    this.newOnItech = this.$page.newOnItech.edges;
-    this.articles = this.$page.allArticles.edges;
-    this.courses = this.$page.allArticles.edges;
-    this.topics = this.$page.allTopics.edges;
+  async mounted() {
+    this.topics = await this.getTopics();
+    this.courses = await this.getCourses();
+    this.articles = await this.getArticles();
+    // this.articles = await this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {
+    // START: GET DATA FROM STORE
+    // topics() {
+    //   const data = this.$store.state.topicsStore.topics.reverse();
+    //   return data;
+    // },
+
+    // courses() {
+    //   const data = this.$store.state.coursesStore.courses.reverse();
+    //   return data;
+    // },
+
+    // articles() {
+    //   const data = this.$store.state.articlesStore.articles.reverse();
+    //   return data;
+    // },
+
+    // END: GET DATA FROM STORE
+
     hackerArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hacker");
+        return article.categories[0].name.includes("Hacker");
       });
     },
     hipsterArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hipster");
+        return article.categories[0].name.includes("Hipster");
       });
     },
     hustlerArticles() {
       return this.articles.filter((article) => {
-        return article.node.categories.includes("Hustler");
+        return article.categories[0].name.includes("Hustler");
       });
     },
 
     featuredArticle() {
-      return this.articles.slice(0, 1);
+      return this.articles[Math.floor(Math.random() * this.articles.length)];
     },
 
-    // featuredCourse() {
-    //   return this.courses.slice(0, 1);
-    // },
+    featuredCourse() {
+      return this.courses[Math.floor(Math.random() * this.courses.length)];
+    },
+
+    newOnItech() {
+      return this.articles.slice(0, 3);
+    },
+
+    threeFeaturedCourses() {
+      return this.courses.slice(0, 3);
+    },
 
     threeHackerArticles() {
       return this.hackerArticles.slice(0, 3);
@@ -276,17 +246,17 @@ export default {
     // TOPICS
     hackerTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hacker");
+        return topic.categories[0].name.includes("Hacker");
       });
     },
     hipsterTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hipster");
+        return topic.categories[0].name.includes("Hipster");
       });
     },
     hustlerTopics() {
       return this.topics.filter((topic) => {
-        return topic.node.categories.includes("Hustler");
+        return topic.categories[0].name.includes("Hustler");
       });
     },
 
@@ -301,17 +271,31 @@ export default {
     },
   },
 
-  components: {
-    articleEntry,
-    featureEntry,
-    playlistEntry,
-    playlistTall,
-    bitbotFeature,
-    articleHeader,
+  methods: {
+    async getTopics() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/topics?_sort=published_at`
+      // );
+      const data = this.$store.state.topicsStore.topics.reverse();
+      return data;
+    },
+    async getCourses() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/courses?_sort=published_at`
+      // );
+      const data = this.$store.state.coursesStore.courses.reverse();
+      return data;
+    },
+    async getArticles() {
+      // const { data } = await axios.get(
+      //   `https://calm-everglades-39473.herokuapp.com/articles?_sort=published_at`
+      // );
+      const data = this.$store.state.articlesStore.articles.reverse();
+      return data;
+    },
   },
 };
 </script>
-//END: SCRIPT
 
 <style>
 div > .tg {

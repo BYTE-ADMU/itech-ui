@@ -1,13 +1,9 @@
 <template>
   <Layout>
     <!-- ROOT -->
-
     <div
-      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen p-6 py-20 mx-auto mb-24"
     >
-      <p class="mb-10 breadcrumb">
-        <button @click="$router.go(-1)">Back</button>
-      </p>
       <div class="flex items-start justify-between w-full">
         <!-- CATEGORY COVER -->
         <div class="flex flex-col w-full">
@@ -53,7 +49,6 @@
 
 
 <script>
-// import Loader from "../../components/Loader";
 import cover from "../../components/auth/categories/cover";
 import playlistRow from "../../components/auth/categories/playlistRow";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
@@ -64,7 +59,6 @@ import articleHeader from "../../components/auth/dashboard/articleHeader";
 
 export default {
   components: {
-    // Loader,
     cover,
     playlistRow,
     articleEntry,
@@ -79,16 +73,9 @@ export default {
     title: "Categories",
   },
 
-  data() {
-    return {
-      isLoading: true,
-    };
-  },
-
   async mounted() {
-    this.$store.dispatch("articlesStore/getArticles");
-    this.$store.dispatch("coursesStore/getCourses");
-    this.$store.dispatch("topicsStore/getTopics");
+    await this.$store.dispatch("articlesStore/getArticles");
+    await this.$store.dispatch("coursesStore/getCourses");
   },
 
   computed: {

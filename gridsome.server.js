@@ -54,13 +54,13 @@ module.exports = function (api) {
 
     const topics = actions.addCollection({
       typeName: 'topics',
-      path: '/topics/:name'
+      path: '/topics/:id'
     });
 
     for (const topic of data) {
       topics.addNode({
         //PATH
-        path: '/topics/' + topic.name,
+        path: '/topics/' + topic.id,
         // TOPIC INFORMATION
         publishedDate: topic.published_at,
         id: topic.id,

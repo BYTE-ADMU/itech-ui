@@ -3,7 +3,7 @@
 require("~/assets/css/styles.css");
 
 import DefaultLayout from '~/layouts/Default.vue'
-import store from './store';
+import store from './store/index';
 
 export default function (Vue, { appOptions, router, head, isClient }) {
   // Set default layout as a global component
@@ -14,11 +14,12 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     router.beforeEach((to, from, next) => {
       if (
         to.path.includes("dashboard") ||
+        to.path.includes("categories") ||
         to.path.includes("topics") ||
         to.path.includes("courses") ||
         to.path.includes("articles")
       ) {
-        if (!store.state.isAuthenticated) {
+        if (!store.state.userStore.isAuthenticated) {
           next("/login/");
         } else {
           next();

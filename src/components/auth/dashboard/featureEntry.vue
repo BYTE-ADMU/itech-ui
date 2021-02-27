@@ -1,5 +1,5 @@
 <template>
-  <g-link :to="`/articles/${article.node.id}`">
+  <g-link :to="`/articles/${article.id}`">
     <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
       <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
         <p
@@ -10,22 +10,22 @@
         <p
           class="relative w-full py-3 text-3xl font-medium text-white font-objectivity hover:opacity-100"
         >
-          {{ article.node.title }}
+          <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
         <p
           class="relative w-48 py-1 text-lg text-white font-objectivity hover:opacity-100"
         >
-          {{ article.node.author }}
+          {{ article.author.name }}
         </p>
         <p
           class="absolute bottom-0 py-3 font-light text-white font-objectivity hover:opacity-100"
         >
-          {{ article.node.title }}
+          {{ article.title }}
           <!-- Description -->
         </p>
       </div>
-      <img
-        :src="article.node.thumbnailImage"
+      <g-image
+        :src="article.thumbnailImage.url"
         class="relative object-cover w-full h-full rounded-lg tg"
       />
     </div>

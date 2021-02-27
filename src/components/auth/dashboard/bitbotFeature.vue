@@ -12,7 +12,7 @@
           class="px-6 text-white font-objectivity"
           >View All</g-link
         >
-        <img :src="botImage" class="bitBot" />
+        <g-image :src="botImage" class="bitBot" />
       </div>
     </g-link>
   </div>
