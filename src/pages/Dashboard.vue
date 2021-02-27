@@ -2,7 +2,7 @@
 <template>
   <Layout>
     <!-- ROOT -->
-    <div class="container flex flex-col w-screen min-h-screen px-10 py-20 mx-auto mb-24"
+    <div class="container flex flex-col w-screen min-h-screen px-10 py-20 mx-auto"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
@@ -46,23 +46,11 @@
       <!-- Hacker -->
       <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hacker" />
-        <div class="grid grid-col w-full">
-          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5> -->
-
-          <!-- <div class="grid grid-cols-3 mb-2">
-            <articleHeader
-              v-for="topic in threeHackerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
-            ></articleHeader> -->
-            <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
-          <!-- </div> -->
+        <div class="flex flex-col w-full">
           <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-col sm:grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-2">
             <articleEntry class="w-full"
               v-for="article in threeHackerArticles"
               v-bind:key="article.node.id"
@@ -75,20 +63,10 @@
       <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hipster" />
         <div class="flex flex-col w-full">
-          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5> -->
-          <!-- <div class="grid grid-cols-3 mb-2">
-            <articleHeader
-              v-for="topic in threeHipsterTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
-            ></articleHeader>
-          </div> -->
           <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
-          <div class="grid grid-col sm:grid-cols-3 gap-4">
+          <div class="grid grid-col sm:grid-cols-3 gap-2">
             <articleEntry class="w-full"
               v-for="article in threeHipsterArticles"
               v-bind:key="article.node.id"
@@ -101,16 +79,6 @@
       <div class="flex flex-col lg:flex-row w-full mt-8 mb-8">
         <bitbotFeature bb3="hustler" />
         <div class="flex flex-col w-full">
-          <!-- <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-          <div class="grid grid-cols-3 mb-2">
-            <articleHeader
-              v-for="topic in threeHustlerTopics"
-              v-bind:key="topic.node.id"
-              v-bind:topic="topic.node"
-            ></articleHeader>
-          </div> -->
           <h5 class="invisible sm:visible mx-2 mt-2 mb-2 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>

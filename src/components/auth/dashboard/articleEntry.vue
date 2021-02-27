@@ -1,10 +1,10 @@
 <template>
   <g-link
-    class="flex flex-row sm:flex-col w-full mx-1 mt-2 mb-2 rounded"
+    class="flex flex-row sm:flex-col sm:w-full mx-1 mt-2 mb-2 rounded h-pic"
     :to="`/articles/${article.node.id}`"
   >
     <!-- PUT IMAGE AND DETAILS INSIDE -->
-    <div class="block w-1/3 minWidth sm:w-full sm:mb-2 rounded-lg h-pic">
+    <div class="block minWidth w-3/12 sm:w-full sm:mb-2 rounded-lg h-pic">
       <img
         :src="article.node.thumbnailImage"
         class="object-cover w-full h-full rounded-lg"
@@ -59,5 +59,15 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.minWidth {
+  min-width: 136px;
+}
+
+@media screen and (min-width: 640px) and (max-width:1024px) {
+  .minWidth {
+    min-width: 150px;
+  }
 }
 </style>
