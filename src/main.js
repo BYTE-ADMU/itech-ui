@@ -29,5 +29,8 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     });
   }
 
+
+
+
   Vue.component('Layout', DefaultLayout);
 }
