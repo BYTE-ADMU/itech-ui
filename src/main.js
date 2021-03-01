@@ -16,7 +16,8 @@ export default function (Vue, { appOptions, router, head, isClient }) {
         to.path.includes("dashboard") ||
         to.path.includes("topics") ||
         to.path.includes("courses") ||
-        to.path.includes("articles")
+        to.path.includes("articles") ||
+        to.path.includes("discover")
       ) {
         if (!store.state.userStore.isAuthenticated) {
           next("/login/");
