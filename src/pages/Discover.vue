@@ -1,7 +1,7 @@
 <template>
   <Layout>
-    <div class="lg:px-32 md:px-24 sm:px-20 px-12 sm:py-20 py-10">
-      <h1 class=" sm:hidden text-center text-2xl font-bold font-objectivity pb-8">
+    <div class="mx-auto md:container lg:px-32 md:px-24 sm:px-20 px-12 sm:py-20 py-10">
+      <h1 class="sm:hidden text-center text-xl font-bold font-objectivity not-italic pb-8">
         Discover
       </h1>
 
@@ -36,10 +36,10 @@
       <!-- suggested courses -->
       <div class="w-full mt-12 sm:flex">
         <div class="w-full sm:w-3/12">
-          <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina" v-if="!search">
+          <h2 class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina" v-if="!search">
             Suggested Courses ✨
           </h2>
-          <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina" v-else>
+          <h2 class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina" v-else>
             Related Courses ✨
           </h2>
 
@@ -56,8 +56,8 @@
       </div>
 
       <!-- suggested articles -->
-      <h2 class="py-6 text-2xl lg:text-4xl font-neuemachina" v-if="!search">Suggested Articles ✨</h2>
-      <h2 class="py-6 text-2xl lg:text-4xl font-neuemachina" v-else>Related Articles ✨</h2>
+      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-if="!search">Suggested Articles ✨</h2>
+      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-else>Related Articles ✨</h2>
 
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <articleEntry
