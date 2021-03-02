@@ -76,6 +76,10 @@ import articleEntry from "../components/auth/dashboard/articleEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 
 export default {
+  name: "Discover",
+  metaInfo: {
+    title: "Discover"
+  },
   data() {
     return {
       searchBar: "",
