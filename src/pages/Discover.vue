@@ -27,7 +27,7 @@
         <button v-for="topic in topics"
           v-bind:key="topic.id"
           v-bind:value="topic.name"
-          @click="searchButton = topic.id"
+          @click="searchButton = topic.categories[0].name"
           class="filterButton text-center py-2 px-6 rounded-full font-bold font-objectvitity mx-2 my-2">
           {{ topic.name }}
         </button>
@@ -84,7 +84,6 @@ export default {
     return {
       searchBar: "",
       searchButton: "",
-      // searchTopic: "",
     };
   },
   components: {
@@ -125,17 +124,13 @@ export default {
       } else if (this.searchButton) {
         return this.searchButton.toLowerCase();
       }
-      // else if (this.searchTopic) {
-      //   return this.searchTopic;
-      // }
       return "";
     },
 
     filteredCourses() {
       return this.courses.filter((course) => {
         if (course.categories[0].name.toLowerCase().includes(this.search) ||
-        course.categories[0].topics[0].includes(this.search) ||
-        course.name.toLowerCase().includes(this.search)) {
+          course.name.toLowerCase().includes(this.search)) {
           return course;
         }
         return "";
@@ -151,6 +146,7 @@ export default {
         if (article.title.toLowerCase().includes(this.search) ||
           article.categories[0].topics[0].includes(this.search) ||
           article.categories[0].name.toLowerCase().includes(this.search)) {
+          
           return article;
         }
         return "";
