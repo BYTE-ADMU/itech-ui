@@ -52,7 +52,7 @@
         >
           Discover
         </g-link>
-        <g-link
+        <!-- <g-link
           to="/categories/hacker/"
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
@@ -70,7 +70,7 @@
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
           Hustler
-        </g-link>
+        </g-link> -->
         <div class="relative p-4 hover-trigger nav__link">
           <svg
             width="24"
