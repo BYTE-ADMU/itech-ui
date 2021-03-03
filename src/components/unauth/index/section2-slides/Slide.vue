@@ -32,18 +32,65 @@
         <div
           class="grid items-center w-full grid-cols-1 gap-2 mx-auto lg:grid-cols-3 lg:container"
         >
-          <div
-            class="hidden mx-auto bg-white rounded-lg big-box lg:block"
-          ></div>
+          <!-- START: FIRST COLUMN -->
+          <div class="mx-auto">
+            <div class="flex">
+              <div
+                class="ml-4 bg-white rounded-lg small-box"
+                v-bind:class="[slide.classes[2]]"
+              >
+                &nbsp;
+              </div>
+              <div
+                class="ml-4 bg-white rounded-lg small-box"
+                v-bind:class="[slide.classes[1]]"
+              >
+                &nbsp;
+              </div>
+            </div>
+            <div
+              class="mt-4 ml-4 bg-white rounded-lg long-box"
+              v-bind:class="[slide.classes[3]]"
+            >
+              &nbsp;
+            </div>
+          </div>
 
+          <!-- END: FIRST COLUMN -->
+
+          <!-- START: SECOND COLUMN -->
           <div class="mx-auto bg-white rounded-lg big-box">
             <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
           </div>
+          <!-- END: SECOND COLUMN -->
 
-          <div
-            class="hidden mx-auto bg-white rounded-lg big-box lg:block"
-          ></div>
+          <!-- START: THIRD COLUMN -->
+
+          <div class="mx-auto">
+            <div
+              class="mb-4 ml-4 bg-white rounded-lg long-box"
+              v-bind:class="[slide.classes[3]]"
+            >
+              &nbsp;
+            </div>
+            <div class="flex">
+              <div
+                class="ml-4 bg-white rounded-lg small-box"
+                v-bind:class="[slide.classes[2]]"
+              >
+                &nbsp;
+              </div>
+              <div
+                class="ml-4 bg-white rounded-lg small-box"
+                v-bind:class="[slide.classes[1]]"
+              >
+                &nbsp;
+              </div>
+            </div>
+          </div>
+          <!-- END: THIRD COLUMN -->
         </div>
+
         <!-- END: CAROUSEL -->
 
         <!-- <div>
