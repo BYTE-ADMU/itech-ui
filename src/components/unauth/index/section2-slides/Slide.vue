@@ -59,9 +59,12 @@
           <!-- END: FIRST COLUMN -->
 
           <!-- START: SECOND COLUMN -->
-          <div class="mx-auto bg-white rounded-lg big-box">
+          <g-link
+            :to="`/categories/${slide.categories}`"
+            class="mx-auto bg-white rounded-lg big-box"
+          >
             <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
-          </div>
+          </g-link>
           <!-- END: SECOND COLUMN -->
 
           <!-- START: THIRD COLUMN -->
