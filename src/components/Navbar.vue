@@ -46,13 +46,13 @@
         </g-link>
       </div>
       <div class="flex" v-else>
-        <!-- <g-link
+        <g-link
           to="/discover/"
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
           Discover
         </g-link>
-        <g-link
+        <!-- <g-link
           to="/categories/hacker/"
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
