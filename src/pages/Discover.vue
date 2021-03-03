@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <div class="mx-auto md:container lg:px-32 md:px-24 sm:px-20 px-12 sm:py-20 py-10">
+    <div 
+      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+    >
       <h1 class="sm:hidden text-center text-xl font-bold font-objectivity not-italic pb-8">
         Discover
       </h1>
