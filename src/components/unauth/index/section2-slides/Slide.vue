@@ -21,7 +21,7 @@
             <p class="text-5xl tracking-wider uppercase font-neuemachina">
               {{ slide.categories }}
             </p>
-            <p class="px-2 tracking-wider md:px-32 md:text-xl font-objectivity">
+            <p class="px-2 tracking-wider lg:px-32 md:text-xl font-objectivity">
               {{ slide.description }}
             </p>
           </div>
@@ -33,10 +33,10 @@
           class="grid items-center w-full grid-cols-1 gap-2 mx-auto lg:grid-cols-3 lg:container"
         >
           <!-- START: FIRST COLUMN -->
-          <div class="mx-auto">
+          <div class="hidden mx-auto lg:block">
             <div class="flex">
               <div
-                class="ml-4 bg-white rounded-lg small-box"
+                class="bg-white rounded-lg small-box"
                 v-bind:class="[slide.classes[2]]"
               >
                 &nbsp;
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div
-              class="mt-4 ml-4 bg-white rounded-lg long-box"
+              class="mt-4 bg-white rounded-lg long-box"
               v-bind:class="[slide.classes[3]]"
             >
               &nbsp;
@@ -66,16 +66,16 @@
 
           <!-- START: THIRD COLUMN -->
 
-          <div class="mx-auto">
+          <div class="hidden mx-auto lg:block">
             <div
-              class="mb-4 ml-4 bg-white rounded-lg long-box"
+              class="mb-4 bg-white rounded-lg long-box"
               v-bind:class="[slide.classes[3]]"
             >
               &nbsp;
             </div>
             <div class="flex">
               <div
-                class="ml-4 bg-white rounded-lg small-box"
+                class="bg-white rounded-lg small-box"
                 v-bind:class="[slide.classes[2]]"
               >
                 &nbsp;
