@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid items-center w-screen grid-cols-1 px-8 py-32 mx-auto lg:gap-16 lg:grid-cols-2 sm:px-12 lg:px-16 lg:container"
+    class="grid items-center w-screen grid-cols-1 px-8 py-64 mx-auto lg:gap-16 lg:grid-cols-2 sm:px-12 lg:px-16 lg:container"
   >
     <g-image
       :src="require('@/assets/img/unauth/index/section2-botWelcome.svg')"

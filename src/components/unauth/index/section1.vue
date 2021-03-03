@@ -3,7 +3,7 @@
     style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%)"
   >
     <div
-      class="flex flex-col w-screen pb-32 mx-auto mb-24 lg-pb-0 lg:container"
+      class="flex flex-col w-screen pb-32 mx-auto align-middle lg-pb-0 lg:h-screen 2xl:h-auto 2xl:container lg:pb-0"
     >
       <div
         class="grid items-center grid-cols-1 px-0 lg:gap-8 lg:grid-cols-2 lg:px-0"
