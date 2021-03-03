@@ -13,7 +13,7 @@
           What is ITECH?
         </h1>
         <h1
-          class="mb-8 text-4xl lg:text-lg xl:text-2xl 2xl:text-2xl font-objectivity"
+          class="mb-8 sm:text-4xl lg:text-lg xl:text-2xl 2xl:text-2xl font-objectivity"
         >
           ITECH is BYTE’s first ever community hub made for BYTE members to be
           able to hone certain skills. In this learning platform, you will see
@@ -25,7 +25,7 @@
       <div>
         <g-link
           to="/about/"
-          class="float-left px-8 py-3 mx-auto mb-8 text-4xl lg:text-2xl md:float-none form_button font-objectivity"
+          class="float-left px-8 py-3 mx-auto mb-8 text-xl sm:text-4xl lg:text-2xl md:float-none form_button font-objectivity"
         >
           Learn More
         </g-link>

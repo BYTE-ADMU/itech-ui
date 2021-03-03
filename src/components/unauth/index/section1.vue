@@ -21,7 +21,7 @@
 
           <g-link to="/login/">
             <button
-              class="w-full px-8 py-2 mx-auto text-4xl uppercase lg:text-2xl form_button font-objectivity"
+              class="w-full px-8 py-2 mx-auto text-xl uppercase sm:text-4xl lg:text-2xl form_button font-objectivity"
             >
               Get Started
             </button>
@@ -89,4 +89,16 @@ export default Vue.extend({
     line-height: 5rem;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .itech {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+  .hello-welcome-to {
+    font-size: 2rem;
+    line-height: 5rem;
+  }
+}
+</style>
 </style>

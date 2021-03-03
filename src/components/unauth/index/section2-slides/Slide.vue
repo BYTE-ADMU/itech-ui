@@ -10,18 +10,18 @@
       hidden=""
       checked="checked"
     />
-    <div :class="slideStyle" style="height: 800px">
+    <div :class="slideStyle" class="py-20">
       <div class="container mb-20">
         <!-- START: DESCRIPTION -->
         <div class="mb-20 full-width-row">
           <div class="w-full text-center text-white">
-            <p class="text-2xl tracking-wide uppercase font-objectivity">
+            <p class="tracking-wide uppercase md:text-2xl font-objectivity">
               Become a
             </p>
             <p class="text-5xl tracking-wider uppercase font-neuemachina">
               {{ slide.categories }}
             </p>
-            <p class="px-32 text-xl tracking-wider font-objectivity">
+            <p class="px-2 tracking-wider md:px-32 md:text-xl font-objectivity">
               {{ slide.description }}
             </p>
           </div>
@@ -37,7 +37,7 @@
           ></div>
 
           <div class="mx-auto bg-white rounded-lg big-box">
-            <g-image :src="botImage" class="w-full px-4 pt-20 mx-auto" />
+            <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
           </div>
 
           <div
