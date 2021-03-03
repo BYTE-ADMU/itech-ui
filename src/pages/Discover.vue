@@ -3,7 +3,7 @@
     <div 
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <h1 class="sm:hidden text-center text-xl font-bold font-objectivity not-italic pb-8">
+      <h1 class="sm:hidden discoverTitle text-center text-xl font-objectivity not-italic pb-8">
         Discover
       </h1>
 
@@ -199,7 +199,7 @@ export default {
 }
 
 .discoverTitle {
-  display: none;
+  font-weight: bold;
 }
 
 @media screen and (max-width: 640px) {
