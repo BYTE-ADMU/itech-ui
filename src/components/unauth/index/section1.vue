@@ -1,47 +1,48 @@
 <template>
   <div
-    class="grid items-center w-screen min-h-screen grid-cols-1 px-0 pb-16 lg:gap-8 lg:grid-cols-2 md:px-32 lg:px-0"
     style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%)"
   >
-    <g-image
-      :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
-      class="block w-full mx-auto lg:hidden"
-    />
-
-    <div class="mx-auto md:w-2/3">
-      <h1
-        class="mx-auto text-center text-white bg-red font-objectivity md:w-full index_text"
+    <div
+      class="flex flex-col w-screen pb-32 mx-auto mb-24 lg-pb-0 lg:container"
+    >
+      <div
+        class="grid items-center grid-cols-1 px-0 lg:gap-8 lg:grid-cols-2 lg:px-0"
       >
-        Hello! Welcome to
-      </h1>
-      <h1
-        class="text-center text-white font-neuemachina md:mx-auto index_header"
-      >
-        ITECH
-      </h1>
+        <g-image
+          :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
+          class="block w-full mx-auto lg:hidden"
+        />
 
-      <div>
-        <g-link
-          to="/login/"
-          class="mb-8 block mx-auto uppercase md:w-full float-left md:float-none px-8 py-3 form_button font-objectivity ..."
-        >
-          Get Started
-        </g-link>
-        <a
-          class="text-lg text-center font-objectivity nav__link"
-          href="https://tinyurl.com/ITECHPreRegistrationForm"
-          target="_blank"
-        >
-          <h1 class="hidden mx-auto mt-4 text-white md:block">
-            Don't have credentials yet?<strong> Click</strong> here
+        <div class="mx-auto">
+          <h1 class="text-center text-white hello-welcome-to">
+            Hello! Welcome to
           </h1>
-        </a>
+          <h1 class="text-center text-white md:mx-auto itech">ITECH</h1>
+
+          <g-link to="/login/">
+            <button
+              class="w-full px-8 py-2 mx-auto text-4xl uppercase lg:text-2xl form_button font-objectivity"
+            >
+              Get Started
+            </button>
+          </g-link>
+
+          <a
+            class="text-lg text-center font-objectivity nav__link"
+            href="https://tinyurl.com/ITECHPreRegistrationForm"
+            target="_blank"
+          >
+            <h1 class="hidden mx-auto mt-4 text-white lg:block">
+              Don't have credentials yet?<strong> Click</strong> here
+            </h1>
+          </a>
+        </div>
+        <g-image
+          :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
+          class="hidden w-full mx-auto lg:block"
+        />
       </div>
     </div>
-    <g-image
-      :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"
-      class="hidden w-full mx-auto lg:block"
-    />
   </div>
 </template>
 
@@ -61,15 +62,31 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.index_text {
+.hello-welcome-to {
+  font-family: Objectivity;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 40px;
+  line-height: 60px;
+  text-align: center;
 }
 
-.index_header {
+.itech {
+  font-family: Neue Machina;
   font-style: normal;
-  font-weight: 900;
+  font-weight: 800;
   font-size: 110px;
+  line-height: 120px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .itech {
+    font-size: 11rem;
+    line-height: 11rem;
+  }
+  .hello-welcome-to {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
 }
 </style>
