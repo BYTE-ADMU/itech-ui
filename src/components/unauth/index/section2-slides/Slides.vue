@@ -4,7 +4,7 @@
     <div class="relative shadow-2xl carousel">
       <div class="relative w-full overflow-hidden carousel-inner">
         <!--START: each-slide component-->
-        <div v-for="slide in slides" v-bind:key="slide.id">
+        <div v-for="slide in slides" v-bind:key="slide.id" class="mb-12">
           <Slide v-bind:slide="slide" />
         </div>
         <!--END: each-slide component-->

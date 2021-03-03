@@ -4,30 +4,49 @@
     <input
       class="carousel-open"
       type="radio"
-      v-bind:id="[slide.slideOrder]"
+      v-bind:id="[slide.order]"
       name="carousel"
       aria-hidden="true"
       hidden=""
       checked="checked"
     />
-    <div
-      class="absolute flex items-center justify-center opacity-0 carousel-item"
-      v-bind:class="[slide.classes[0]]"
-      style="height: 800px"
-    >
-      <div class="mb-20 grid-container">
-        <div class="full-width-row">
+    <div :class="slideStyle" style="height: 800px">
+      <div class="container mb-20">
+        <!-- START: DESCRIPTION -->
+        <div class="mb-20 full-width-row">
           <div class="w-full text-center text-white">
             <p class="text-2xl tracking-wide uppercase font-objectivity">
-              Here you'll learn to become a
+              Become a
             </p>
             <p class="text-5xl tracking-wider uppercase font-neuemachina">
-              {{ slide.becomeWhat }}
+              {{ slide.categories }}
+            </p>
+            <p class="px-32 text-xl tracking-wider font-objectivity">
+              {{ slide.description }}
             </p>
           </div>
         </div>
+        <!-- END: DESCRIPTION -->
 
-        <div>
+        <!-- START: CAROUSEL -->
+        <div
+          class="grid items-center w-full grid-cols-1 gap-2 mx-auto lg:grid-cols-3 lg:container"
+        >
+          <div
+            class="hidden mx-auto bg-white rounded-lg big-box lg:block"
+          ></div>
+
+          <div class="mx-auto bg-white rounded-lg big-box">
+            <g-image :src="botImage" class="w-full px-4 pt-20 mx-auto" />
+          </div>
+
+          <div
+            class="hidden mx-auto bg-white rounded-lg big-box lg:block"
+          ></div>
+        </div>
+        <!-- END: CAROUSEL -->
+
+        <!-- <div>
           <div class="flex">
             <div
               class="ml-4 bg-white rounded-lg small-box"
@@ -48,13 +67,19 @@
           >
             &nbsp;
           </div>
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
           <div class="py-6 mx-auto bg-white rounded-lg big-box"></div>
-        </div>
+        </div> -->
 
-        <div>
+        <!-- <div>
+          <div
+            class="mb-4 ml-4 bg-white rounded-lg long-box"
+            v-bind:class="[slide.classes[3]]"
+          >
+            &nbsp;
+          </div>
           <div class="flex">
             <div
               class="ml-4 bg-white rounded-lg small-box"
@@ -69,13 +94,7 @@
               &nbsp;
             </div>
           </div>
-          <div
-            class="mt-4 ml-4 bg-white rounded-lg long-box"
-            v-bind:class="[slide.classes[3]]"
-          >
-            &nbsp;
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -86,9 +105,41 @@
 import Vue from "vue";
 export default Vue.extend({
   name: "Slide",
-
-  //props
   props: ["slide"],
+
+  computed: {
+    botImage() {
+      const type = this.slide.categories;
+      const hacker = require("@/assets/img/bitbots/bbhacker.svg");
+      const hipster = require("@/assets/img/bitbots/bbhipster.svg");
+      const hustler = require("@/assets/img/bitbots/bbhustler.svg");
+      switch (type) {
+        case "Hacker":
+          return hacker;
+        case "Hipster":
+          return hipster;
+        case "Hustler":
+          return hustler;
+        default:
+          return hacker;
+      }
+    },
+    slideStyle() {
+      const type = this.slide.categories;
+      const defaultStyle =
+        "absolute flex items-center justify-center min-h-screen opacity-0 carousel-item";
+      switch (type.toLowerCase()) {
+        case "hacker":
+          return `hackerStyle ${defaultStyle}`;
+        case "hipster":
+          return `hipsterStyle ${defaultStyle}`;
+        case "hustler":
+          return `hustlerStyle ${defaultStyle}`;
+        default:
+          return `hackerStyle ${defaultStyle}`;
+      }
+    },
+  },
 });
 </script>
 
@@ -102,5 +153,23 @@ export default Vue.extend({
 .full-width-row {
   grid-column-start: 1;
   grid-column-end: 4;
+}
+
+.hackerStyle {
+  background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
+}
+
+.hipsterStyle {
+  background: linear-gradient(283.99deg, #ff7b92 7.28%, #e13894 100%);
+}
+
+.hustlerStyle {
+  background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
+}
+
+.bitBot {
+  height: 160px;
+  position: absolute;
+  left: 145px;
 }
 </style>

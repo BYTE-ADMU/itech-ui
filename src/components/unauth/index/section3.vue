@@ -21,8 +21,12 @@ export default Vue.extend({
       slides: [
         {
           id: 0,
-          slideOrder: "carousel-1",
-          becomeWhat: "Hacker",
+          order: "carousel-1",
+          categories: "Hacker",
+          description:
+            "Hacker is the first H out of BYTE’s 3Hs. Hackers have the skill to program website or application prototypes from ideations. ",
+          bitbot: "require('@/assets/img/bitbots/bbhacker.svg')",
+
           classes: [
             "slide1", //BG Color
             "t1",
@@ -32,8 +36,12 @@ export default Vue.extend({
         },
         {
           id: 1,
-          slideOrder: "carousel-2",
-          becomeWhat: "Hipster",
+          order: "carousel-2",
+          categories: "Hipster",
+          description:
+            "Hipster is the second H out of BYTE’s 3Hs. Hipsters have an eye and mind for creativity that can be applied to web and mobile design. ",
+          bitbot: "require('@/assets/img/bitbots/bbhipster.svg')",
+
           classes: [
             "slide2", //BG Color
             "t3",
@@ -43,8 +51,11 @@ export default Vue.extend({
         },
         {
           id: 2,
-          slideOrder: "carousel-3",
-          becomeWhat: "Hustler",
+          order: "carousel-3",
+          categories: "Hustler",
+          description:
+            "Hustler is the third and last H out of BYTE’s 3Hs. Hustlers have the ability to think of innovative ideas and have an entrepreneurial mindset to develop a business.",
+          bitbot: "require('@/assets/img/bitbots/bbhustler.svg')",
           classes: [
             "slide3", //BG Color
             "t2",
@@ -129,7 +140,7 @@ export default Vue.extend({
   z-index: 10;
 }
 
-#carousel-1:checked
+/* #carousel-1:checked
   ~ .control-1
   ~ .carousel-indicators
   li:nth-child(1)
@@ -145,6 +156,6 @@ export default Vue.extend({
   li:nth-child(3)
   .carousel-bullet {
   color: #ffffff;
-  /*Set to match the Tailwind colour you want the active one to be */
-}
+  Set to match the Tailwind colour you want the active one to be */
+/* } */
 </style>
