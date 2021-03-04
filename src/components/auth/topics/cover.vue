@@ -1,7 +1,7 @@
 <template>
   <div class="w-full mb-12">
-    <div class="relative w-full hustlerStyle heighter rounded-xl">
-      <img :src="bitbot" class="bitBot" />
+    <div :class="coverStyle">
+      <img :src="botStyle" class="bitBot" />
 
       <div class="flex items-center w-full h-full pl-56">
         <div class="w-full">
@@ -26,9 +26,33 @@ export default {
   name: "cover",
   props: ["topic"],
   computed: {
-    bitbot() {
-      const bitbot = require("../../../assets/img/bitbots/bbwhite.svg");
-      return bitbot;
+    botStyle() {
+      const hacker = require("../../../assets/img/bitbots/bbhacker.svg");
+      const hipster = require("../../../assets/img/bitbots/bbhipster.svg");
+      const hustler = require("../../../assets/img/bitbots/bbhustler.svg");
+      switch (this.topic.categories[0].name) {
+        case "Hacker":
+          return hacker;
+        case "Hipster":
+          return hipster;
+        case "Hustler":
+          return hustler;
+        default:
+          return hacker;
+      }
+    },
+    coverStyle() {
+      const defaultStyle = "w-full heighter rounded-xl relative";
+      switch (this.topic.categories[0].name) {
+        case "Hacker":
+          return `hackerStyle ${defaultStyle}`;
+        case "Hipster":
+          return `hipsterStyle ${defaultStyle}`;
+        case "Hustler":
+          return `hustlerStyle ${defaultStyle}`;
+        default:
+          return `hackerStyle ${defaultStyle}`;
+      }
     },
   },
 };
