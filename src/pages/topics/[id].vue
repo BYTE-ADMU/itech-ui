@@ -4,9 +4,19 @@
     <div
       class="container flex flex-col w-screen min-h-screen pt-10 pb-20 mx-auto mb-24"
     >
-      <p class="mb-10 breadcrumb">
+      <!-- <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>
-      </p>
+        
+        
+      </p> -->
+      <div class="mb-10 breadcrumb flex">
+        <button @click="$router.push(`/categories/${topic.categories[0].name}`)"
+          class="pr-6">
+            {{topic.categories[0].name}}
+        </button>
+        <p class="pr-6">/</p>
+        <p>{{ topic.name }}</p>
+      </div>
 
       <div v-if="topic === null">
         <Loader />
