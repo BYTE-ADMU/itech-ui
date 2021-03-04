@@ -3,14 +3,26 @@
     <div :class="coverStyle">
       <img :src="botStyle" class="bitBot" />
 
-      <div class="flex items-center w-full h-full pl-56">
-        <div class="w-full">
-          <h2
-            class="leading-tight text-white select-none text-feature font-neuemachina w-1/2"
-          >
-            {{ topic.name }}
-          </h2>
-          <p class="mt-4 text-white font-objectivity">
+      <div class="block w-full h-full lg:flex">
+        <div class="flex w-full pt-6 pl-6 lg:items-center sm:w-1/2 sm:pl-10 sm:pt-10 lg:pt-0 lg:pl-56">
+          <div>
+            <h2
+              class="leading-tight text-white select-none text-feature font-neuemachina"
+            >
+              {{ topic.name }}
+            </h2>
+            <p class="text-2xl text-white lg:text-base font-objectivity">
+                Articles
+            </p>
+            <!-- <p class="mt-4 text-white font-objectivity">
+              {{ topic.description }}
+            </p> -->
+          </div>
+        </div>
+        <div
+          class="flex pl-48 pr-20 text-white lg:items-center sm:w-3/4"
+        >
+          <p>
             {{ topic.description }}
           </p>
         </div>
@@ -65,7 +77,7 @@ export default {
   top: 56px;
 }
 .heighter {
-  height: 204px;
+  height: 245px;
 }
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
