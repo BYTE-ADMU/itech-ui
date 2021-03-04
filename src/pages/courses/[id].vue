@@ -4,9 +4,17 @@
     <div
       class="container flex flex-col w-screen min-h-screen pt-10 pb-20 mx-auto mb-24"
     >
-      <p class="mb-10 breadcrumb">
+      <!-- <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>
-      </p>
+      </p> -->
+      <div class="mb-10 breadcrumb hidden sm:flex">
+        <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
+          class="pr-6">
+            {{course.categories[0].name}}
+        </button>
+        <p class="pr-6">/</p>
+        <p>{{ course.name }}</p>
+      </div>
 
       <div v-if="course === null">
         <Loader />
