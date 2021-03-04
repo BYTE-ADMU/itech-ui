@@ -6,7 +6,7 @@
       <div class="flex items-center w-full h-full pl-56">
         <div class="w-full">
           <h2
-            class="leading-tight text-white select-none text-feature font-neuemachina"
+            class="leading-tight text-white select-none text-feature font-neuemachina w-1/2"
           >
             {{ topic.name }}
           </h2>

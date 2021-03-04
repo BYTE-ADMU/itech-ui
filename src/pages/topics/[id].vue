@@ -10,7 +10,7 @@
         
       </p> -->
       <div class="mb-10 breadcrumb flex">
-        <button @click="$router.push(`/categories/${topic.categories[0].name}`)"
+        <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
           class="pr-6">
             {{topic.categories[0].name}}
         </button>
