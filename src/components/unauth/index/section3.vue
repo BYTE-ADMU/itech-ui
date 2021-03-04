@@ -1,6 +1,6 @@
 <template>
   <section id="section2" class="">
-    <Slides v-bind:slides="slides" />
+    <Slides :slides="slides" />
   </section>
 </template>
 
@@ -25,14 +25,6 @@ export default Vue.extend({
           categories: "Hacker",
           description:
             "Hacker is the first H out of BYTE’s 3Hs. Hackers have the skill to program website or application prototypes from ideations. ",
-          bitbot: "require('@/assets/img/bitbots/bbhacker.svg')",
-
-          classes: [
-            "slide1", //BG Color
-            "t1",
-            "t2",
-            "t3",
-          ],
         },
         {
           id: 1,
@@ -40,14 +32,6 @@ export default Vue.extend({
           categories: "Hipster",
           description:
             "Hipster is the second H out of BYTE’s 3Hs. Hipsters have an eye and mind for creativity that can be applied to web and mobile design. ",
-          bitbot: "require('@/assets/img/bitbots/bbhipster.svg')",
-
-          classes: [
-            "slide2", //BG Color
-            "t3",
-            "t1",
-            "t2",
-          ],
         },
         {
           id: 2,
@@ -55,13 +39,6 @@ export default Vue.extend({
           categories: "Hustler",
           description:
             "Hustler is the third and last H out of BYTE’s 3Hs. Hustlers have the ability to think of innovative ideas and have an entrepreneurial mindset to develop a business.",
-          bitbot: "require('@/assets/img/bitbots/bbhustler.svg')",
-          classes: [
-            "slide3", //BG Color
-            "t2",
-            "t3",
-            "t1",
-          ],
         },
       ],
     };
@@ -70,36 +47,6 @@ export default Vue.extend({
 </script>
 
 <style>
-.slide1 {
-  background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
-}
-
-.slide2 {
-  background: linear-gradient(283.99deg, #ff7b92 7.28%, #e13894 100%);
-}
-
-.slide3 {
-  background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
-}
-
-.t1 {
-  filter: brightness(80%);
-  background-image: url("../../../assets/img/unauth/index/section2/slides/HACKER BG 1.png");
-  background-size: cover;
-}
-
-.t2 {
-  filter: brightness(80%);
-  background-image: url("../../../assets/img/unauth/index/section2/slides/HACKER BG 2.png");
-  background-size: cover;
-}
-
-.t3 {
-  filter: brightness(80%);
-  background-image: url("../../../assets/img/unauth/index/section2/slides/HACKER BG 3.png");
-  background-size: cover;
-}
-
 .big-box {
   width: 20rem;
   height: 20rem;
@@ -113,14 +60,6 @@ export default Vue.extend({
 .long-box {
   width: 20rem;
   height: 9.5rem;
-}
-
-.mascot-1 {
-  left: -50px;
-  bottom: -50px;
-  width: 200px;
-  height: auto;
-  z-index: 10;
 }
 
 .carousel-open:checked + .carousel-item {
@@ -140,7 +79,7 @@ export default Vue.extend({
   z-index: 10;
 }
 
-/* #carousel-1:checked
+#carousel-1:checked
   ~ .control-1
   ~ .carousel-indicators
   li:nth-child(1)
@@ -156,6 +95,5 @@ export default Vue.extend({
   li:nth-child(3)
   .carousel-bullet {
   color: #ffffff;
-  Set to match the Tailwind colour you want the active one to be */
-/* } */
+}
 </style>

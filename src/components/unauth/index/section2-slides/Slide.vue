@@ -11,7 +11,7 @@
       checked="checked"
     />
     <div :class="slideStyle" class="py-20">
-      <div class="container mb-20">
+      <div class="mb-20 lg:container">
         <!-- START: DESCRIPTION -->
         <div class="mb-20 full-width-row">
           <div class="w-full text-center text-white">
@@ -30,121 +30,46 @@
 
         <!-- START: CAROUSEL -->
         <div
-          class="grid items-center w-full grid-cols-1 gap-2 mx-auto lg:grid-cols-3 lg:container"
+          class="grid items-center w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3"
         >
           <!-- START: FIRST COLUMN -->
-          <div class="hidden mx-auto lg:block">
-            <div class="flex">
-              <div
-                class="bg-white rounded-lg small-box"
-                v-bind:class="[slide.classes[2]]"
-              >
-                &nbsp;
-              </div>
-              <div
-                class="ml-4 bg-white rounded-lg small-box"
-                v-bind:class="[slide.classes[1]]"
-              >
-                &nbsp;
-              </div>
-            </div>
-            <div
-              class="mt-4 bg-white rounded-lg long-box"
-              v-bind:class="[slide.classes[3]]"
-            >
-              &nbsp;
-            </div>
-          </div>
 
+          <div class="grid hidden grid-cols-1 mx-auto lg:block">
+            <div class="grid grid-cols-2 gap-4">
+              <CourseButton v-bind:course="filteredCourses[0]" />
+              <CourseButton v-bind:course="filteredCourses[1]" />
+            </div>
+            <ArticleButton
+              class="mt-4"
+              v-bind:article="filteredArticles[0]"
+            ></ArticleButton>
+          </div>
           <!-- END: FIRST COLUMN -->
 
           <!-- START: SECOND COLUMN -->
           <g-link
-            :to="`/categories/${slide.categories}`"
-            class="mx-auto bg-white rounded-lg big-box"
+            :to="`/categories/${slide.categories.toLowerCase()}`"
+            class="w-full mx-auto bg-white rounded-lg"
           >
             <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
           </g-link>
           <!-- END: SECOND COLUMN -->
 
           <!-- START: THIRD COLUMN -->
-
-          <div class="hidden mx-auto lg:block">
-            <div
-              class="mb-4 bg-white rounded-lg long-box"
-              v-bind:class="[slide.classes[3]]"
-            >
-              &nbsp;
-            </div>
-            <div class="flex">
-              <div
-                class="bg-white rounded-lg small-box"
-                v-bind:class="[slide.classes[2]]"
-              >
-                &nbsp;
-              </div>
-              <div
-                class="ml-4 bg-white rounded-lg small-box"
-                v-bind:class="[slide.classes[1]]"
-              >
-                &nbsp;
-              </div>
+          <div class="grid hidden grid-cols-1 mx-auto lg:block">
+            <ArticleButton
+              class="mb-4"
+              v-bind:article="filteredArticles[1]"
+            ></ArticleButton>
+            <div class="grid grid-cols-2 gap-4">
+              <CourseButton v-bind:course="filteredCourses[2]" />
+              <CourseButton v-bind:course="filteredCourses[3]" />
             </div>
           </div>
           <!-- END: THIRD COLUMN -->
         </div>
 
         <!-- END: CAROUSEL -->
-
-        <!-- <div>
-          <div class="flex">
-            <div
-              class="ml-4 bg-white rounded-lg small-box"
-              v-bind:class="[slide.classes[2]]"
-            >
-              &nbsp;
-            </div>
-            <div
-              class="ml-4 bg-white rounded-lg small-box"
-              v-bind:class="[slide.classes[1]]"
-            >
-              &nbsp;
-            </div>
-          </div>
-          <div
-            class="mt-4 ml-4 bg-white rounded-lg long-box"
-            v-bind:class="[slide.classes[3]]"
-          >
-            &nbsp;
-          </div>
-        </div> -->
-
-        <!-- <div>
-          <div class="py-6 mx-auto bg-white rounded-lg big-box"></div>
-        </div> -->
-
-        <!-- <div>
-          <div
-            class="mb-4 ml-4 bg-white rounded-lg long-box"
-            v-bind:class="[slide.classes[3]]"
-          >
-            &nbsp;
-          </div>
-          <div class="flex">
-            <div
-              class="ml-4 bg-white rounded-lg small-box"
-              v-bind:class="[slide.classes[2]]"
-            >
-              &nbsp;
-            </div>
-            <div
-              class="ml-4 bg-white rounded-lg small-box"
-              v-bind:class="[slide.classes[1]]"
-            >
-              &nbsp;
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>
@@ -152,33 +77,61 @@
 
 
 <script>
-import Vue from "vue";
-export default Vue.extend({
+import ArticleButton from "./ArticleButton";
+import CourseButton from "./CourseButton";
+
+import Loader from "../../../Loader";
+
+export default {
+  components: {
+    ArticleButton,
+    CourseButton,
+    Loader,
+  },
+
   name: "Slide",
   props: ["slide"],
+  // data() {
+  //   return {
+  //     articles: null,
+  //     courses: null,
+  //   };
+  // },
 
   computed: {
+    category() {
+      return this.slide.categories.toLowerCase();
+    },
+
+    articles() {
+      const data = this.$store.state.articlesStore.articles.reverse();
+      return data;
+    },
+
+    courses() {
+      const data = this.$store.state.coursesStore.courses.reverse();
+      return data;
+    },
+
     botImage() {
-      const type = this.slide.categories;
       const hacker = require("@/assets/img/bitbots/bbhacker.svg");
       const hipster = require("@/assets/img/bitbots/bbhipster.svg");
       const hustler = require("@/assets/img/bitbots/bbhustler.svg");
-      switch (type) {
-        case "Hacker":
+      switch (this.category) {
+        case "hacker":
           return hacker;
-        case "Hipster":
+        case "hipster":
           return hipster;
-        case "Hustler":
+        case "hustler":
           return hustler;
         default:
           return hacker;
       }
     },
     slideStyle() {
-      const type = this.slide.categories;
       const defaultStyle =
-        "absolute flex items-center justify-center min-h-screen opacity-0 carousel-item";
-      switch (type.toLowerCase()) {
+        "absolute flex items-center justify-center opacity-0 carousel-item";
+      switch (this.category) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
         case "hipster":
@@ -189,22 +142,23 @@ export default Vue.extend({
           return `hackerStyle ${defaultStyle}`;
       }
     },
+
+    filteredArticles() {
+      return this.articles.filter((article) => {
+        return article.categories[0].name.toLowerCase().includes(this.category);
+      });
+    },
+
+    filteredCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.toLowerCase().includes(this.category);
+      });
+    },
   },
-});
+};
 </script>
 
 <style lang="css" scoped>
-.grid-container {
-  display: grid;
-  grid-gap: 20px;
-  justify-content: center;
-}
-
-.full-width-row {
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
 }
@@ -215,11 +169,5 @@ export default Vue.extend({
 
 .hustlerStyle {
   background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
-}
-
-.bitBot {
-  height: 160px;
-  position: absolute;
-  left: 145px;
 }
 </style>
