@@ -7,7 +7,7 @@
       <!-- <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>
       </p> -->
-      <div class="mb-10 breadcrumb flex">
+      <div class="mb-10 breadcrumb hidden sm:flex">
         <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
           class="pr-6">
             {{topic.categories[0].name}}
@@ -52,18 +52,17 @@
 
         <h3
           class="mb-4 text-xl font-bold uppercase font-objectivity"
-          style="color: #9d9d9d"
         >
-          Related
+          Articles ✨
         </h3>
 
         <div v-if="!articles.length > 0">No Articles Yet</div>
-        <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
+        <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
           <articleEntry
             v-for="article in filteredArticles"
             v-bind:key="article.id"
             v-bind:article="article"
-            class="w-full mb-16"
+            class="w-full mb-0 sm:mb-1 md:mb-2"
           ></articleEntry>
         </div>
       </div>
