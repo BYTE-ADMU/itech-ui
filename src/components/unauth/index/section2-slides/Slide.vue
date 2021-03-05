@@ -1,80 +1,70 @@
 <!--Slide Component-->
 <template>
-  <div>
-    <input
-      class="carousel-open"
-      type="radio"
-      v-bind:id="[slide.order]"
-      name="carousel"
-      aria-hidden="true"
-      hidden=""
-      checked="checked"
-    />
-    <div :class="slideStyle">
-      <div class="mb-20 lg:container">
-        <!-- START: DESCRIPTION -->
-        <div class="mb-20 full-width-row">
-          <div class="w-full text-center text-white">
-            <p class="tracking-wide uppercase md:text-2xl font-objectivity">
-              Become a
-            </p>
-            <p class="text-5xl tracking-wider uppercase font-neuemachina">
-              {{ slide.categories }}
-            </p>
-            <p
-              class="px-2 tracking-wider md:px-12 lg:px-32 md:text-xl font-objectivity"
-            >
-              {{ slide.description }}
-            </p>
-          </div>
-        </div>
-        <!-- END: DESCRIPTION -->
-
-        <!-- START: CAROUSEL -->
-        <div
-          class="grid items-center w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3"
-        >
-          <!-- START: FIRST COLUMN -->
-
-          <div class="grid hidden grid-cols-1 mx-auto lg:block">
-            <div class="grid grid-cols-2 gap-4">
-              <CourseButton v-bind:course="filteredCourses[0]" />
-              <CourseButton v-bind:course="filteredCourses[1]" />
-            </div>
-            <ArticleButton
-              class="mt-4"
-              v-bind:article="filteredArticles[0]"
-            ></ArticleButton>
-          </div>
-          <!-- END: FIRST COLUMN -->
-
-          <!-- START: SECOND COLUMN -->
-          <g-link
-            :to="`/categories/${slide.categories.toLowerCase()}`"
-            class="w-2/3 mx-auto bg-white rounded-lg lg:w-full"
+  <div :class="slideStyle">
+    <div class="mb-20 lg:container">
+      <!-- START: DESCRIPTION -->
+      <div class="mb-20 full-width-row">
+        <div class="w-full text-center text-white">
+          <p class="tracking-wide uppercase md:text-2xl font-objectivity">
+            Become a
+          </p>
+          <p class="text-5xl tracking-wider uppercase font-neuemachina">
+            {{ slide.categories }}
+          </p>
+          <p
+            class="px-2 tracking-wider md:px-12 lg:px-32 md:text-xl font-objectivity"
           >
-            <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
-          </g-link>
-          <!-- END: SECOND COLUMN -->
-
-          <!-- START: THIRD COLUMN -->
-          <div class="grid hidden grid-cols-1 mx-auto lg:block">
-            <ArticleButton
-              class="mb-4"
-              v-bind:article="filteredArticles[1]"
-            ></ArticleButton>
-            <div class="grid grid-cols-2 gap-4">
-              <CourseButton v-bind:course="filteredCourses[2]" />
-              <CourseButton v-bind:course="filteredCourses[3]" />
-            </div>
-          </div>
-          <!-- END: THIRD COLUMN -->
+            {{ slide.description }}
+          </p>
         </div>
-
-        <!-- END: CAROUSEL -->
       </div>
+      <!-- END: DESCRIPTION -->
+
+      <!-- START: CAROUSEL -->
+      <div
+        class="grid items-center w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3"
+      >
+        <!-- START: FIRST COLUMN -->
+
+        <div class="grid hidden grid-cols-1 mx-auto lg:block">
+          <div class="grid grid-cols-2 gap-4">
+            <CourseButton v-bind:course="filteredCourses[0]" />
+            <CourseButton v-bind:course="filteredCourses[1]" />
+          </div>
+          <ArticleButton
+            class="mt-4"
+            v-bind:article="filteredArticles[0]"
+          ></ArticleButton>
+        </div>
+        <!-- END: FIRST COLUMN -->
+
+        <!-- START: SECOND COLUMN -->
+        <g-link
+          :to="`/categories/${slide.categories.toLowerCase()}`"
+          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full"
+        >
+          <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
+        </g-link>
+        <!-- END: SECOND COLUMN -->
+
+        <!-- START: THIRD COLUMN -->
+        <div class="grid hidden grid-cols-1 mx-auto lg:block">
+          <ArticleButton
+            class="mb-4"
+            v-bind:article="filteredArticles[1]"
+          ></ArticleButton>
+          <div class="grid grid-cols-2 gap-4">
+            <CourseButton v-bind:course="filteredCourses[2]" />
+            <CourseButton v-bind:course="filteredCourses[3]" />
+          </div>
+        </div>
+        <!-- END: THIRD COLUMN -->
+      </div>
+
+      <!-- END: CAROUSEL -->
     </div>
   </div>
+
   <!-- END: HACKER -->
 </template>
 
@@ -92,7 +82,7 @@ export default {
     Loader,
   },
 
-  name: "HardSlide",
+  name: "Slide",
   props: ["slide", "courses", "articles"],
 
   computed: {
