@@ -5,7 +5,7 @@
     </div>
     <div
       v-else
-      class="object-contain w-screen h-auto min-h-screen carousel carousel--translate"
+      class="object-contain w-screen h-auto min-h-screen overflow-x-hidden carousel carousel--translate"
     >
       <input
         class="carousel__activator"

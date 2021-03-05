@@ -1,5 +1,5 @@
 <template>
-  <section id="section2" class="">
+  <section id="section2" class="overflow-x-hidden">
     <Slides :slides="slides" />
   </section>
 </template>
