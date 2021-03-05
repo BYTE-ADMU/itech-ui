@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="flex flex-wrap items-center justify-between w-screen px-20 py-5 bg-white shadow-md nav"
+    class="flex flex-wrap items-center justify-between w-screen px-4 py-5 bg-white shadow-md md:px-20 nav"
   >
     <div
       class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
@@ -40,41 +40,40 @@
       <div class="flex items-center flex-grow w-auto">
         <div class="flex-grow text-sm"></div>
 
+        <div v-if="!isAuthenticated">
+          <g-link
+            class="block px-8 py-3 text-sm form_button ... nav__link"
+            to="/login/"
+          >
+            Log In
+          </g-link>
+        </div>
+        <div class="flex" v-else>
+          <g-link
+            to="/discover/"
+            class="mx-2 my-auto font-bold uppercase md:mx-8 text-md font-neuemachina nav__link"
+          >
+            Discover
+          </g-link>
+          <!-- <a
+            href="/categories/hacker/"
+            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
+          >
+            Hacker
+          </a>
+          <a
+            href="/categories/hipster/"
+            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
+          >
+            Hipster
+          </a>
 
-      <div v-if="!isAuthenticated">
-        <g-link
-          class="block px-8 py-3 text-sm form_button ... nav__link"
-          to="/login/"
-        >
-          Log In
-        </g-link>
-      </div>
-      <div class="flex" v-else>
-        <g-link
-          to="/discover/"
-          class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-        >
-          Discover
-        </g-link>
-        <!-- <g-link
-          to="/categories/hacker/"
-          class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-        >
-          Hacker
-        </g-link>
-        <g-link
-          to="/categories/hipster/"
-          class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-        >
-          Hipster
-        </g-link>
-
-        <g-link
-          to="/categories/hustler/"
-          class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-        >
-          Hustler
-        </g-link> -->
+          <a
+            href="/categories/hustler/"
+            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
+          >
+            Hustler
+          </a> -->
           <div class="relative p-4 hover-trigger nav__link">
             <svg
               width="24"
