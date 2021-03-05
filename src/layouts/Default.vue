@@ -21,7 +21,6 @@ export default {
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
-    this.$store.dispatch("categoriesStore/getCategories");
   },
 };
 </script>
