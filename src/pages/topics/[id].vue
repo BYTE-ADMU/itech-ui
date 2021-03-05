@@ -4,7 +4,13 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <div class="mb-10 breadcrumb hidden sm:flex">
+      <div v-if="topic === null" class="mb-10 breadcrumb hidden sm:flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
+        </button>
+      </div>
+      <div v-else class="mb-10 breadcrumb hidden sm:flex">
         <button @click="$router.go(-1)"
           class="pr-6">
             Back
