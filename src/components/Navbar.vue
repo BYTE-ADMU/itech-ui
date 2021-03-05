@@ -40,22 +40,23 @@
       <div class="flex items-center flex-grow w-auto">
         <div class="flex-grow text-sm"></div>
 
-        <div v-if="!isAuthenticated">
-          <g-link
-            class="block px-8 py-3 text-sm form_button ... nav__link"
-            to="/login/"
-          >
-            Log In
-          </g-link>
-        </div>
-        <div class="flex" v-else>
-          <!-- <g-link
+
+      <div v-if="!isAuthenticated">
+        <g-link
+          class="block px-8 py-3 text-sm form_button ... nav__link"
+          to="/login/"
+        >
+          Log In
+        </g-link>
+      </div>
+      <div class="flex" v-else>
+        <g-link
           to="/discover/"
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
           Discover
         </g-link>
-        <g-link
+        <!-- <g-link
           to="/categories/hacker/"
           class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
         >
