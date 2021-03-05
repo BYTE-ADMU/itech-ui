@@ -6,7 +6,7 @@
 
 <script>
 import Vue from "vue";
-import Slides from "./section2-slides/HardSlides.vue";
+import Slides from "./section2-slides/Slides.vue";
 
 export default Vue.extend({
   name: "unauth-index-section3",

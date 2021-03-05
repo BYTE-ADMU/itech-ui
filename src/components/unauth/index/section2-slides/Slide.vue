@@ -10,7 +10,7 @@
       hidden=""
       checked="checked"
     />
-    <div :class="slideStyle" class="py-20">
+    <div :class="slideStyle">
       <div class="mb-20 lg:container">
         <!-- START: DESCRIPTION -->
         <div class="mb-20 full-width-row">
@@ -21,7 +21,9 @@
             <p class="text-5xl tracking-wider uppercase font-neuemachina">
               {{ slide.categories }}
             </p>
-            <p class="px-2 tracking-wider lg:px-32 md:text-xl font-objectivity">
+            <p
+              class="px-2 tracking-wider md:px-12 lg:px-32 md:text-xl font-objectivity"
+            >
               {{ slide.description }}
             </p>
           </div>
@@ -49,7 +51,7 @@
           <!-- START: SECOND COLUMN -->
           <g-link
             :to="`/categories/${slide.categories.toLowerCase()}`"
-            class="w-full mx-auto bg-white rounded-lg"
+            class="w-2/3 mx-auto bg-white rounded-lg lg:w-full"
           >
             <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
           </g-link>
@@ -73,6 +75,7 @@
       </div>
     </div>
   </div>
+  <!-- END: HACKER -->
 </template>
 
 
@@ -89,35 +92,15 @@ export default {
     Loader,
   },
 
-  name: "Slide",
-  props: ["slide"],
-  // data() {
-  //   return {
-  //     articles: null,
-  //     courses: null,
-  //   };
-  // },
+  name: "HardSlide",
+  props: ["slide", "courses", "articles"],
 
   computed: {
-    category() {
-      return this.slide.categories.toLowerCase();
-    },
-
-    articles() {
-      const data = this.$store.state.articlesStore.articles.reverse();
-      return data;
-    },
-
-    courses() {
-      const data = this.$store.state.coursesStore.courses.reverse();
-      return data;
-    },
-
     botImage() {
       const hacker = require("@/assets/img/bitbots/bbhacker.svg");
       const hipster = require("@/assets/img/bitbots/bbhipster.svg");
       const hustler = require("@/assets/img/bitbots/bbhustler.svg");
-      switch (this.category) {
+      switch (this.slide.categories.toLowerCase()) {
         case "hacker":
           return hacker;
         case "hipster":
@@ -128,10 +111,11 @@ export default {
           return hacker;
       }
     },
+
     slideStyle() {
       const defaultStyle =
-        "absolute flex items-center justify-center opacity-0 carousel-item";
-      switch (this.category) {
+        "py-20 absolute flex items-center justify-center opacity-0 carousel-item";
+      switch (this.slide.categories.toLowerCase()) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
         case "hipster":
@@ -143,16 +127,66 @@ export default {
       }
     },
 
-    filteredArticles() {
+    filteredHackerArticles() {
       return this.articles.filter((article) => {
-        return article.categories[0].name.toLowerCase().includes(this.category);
+        return article.categories[0].name.toLowerCase().includes("hacker");
       });
     },
 
-    filteredCourses() {
+    filteredHackerCourses() {
       return this.courses.filter((course) => {
-        return course.categories[0].name.toLowerCase().includes(this.category);
+        return course.categories[0].name.toLowerCase().includes("hacker");
       });
+    },
+
+    filteredHipsterArticles() {
+      return this.articles.filter((article) => {
+        return article.categories[0].name.toLowerCase().includes("hipster");
+      });
+    },
+
+    filteredHipsterCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.toLowerCase().includes("hipster");
+      });
+    },
+
+    filteredHustlerArticles() {
+      return this.articles.filter((article) => {
+        return article.categories[0].name.toLowerCase().includes("hustler");
+      });
+    },
+
+    filteredHustlerCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.toLowerCase().includes("hustler");
+      });
+    },
+
+    filteredArticles() {
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return this.filteredHackerArticles;
+        case "hipster":
+          return this.filteredHipsterArticles;
+        case "hustler":
+          return this.filteredHustlerArticles;
+        default:
+          return this.filteredHackerArticles;
+      }
+    },
+
+    filteredCourses() {
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return this.filteredHackerCourses;
+        case "hipster":
+          return this.filteredHipsterCourses;
+        case "hustler":
+          return this.filteredHustlerCourses;
+        default:
+          return this.filteredHackerCourses;
+      }
     },
   },
 };
