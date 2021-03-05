@@ -155,18 +155,18 @@ export default {
     async getFilteredArticles(courses) {
       if (courses.length > 0) {
         for (const eachCourse of courses) {
-          console.log(eachCourse.name + ": ");
-          console.log(eachCourse);
+          // console.log(eachCourse.name + ": ");
+          // console.log(eachCourse);
           for (const eachCourseArticle of eachCourse.articles) {
             // const { data } = await axios.get(
             //   `https://calm-everglades-39473.herokuapp.com/articles/${eachArticle}`
             // );
-            console.log(eachCourseArticle);
+            // console.log(eachCourseArticle);
 
             for (const eachArticle of this.$store.state.articlesStore
               .articles) {
               if (eachArticle.id === eachCourseArticle) {
-                console.log(eachArticle);
+                // console.log(eachArticle);
                 this.filteredArticles.push(eachArticle);
               }
             }

@@ -95,7 +95,6 @@ export default {
 
   watch: {
     "$router.history.current.path": async function () {
-      console.log("fired");
       this.category = await this.getCategory();
     },
   },
