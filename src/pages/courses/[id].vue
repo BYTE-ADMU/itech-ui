@@ -8,6 +8,11 @@
         <button @click="$router.go(-1)">Back</button>
       </p> -->
       <div class="mb-10 breadcrumb hidden sm:flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
+        </button>
+        <p class="pr-6">/</p>
         <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
           class="pr-6">
             {{course.categories[0].name}}
