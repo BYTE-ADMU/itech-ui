@@ -3,14 +3,15 @@
     <div :class="coverStyle">
       <g-image :src="botStyle" class="bitBot" />
 
-        <div class="flex items-center w-full h-full pl-10 lg:pl-56 pr-20 sm:pr-40 lg:pr-12">
+        <div class="flex lg:items-center w-full h-full pt-10 lg:pt-0 pl-10 lg:pl-56 pr-20 sm:pr-32 lg:pr-12">
           <div>
             <h2
-              class="leading-tight text-white select-none text-feature font-neuemachina"
+              class="text-white select-none text-feature font-neuemachina mb-2"
             >
               {{ course.name }}
             </h2>
-            <p class="text-white text-base font-objectivity">{{ course.description }}</p>
+            <h3 class="text-white text-base font-objectivity font-bold mb-2">Articles</h3>
+            <p class="text-white text-sm font-objectivity">{{ course.description }}</p>
           </div>
         </div>
     </div>
@@ -75,17 +76,23 @@ export default {
 }
 .text-feature {
   font-size: 56px;
-  line-height: 71px;
+  line-height: 50px;
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1023px) {
   .heighter {
-    height: 450px;
+    height: 420px;
   }
 
   .bitBot {
-    top: 300px;
+    top: 260px;
     right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .text-feature {
+    font-size: 48px;;
   }
 }
 
@@ -107,6 +114,7 @@ export default {
 @media screen and (max-width: 475px) {
   .text-feature {
     font-size: 36px;
+    line-height: 40px;
   }
 }
 </style>
