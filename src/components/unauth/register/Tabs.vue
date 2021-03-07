@@ -130,7 +130,7 @@
               <!-- START: IMAGE -->
 
               <!-- START: NEXT BUTTON -->
-              <div  v-if="selectedIndex === 8"><g-link to="/login/"><button class="px-16 py-4 mx-auto form_button uppercase font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
+              <div  v-if="selectedIndex === 8"><button @click="register" class="px-16 py-4 mx-auto form_button uppercase font-objectivity ...">{{tabData.buttonText}}</button></div>
               <div v-else><button class="px-16 py-4 mx-auto form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>    
@@ -144,6 +144,7 @@
 
 <script>
 import Tab from "./Tab.vue";
+
 export default {
   components: { Tab },
   props: ["tabsData"],
@@ -223,6 +224,19 @@ export default {
         tab.isActive = index === i;
       });
     },
+    async register() {
+      const regObj = {
+        username: this.user.username,
+        email: this.user.email,
+        password: this.user.password,
+      }
+      this.$store.dispatch('register', regObj)
+        .then(() => {
+          if (this.$store.state.isAuthenticated) {
+            this.$router.replace('/dashboard');
+          }
+        })
+    }
   },
 };
 </script>

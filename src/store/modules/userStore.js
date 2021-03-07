@@ -20,6 +20,7 @@ const userStore = {
       let data = {}
 
       try {
+        console.log(`${state.API_URL}/auth/local`);
         const response = await axios.post(`${state.API_URL}/auth/local`, {
           identifier: email,
           password: password,
