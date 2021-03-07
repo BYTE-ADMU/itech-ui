@@ -8,7 +8,7 @@
           Featured
         </p>
         <p
-          class="relative w-full py-3 text-3xl text-white featured-title hover:opacity-100"
+          class="relative w-full py-3  text-white featured-title hover:opacity-100"
         >
           <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
@@ -55,7 +55,7 @@ export default {
 .featured-author-name {
   font-family: Objectivity;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 700;
   font-size: 24px;
   line-height: 22px;
 }
