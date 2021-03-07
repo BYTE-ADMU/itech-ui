@@ -14,7 +14,7 @@
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-9/12">
+        <div class="flex flex-col ">
           <featureEntry
             v-bind:key="featuredArticle.id"
             v-bind:article="featuredArticle"
@@ -23,7 +23,7 @@
           <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
             New On ITECH
           </h3>
-          <div class="grid grid-cols-3 gap-4 mt-1 mb-24">
+          <div class="grid grid-cols-4 gap-3 mt-1 mb-24">
             <articleEntry
               class="w-full"
               v-for="article in newOnItech"
@@ -32,11 +32,6 @@
             ></articleEntry>
           </div>
         </div>
-        <!-- Topic of the Week -->
-        <playlistTall
-          v-bind:key="featuredCourse.id"
-          v-bind:course="featuredCourse"
-        />
       </div>
 
       <hr class="mb-12" />
@@ -231,7 +226,7 @@ export default {
     },
 
     newOnItech() {
-      return this.articles.slice(0, 3);
+      return this.articles.slice(0, 4);
     },
 
     threeFeaturedCourses() {
