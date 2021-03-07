@@ -4,24 +4,24 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <div v-if="topic === null" class="mb-10 breadcrumb hidden sm:flex">
+      <div v-if="topic === null" class="mb-10 breadcrumb">
         <button @click="$router.go(-1)"
           class="pr-6">
             Back
         </button>
       </div>
-      <div v-else class="mb-10 breadcrumb hidden sm:flex">
+      <div v-else class="mb-10 breadcrumb flex">
         <button @click="$router.go(-1)"
           class="pr-6">
             Back
         </button>
-        <p class="pr-6">/</p>
+        <p class="pr-6 hidden sm:block">/</p>
         <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="pr-6">
+          class="pr-6 hidden sm:block">
             {{topic.categories[0].name}}
         </button>
-        <p class="pr-6">/</p>
-        <p>{{ topic.name }}</p>
+        <p class="pr-6 hidden sm:block">/</p>
+        <p class="hidden sm:block">{{ topic.name }}</p>
       </div>
 
       <div v-if="topic === null">
