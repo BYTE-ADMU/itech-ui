@@ -2,11 +2,28 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen pt-10 pb-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <p class="mb-10 breadcrumb">
-        <button @click="$router.go(-1)">Back</button>
-      </p>
+      <div v-if="course === null" class="mb-10 breadcrumb flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
+        </button>
+      </div>
+
+      <div v-else class="mb-10 breadcrumb flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
+        </button>
+        <p class="pr-6 hidden sm:block">/</p>
+        <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
+          class="pr-6 hidden sm:block">
+            {{course.categories[0].name}}
+        </button>
+        <p class="pr-6 hidden sm:block">/</p>
+        <p class="hidden sm:block">{{ course.name }}</p>
+      </div>
 
       <div v-if="course === null">
         <Loader />
@@ -19,22 +36,22 @@
           </div>
         </div>
 
-        <hr class="mt-12 mb-6" />
+        <!-- <hr class="mt-12 mb-6" />
 
         <h3
           class="mb-4 text-xl font-bold uppercase font-objectivity"
           style="color: #9d9d9d"
         >
           Related
-        </h3>
+        </h3> -->
 
         <div v-if="!course.articles.length > 0">No Articles Yet</div>
-        <div v-else class="grid grid-cols-4 gap-4 mt-1 mb-24">
+        <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 mt-10 mb-24">
           <articleEntry
             v-for="article in filteredArticles"
             v-bind:key="article.id"
             v-bind:article="article"
-            class="w-full"
+            class="w-full mb-0 sm:mb-1 md:mb-2"
           ></articleEntry>
         </div>
       </div>
