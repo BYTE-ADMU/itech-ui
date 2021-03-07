@@ -3,13 +3,13 @@
     <g-link :to="`/categories/${bb3}`">
       <div :class="botStyle">
         <h2
-          class="px-6 pt-6 leading-tight text-white select-none text-feature font-neuemachina"
+          class="px-6 pt-6 pb-2 leading-tight text-white select-none text-feature font-neuemachina"
         >
           {{ botWord }}
         </h2>
         <g-link
           :to="`/categories/${bb3}`"
-          class="px-6 text-white font-objectivity"
+          class="px-6 text-white font-objectivity view-all"
           >View All</g-link
         >
         <g-image :src="botImage" class="bitBot" />
@@ -34,18 +34,18 @@ export default {
       const type = this.bb3;
       switch (type) {
         case "hacker":
-          return "hack er";
+          return "Hacker";
         case "hipster":
-          return "hips ter";
+          return "Hipster";
         case "hustler":
-          return "hust ler";
+          return "Hustler";
         default:
-          return "hack er";
+          return "Hacker";
       }
     },
     botStyle() {
       const type = this.bb3;
-      const defaultStyle = "w-full h-48 heighter rounded-xl relative";
+      const defaultStyle = "w-full heighter rounded-xl relative py-1";
       switch (type) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
@@ -91,12 +91,13 @@ export default {
 </script>
 <style scoped>
 .bitBot {
-  height: 160px;
+  widows: 189px;
   position: absolute;
-  left: 145px;
+  left: 100px;
+  bottom: -30px;
 }
 .heighter {
-  height: 350px;
+  height: 315px;
 }
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
@@ -110,7 +111,11 @@ export default {
   border-radius: 10px;
 }
 .text-feature {
-  font-size: 90px;
-  line-height: 90px;
+  font-size: 56px;
+  line-height: 54.04px;
+}
+
+.view-all {
+  font-size: 16px;
 }
 </style>
