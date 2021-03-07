@@ -8,7 +8,7 @@
           Featured
         </p>
         <p
-          class="relative w-full py-3  text-white featured-title hover:opacity-100"
+          class="relative w-full py-3 text-white featured-title hover:opacity-100"
         >
           <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
