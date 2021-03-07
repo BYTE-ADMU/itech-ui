@@ -133,6 +133,7 @@ export default {
 @media screen and (max-width: 425px) {
   .text-feature {
     font-size: 32px;
+    line-height: 40px;
   }
 
   .bitBot {
