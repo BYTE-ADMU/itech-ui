@@ -37,7 +37,7 @@
       <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="grid w-full grid-cols-4 gap-2 mt-4">
+      <div class="grid w-full grid-cols-4 gap-2 mt-4 mb-12">
         <div class="w-full">
           <h2 class="p-2 mx-auto text-4xl font-neuemachina">
             Featured Courses ✨
@@ -54,7 +54,7 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hacker" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text">
             Articles
           </h5>
           <div class="grid grid-cols-3 gap-4">
@@ -71,7 +71,7 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hipster" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text">
             Articles
           </h5>
           <div class="grid grid-cols-3 gap-4">
@@ -88,7 +88,7 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hustler" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text">
             Articles
           </h5>
           <div class="grid grid-cols-3 gap-4">
@@ -302,6 +302,10 @@ div > .tg {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.article-text {
+  font-weight: 900;
 }
 </style>
 
