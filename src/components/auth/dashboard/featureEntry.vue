@@ -1,9 +1,9 @@
 <template>
   <g-link :to="`/articles/${article.id}`">
     <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
-      <div class="absolute z-30 w-full h-full px-5 py-3 rounded-lg group">
+      <div class="absolute z-30 w-full h-full px-10 py-8 rounded-lg group">
         <p
-          class="relative w-48 py-3 text-xl text-white uppercase font-neuemachina hover:opacity-100"
+          class="relative w-48 py-3 text-2xl text-white uppercase font-neuemachina hover:opacity-100"
         >
           Featured
         </p>
@@ -18,7 +18,7 @@
           {{ article.author.name }}
         </p>
         <p
-          class="absolute bottom-0 py-3 text-white featured-description font-objectivity hover:opacity-100"
+          class="absolute bottom-0 pt-3 pb-8 pr-10 text-white featured-description font-objectivity hover:opacity-100"
         >
           {{ article.description }}
           <!-- Description -->
