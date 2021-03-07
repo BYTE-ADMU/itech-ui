@@ -55,18 +55,6 @@
         <bitbotFeature bb3="hacker" />
         <div class="flex flex-col w-9/12">
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHackerTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-            <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
           <div class="grid grid-cols-3 gap-4">
@@ -84,16 +72,6 @@
         <bitbotFeature bb3="hipster" />
         <div class="flex flex-col w-9/12">
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHipsterTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
           <div class="grid grid-cols-3 gap-4">
@@ -110,16 +88,6 @@
       <div class="flex items-center w-full mt-8 mb-8">
         <bitbotFeature bb3="hustler" />
         <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHustlerTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-          </div>
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
             Articles
           </h5>
