@@ -10,7 +10,7 @@
             >
               {{ course.name }}
             </h2>
-            <h3 class="text-white text-base font-objectivity font-bold mb-2 lg:hidden">Articles</h3>
+            <h3 class="text-white text-base font-objectivity articlesBold mb-2 lg:hidden">Articles</h3>
             <p class="text-white text-sm font-objectivity">{{ course.description }}</p>
           </div>
         </div>
@@ -77,6 +77,10 @@ export default {
 .text-feature {
   font-size: 56px;
   line-height: 50px;
+}
+
+.articlesBold {
+  font-weight: 700;
 }
 
 @media screen and (max-width: 1023px) {
