@@ -3,14 +3,14 @@
     <div :class="coverStyle">
       <g-image :src="botStyle" class="bitBot" />
 
-        <div class="flex lg:items-center w-full h-full pt-10 lg:pt-0 pl-10 lg:pl-56 pr-20 sm:pr-32 lg:pr-12">
+        <div class="w-full h-full pt-10 lg:pt-16 pl-10 lg:pl-56 pr-20 sm:pr-32 lg:pr-12">
           <div>
             <h2
-              class="text-white select-none text-feature font-neuemachina mb-2"
+              class="text-white select-none text-feature font-neuemachina mb-2 truncate"
             >
               {{ course.name }}
             </h2>
-            <h3 class="text-white text-base font-objectivity font-bold mb-2">Articles</h3>
+            <h3 class="text-white text-base font-objectivity font-bold mb-2 lg:hidden">Articles</h3>
             <p class="text-white text-sm font-objectivity">{{ course.description }}</p>
           </div>
         </div>
@@ -58,10 +58,10 @@ export default {
   position: absolute;
   width: 189px;
   height: 193.13px;
-  top: 100px;
+  top: 80px;
 }
 .heighter {
-  height: 250px;
+  height: 230px;
 }
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
@@ -81,18 +81,12 @@ export default {
 
 @media screen and (max-width: 1023px) {
   .heighter {
-    height: 420px;
+    height: 320px;
   }
 
   .bitBot {
-    top: 260px;
+    top: 170px;
     right: 0;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .text-feature {
-    font-size: 48px;;
   }
 }
 
@@ -102,12 +96,12 @@ export default {
   }
 
   .heighter {
-    height: 480px;
+    height: 340px;
   }
 
   .bitBot {
     width: 140px;
-    top: 340px;
+    top: 200px;
   }
 }
 
