@@ -224,17 +224,21 @@ export default {
         tab.isActive = index === i;
       });
     },
-    async register() {
+    register() {
       const regObj = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
       }
-      this.$store.dispatch('register', regObj)
+      const infoObj = {
+        course: `${this.user.year} ${this.user.course}`,
+        email: this.user.email,
+        username: this.user.username,
+      }
+      this.$store.dispatch('userStore/register', regObj)
         .then(() => {
-          if (this.$store.state.isAuthenticated) {
-            this.$router.replace('/dashboard');
-          }
+          this.$store.dispatch('userStore/infoReg', infoObj)
+          this.$router.replace('/login/');
         })
     }
   },

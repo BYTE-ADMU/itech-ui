@@ -64,15 +64,22 @@ const userStore = {
               email,
               password,
           })
-          .then(response => {
-              commit('setUser', response.data.user);
-              commit('setToken', response.data.jwt);
-              commit('toggleAuthenticated');
-          })
           .catch(error => {
               // Handle error.
               console.log('An error occurred:', error.response);
           });
+    },
+    async infoReg({ state, commit }, { email, course, username }) {
+      try {
+        const res = await axios.post(`${state.API_URL}/user-informations`, {
+          email,
+          course,
+          username,
+        });
+        console.log(res);
+      } catch (e) {
+        console.log(e);
+      }
     },
     async logout({ state, commit }) {
       commit('toggleLogout');
