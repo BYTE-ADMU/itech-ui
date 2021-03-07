@@ -20,10 +20,10 @@
             v-bind:article="featuredArticle"
           />
 
-          <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
+          <h3 class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina">
             New On ITECH
           </h3>
-          <div class="grid grid-cols-4 gap-3 mt-1 mb-24">
+          <div class="grid grid-cols-4 gap-3 mt-1 mb-8">
             <articleEntry
               class="w-full"
               v-for="article in newOnItech"
@@ -34,13 +34,13 @@
         </div>
       </div>
 
-      <hr class="mb-12" />
+      <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
       <div class="grid w-full grid-cols-4 gap-2 mt-4">
         <div class="w-full">
           <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Featured Courses & Playlists ✨
+            Featured Courses ✨
           </h2>
         </div>
         <playlistEntry
