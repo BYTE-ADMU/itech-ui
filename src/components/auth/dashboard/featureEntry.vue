@@ -1,9 +1,9 @@
 <template>
   <g-link :to="`/articles/${article.id}`">
-    <div class="relative mx-2 bg-gray-400 rounded-lg feature-height tg">
-      <div class="absolute z-30 w-full h-full px-10 py-8 rounded-lg group">
+    <div class="relative mx-0 sm:mx-2 bg-gray-400 rounded-none sm:rounded-lg feature-height tg">
+      <div class="absolute z-30 w-full h-full px-10 py-8 rounded-none sm:rounded-lg group">
         <p
-          class="relative w-48 py-3 text-2xl text-white uppercase font-neuemachina hover:opacity-100"
+          class="relative w-48 pt-32 pb-3 sm:py-3 text-2xl text-white uppercase font-neuemachina hover:opacity-100"
         >
           Featured
         </p>
@@ -26,7 +26,7 @@
       </div>
       <g-image
         :src="article.thumbnailImage.url"
-        class="relative object-cover w-full h-full rounded-lg tg"
+        class="relative object-cover w-full h-full rounded-none sm:rounded-lg tg"
       />
     </div>
   </g-link>
@@ -66,5 +66,20 @@ export default {
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
+}
+
+@media screen and (max-width: 640px) {
+  .feature-height {
+    height: 100vh;
+  }
+
+  .featured-author-name {
+    font-size: 22px;
+  }
+
+  .featured-description {
+    font-size: 18px;
+    bottom: 10vh;
+  }
 }
 </style>
