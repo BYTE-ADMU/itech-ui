@@ -1,17 +1,19 @@
 <template>
-  <div class="flex flex-col w-3/12 px-2">
+  <div class="flex flex-col w-full mb-12 md:mb-0 md:w-3/12 px-2">
     <g-link :to="`/categories/${bb3}`">
       <div :class="botStyle">
-        <h2
-          class="px-6 pt-6 pb-2 leading-tight text-white select-none text-feature font-neuemachina"
-        >
-          {{ botWord }}
-        </h2>
-        <g-link
-          :to="`/categories/${bb3}`"
-          class="px-6 text-white font-objectivity view-all"
-          >View All</g-link
-        >
+        <div>
+          <h2
+            class="px-6 pt-6 pb-2 leading-tight text-white select-none text-feature font-neuemachina"
+          >
+            {{ botWord }}
+          </h2>
+          <g-link
+            :to="`/categories/${bb3}`"
+            class="px-6 text-white font-objectivity view-all"
+            >View All</g-link
+          >
+        </div>
         <g-image :src="botImage" class="bitBot" />
       </div>
     </g-link>
@@ -91,9 +93,9 @@ export default {
 </script>
 <style scoped>
 .bitBot {
-  widows: 189px;
+  width: 189px;
   position: absolute;
-  left: 100px;
+  right: 0;
   bottom: -30px;
 }
 .heighter {
@@ -117,5 +119,55 @@ export default {
 
 .view-all {
   font-size: 16px;
+}
+
+@media screen and (max-width: 1280px) {
+  .bitBot {
+    width: 170px;
+  }
+
+  .heighter {
+    height: 340px;
+  }
+
+  .text-feature {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .bitBot {
+    width: 130px;
+  }
+
+  .heighter {
+    height: 360px;
+  }
+
+  .text-feature {
+    font-size: 33px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bitBot {
+    position: absolute;
+    width: 140px;
+    bottom: -20px;
+  }
+
+  .heighter {
+    height: 200px;
+  }
+
+  .text-feature {
+    font-size: 56px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .bitBot {
+    width: 120px;
+  }
 }
 </style>
