@@ -19,15 +19,23 @@
           </h1>
           <h1 class="text-center text-white md:mx-auto itech">ITECH</h1>
 
-          <g-link to="/login/">
+          <g-link to="/register/">
             <button
               class="w-full px-8 py-2 mx-auto text-xl uppercase sm:text-4xl lg:text-2xl form_button font-objectivity"
             >
               Get Started
             </button>
           </g-link>
+          <g-link class="text-center font-objectivity nav__link" to="/login/">
+            <button
+              class="hidden mx-auto mt-4 text-lg text-white lg:block"
+              style="font-weight: medium"
+            >
+              or Log In here
+            </button>
+          </g-link>
 
-          <a
+          <!-- <a
             class="text-lg text-center font-objectivity nav__link"
             href="https://tinyurl.com/ITECHPreRegistrationForm"
             target="_blank"
@@ -35,7 +43,7 @@
             <h1 class="hidden mx-auto mt-4 text-white lg:block">
               Don't have credentials yet?<strong> Click</strong> here
             </h1>
-          </a>
+          </a> -->
         </div>
         <g-image
           :src="require('@/assets/img/unauth/index/section1-botWelcome.svg')"

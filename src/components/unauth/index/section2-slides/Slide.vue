@@ -25,8 +25,18 @@
         class="grid items-center w-full grid-cols-1 gap-4 mx-auto lg:grid-cols-3"
       >
         <!-- START: FIRST COLUMN -->
+        <div
+          v-if="articles === null || courses === null"
+          class="grid hidden grid-cols-1 mx-auto lg:block"
+        >
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-lg small-box"></div>
+            <div class="bg-white rounded-lg small-box"></div>
+          </div>
+          <div class="mt-4 bg-white rounded-lg long-box"></div>
+        </div>
 
-        <div class="grid hidden grid-cols-1 mx-auto lg:block">
+        <div v-else class="grid hidden grid-cols-1 mx-auto lg:block">
           <div class="grid grid-cols-2 gap-4">
             <CourseButton v-bind:course="filteredCourses[0]" />
             <CourseButton v-bind:course="filteredCourses[1]" />
@@ -48,7 +58,20 @@
         <!-- END: SECOND COLUMN -->
 
         <!-- START: THIRD COLUMN -->
-        <div class="grid hidden grid-cols-1 mx-auto lg:block">
+        <div
+          v-if="articles === null || courses === null"
+          class="grid hidden grid-cols-1 mx-auto lg:block"
+        >
+          <div class="mb-4 bg-white rounded-lg long-box"></div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white rounded-lg small-box"></div>
+            <div class="bg-white rounded-lg small-box"></div>
+          </div>
+        </div>
+        <div
+          v-else="articles === null || courses === null"
+          class="grid hidden grid-cols-1 mx-auto lg:block"
+        >
           <ArticleButton
             class="mb-4"
             v-bind:article="filteredArticles[1]"
