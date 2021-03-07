@@ -6,7 +6,7 @@
         <div class="w-full h-full pt-10 lg:pt-16 pl-10 lg:pl-56 pr-20 sm:pr-32 lg:pr-12">
           <div>
             <h2
-              class="text-white select-none text-feature font-neuemachina mb-2 truncate"
+              class="text-white select-none text-feature font-neuemachina lg:mb-2 truncate"
             >
               {{ course.name }}
             </h2>
