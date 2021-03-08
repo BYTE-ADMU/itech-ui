@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 .feature-height {
-  height: 350px;
+  height: 446px;
 }
 
 .featured-title {
