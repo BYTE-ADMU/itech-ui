@@ -1,14 +1,14 @@
 <template>
   <g-link :to="`/articles/${article.id}`">
     <div class="relative mx-0 sm:mx-2 bg-gray-400 rounded-none sm:rounded-lg feature-height tg">
-      <div class="absolute z-30 w-full h-full px-10 py-8 rounded-none sm:rounded-lg group">
+      <div class="absolute z-30 w-full h-full px-4 sm:px-10 py-8 rounded-none sm:rounded-lg group">
         <p
           class="relative w-48 pt-24 pb-2 sm:py-3 text-2xl sm:text-3xl text-white uppercase font-neuemachina hover:opacity-100"
         >
           Featured
         </p>
         <p
-          class="relative w-full py-3 text-white featured-title hover:opacity-100 truncate"
+          class="relative w-full py-3 text-white featured-title hover:opacity-100"
         >
           <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
@@ -86,6 +86,11 @@ export default {
   .featured-description {
     font-size: 14px;
     bottom: 6vh;
+    max-height: 75px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; 
   }
 }
 </style>
