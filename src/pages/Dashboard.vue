@@ -41,7 +41,7 @@
       <!-- Featured Courses & Playlists-->
       <div class="w-full sm:flex mt-4 mb-12 px-6">
         <div class="w-full sm:w-3/12">
-          <h2 class="py-2 px-3 mx-auto text-4xl font-neuemachina">
+          <h2 class="py-2 px-3 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina">
             Featured Courses ✨
           </h2>
         </div>
