@@ -85,6 +85,18 @@ export default {
 
   .featured-description {
     font-size: 14px;
+    bottom: 30vh;
+    max-height: 145px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .featured-description {
+    font-size: 14px;
     bottom: 14vh;
     max-height: 145px;
     overflow: hidden;
