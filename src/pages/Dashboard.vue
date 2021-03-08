@@ -10,7 +10,7 @@
 
     <div
       v-else
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen pb-20 sm:py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
@@ -20,16 +20,18 @@
             v-bind:article="featuredArticle"
           />
 
-          <h3 class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina">
-            New On ITECH
-          </h3>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 mt-1 mb-8">
-            <articleEntry
-              class="w-full mb-0 sm:mb-1 md:mb-2"
-              v-for="article in newOnItech"
-              v-bind:key="article.id"
-              v-bind:article="article"
-            ></articleEntry>
+          <div class="px-6">
+            <h3 class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina">
+              New On ITECH
+            </h3>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 mt-1 mb-8">
+              <articleEntry
+                class="w-full mb-0 sm:mb-1 md:mb-2"
+                v-for="article in newOnItech"
+                v-bind:key="article.id"
+                v-bind:article="article"
+              ></articleEntry>
+          </div>
           </div>
         </div>
       </div>
@@ -37,9 +39,9 @@
       <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="w-full sm:flex mt-4 mb-12">
+      <div class="w-full sm:flex mt-4 mb-12 px-6">
         <div class="w-full sm:w-3/12">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
+          <h2 class="py-2 px-3 mx-auto text-4xl font-neuemachina">
             Featured Courses ✨
           </h2>
         </div>
@@ -50,7 +52,7 @@
         />
       </div>
       <!-- Hacker -->
-      <div class="md:flex w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hacker" />
         <div class="flex md:flex-col md:w-9/12">
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
@@ -67,7 +69,7 @@
         </div>
       </div>
       <!-- Hipster -->
-      <div class="md:flex w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hipster" />
         <div class="flex md:flex-col md:w-9/12">
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
@@ -84,7 +86,7 @@
         </div>
       </div>
       <!-- Hustler -->
-      <div class="md:flex w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hustler" />
         <div class="flex md:flex-col md:w-9/12">
           <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
