@@ -85,12 +85,12 @@ export default {
 
   .featured-description {
     font-size: 14px;
-    bottom: 6vh;
-    max-height: 75px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; 
+    bottom: 14vh;
+    max-height: 145px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical; 
   }
 }
 </style>
