@@ -10,73 +10,57 @@
 
     <div
       v-else
-      class="container flex flex-col w-screen min-h-screen py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen pb-20 sm:py-20 mx-auto mb-24"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col w-9/12">
+        <div class="flex flex-col ">
           <featureEntry
             v-bind:key="featuredArticle.id"
             v-bind:article="featuredArticle"
           />
 
-          <h3 class="mx-2 mt-12 text-xl font-bold uppercase font-objectivity">
-            New On ITECH
-          </h3>
-          <div class="grid grid-cols-3 gap-4 mt-1 mb-24">
-            <articleEntry
-              class="w-full"
-              v-for="article in newOnItech"
-              v-bind:key="article.id"
-              v-bind:article="article"
-            ></articleEntry>
+          <div class="px-6">
+            <h3 class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina">
+              New On ITECH
+            </h3>
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 mt-1 mb-8">
+              <articleEntry
+                class="w-full mb-0 sm:mb-1 md:mb-2"
+                v-for="article in newOnItech"
+                v-bind:key="article.id"
+                v-bind:article="article"
+              ></articleEntry>
+          </div>
           </div>
         </div>
-        <!-- Topic of the Week -->
-        <playlistTall
-          v-bind:key="featuredCourse.id"
-          v-bind:course="featuredCourse"
-        />
       </div>
 
-      <hr class="mb-12" />
+      <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="grid w-full grid-cols-4 gap-2 mt-4">
-        <div class="w-full">
-          <h2 class="p-2 mx-auto text-4xl font-neuemachina">
-            Featured Courses & Playlists ✨
+      <div class="w-full sm:flex mt-4 mb-12 px-6">
+        <div class="w-full sm:w-3/12">
+          <h2 class="py-2 px-3 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina">
+            Featured Courses ✨
           </h2>
         </div>
         <playlistEntry
-          class="w-full"
           v-for="course in threeFeaturedCourses"
           v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
       <!-- Hacker -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hacker" />
-        <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHackerTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-            <!-- <div v-for="topic in topics" v-bind:key="topic.node.id">TOPICS</div> -->
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+        <div class="flex md:flex-col md:w-9/12">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
-              class="w-full"
+              class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHackerArticles"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -85,25 +69,15 @@
         </div>
       </div>
       <!-- Hipster -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hipster" />
-        <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHipsterTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+        <div class="flex md:flex-col md:w-9/12">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
-              class="w-full"
+              class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHipsterArticles"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -112,25 +86,15 @@
         </div>
       </div>
       <!-- Hustler -->
-      <div class="flex items-center w-full mt-8 mb-8">
+      <div class="md:flex w-full mt-8 mb-8 px-6">
         <bitbotFeature bb3="hustler" />
-        <div class="flex flex-col w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
-            Topics
-          </h5>
-          <div class="grid grid-cols-3 gap-2 mb-2">
-            <articleHeader
-              v-for="topic in threeHustlerTopics"
-              v-bind:key="topic.id"
-              v-bind:topic="topic"
-            ></articleHeader>
-          </div>
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-objectivity">
+        <div class="flex md:flex-col md:w-9/12">
+          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
             Articles
           </h5>
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
-              class="w-full"
+              class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.id"
               v-bind:article="article"
@@ -231,7 +195,7 @@ export default {
     },
 
     newOnItech() {
-      return this.articles.slice(0, 3);
+      return this.articles.slice(0, 4);
     },
 
     threeFeaturedCourses() {
@@ -339,6 +303,10 @@ div > .tg {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.article-text {
+  font-weight: 900;
 }
 </style>
 
