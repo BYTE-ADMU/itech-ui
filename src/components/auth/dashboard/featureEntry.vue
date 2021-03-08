@@ -3,7 +3,7 @@
     <div class="relative mx-0 sm:mx-2 bg-gray-400 rounded-none sm:rounded-lg feature-height tg">
       <div class="absolute z-30 w-full h-full px-10 py-8 rounded-none sm:rounded-lg group">
         <p
-          class="relative w-48 pt-32 pb-3 sm:py-3 text-2xl text-white uppercase font-neuemachina hover:opacity-100"
+          class="relative w-48 pt-24 pb-2 sm:py-3 text-2xl sm:text-3xl text-white uppercase font-neuemachina hover:opacity-100"
         >
           Featured
         </p>
@@ -13,7 +13,7 @@
           <i class="ion-alert-circled"></i> {{ article.title }}
         </p>
         <p
-          class="relative py-1 text-lg text-white featured-author-name hover:opacity-100"
+          class="relative py-1 text-white featured-author-name hover:opacity-100"
         >
           {{ article.author.name }}
         </p>
@@ -49,7 +49,7 @@ export default {
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
-  line-height: 41px;
+  line-height: 37.08px;
 }
 
 .featured-author-name {
@@ -57,7 +57,7 @@ export default {
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 22px;
+  line-height: 24.72px;
 }
 
 .featured-description {
@@ -73,12 +73,18 @@ export default {
     height: 100vh;
   }
 
+  .featured-title {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
   .featured-author-name {
-    font-size: 22px;
+    font-size: 16px;
+    line-height: 25px;
   }
 
   .featured-description {
-    font-size: 18px;
+    font-size: 14px;
     bottom: 10vh;
   }
 }
