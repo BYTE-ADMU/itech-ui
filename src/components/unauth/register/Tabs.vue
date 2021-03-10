@@ -12,18 +12,18 @@
         <div class="flex items-center justify-center h-screen my-20 md:my-0" >
           <div class="md:flex md:w-3/4">
             <!-- START: IMAGE -->
-            <div v-if="selectedIndex === 4" class="block mx-auto w-3/5 mt-16 md:mt-0 md:flex md:w-1/2 ">
+            <div v-if="selectedIndex === 4" class="block mx-auto px-4 mt-10 md:mt-0 md:flex md:w-1/2 ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
-            <div v-else class="w-3/4 block mx-auto md:flex md:w-1/2 ">
+            <div v-else class="block mx-auto px-4 md:flex md:w-1/2 ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-10 md:mt-24 mx-8 md:ml-20 md:w-1/2">
+            <div class="mt-6 md:mt-24 mx-4 md:ml-20 md:w-1/2">
               <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-10 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+              <h1 class="mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -133,7 +133,7 @@
 
                 <div>
                   <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto w-2/3"/>
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 mt-12"/>
                   <!-- START: IMAGE -->
                 </div>
               </div>
