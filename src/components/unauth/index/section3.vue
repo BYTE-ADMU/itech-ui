@@ -1,83 +1,66 @@
 <template>
-  <section class="flex items-center justify-center h-screen">
-    <div class="flex w-3/4">
-      <div class="w-full md:w-1/2">
-        <div class="p-6 thirdColumnCard">
-          <p class="my-2 header">Level up, Bits!</p>
-          <p class="my-2 text">
-            These articles will not only help you learn and grow your skills,
-            but will also help you earn some points! Move on to the next level
-            by obtaining 5000 points!
-          </p>
-        </div>
-      </div>
-      <div class="w-full text-center md:w-1/2">
-        <img
-          :src="require('@/assets/img/unauth/index/section3.svg')"
-          class="py-6 mx-auto"
-        />
-      </div>
-    </div>
+  <section id="section2">
+    <Slides :slides="slides" />
   </section>
 </template>
 
 <script>
 import Vue from "vue";
+import Slides from "./section2-slides/Slides.vue";
 
 export default Vue.extend({
   name: "unauth-index-section3",
+
+  components: {
+    Slides,
+  },
+
+  // Data for Slides
+  data() {
+    return {
+      slides: [
+        {
+          id: 0,
+          order: "carousel-1",
+          categories: "Hacker",
+          description:
+            "Hacker is the first H out of BYTE’s 3Hs. Hackers have the skill to program website or application prototypes from ideations. ",
+        },
+        {
+          id: 1,
+          order: "carousel-2",
+          categories: "Hipster",
+          description:
+            "Hipster is the second H out of BYTE’s 3Hs. Hipsters have an eye and mind for creativity that can be applied to web and mobile design. ",
+        },
+        {
+          id: 2,
+          order: "carousel-3",
+          categories: "Hustler",
+          description:
+            "Hustler is the third and last H out of BYTE’s 3Hs. Hustlers have the ability to think of innovative ideas and have an entrepreneurial mindset to develop a business.",
+        },
+      ],
+    };
+  },
 });
 </script>
 
-<style scoped>
-.hello {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 40px;
+<style>
+.big-box {
+  width: 20rem;
+  height: 20rem;
 }
 
-.itech {
-  font-family: Neue Machina;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 110px;
+.small-box {
+  height: 9.5rem;
+  width: 9.5rem;
 }
 
-.getStarted {
-  width: 413px;
-  height: 40px;
-  left: 847px;
-  top: 458px;
-  background: #64c0c1;
-  border-radius: 50px;
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-  text-align: center;
-  letter-spacing: 0.2em;
-  color: #f9f7f2;
-}
-
-.orLogIn {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  color: #64c0c1;
-  text-align: center;
-}
-
-.header {
-  font-family: Neue Machina;
-  font-weight: 800;
-  font-size: 56px;
-  color: #333333;
-}
-
-.text {
-  font-size: 32px;
-  color: #333333;
+.long-box {
+  width: 20rem;
+  height: 9.5rem;
 }
 </style>
+
+

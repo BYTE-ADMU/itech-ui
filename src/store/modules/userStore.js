@@ -20,6 +20,7 @@ const userStore = {
       let data = {}
 
       try {
+        // console.log(`${state.API_URL}/auth/local`);
         const response = await axios.post(`${state.API_URL}/auth/local`, {
           identifier: email,
           password: password,
@@ -54,6 +55,30 @@ const userStore = {
 
       } catch (e) {
         console.log(e)
+      }
+    },
+    async register({ state, commit }, { username, email, password }) {
+      axios
+        .post(`${state.API_URL}/auth/local/register`, {
+          username,
+          email,
+          password,
+        })
+        .catch(error => {
+          // Handle error.
+          console.log('An error occurred:', error.response);
+        });
+    },
+    async infoReg({ state, commit }, { email, course, username }) {
+      try {
+        const res = await axios.post(`${state.API_URL}/user-informations`, {
+          email,
+          course,
+          username,
+        });
+        // console.log(res);
+      } catch (e) {
+        console.log(e);
       }
     },
     async logout({ state, commit }) {

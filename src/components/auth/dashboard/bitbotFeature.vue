@@ -1,17 +1,19 @@
 <template>
-  <div class="flex flex-col w-3/12 px-2">
+  <div class="flex flex-col w-full mb-12 md:mb-0 md:w-3/12 px-2">
     <g-link :to="`/categories/${bb3}`">
       <div :class="botStyle">
-        <h2
-          class="px-6 pt-6 leading-tight text-white select-none text-feature font-neuemachina"
-        >
-          {{ botWord }}
-        </h2>
-        <g-link
-          :to="`/categories/${bb3}`"
-          class="px-6 text-white font-objectivity"
-          >View All</g-link
-        >
+        <div>
+          <h2
+            class="px-6 pt-6 pb-2 leading-tight text-white select-none text-feature font-neuemachina"
+          >
+            {{ botWord }}
+          </h2>
+          <g-link
+            :to="`/categories/${bb3}`"
+            class="px-6 text-white font-objectivity view-all"
+            >View All</g-link
+          >
+        </div>
         <g-image :src="botImage" class="bitBot" />
       </div>
     </g-link>
@@ -34,18 +36,18 @@ export default {
       const type = this.bb3;
       switch (type) {
         case "hacker":
-          return "hack er";
+          return "Hacker";
         case "hipster":
-          return "hips ter";
+          return "Hipster";
         case "hustler":
-          return "hust ler";
+          return "Hustler";
         default:
-          return "hack er";
+          return "Hacker";
       }
     },
     botStyle() {
       const type = this.bb3;
-      const defaultStyle = "w-full h-48 heighter rounded-xl relative";
+      const defaultStyle = "w-full heighter rounded-xl relative py-1";
       switch (type) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
@@ -91,12 +93,13 @@ export default {
 </script>
 <style scoped>
 .bitBot {
-  height: 160px;
+  width: 189px;
   position: absolute;
-  left: 145px;
+  right: 0;
+  bottom: -30px;
 }
 .heighter {
-  height: 350px;
+  height: 315px;
 }
 .hackerStyle {
   background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
@@ -110,7 +113,61 @@ export default {
   border-radius: 10px;
 }
 .text-feature {
-  font-size: 90px;
-  line-height: 90px;
+  font-size: 56px;
+  line-height: 54.04px;
+}
+
+.view-all {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 1280px) {
+  .bitBot {
+    width: 170px;
+  }
+
+  .heighter {
+    height: 340px;
+  }
+
+  .text-feature {
+    font-size: 50px;
+  }
+}
+
+@media screen and (max-width: 1025px) {
+  .bitBot {
+    width: 130px;
+  }
+
+  .heighter {
+    height: 360px;
+  }
+
+  .text-feature {
+    font-size: 33px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bitBot {
+    position: absolute;
+    width: 140px;
+    bottom: -20px;
+  }
+
+  .heighter {
+    height: 200px;
+  }
+
+  .text-feature {
+    font-size: 56px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .bitBot {
+    width: 120px;
+  }
 }
 </style>
