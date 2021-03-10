@@ -110,7 +110,7 @@ export default {
 
 .article-hover:hover {
   transform: scale(1.06);
-  box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1), 0 3px 5px 1px rgba(0, 0, 0, 0.06);;
+  box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1), 0 3px 5px 1px rgba(0, 0, 0, 0.06);
 }
 
 @media screen and (min-width: 640px) and (max-width: 1024px) {

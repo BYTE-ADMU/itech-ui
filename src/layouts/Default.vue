@@ -136,6 +136,11 @@ export default {
   font-size: 16px;
   text-align: center;
   color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+}
+
+.form_button:hover {
+  background: #41AAAB;
 }
 
 .form_inputs {
