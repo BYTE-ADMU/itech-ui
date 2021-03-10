@@ -151,12 +151,19 @@
   background-position: 0%;
   -webkit-transition: background 400ms ease-in-out;
   transition: background 400ms ease-in-out;
+  outline: none;
 }
 
 .getStarted:hover {
   background-position: 100%;
   color: #ffffff;
 }
+
+.getStarted:active {
+  transform: translateY(1px);
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
+}
+
 .itechFooter{
   margin-top: -20px;
   font-size: 72px;

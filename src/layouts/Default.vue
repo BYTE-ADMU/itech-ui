@@ -145,11 +145,17 @@ export default {
   background-position: 0%;
   -webkit-transition: background 400ms ease-in-out;
   transition: background 400ms ease-in-out;
+  outline: none;
 }
 
 .form_button:hover {
   background-position: 100%;
   color: #64c0c1;
+}
+
+.form_button:active {
+  transform: translateY(1px);
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .form_inputs {

@@ -201,6 +201,7 @@ export default {
   overflow: hidden;
   /* border: 2px solid crimson; */
   transition: color .5s;
+  outline: none;
 }
 
 .filterButton::before {
@@ -225,6 +226,11 @@ export default {
 .filterButton:hover::before {
   top: -5px;
   left: -20px;
+}
+
+.filterButton:active {
+  
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .discoverTitle {
