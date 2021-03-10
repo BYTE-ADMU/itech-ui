@@ -1,10 +1,10 @@
 # ITECH
 ITECH is an online resource library that serves as a learning accelerator to lead the process of  Building Young Tech Entrepreneurs.                                          
 
-
 This repository is the frontend of the ITECH web app.
-Tech Stacks: Vue.js, Gridsome, TailwindCSS
 
+
+Tech Stacks: Vue.js, Gridsome, TailwindCSS
 
 
 ## To run this repository:
