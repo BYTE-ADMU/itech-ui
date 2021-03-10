@@ -12,7 +12,7 @@
         <div class="flex items-center justify-center h-screen my-20 md:my-0" >
           <div class="md:flex md:w-3/4">
             <!-- START: IMAGE -->
-            <div v-if="selectedIndex === 4" class="block mx-auto w-3/5 mt-10 md:mt-0 md:flex md:w-1/2 ">
+            <div v-if="selectedIndex === 4" class="block mx-auto w-3/5 mt-16 md:mt-0 md:flex md:w-1/2 ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <div v-else class="w-3/4 block mx-auto md:flex md:w-1/2 ">
@@ -37,7 +37,7 @@
                 </div>
                 <div v-else-if="tabData.id === 5">
                   <input v-model="user.password" class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker" id="password" type="password" placeholder="password"/>
-                  <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-10 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
+                  <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
                 <div v-else-if="tabData.id === 7">
                   <div class="mb-10">
