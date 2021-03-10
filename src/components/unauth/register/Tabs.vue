@@ -12,15 +12,18 @@
         <div class="flex items-center justify-center h-screen my-20 md:my-0" >
           <div class="md:flex md:w-3/4">
             <!-- START: IMAGE -->
-            <div class="w-3/4 block mx-auto md:flex md:w-1/2 ">
+            <div v-if="selectedIndex === 4" class="block mx-auto w-3/5 mt-10 md:mt-0 md:flex md:w-1/2 ">
+              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
+            </div>
+            <div v-else class="w-3/4 block mx-auto md:flex md:w-1/2 ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
             <div class="mt-10 md:mt-24 mx-8 md:ml-20 md:w-1/2">
-              <h1 class="font-neuemachina font-black text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-10 font-light text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+              <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
+              <h1 class="mb-10 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -108,7 +111,7 @@
               <!-- START: NEXT BUTTON -->
               
               <div  v-if="selectedIndex === 9"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
-              <div v-else><button :disabled="!isDisabled" class="block mx-auto mt-12 md:mt-0 px-8 pt-3 pb-2 md:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
+              <div v-else><button :disabled="!isDisabled" class="block mx-auto md:mt-0 px-8 pt-3 pb-2 md:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>
             <!-- END: FORM -->
