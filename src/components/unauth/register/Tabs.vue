@@ -4,8 +4,8 @@
 
     <Tab>
       <!-- START: BACK BUTTON -->
-      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left" style="position: absolute; left:240px; top:150px; font-size:40px"><</button></g-link></div>
-      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left" style="position: absolute; left:240px; top:150px; font-size:40px"><</button></div>
+      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb" style="position: absolute; left:240px; top:150px">Back</button></g-link></div>
+      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb" style="position: absolute; left:240px; top:150px">Back</button></div>
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
@@ -107,8 +107,8 @@
 
               <!-- START: NEXT BUTTON -->
               
-              <div  v-if="selectedIndex === 8"><g-link to="/login/"><button class="px-16 py-4 float-right form_button uppercase font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
-              <div v-else><button :disabled="!isDisabled" class="px-16 py-4 float-right form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
+              <div  v-if="selectedIndex === 8"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
+              <div v-else><button :disabled="!isDisabled" class="px-8 pt-3 pb-2 float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>
             <!-- END: FORM -->
@@ -130,8 +130,8 @@
               <!-- START: IMAGE -->
 
               <!-- START: NEXT BUTTON -->
-              <div  v-if="selectedIndex === 8"><button @click="register" class="px-16 py-4 mx-auto form_button uppercase font-objectivity ...">{{tabData.buttonText}}</button></div>
-              <div v-else><button class="px-16 py-4 mx-auto form_button uppercase font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
+              <div  v-if="selectedIndex === 8"><button @click="register" class="px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
+              <div v-else><button class="px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>    
           </div>
@@ -248,5 +248,15 @@ export default {
 <style>
 .dissapear {
   display: none;
+}
+
+.breadcrumb {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+
+  color: #dbdad5;
 }
 </style>
