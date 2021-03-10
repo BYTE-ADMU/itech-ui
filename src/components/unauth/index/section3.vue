@@ -1,5 +1,5 @@
 <template>
-  <section id="section2" class="overflow-x-hidden">
+  <section id="section2">
     <Slides :slides="slides" />
   </section>
 </template>
@@ -60,41 +60,6 @@ export default Vue.extend({
 .long-box {
   width: 20rem;
   height: 9.5rem;
-}
-
-.carousel-open:checked + .carousel-item {
-  position: static;
-  opacity: 100;
-}
-
-.carousel-indicators {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  bottom: 10%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 10;
-}
-
-#carousel-1:checked
-  ~ .control-1
-  ~ .carousel-indicators
-  li:nth-child(1)
-  .carousel-bullet,
-#carousel-2:checked
-  ~ .control-2
-  ~ .carousel-indicators
-  li:nth-child(2)
-  .carousel-bullet,
-#carousel-3:checked
-  ~ .control-3
-  ~ .carousel-indicators
-  li:nth-child(3)
-  .carousel-bullet {
-  color: #ffffff;
 }
 </style>
 

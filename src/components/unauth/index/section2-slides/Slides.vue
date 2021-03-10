@@ -1,9 +1,7 @@
 <template>
-  <div class="relative">
+  <div class="relative overflow-x-hidden overflow-y-hidden slidesResponsive">
     <div v-if="articles === null || courses === null">
-      <div
-        class="object-contain w-screen h-auto min-h-screen overflow-x-hidden carousel carousel--translate"
-      >
+      <div class="object-contain w-screen carousel carousel--translate">
         <input
           class="carousel__activator"
           type="radio"
@@ -75,16 +73,8 @@
       />
 
       <div class="carousel__track">
-        <!-- <div
-          class="carousel__slide"
-          style="background-color: blue"
-          v-for="slide in slides"
-          :key="slide.id"
-        >
-          <h1>2</h1>
-        </div> -->
         <Slide
-          class="py-24 carousel__slide"
+          class="carousel__slide"
           v-for="slide in slides"
           :key="slide.id"
           :slide="slide"
@@ -303,5 +293,21 @@ export default {
 }
 .carousel__indicator {
   background-color: #fafafa;
+}
+
+.slidesResponsive {
+  height: 830px;
+}
+
+@media only screen and (min-width: 768px) {
+  .slidesResponsive {
+    height: 1000px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .slidesResponsive {
+    height: 930px;
+  }
 }
 </style>

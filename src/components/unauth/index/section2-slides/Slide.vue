@@ -1,9 +1,9 @@
 <!--Slide Component-->
 <template>
   <div :class="slideStyle">
-    <div class="mb-20 lg:container">
+    <div class="mx-auto mb-20 lg:container">
       <!-- START: DESCRIPTION -->
-      <div class="mb-20 full-width-row">
+      <div class="mb-20">
         <div class="w-full text-center text-white">
           <p class="tracking-wide uppercase md:text-2xl font-objectivity">
             Become a
@@ -126,8 +126,7 @@ export default {
     },
 
     slideStyle() {
-      const defaultStyle =
-        "py-20 absolute flex items-center justify-center opacity-0 carousel-item";
+      const defaultStyle = "py-20 ";
       switch (this.slide.categories.toLowerCase()) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
