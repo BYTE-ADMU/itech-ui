@@ -2,7 +2,7 @@
   <Layout>
     <section>
       <div
-        class="grid items-center w-screen px-8 py-8 md:flex sm:px-12 lg:px-16"
+        class="grid items-center w-screen px-4 py-8 md:flex sm:px-12 lg:px-16"
       >
         <img
           :src="require('@/assets/img/unauth/login/Login-Illustration.svg')"
