@@ -1,6 +1,6 @@
 <template>
-  <div
-    style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%)"
+  <div class="overflow-hidden"
+    style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%) "
   >
     <div
       class="flex flex-col w-screen pb-32 mx-auto align-middle lg-pb-0 lg:h-screen 2xl:h-auto 2xl:container lg:pb-0"
