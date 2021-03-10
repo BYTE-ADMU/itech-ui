@@ -2,27 +2,24 @@
   <nav
     class="flex flex-wrap items-center justify-between w-screen px-4 py-5 bg-white shadow-md md:px-20 nav"
   >
-    <div
-      class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
-    >
-      <!-- LINK CONDITION START -->
-      <div class="flex items-center text-white flex-no-shrink">
-        <g-link v-if="!isAuthenticated" class="nav__link" to="/">
-          <g-image
-            :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            class="w-40 py-2"
-          />
-        </g-link>
+    <!-- LINK CONDITION START -->
+    <div class="flex items-center text-white flex-no-shrink">
+      <g-link v-if="!isAuthenticated" class="nav__link" to="/">
+        <g-image
+          :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+          class="w-40 py-2"
+        />
+      </g-link>
 
-        <g-link v-else class="nav__link" to="/dashboard">
-          <g-image
-            :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            class="w-40 py-2"
-          />
-        </g-link>
-      </div>
-      <!-- LINK CONDITION END -->
-      <!-- <div class="block lg:hidden">
+      <g-link v-else class="nav__link" to="/dashboard">
+        <g-image
+          :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+          class="w-40 py-2"
+        />
+      </g-link>
+    </div>
+    <!-- LINK CONDITION END -->
+    <!-- <div class="block lg:hidden">
       <button
         class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white"
       >
@@ -37,8 +34,9 @@
       </button>
     </div> -->
 
-      <div class="flex items-center flex-grow w-auto">
-        <div class="flex-grow text-sm"></div>
+    <div class="flex items-center flex-grow w-auto">
+      <div class="flex-grow text-sm"></div>
+
 
         <div v-if="!isAuthenticated">
           <g-link
@@ -94,21 +92,20 @@
               />
             </svg>
 
-            <div
-              class="absolute right-0 z-20 mt-2 overflow-hidden bg-white rounded-md shadow-xl hover-target"
+          <div
+            class="absolute right-0 z-20 mt-2 overflow-hidden bg-white rounded-md shadow-xl hover-target"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-800 border-b hover-trigger hover:bg-gray-200"
+              >{{ identifier }}</a
             >
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-800 border-b hover-trigger hover:bg-gray-200"
-                >{{ identifier }}</a
-              >
-              <button
-                @click="logout"
-                class="block w-full px-4 py-2 text-sm text-right text-gray-800 border-b hover-trigger hover:bg-gray-200"
-              >
-                Logout
-              </button>
-            </div>
+            <button
+              @click="logout"
+              class="block w-full px-4 py-2 text-sm text-right text-gray-800 border-b hover-trigger hover:bg-gray-200"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>
