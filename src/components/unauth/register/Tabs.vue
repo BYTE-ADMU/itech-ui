@@ -9,18 +9,18 @@
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
-        <div class="flex items-center justify-center h-screen" >
-          <div class="flex w-3/4">
+        <div class="flex items-center justify-center h-screen my-20 md:my-0" >
+          <div class="md:flex md:w-3/4">
             <!-- START: IMAGE -->
-            <div class="w-full text-center md:w-1/2 ">
-              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="py-6 mx-auto"/>
+            <div class="w-3/4 block mx-auto md:flex md:w-1/2 ">
+              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="w-full mt-24 ml-20 md:w-1/2">
-              <h1 class="form_header font-neuemachina">{{tabData.header}}</h1>
-              <h1 class="mb-10 form_text font-objectivity">{{tabData.text}}</h1>
+            <div class="mt-10 md:mt-24 mx-8 md:ml-20 md:w-1/2">
+              <h1 class="font-neuemachina font-black text-3xl lg:text-4xl">{{tabData.header}}</h1>
+              <h1 class="mb-10 font-light text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -107,8 +107,8 @@
 
               <!-- START: NEXT BUTTON -->
               
-              <div  v-if="selectedIndex === 8"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
-              <div v-else><button :disabled="!isDisabled" class="px-8 pt-3 pb-2 float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
+              <div  v-if="selectedIndex === 9"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
+              <div v-else><button :disabled="!isDisabled" class="block mx-auto mt-12 md:mt-0 px-8 pt-3 pb-2 md:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>
             <!-- END: FORM -->
@@ -118,20 +118,26 @@
 
       <div v-else>
         <div class="flex items-center justify-center h-screen" >
-          <div class="w-3/4">
-            <div class="w-full text-center">
-              <!-- START: TEXT -->
-              <h1 class="form_header font-neuemachina">{{tabData.header}}</h1>
-              <h1 class="w-full mb-4 form_text font-objectivity"><div class="mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
-              <!-- START: TEXT -->
+          <div class="w-full md:w-3/4">
+            <div class="w-full md:text-center">
+              <div class="flex flex-col-reverse md:block">
+                <div class="md:mb-6 px-8">
+                  <!-- START: TEXT -->
+                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
+                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="md:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <!-- START: TEXT -->
+                </div>
 
-              <!-- START: IMAGE -->
-              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto w-2/3"/>
-              <!-- START: IMAGE -->
+                <div>
+                  <!-- START: IMAGE -->
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto w-2/3"/>
+                  <!-- START: IMAGE -->
+                </div>
+              </div>
 
               <!-- START: NEXT BUTTON -->
-              <div  v-if="selectedIndex === 8"><button @click="register" class="px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
-              <div v-else><button class="px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
+              <div  v-if="selectedIndex === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
+              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>    
           </div>
