@@ -6,8 +6,13 @@
 
     </div>
 
-    <g-link to="/dashboard" class="w-auto">
-      <button class="block mx-auto mt-10 px-8 pb-3 pt-4 form_button uppercase font-objectivity ...">
+    <g-link v-if="!isAuthenticated" to="/" class="w-auto">
+      <button class="block mx-auto my-10 px-8 pb-3 pt-4 form_button uppercase font-objectivity ...">
+        Back To Home
+      </button>
+    </g-link>
+    <g-link v-else to="/dashboard/" class="w-auto">
+      <button class="block mx-auto my-10 px-8 pb-3 pt-4 form_button uppercase font-objectivity ...">
         Back To Home
       </button>
     </g-link>
@@ -19,6 +24,12 @@ export default {
   metaInfo: {
     title: "Not Found",
   },
+  computed: {
+    isAuthenticated() {
+      console.log(this.$store.state.userStore.isAuthenticated);
+      return this.$store.state.userStore.isAuthenticated;
+    }
+  }
 }
 </script>
 
