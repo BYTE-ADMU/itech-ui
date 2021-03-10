@@ -26,7 +26,6 @@ export default {
   },
   computed: {
     isAuthenticated() {
-      console.log(this.$store.state.userStore.isAuthenticated);
       return this.$store.state.userStore.isAuthenticated;
     }
   }
