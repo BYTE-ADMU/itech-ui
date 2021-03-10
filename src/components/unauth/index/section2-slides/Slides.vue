@@ -93,19 +93,66 @@
 </template>
 
 <script>
-import Vue from "vue";
-import Slide from "./Slide.vue";
-export default Vue.extend({
-  name: "Slides",
+import ArticleButton from "./ArticleButton";
+import CourseButton from "./CourseButton";
+import Slide from "./Slide";
 
-  //Components
+import Loader from "../../../Loader";
+import axios from "axios";
+
+export default {
+  name: "Slides",
+  props: ["slides"],
   components: {
+    ArticleButton,
+    CourseButton,
     Slide,
+    Loader,
+  },
+  data() {
+    return {
+      articles: null,
+      courses: null,
+    };
   },
 
-  //props
-  props: ["slides"],
-});
+  async mounted() {
+    this.articles = await this.getArticles();
+    this.courses = await this.getCourses();
+  },
+
+  methods: {
+    async getArticles() {
+      // const data = this.$store.state.articlesStore.articles.reverse();
+      // return data;
+      const { data } = await axios.get(
+        `https://calm-everglades-39473.herokuapp.com/articles/?_sort=published_at`
+      );
+      return data.reverse();
+    },
+
+    async getCourses() {
+      // const data = this.$store.state.coursesStore.courses.reverse();
+      // return data;
+      const { data } = await axios.get(
+        `https://calm-everglades-39473.herokuapp.com/courses/?_sort=published_at`
+      );
+      return data.reverse();
+    },
+  },
+
+  computed: {
+    articles() {
+      const data = this.$store.state.articlesStore.articles.reverse();
+      return data;
+    },
+
+    courses() {
+      const data = this.$store.state.coursesStore.courses.reverse();
+      return data;
+    },
+  },
+};
 </script>
 
 <style>

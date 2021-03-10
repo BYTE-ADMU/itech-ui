@@ -41,11 +41,21 @@
             <CourseButton v-bind:course="filteredCourses[0]" />
             <CourseButton v-bind:course="filteredCourses[1]" />
           </div>
+          <ArticleButton
+            class="mt-4"
+            v-bind:article="filteredArticles[0]"
+          ></ArticleButton>
         </div>
+        <!-- END: FIRST COLUMN -->
 
-        <div>
-          <div class="py-6 mx-auto bg-white rounded-lg big-box"></div>
-        </div>
+        <!-- START: SECOND COLUMN -->
+        <g-link
+          :to="`/categories/${slide.categories.toLowerCase()}`"
+          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full"
+        >
+          <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
+        </g-link>
+        <!-- END: SECOND COLUMN -->
 
         <!-- START: THIRD COLUMN -->
         <div
@@ -71,15 +81,30 @@
             <CourseButton v-bind:course="filteredCourses[3]" />
           </div>
         </div>
+        <!-- END: THIRD COLUMN -->
       </div>
+
+      <!-- END: CAROUSEL -->
     </div>
   </div>
+
+  <!-- END: HACKER -->
 </template>
 
 
 <script>
-import Vue from "vue";
-export default Vue.extend({
+import ArticleButton from "./ArticleButton";
+import CourseButton from "./CourseButton";
+
+import Loader from "../../../Loader";
+
+export default {
+  components: {
+    ArticleButton,
+    CourseButton,
+    Loader,
+  },
+
   name: "Slide",
   props: ["slide", "courses", "articles"],
 
@@ -132,20 +157,63 @@ export default Vue.extend({
       });
     },
 
-  //props
-  props: ["slide"],
-});
+    filteredHipsterCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.toLowerCase().includes("hipster");
+      });
+    },
+
+    filteredHustlerArticles() {
+      return this.articles.filter((article) => {
+        return article.categories[0].name.toLowerCase().includes("hustler");
+      });
+    },
+
+    filteredHustlerCourses() {
+      return this.courses.filter((course) => {
+        return course.categories[0].name.toLowerCase().includes("hustler");
+      });
+    },
+
+    filteredArticles() {
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return this.filteredHackerArticles;
+        case "hipster":
+          return this.filteredHipsterArticles;
+        case "hustler":
+          return this.filteredHustlerArticles;
+        default:
+          return this.filteredHackerArticles;
+      }
+    },
+
+    filteredCourses() {
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return this.filteredHackerCourses;
+        case "hipster":
+          return this.filteredHipsterCourses;
+        case "hustler":
+          return this.filteredHustlerCourses;
+        default:
+          return this.filteredHackerCourses;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
-.grid-container {
-  display: grid;
-  grid-gap: 20px;
-  justify-content: center;
+.hackerStyle {
+  background: linear-gradient(283.99deg, #4e6afa 7.28%, #9298ff 100%);
 }
 
-.full-width-row {
-  grid-column-start: 1;
-  grid-column-end: 4;
+.hipsterStyle {
+  background: linear-gradient(283.99deg, #ff7b92 7.28%, #e13894 100%);
+}
+
+.hustlerStyle {
+  background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
 }
 </style>
