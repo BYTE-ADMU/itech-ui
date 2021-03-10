@@ -4,8 +4,8 @@
 
     <Tab>
       <!-- START: BACK BUTTON -->
-      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb" style="position: absolute; left:240px; top:150px">Back</button></g-link></div>
-      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb" style="position: absolute; left:240px; top:150px">Back</button></div>
+      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb" style="position: absolute; left:50px; top:140px">Back</button></g-link></div>
+      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb" style="position: absolute; left:50px; top:140px">Back</button></div>
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
@@ -39,7 +39,7 @@
                 <div v-else-if="tabData.id === 7">
                   <div class="mb-10">
                   <span class="overflow-y-hidden">
-                    <select v-model="user.year" class="w-1/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
+                    <select v-model="user.year" class="w-1/12 pl-3 py-2 border appearance-none rounded-l-md text-grey-darker">
                       <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -52,7 +52,7 @@
                       </svg>
                     </button>
                   </span>
-                  <span class="w-1/12 ml-10"></span>
+                  <span class="ml-3"></span>
               
                   <span class="overflow-y-hidden">
                     <select v-model="user.course" class="w-8/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
@@ -71,7 +71,7 @@
                   </div>
                   
                 </div>
-                <div v-else-if="tabData.id === 8">
+                <!-- <div v-else-if="tabData.id === 8">
                   <div class="mb-10">
                   <span class="overflow-y-hidden">
                     <select v-model="user.time" class="w-3/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
@@ -100,7 +100,7 @@
                   </span>
                   </div>
                   <button class="px-16 py-4 float-left uppercase font-objectivity text-grey ..." @click='selectTab(selectedIndex+1)'>Skip</button>
-                </div>
+                </div> -->
                 
               </div>
               <!-- START: FORM -->
@@ -121,12 +121,12 @@
           <div class="w-3/4">
             <div class="w-full text-center">
               <!-- START: TEXT -->
-              <h1 class="form_header font-neuemachina" style="margin-top:-120px">{{tabData.header}}</h1>
-              <h1 class="w-full mb-10 form_text font-objectivity"><div class="mx-auto" style="max-width:550px">{{tabData.text}}</div></h1>
+              <h1 class="form_header font-neuemachina">{{tabData.header}}</h1>
+              <h1 class="w-full mb-4 form_text font-objectivity"><div class="mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
               <!-- START: TEXT -->
 
               <!-- START: IMAGE -->
-              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="py-6 mx-auto "/>
+              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto w-2/3"/>
               <!-- START: IMAGE -->
 
               <!-- START: NEXT BUTTON -->

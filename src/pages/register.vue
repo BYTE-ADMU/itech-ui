@@ -75,14 +75,14 @@ export default {
             "BYTE is filled with people of different background so what is your year and course? ",
           buttonText: "Next",
         },
-        {
-          id: 8,
-          isLayoutCentered: false,
-          image: "Tab8.svg",
-          header: "We are almost done!",
-          text: "I wanna know what time you want to get reminders to study!",
-          buttonText: "Next",
-        },
+        // {
+        //   id: 8,
+        //   isLayoutCentered: false,
+        //   image: "Tab8.svg",
+        //   header: "We are almost done!",
+        //   text: "I wanna know what time you want to get reminders to study!",
+        //   buttonText: "Next",
+        // },
         {
           id: 9,
           isLayoutCentered: true,
