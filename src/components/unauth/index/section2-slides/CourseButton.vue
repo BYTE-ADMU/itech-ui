@@ -5,6 +5,11 @@
     :to="`/courses/${course.id}`"
   >
     <div class="overflow-hidden overflow-ellipsis ...">
+      <g-image
+        :src="course.thumbnail.url"
+        class="object-cover h-full rounded-lg"
+        style="opacity: 0.65"
+      />
       <div
         class="absolute w-full mt-auto bottom-0 py-5 px-10 rounded-lg sm:px-5 overflow-ellipsis overflow-hidden ..."
       >
@@ -18,10 +23,6 @@
           ><span v-else>Item</span>
         </p>
       </div>
-      <g-image
-        :src="course.thumbnail.url"
-        class="object-cover h-full rounded-lg"
-      />
     </div>
   </g-link>
 </template>
