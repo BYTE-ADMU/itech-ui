@@ -128,7 +128,7 @@ export default {
 }
 
 .form_button {
-  /* background: #64c0c1; */
+  background: #64c0c1;
   border-radius: 34px;
   font-family: Objectivity;
   font-style: normal;
@@ -136,21 +136,12 @@ export default {
   font-size: 16px;
   text-align: center;
   color: #f9f7f2;
-  /* transition: all ease-in-out 400ms; */
-  border: 3px solid #64c0c1;
-  background-image: -webkit-linear-gradient(30deg, #64c0c1 50%, transparent 50%);
-  background-image: linear-gradient(30deg, #64c0c1 50%, transparent 50%);
-  background-size: 1000px;
-  background-repeat: no-repeat;
-  background-position: 0%;
-  -webkit-transition: background 400ms ease-in-out;
-  transition: background 400ms ease-in-out;
+  transition: all ease-in-out 400ms;
   outline: none;
 }
 
 .form_button:hover {
-  background-position: 100%;
-  color: #64c0c1;
+  background-color: #40A5A6;
 }
 
 .form_button:active {
