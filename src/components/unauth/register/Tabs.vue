@@ -4,16 +4,16 @@
 
     <Tab>
       <!-- START: BACK BUTTON -->
-      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb" style="position: absolute; left:50px; top:140px">Back</button></g-link></div>
-      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb" style="position: absolute; left:50px; top:140px">Back</button></div>
+      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb">Back</button></g-link></div>
+      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb">Back</button></div>
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
         <div class="flex items-center justify-center h-screen my-20 md:my-0" >
           <div class="md:flex md:w-3/4">
             <!-- START: IMAGE -->
-            <div v-if="selectedIndex === 4" class="block mx-auto px-4 mt-10 md:mt-0 md:flex md:w-1/2 ">
-              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
+            <div v-if="selectedIndex === 4" class="block mx-auto px-4 -mt-6 md:mt-0 md:flex md:w-1/2 ">
+              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pt-10"/>
             </div>
             <div v-else class="block mx-auto px-4 md:flex md:w-1/2 ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
@@ -23,7 +23,7 @@
             <!-- START: FORM -->
             <div class="mt-6 md:mt-24 mx-4 md:ml-20 md:w-1/2">
               <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+              <h1 class="mb-3 md:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -265,7 +265,17 @@ export default {
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-
   color: #dbdad5;
+  position: absolute;
+  left:50px;
+  top:140px;
+}
+
+@media screen and (max-width: 640px) {
+  .breadcrumb {
+    left: 16px;
+    top: 125px;
+    font-size: 14px;
+  }
 }
 </style>
