@@ -40,36 +40,50 @@
                   <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
                 <div v-else-if="tabData.id === 7">
-                  <div class="mb-10">
-                  <span class="overflow-y-hidden">
-                    <select v-model="user.year" class="w-1/12 pl-3 py-2 border appearance-none rounded-l-md text-grey-darker">
+                  <div class="mb-10 text-center">
+                  <span>
+                    <select v-model="user.year" class="year-dropdown text-base sm:text-lg md:text-xl lg:text-2xl">
                       <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
                     </select>
-                    <button class="w-1/12 py-5 text-white bg-pink-200 rounded-r-md ">
+                    <!-- <select v-model="user.year" class="w-1/12 pl-3 py-2 border text-base md:text-2xl appearance-none rounded-l-md text-grey-darker year-dropdown">
+                      <option disabled hidden value="">1</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select> -->
+                    <!-- <button for="yeardrop" class="w-1/12 py-5 text-white bg-pink-200 rounded-r-md ">
                       <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
                       </svg>
-                    </button>
+                    </button> -->
                   </span>
                   <span class="ml-3"></span>
               
-                  <span class="overflow-y-hidden">
-                    <select v-model="user.course" class="w-8/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
+                  <span>
+                    <select v-model="user.course" class="course-dropdown text-base sm:text-lg md:text-xl lg:text-2xl">
                       <option disabled hidden value="">Information Technology</option>
                       <option value="Information Technology">Information Technology</option>
                       <option>Course 2</option>
                       <option>Course 3</option>
                       <option>Course 4</option>
                     </select>
-                    <button class="w-1/12 py-5 text-white bg-purple-200 rounded-r-md ">
+                    <!-- <select v-model="user.course" class="w-8/12 px-4 py-2 border text-base md:text-2xl appearance-none rounded-l-md text-grey-darker">
+                      <option disabled hidden value="">Information Technology</option>
+                      <option value="Information Technology">Information Technology</option>
+                      <option>Course 2</option>
+                      <option>Course 3</option>
+                      <option>Course 4</option>
+                    </select> -->
+                    <!-- <button class="w-1/12 py-5 text-white bg-purple-200 rounded-r-md ">
                       <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
                       </svg>
-                    </button>
+                    </button> -->
                   </span>
                   </div>
                   
@@ -271,11 +285,57 @@ export default {
   top:140px;
 }
 
+.year-dropdown {
+  /* position: relative; */
+  appearance: none;
+  background-image: url('../../../assets/img/unauth/register/icons/yeardropdown.svg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right center;
+  width: 15%;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
+  outline: none;
+  padding-left: 12px;
+}
+
+.course-dropdown {
+  appearance: none;
+  background-image: url('../../../assets/img/unauth/register/icons/coursedropdown.svg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right center;
+  width: 66%;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
+  outline: none;
+  padding-left: 12px;
+  padding-right: 60px;
+}
+
+@media screen and (max-width: 1320px) {
+  .year-dropdown {
+    width: 23%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .year-dropdown {
+    width: 12%;
+  }
+}
+
 @media screen and (max-width: 640px) {
   .breadcrumb {
     left: 16px;
     top: 125px;
     font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .year-dropdown {
+    width: 20%;
   }
 }
 </style>
