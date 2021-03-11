@@ -138,7 +138,7 @@
           <div class="w-full md:w-3/4">
             <div class="w-full md:text-center">
               <div class="flex flex-col-reverse md:block">
-                <div class="md:mb-6 px-4">
+                <div class="my-20 md:mb-6 px-4">
                   <!-- START: TEXT -->
                   <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
                   <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="md:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
@@ -147,7 +147,7 @@
 
                 <div>
                   <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 mt-12"/>
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 mt-12 md:mt-0"/>
                   <!-- START: IMAGE -->
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default {
   line-height: 24px;
   color: #dbdad5;
   position: absolute;
-  left:50px;
+  left:140px;
   top:140px;
 }
 
