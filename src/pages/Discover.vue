@@ -191,45 +191,15 @@ export default {
   color: #64C0C1;
   transition: all ease-in-out 200ms;
   cursor: pointer;
-
-  display: inline-block;
-  /* width: 130px;
-  height: 40px;
-  line-height: 40px;
-  margin: 20px; */
-  position: relative;
-  overflow: hidden;
-  /* border: 2px solid crimson; */
-  transition: color .5s;
   outline: none;
 }
 
-.filterButton::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  background: #64C0C1;
-  border-top-right-radius: 40%;
-  border-bottom-right-radius: 40%;
-  height: 300%;
-  width: 200%;
-  top: 0;
-  left: -200%;
-  transition: all .3s;
-}
-
 .filterButton:hover {
-  /* background-color: #64C0C1; */
+  background-color: #64C0C1;
   color: #ffffff;
 }
 
-.filterButton:hover::before {
-  top: -5px;
-  left: -20px;
-}
-
 .filterButton:active {
-  
   box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
