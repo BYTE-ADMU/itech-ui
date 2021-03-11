@@ -9,21 +9,21 @@
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
-        <div class="flex items-center justify-center h-screen my-20 md:my-0" >
-          <div class="md:flex md:w-3/4">
+        <div class="flex items-center justify-center min-h-screen my-20 lg:my-0" >
+          <div class="lg:flex lg:w-3/4">
             <!-- START: IMAGE -->
-            <div v-if="selectedIndex === 4" class="block mx-auto px-4 -mt-6 md:mt-0 md:flex md:w-1/2 ">
+            <div v-if="selectedIndex === 4" class="block mx-auto px-4 -mt-6 lg:mt-0 lg:flex  ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pt-10"/>
             </div>
-            <div v-else class="block mx-auto px-4 md:flex md:w-1/2 ">
+            <div v-else class="block mx-auto px-4 lg:flex  ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-6 md:mt-24 mx-4 md:ml-20 md:w-1/2">
+            <div class="mt-6 lg:mt-24 mx-4 lg:ml-20 lg:w-1/2">
               <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-3 md:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+              <h1 class="mb-3 lg:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -49,7 +49,7 @@
                       <option value="3">3</option>
                       <option value="4">4</option>
                     </select>
-                    <!-- <select v-model="user.year" class="w-1/12 pl-3 py-2 border text-base md:text-2xl appearance-none rounded-l-md text-grey-darker year-dropdown">
+                    <!-- <select v-model="user.year" class="w-1/12 pl-3 py-2 border text-base lg:text-2xl appearance-none rounded-l-md text-grey-darker year-dropdown">
                       <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -72,7 +72,7 @@
                       <option>Course 3</option>
                       <option>Course 4</option>
                     </select>
-                    <!-- <select v-model="user.course" class="w-8/12 px-4 py-2 border text-base md:text-2xl appearance-none rounded-l-md text-grey-darker">
+                    <!-- <select v-model="user.course" class="w-8/12 px-4 py-2 border text-base lg:text-2xl appearance-none rounded-l-md text-grey-darker">
                       <option disabled hidden value="">Information Technology</option>
                       <option value="Information Technology">Information Technology</option>
                       <option>Course 2</option>
@@ -125,7 +125,7 @@
               <!-- START: NEXT BUTTON -->
               
               <div  v-if="selectedIndex === 9"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
-              <div v-else><button :disabled="!isDisabled" class="block mx-auto md:mt-0 px-8 pt-3 pb-2 md:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
+              <div v-else><button :disabled="!isDisabled" class="block mx-auto lg:mt-0 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>
             <!-- END: FORM -->
@@ -137,11 +137,11 @@
         <div class="flex items-center justify-center h-screen" >
           <div class="w-full md:w-3/4">
             <div class="w-full md:text-center">
-              <div class="flex flex-col-reverse md:block">
+              <div class="flex flex-col-reverse lg:block">
                 <div class="my-20 md:mb-6 px-4">
                   <!-- START: TEXT -->
                   <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
-                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="md:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
                   <!-- START: TEXT -->
                 </div>
 
