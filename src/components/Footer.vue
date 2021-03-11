@@ -137,26 +137,20 @@
 }
 
 .getStarted {
-  /* background: #ffffff; */
+  background: #ffffff;
   border-radius: 50px;
   font-family: Objectivity;
   font-weight: 700;
   font-size: 16px;
   color: #6b83ff;
   border: 3px solid #ffffff;
-  background-image: -webkit-linear-gradient(30deg, #ffffff 50%, transparent 50%);
-  background-image: linear-gradient(30deg, #ffffff 50%, transparent 50%);
-  background-size: 1000px;
-  background-repeat: no-repeat;
-  background-position: 0%;
-  -webkit-transition: background 400ms ease-in-out;
-  transition: background 400ms ease-in-out;
+  transition: all ease-in-out 400ms;
   outline: none;
 }
 
 .getStarted:hover {
-  background-position: 100%;
   color: #ffffff;
+  background-color: #6b83ff;
 }
 
 .getStarted:active {
