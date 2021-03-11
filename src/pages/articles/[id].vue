@@ -15,10 +15,11 @@
         <div v-else >
           <!-- START: BREADCRUMB -->
           <p class="px-12 mb-10 md:px-0 breadcrumb">
-            <g-link to="/dashboard/">Home</g-link
+            <g-link to="/dashboard/" class="breadcrumb-text">Home</g-link
             ><g-link
               v-if="article.courses.length !== 0"
               :to="`/courses/${article.courses[0].id}`"
+              class="breadcrumb-text"
             >
               <span class="mx-5"> / </span>{{ article.courses[0].name }}</g-link
             >

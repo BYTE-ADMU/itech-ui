@@ -6,22 +6,22 @@
     >
       <div v-if="topic === null" class="mb-10 breadcrumb">
         <button @click="$router.go(-1)"
-          class="pr-6">
+          class="pr-6 breadcrumb-text">
             Back
         </button>
       </div>
       <div v-else class="mb-10 breadcrumb flex">
         <button @click="$router.go(-1)"
-          class="pr-6">
+          class="pr-6 breadcrumb-text">
             Back
         </button>
         <p class="pr-6 hidden sm:block">/</p>
         <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden sm:block">
+          class="pr-6 hidden sm:block breadcrumb-text">
             {{topic.categories[0].name}}
         </button>
         <p class="pr-6 hidden sm:block">/</p>
-        <p class="hidden sm:block">{{ topic.name }}</p>
+        <p class="hidden sm:block breadcrumb-text">{{ topic.name }}</p>
       </div>
 
       <div v-if="topic === null">
@@ -214,7 +214,17 @@ div > .tg {
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-
   color: #dbdad5;
+}
+
+.breadcrumb-text {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.breadcrumb-text:hover {
+  color: #83827f;
 }
 </style>

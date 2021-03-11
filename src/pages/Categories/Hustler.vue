@@ -155,8 +155,14 @@ div > .tg {
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-
   color: #dbdad5;
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+.breadcrumb:hover {
+  color: #83827f;
 }
 </style>
 
