@@ -4,14 +4,14 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <div v-if="course === null" class="mb-10 breadcrumb flex">
+      <!-- <div v-if="course === null" class="mb-10 breadcrumb flex">
         <button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text">
             Back
         </button>
-      </div>
+      </div> -->
 
-      <div v-else class="mb-10 breadcrumb flex">
+      <!-- <div v-else class="mb-10 breadcrumb flex">
         <button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text">
             Back
@@ -23,7 +23,20 @@
         </button>
         <p class="pr-6 hidden sm:block">/</p>
         <p class="hidden sm:block breadcrumb-text">{{ course.name }}</p>
-      </div>
+      </div> -->
+      <span class="mb-10">
+      <button @click="$router.go(-1)"
+          class="pr-6 breadcrumb-text ">
+            Back
+        </button>
+        <span v-if="course !== null" class="pr-6 hidden breadcrumb ">/</span>
+        <button v-if="course !== null" @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
+          class="pr-6 hidden breadcrumb-text ">
+            {{course.categories[0].name}}
+        </button>
+        <span v-if="course !== null" class="pr-6 hidden breadcrumb ">/</span>
+        <span v-if="course !== null" class="hidden breadcrumb-text ">{{ course.name }}</span>
+      </span>
 
       <div v-if="course === null">
         <Loader />
@@ -155,13 +168,14 @@ div > .tg {
   filter: brightness(80%);
 }
 
-.breadcrumb {
+.breadcrumb, .breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   color: #dbdad5;
+  display: inline-block;
 }
 
 .breadcrumb-text {
