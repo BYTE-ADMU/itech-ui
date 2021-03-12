@@ -136,7 +136,7 @@ export default {
   font-size: 16px;
   text-align: center;
   color: #f9f7f2;
-  transition: all ease-in-out 400ms;
+  transition: all ease-in-out 200ms;
   outline: none;
 }
 

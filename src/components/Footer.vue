@@ -144,7 +144,7 @@
   font-size: 16px;
   color: #6b83ff;
   border: 3px solid #ffffff;
-  transition: all ease-in-out 400ms;
+  transition: all ease-in-out 200ms;
   outline: none;
 }
 
