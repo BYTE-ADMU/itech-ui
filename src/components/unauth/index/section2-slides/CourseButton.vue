@@ -1,6 +1,6 @@
 <template>
   <g-link
-    class="relative flex w-full overflow-hidden bg-black rounded-lg"
+    class="relative flex w-full overflow-hidden bg-black rounded-lg course-hover"
     style="height: 157px"
     :to="`/courses/${course.id}`"
   >
@@ -78,5 +78,17 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.course-hover {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.course-hover:hover {
+  transform: scale(1.06);
+  box-shadow: 0 10px 15px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 </style> 

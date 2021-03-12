@@ -15,12 +15,15 @@
         <div v-else >
           <!-- START: BREADCRUMB -->
           <p class="px-12 mb-10 md:px-0 breadcrumb">
-            <g-link to="/dashboard/">Home</g-link
-            ><g-link
+            <g-link to="/dashboard/" class="breadcrumb-text">Home</g-link
+            >
+            <span class="mx-5"> / </span>
+            <g-link
               v-if="article.courses.length !== 0"
               :to="`/courses/${article.courses[0].id}`"
+              class="breadcrumb-text"
             >
-              <span class="mx-5"> / </span>{{ article.courses[0].name }}</g-link
+              {{ article.courses[0].name }}</g-link
             >
           </p>
            <!-- END: BREADCRUMB -->
@@ -76,8 +79,8 @@
                     class="mx-2"
                     ></a>
 
-<button class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none hover:bg-teal-500 hover:text-white focus:outline-none" type="button">
-   Bookmark <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2"/>
+<button class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
+  <span>Bookmark</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
 </button>
                 </div>
               </div>
@@ -297,5 +300,27 @@ export default {
   line-height: 24px;
 
   color: #dbdad5;
+}
+
+.bookmark-hover, .bookmark-hover > span, .bookmark-hover > .bookmark-icon {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.bookmark-hover:hover {
+  width: 151px;
+  height: 42px;
+  background: #38b2ac;
+}
+
+.bookmark-hover:hover > .bookmark-icon {
+  transform: translateX(32px);
+  filter: brightness(500%);
+}
+
+.bookmark-hover:hover > span {
+  display: none;
 }
 </style>

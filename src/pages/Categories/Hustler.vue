@@ -5,8 +5,8 @@
     <div
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <p class="mb-10 breadcrumb">
-        <button @click="$router.go(-1)">Back</button>
+      <p class="mb-10">
+        <button @click="$router.go(-1)" class="breadcrumb">Back</button>
       </p>
       <div class="flex items-start justify-between w-full">
         <!-- CATEGORY COVER -->
@@ -144,7 +144,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 div > .tg {
   filter: brightness(80%);
 }
@@ -155,8 +155,14 @@ div > .tg {
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-
   color: #dbdad5;
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+.breadcrumb:hover {
+  color: #83827f;
 }
 </style>
 

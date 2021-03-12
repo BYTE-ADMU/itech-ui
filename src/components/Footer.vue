@@ -143,7 +143,21 @@
   font-weight: 700;
   font-size: 16px;
   color: #6b83ff;
+  border: 3px solid #ffffff;
+  transition: all ease-in-out 200ms;
+  outline: none;
 }
+
+.getStarted:hover {
+  color: #ffffff;
+  background-color: #6b83ff;
+}
+
+.getStarted:active {
+  transform: translateY(1px);
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
+}
+
 .itechFooter{
   margin-top: -20px;
   font-size: 72px;

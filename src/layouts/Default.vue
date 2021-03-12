@@ -136,6 +136,17 @@ export default {
   font-size: 16px;
   text-align: center;
   color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
+}
+
+.form_button:hover {
+  background-color: #40A5A6;
+}
+
+.form_button:active {
+  transform: translateY(1px);
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .form_inputs {

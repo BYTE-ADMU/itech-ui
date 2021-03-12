@@ -1,6 +1,6 @@
 <template>
   <g-link
-    class="flex w-full bg-white rounded-lg"
+    class="flex w-full bg-white rounded-lg article-hover"
     style="height: 157px"
     :to="`/articles/${article.id}`"
   >
@@ -82,5 +82,17 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+}
+
+.article-hover {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.article-hover:hover {
+  transform: scale(1.06);
+  box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1), 0 3px 5px 1px rgba(0, 0, 0, 0.06);
 }
 </style> 

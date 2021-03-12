@@ -191,11 +191,16 @@ export default {
   color: #64C0C1;
   transition: all ease-in-out 200ms;
   cursor: pointer;
+  outline: none;
 }
 
 .filterButton:hover {
   background-color: #64C0C1;
   color: #ffffff;
+}
+
+.filterButton:active {
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .discoverTitle {
