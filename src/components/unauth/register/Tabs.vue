@@ -10,18 +10,18 @@
 
       <div v-if="!tabData.isLayoutCentered">
         <div class="flex items-center justify-center min-h-screen my-20 lg:my-0" >
-          <div class="lg:flex lg:w-3/4">
+          <div class="lg:flex lg:mx-20 ">
             <!-- START: IMAGE -->
             <div v-if="selectedIndex === 4" class="block mx-auto px-4 -mt-6 lg:mt-0 lg:flex  ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pt-10"/>
             </div>
-            <div v-else class="block mx-auto px-4 lg:flex  ">
+            <div v-else class="block mx-auto px-4 lg:px-0 lg:my-auto ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-6 lg:mt-24 mx-4 lg:ml-20 lg:w-1/2">
+            <div class="mt-6 lg:mt-24 mx-4 lg:ml-8 lg:w-1/2">
               <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
               <h1 class="mb-3 lg:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
