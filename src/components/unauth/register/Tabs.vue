@@ -35,14 +35,14 @@
                 <div v-else-if="tabData.id === 3">
                   <input v-model="user.email" class="w-full px-8 py-4 mb-10 border rounded-md text-grey-darker" id="email" type="text" placeholder="kianna.zalameda@obf.ateneo.edu"/>
                 </div>
-                <div v-else-if="tabData.id === 5">
+                <div v-else-if="tabData.id === 4">
                   <input v-model="user.password" class="w-full px-8 py-4 mb-4 border rounded-md text-grey-darker" id="password" type="password" placeholder="password"/>
                   <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
-                <div v-else-if="tabData.id === 7">
-                  <div class="mb-10 text-center">
-                  <span>
-                    <select v-model="user.year" class="year-dropdown text-base sm:text-lg md:text-xl lg:text-2xl">
+                <div v-else-if="tabData.id === 6">
+                  <div class="mb-10 sm:text-center">
+                  <span class="sm:inline block">
+                    <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
                       <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -62,10 +62,10 @@
                       </svg>
                     </button> -->
                   </span>
-                  <span class="ml-3"></span>
+                  <span class="ml-3 sm:inline hidden"></span>
               
-                  <span>
-                    <select v-model="user.course" class="course-dropdown text-base sm:text-lg md:text-xl lg:text-2xl">
+                  <span class="sm:inline block">
+                    <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
                       <option disabled hidden value="">Information Technology</option>
                       <option value="Information Technology">Information Technology</option>
                       <option>Course 2</option>
@@ -124,7 +124,7 @@
 
               <!-- START: NEXT BUTTON -->
               
-              <div  v-if="selectedIndex === 9"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
+              <div  v-if="tabData.id === 7"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
               <div v-else><button :disabled="!isDisabled" class="block mx-auto lg:mt-0 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>
@@ -133,12 +133,68 @@
         </div>
       </div>
 
+      <div v-else-if="tabData.id === 2">
+        <div class="flex items-center justify-center h-screen" >
+          <div class="w-full md:w-3/4">
+            <div class="w-full md:text-center">
+              <div class="flex flex-col-reverse lg:block">
+                <div class=" md:mb-6 px-4">
+                  <!-- START: TEXT -->
+                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
+                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <!-- START: TEXT -->
+                </div>
+
+                <div>
+                  <!-- START: IMAGE -->
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
+                  <!-- START: IMAGE -->
+                </div>
+              </div>
+
+              <!-- START: NEXT BUTTON -->
+              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
+              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
+              <!-- END: NEXT BUTTON -->
+            </div>    
+          </div>
+        </div>    
+      </div>
+
+      <div v-else-if="tabData.id === 5">
+        <div class="flex items-center justify-center h-screen" >
+          <div class="w-full md:w-3/4">
+            <div class="w-full md:text-center">
+              <div class="flex flex-col-reverse lg:block">
+                <div class=" md:mb-6 px-4">
+                  <!-- START: TEXT -->
+                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
+                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <!-- START: TEXT -->
+                </div>
+
+                <div>
+                  <!-- START: IMAGE -->
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
+                  <!-- START: IMAGE -->
+                </div>
+              </div>
+
+              <!-- START: NEXT BUTTON -->
+              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
+              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
+              <!-- END: NEXT BUTTON -->
+            </div>    
+          </div>
+        </div>    
+      </div>
+
       <div v-else>
         <div class="flex items-center justify-center h-screen" >
           <div class="w-full md:w-3/4">
             <div class="w-full md:text-center">
               <div class="flex flex-col-reverse lg:block">
-                <div class="my-20 md:mb-6 px-4">
+                <div class="my-10 md:mb-6 px-4">
                   <!-- START: TEXT -->
                   <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
                   <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
@@ -153,7 +209,7 @@
               </div>
 
               <!-- START: NEXT BUTTON -->
-              <div  v-if="selectedIndex === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
+              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
               <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
               <!-- END: NEXT BUTTON -->
             </div>    
@@ -209,7 +265,7 @@ export default {
         year: "",
         course: "",
         time: "",
-        timeAMPM: "",
+        // timeAMPM: "",
       },
       isCompleted: false,
     };
@@ -223,8 +279,8 @@ export default {
         (this.user.email && this.selectedIndex === 2) ||
         (this.user.password &&
           this.user.confirmPassword &&
-          this.selectedIndex === 4) ||
-        (this.user.year && this.user.course && this.selectedIndex === 6) ||
+          this.selectedIndex === 3) ||
+        (this.user.year && this.user.course && this.selectedIndex === 5) ||
         (this.user.time && this.user.timeAMPM && this.selectedIndex === 7)
       ) {
         this.isCompleted = !this.isCompleted;

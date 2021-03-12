@@ -39,17 +39,17 @@ export default {
           text: "May I know your OBF email? ",
           buttonText: "Next",
         },
+        // {
+        //   id: 4,
+        //   isLayoutCentered: true,
+        //   image: "Tab4.svg",
+        //   header: "Thanks!",
+        //   text:
+        //     "We’ll need that to keep track of all your progress, favorite finds, and your points whenever you finish a topic",
+        //   buttonText: "Next",
+        // },
         {
           id: 4,
-          isLayoutCentered: true,
-          image: "Tab4.svg",
-          header: "Thanks!",
-          text:
-            "We’ll need that to keep track of all your progress, favorite finds, and your points whenever you finish a topic",
-          buttonText: "Next",
-        },
-        {
-          id: 5,
           isLayoutCentered: false,
           image: "Tab5.svg",
           header: "Now, an important note",
@@ -58,7 +58,7 @@ export default {
           buttonText: "Next",
         },
         {
-          id: 6,
+          id: 5,
           isLayoutCentered: true,
           image: "Tab6.svg",
           header: "IT’S JUST FOR YOU!",
@@ -67,7 +67,7 @@ export default {
           buttonText: "Next",
         },
         {
-          id: 7,
+          id: 6,
           isLayoutCentered: false,
           image: "Tab7.svg",
           header: "Just curious...",
@@ -84,7 +84,7 @@ export default {
         //   buttonText: "Next",
         // },
         {
-          id: 9,
+          id: 7,
           isLayoutCentered: true,
           image: "Tab9.svg",
           header: "We are finally done!",
