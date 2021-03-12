@@ -4,13 +4,9 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <div v-if="topic === null" class="mb-10 breadcrumb">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
-            Back
-        </button>
-      </div>
-      <div v-else class="mb-10 breadcrumb flex">
+      <!-- <div v-if="topic === null" class="mb-10 breadcrumb">
+      </div> -->
+      <!-- <div v-else class="mb-10 breadcrumb flex">
         <button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text">
             Back
@@ -22,7 +18,18 @@
         </button>
         <p class="pr-6 hidden sm:block">/</p>
         <p class="hidden sm:block breadcrumb-text">{{ topic.name }}</p>
-      </div>
+      </div> -->
+        <button @click="$router.go(-1)"
+          class="pr-6 breadcrumb-text flex">
+            Back
+        </button>
+        <p v-if="topic !== null" class="pr-6 hidden sm:flex">/</p>
+        <button v-if="topic !== null" @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
+          class="pr-6 hidden breadcrumb-text sm:flex">
+            {{topic.categories[0].name}}
+        </button>
+        <p v-if="topic !== null" class="pr-6 hidden sm:flex">/</p>
+        <p v-if="topic !== null" class="hidden breadcrumb-text sm:flex">{{ topic.name }}</p>
 
       <div v-if="topic === null">
         <Loader />
