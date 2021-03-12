@@ -127,7 +127,7 @@ export default {
 }
 
 .catCard-hover:hover > .bitBot {
-  animation: sway 2s infinite;
+  animation: sway 900ms infinite;
 }
 
 @keyframes sway {
