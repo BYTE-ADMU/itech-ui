@@ -39,7 +39,7 @@
           </div>
           <g-image
             src="@/assets/img/unauth/about/section3bytelogo.svg"
-            class=""
+            class="byte_logo"
           />
         </div>
       </div>
@@ -90,18 +90,42 @@ export default {
 .byte_logo {
   width: 66px;
   height: 66px;
-  right: 10px;
+  right: 4%;
   position: absolute;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
+  .byte_logo {
+    position: static;
+    width: 200px;
+    height: 200px;
+    margin-left: 20px;
+  }
+
+  /* .about_byte_header {
+    font-size: 36px;
+  }
+
+  .about_byte_hr {
+    width: 256px;
+  }
+
+  .about_byte_description {
+    font-size: 16px;
+    line-height: 25px;
+  } */
+}
+
+@media (min-width: 1024px) {
   .about_byte_bg {
     width: 584px;
     height: 225px;
   }
 
   .byte_logo {
-    position: absolute;
+    width: 259px;
+    height: 259px;
+    margin: 0px;
   }
 
   .about_byte_header {
