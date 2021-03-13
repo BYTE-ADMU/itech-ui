@@ -9,11 +9,12 @@
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
-        <div class="flex items-center justify-center min-h-screen my-20 lg:my-0" >
-          <div class="lg:flex lg:mx-20 ">
+        <div class="flex justify-center items-center min-h-screen my-20 lg:my-0 " >
+          <!-- START: CONTENT -->
+          <div class="grid lg:grid-cols-2 gap-3 lg:mx-20">
             <!-- START: IMAGE -->
-            <div v-if="selectedIndex === 4" class="block mx-auto px-4 -mt-6 lg:mt-0 lg:flex  ">
-              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pt-10"/>
+            <div v-if="tabData.id === 4" class="block mx-auto px-4 -mt-6 lg:px-0 lg:my-auto">
+              <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <div v-else class="block mx-auto px-4 lg:px-0 lg:my-auto ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
@@ -21,16 +22,14 @@
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-6 lg:mt-24 mx-4 lg:ml-8 lg:w-1/2">
+            <div class="mt-6 lg:mt-24 mx-4">
               <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
               <h1 class="mb-3 lg:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
                 <div v-if="tabData.id === 1">
-                  
                   <input v-model="user.username" class="w-full px-8 py-4 mb-10 border rounded-md text-grey-darker" id="username" type="text" placeholder="Kianna Zalameda"/>
-
                 </div>
                 <div v-else-if="tabData.id === 3">
                   <input v-model="user.email" class="w-full px-8 py-4 mb-10 border rounded-md text-grey-darker" id="email" type="text" placeholder="kianna.zalameda@obf.ateneo.edu"/>
@@ -49,21 +48,9 @@
                       <option value="3">3</option>
                       <option value="4">4</option>
                     </select>
-                    <!-- <select v-model="user.year" class="w-1/12 pl-3 py-2 border text-base lg:text-2xl appearance-none rounded-l-md text-grey-darker year-dropdown">
-                      <option disabled hidden value="">1</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select> -->
-                    <!-- <button for="yeardrop" class="w-1/12 py-5 text-white bg-pink-200 rounded-r-md ">
-                      <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
-                      </svg>
-                    </button> -->
                   </span>
                   <span class="ml-3 sm:inline hidden"></span>
-              
+
                   <span class="sm:inline block">
                     <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
                       <option disabled hidden value="">Information Technology</option>
@@ -72,53 +59,9 @@
                       <option>Course 3</option>
                       <option>Course 4</option>
                     </select>
-                    <!-- <select v-model="user.course" class="w-8/12 px-4 py-2 border text-base lg:text-2xl appearance-none rounded-l-md text-grey-darker">
-                      <option disabled hidden value="">Information Technology</option>
-                      <option value="Information Technology">Information Technology</option>
-                      <option>Course 2</option>
-                      <option>Course 3</option>
-                      <option>Course 4</option>
-                    </select> -->
-                    <!-- <button class="w-1/12 py-5 text-white bg-purple-200 rounded-r-md ">
-                      <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
-                      </svg>
-                    </button> -->
                   </span>
                   </div>
-                  
                 </div>
-                <!-- <div v-else-if="tabData.id === 8">
-                  <div class="mb-10">
-                  <span class="overflow-y-hidden">
-                    <select v-model="user.time" class="w-3/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
-                      <option disabled hidden value="">00:00</option>
-                      <option v-bind:times="times" v-for="time in times" :key="time.id" :value="time.value">{{time.value}}</option>
-                    </select>
-                    <button class="w-1/12 py-5 text-white bg-pink-200 rounded-r-md ">
-                      <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
-                      </svg>
-                    </button>
-                  </span>
-                  <span class="w-1/12 ml-10"></span>
-              
-                  <span class="overflow-y-hidden">
-                    <select v-model="user.timeAMPM" class="w-2/12 px-4 py-2 border appearance-none rounded-l-md text-grey-darker">
-                      <option disabled hidden value="">AM</option>
-                      <option>AM</option>
-                      <option>PM</option>
-                    </select>
-                    <button class="w-1/12 py-5 text-white bg-purple-200 rounded-r-md ">
-                      <svg  class="mx-auto" width="26" height="16" viewBox="0 0 26 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2 2L12.8205 13.214C13.2281 13.6364 13.9102 13.6185 14.2951 13.1753L24 2" stroke="white" stroke-width="3"/>
-                      </svg>
-                    </button>
-                  </span>
-                  </div>
-                  <button class="px-16 py-4 float-left uppercase font-objectivity text-grey ..." @click='selectTab(selectedIndex+1)'>Skip</button>
-                </div> -->
-                
               </div>
               <!-- START: FORM -->
 
@@ -130,71 +73,16 @@
             </div>
             <!-- END: FORM -->
           </div>
+          <!-- END: CONTENT -->
         </div>
       </div>
 
-      <div v-else-if="tabData.id === 2">
-        <div class="flex items-center justify-center h-screen" >
-          <div class="w-full md:w-3/4">
-            <div class="w-full md:text-center">
-              <div class="flex flex-col-reverse lg:block">
-                <div class=" md:mb-6 px-4">
-                  <!-- START: TEXT -->
-                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
-                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
-                  <!-- START: TEXT -->
-                </div>
-
-                <div>
-                  <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
-                  <!-- START: IMAGE -->
-                </div>
-              </div>
-
-              <!-- START: NEXT BUTTON -->
-              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
-              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
-              <!-- END: NEXT BUTTON -->
-            </div>    
-          </div>
-        </div>    
-      </div>
-
-      <div v-else-if="tabData.id === 5">
-        <div class="flex items-center justify-center h-screen" >
-          <div class="w-full md:w-3/4">
-            <div class="w-full md:text-center">
-              <div class="flex flex-col-reverse lg:block">
-                <div class=" md:mb-6 px-4">
-                  <!-- START: TEXT -->
-                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
-                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
-                  <!-- START: TEXT -->
-                </div>
-
-                <div>
-                  <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
-                  <!-- START: IMAGE -->
-                </div>
-              </div>
-
-              <!-- START: NEXT BUTTON -->
-              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
-              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
-              <!-- END: NEXT BUTTON -->
-            </div>    
-          </div>
-        </div>    
-      </div>
-
       <div v-else>
-        <div class="flex items-center justify-center h-screen" >
+        <div class="flex items-center justify-center min-h-screen" >
           <div class="w-full md:w-3/4">
-            <div class="w-full md:text-center">
+            <div class="w-full md:text-center lg:mb-12 lg:mt-16">
               <div class="flex flex-col-reverse lg:block">
-                <div class="my-10 md:mb-6 px-4">
+                <div class=" md:mb-6 px-4">
                   <!-- START: TEXT -->
                   <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
                   <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
@@ -203,7 +91,7 @@
 
                 <div>
                   <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 mt-12 md:mt-0"/>
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
                   <!-- START: IMAGE -->
                 </div>
               </div>
