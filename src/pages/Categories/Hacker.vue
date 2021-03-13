@@ -1,9 +1,12 @@
 <template>
-  <Layout>
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated" class="z-50"/>
+    <!-- END MODAL -->
     <!-- ROOT -->
 
     <div
-      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24 z-0"
     >
       <p class="mb-10 breadcrumb">
         <button @click="$router.go(-1)">Back</button>
@@ -54,6 +57,7 @@
 
 <script>
 // import Loader from "../../components/Loader";
+import unauthModal from "../../components/unauth/unauthModal"
 import cover from "../../components/auth/categories/cover";
 import playlistRow from "../../components/auth/categories/playlistRow";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
@@ -72,6 +76,7 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    unauthModal,
   },
 
   name: "Categories",
@@ -115,6 +120,9 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
     courses() {
       const data = this.$store.state.coursesStore.courses;
       return data;
@@ -157,6 +165,11 @@ div > .tg {
   line-height: 24px;
 
   color: #dbdad5;
+}
+
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
 }
 </style>
 
