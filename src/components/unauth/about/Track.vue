@@ -1,6 +1,6 @@
 <template>
   <!-- START: SECOND COLUMN -->
-  <g-link :to="`/categories/${category}`" class="mx-auto">
+  <g-link :to="`/categories/${category.toLowerCase()}`" class="mx-auto">
     <p class="mb-5 track_header">{{ category }} Track</p>
 
     <div :class="trackerBackground" style="width: 240px; height: 240px">
