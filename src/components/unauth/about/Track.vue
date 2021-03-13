@@ -7,39 +7,48 @@
       <g-image :src="botImage" class="mx-auto unauthBot" />
     </div>
 
-    <div class="flex flex-wrap justify-content-center" style="max-width: 300px">
-      <!-- <g-link
-        :to="`/topics/${id}`"
-        class="flex-auto px-8 py-3 m-1 uppercase form_button font-objectivity"
-      > -->
-
-      <g-link
-        :to="`/topics/${topic.id}`"
+    <div class="flex flex-wrap text-center" style="max-width: 350px">
+      <div
         v-if="category === 'Hacker'"
         v-for="topic in threeHackertopics"
         v-bind:key="topic.id"
-        class="flex-auto px-5 py-3 m-1 form_button font-objectivity"
+        class="flex-auto mx-1 my-3"
       >
-        {{ topic.name }}
-      </g-link>
-      <g-link
-        :to="`/topics/${topic.id}`"
+        <g-link
+          :to="`/topics/${topic.id}`"
+          class="px-5 py-3 mx-auto form_button font-objectivity"
+        >
+          {{ topic.name }}
+        </g-link>
+      </div>
+
+      <div
         v-if="category === 'Hipster'"
         v-for="topic in threeHipstertopics"
         v-bind:key="topic.id"
-        class="flex-auto px-5 py-3 m-1 form_button font-objectivity"
+        class="flex-auto mx-1 my-3"
       >
-        {{ topic.name }}
-      </g-link>
-      <g-link
-        :to="`/topics/${topic.id}`"
+        <g-link
+          :to="`/topics/${topic.id}`"
+          class="px-5 py-3 mx-auto form_button font-objectivity"
+        >
+          {{ topic.name }}
+        </g-link>
+      </div>
+
+      <div
         v-if="category === 'Hustler'"
         v-for="topic in threeHustlertopics"
         v-bind:key="topic.id"
-        class="flex-auto px-5 py-3 m-1 form_button font-objectivity"
+        class="flex-auto mx-1 my-3"
       >
-        {{ topic.name }}
-      </g-link>
+        <g-link
+          :to="`/topics/${topic.id}`"
+          class="px-5 py-3 mx-auto form_button font-objectivity"
+        >
+          {{ topic.name }}
+        </g-link>
+      </div>
     </div>
   </g-link>
   <!-- END: SECOND COLUMN -->
