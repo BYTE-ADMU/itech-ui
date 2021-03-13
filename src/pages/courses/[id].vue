@@ -1,29 +1,12 @@
 <template>
-  <Layout>
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated && course !== null" class="z-50"/>
+    <!-- END MODAL -->
     <!-- ROOT -->
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <!-- <div v-if="course === null" class="mb-10 breadcrumb flex">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
-            Back
-        </button>
-      </div> -->
-
-      <!-- <div v-else class="mb-10 breadcrumb flex">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
-            Back
-        </button>
-        <p class="pr-6 hidden sm:block">/</p>
-        <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden sm:block breadcrumb-text">
-            {{course.categories[0].name}}
-        </button>
-        <p class="pr-6 hidden sm:block">/</p>
-        <p class="hidden sm:block breadcrumb-text">{{ course.name }}</p>
-      </div> -->
       <span class="mb-10">
       <button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text ">
@@ -75,7 +58,7 @@
 
 <script>
 import Loader from "../../components/Loader";
-
+import unauthModal from "../../components/unauth/unauthModal";
 import cover from "../../components/auth/courses/cover";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
@@ -99,6 +82,7 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    unauthModal,
   },
 
   data() {
@@ -120,6 +104,10 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     id() {
       return this.$route.params.id;
     },
@@ -164,6 +152,11 @@ export default {
 
 
 <style>
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 div > .tg {
   filter: brightness(80%);
 }

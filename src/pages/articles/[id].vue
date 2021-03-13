@@ -1,7 +1,7 @@
 <template lang="html">
   <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
     <!-- MODAL -->
-    <unauthModal v-if="!isAuthenticated" class="z-50"/>
+    <unauthModal v-if="!isAuthenticated && article !== null" class="z-50"/>
     <!-- END MODAL -->
     <section class="flex justify-center min-h-screen pt-16 pb-32">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
