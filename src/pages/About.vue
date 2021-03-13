@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div
-      class="container flex flex-col w-screen min-h-screen mx-auto mb-24 md:pt-20"
+      class="flex flex-col w-screen min-h-screen mx-auto mb-24 overflow-hidden md:container md:pt-20"
     >
       <Section1 />
       <Section2 />

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative oveflow-hidden">
     <!-- START: MOBILE VERSION -->
 
     <div class="items-center justify-between block md:hidden">
@@ -92,14 +92,26 @@ export default {
   width: 116.51px;
   height: 118.99px;
   transform: rotate(19.3deg);
-  right: 10px;
+  right: 5%;
   position: absolute;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 620px) {
   .whitebb {
     position: absolute;
-    left: 86%;
+    right: 2%;
+    top: 5%;
+  }
+
+  .about_itech_bg {
+    height: 224px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .whitebb {
+    position: absolute;
+    right: 4%;
     top: 15%;
   }
 
@@ -114,6 +126,10 @@ export default {
   .about_itech_description {
     font-size: 16px;
     line-height: 25px;
+  }
+
+  .about_itech_bg {
+    height: 274px;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <!-- START: ROW 1 -->
 
     <div

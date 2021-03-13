@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20">
+  <div class="py-20 overflow-hidden">
     <p class="px-5 mx-auto mb-20 byte_description">
       Members can find introductory courses about topics that fall under the:
     </p>

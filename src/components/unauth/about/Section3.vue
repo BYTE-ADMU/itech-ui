@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="overflow-hidden">
     <!-- START: MOBILE VERSION -->
     <div class="items-center justify-between block md:hidden">
-      <div class="px-4 py-8 about_byte_bg">
+      <div class="px-4 py-8" style="background-color: #f5a64a">
         <g-image
           src="@/assets/img/unauth/about/section3bytelogo.svg"
-          class="whitebb"
+          class="byte_logo"
         />
         <h1 class="mt-6 about_byte_header">About BYTE</h1>
         <hr class="mb-5 border-none about_byte_hr" />
@@ -55,38 +55,6 @@ export default {
 </script>
 
 <style scoped>
-/* .about_byte_bg {
-  width: 584px;
-  height: 225px;
-  background: #f5a64a;
-  box-shadow: 0px 4px 4px rgba(87, 87, 84, 0.1);
-  border-radius: 10px;
-}
-
-.about_byte_header {
-  font-family: Neue Machina;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 36px;
-  color: #ffffff;
-}
-
-.about_byte_hr {
-  width: 256px;
-  height: 8px;
-  background: #fedf68;
-  border-radius: 20px;
-}
-
-.about_byte_description {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 25px;
-  color: #ffffff;
-} */
-
 .about_byte_bg {
   width: auto;
   height: auto;
@@ -119,7 +87,7 @@ export default {
   color: #ffffff;
 }
 
-.whitebb {
+.byte_logo {
   width: 66px;
   height: 66px;
   right: 10px;
@@ -132,10 +100,8 @@ export default {
     height: 225px;
   }
 
-  .whitebb {
+  .byte_logo {
     position: absolute;
-    left: 86%;
-    top: 15%;
   }
 
   .about_byte_header {
