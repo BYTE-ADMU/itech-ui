@@ -1,12 +1,10 @@
 <template>
   <div class="py-20">
-    <p class="mb-20 byte_description">
-      Members can find introductory courses about
-      <br />
-      topics that fall under the:
+    <p class="px-5 mx-auto mb-20 byte_description">
+      Members can find introductory courses about topics that fall under the:
     </p>
 
-    <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 gap-24 md:gap-5 md:grid-cols-3">
       <Track category="Hacker" />
       <Track category="Hipster" />
       <Track category="Hustler" />
@@ -34,5 +32,13 @@ export default {
   line-height: 25px;
   text-align: center;
   color: #151316;
+  max-width: 600px;
+}
+
+@media (max-width: 640px) {
+  .byte_description {
+    font-size: 14px;
+    line-height: 22px;
+  }
 }
 </style>
