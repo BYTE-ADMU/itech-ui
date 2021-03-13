@@ -1,5 +1,8 @@
 <template>
-  <Layout>
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated" class="z-50"/>
+    <!-- END MODAL -->
     <div 
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
@@ -74,6 +77,7 @@
 </template>
 
 <script>
+import unauthModal from "../components/unauth/unauthModal";
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 
@@ -91,6 +95,7 @@ export default {
   components: {
     articleEntry,
     playlistEntry,
+    unauthModal,
   },
 
   async mounted() {
@@ -100,6 +105,10 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     categories() {
       const data = this.$store.state.categoriesStore.categories;
       return data;
@@ -160,6 +169,10 @@ export default {
 </script>
 
 <style scoped>
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
 .searchBar {
   border: 1px solid #64C0C1;
   padding-left: 60px;
