@@ -1,20 +1,28 @@
 <template>
-  <div
-    class="relative mx-0 bg-gray-400 rounded-none sm:mx-2 sm:rounded-lg feature-height tg"
-  >
-    <div
-      class="absolute z-30 w-full h-full px-4 py-8 rounded-none sm:px-10 sm:rounded-lg group"
-    >
-      <p
-        class="relative w-48 pt-24 pb-2 text-2xl text-white uppercase sm:py-3 sm:text-3xl font-neuemachina hover:opacity-100 bg-fountain-blue-500"
-      >
-        Featured
-      </p>
-    </div>
+  <div class="relative flex w-full mx-0 overflow-hidden rounded-lg">
     <g-image
       src="@/assets/img/unauth/about/section1bg.svg"
-      class="relative object-cover w-full h-full rounded-none sm:rounded-lg tg"
+      class="object-cover w-full"
     />
+
+    <div
+      class="absolute flex flex-row-reverse items-center justify-between w-full h-full px-20"
+    >
+      <g-image
+        src="@/assets/img/bitbots/bbwhite.svg"
+        class="absolute whitebb"
+      />
+      <div class="px-10 py-8 bg-fountain-blue-500 about_itech_bg">
+        <h1 class="about_itech_header">About ITECH</h1>
+        <hr class="mb-5 border-none about_itech_hr" />
+        <p class="about_itech_description">
+          ITECH, or the Information Technology Entrepreneurship Community Hub,
+          is a learning platform made for the members of BYTE, the home
+          organization of BS Information Technology Entrepreneurs students at
+          the Ateneo de Manila University.
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -25,69 +33,45 @@ export default {
 </script>
 
 <style scoped>
-.feature-height {
-  height: 446px;
+.about_itech_bg {
+  width: 557px;
+  height: 274px;
+  background: #64c0c1;
+  box-shadow: 0px 4px 4px rgba(87, 87, 84, 0.1);
+  border-radius: 10px;
 }
 
-.featured-title {
-  font-family: Objectivity;
+.about_itech_header {
+  font-family: Neue Machina;
   font-style: normal;
   font-weight: bold;
   font-size: 36px;
-  line-height: 37.08px;
+  color: #ffffff;
 }
 
-.featured-author-name {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 24.72px;
+.about_itech_hr {
+  width: 256px;
+  height: 8px;
+  background: #3175ed;
+  border-radius: 20px;
 }
 
-.featured-description {
+.about_itech_description {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 25px;
+  color: #ffffff;
 }
 
-@media screen and (max-width: 640px) {
-  .feature-height {
-    height: 100vh;
-  }
+.whitebb {
+  position: absolute;
+  width: 116.51px;
+  height: 118.99px;
+  left: 86%;
+  top: 15%;
 
-  .featured-title {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
-  .featured-author-name {
-    font-size: 16px;
-    line-height: 25px;
-  }
-
-  .featured-description {
-    font-size: 14px;
-    bottom: 30vh;
-    max-height: 145px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .featured-description {
-    font-size: 14px;
-    bottom: 14vh;
-    max-height: 145px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-  }
+  transform: rotate(19.3deg);
 }
 </style>
