@@ -1,5 +1,8 @@
 <template lang="html">
-  <Layout>
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated" class="z-50"/>
+    <!-- END MODAL -->
     <section class="flex justify-center min-h-screen pt-16 pb-32">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
 
@@ -8,8 +11,8 @@
           <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>
-         <!-- END:LOADER -->
-         
+        <!-- END:LOADER -->
+        
 
       <!-- START:ARTICLE -->
         <div v-else >
@@ -150,6 +153,7 @@
 </template>
 
 <script>
+import unauthModal from "../../components/unauth/unauthModal";
 import Loader from "../../components/Loader";
 import NextArticlesSection from "../../components/auth/articles/NextArticlesSection";
 import CommentSection from "../../components/auth/articles/CommentSection";
@@ -171,6 +175,7 @@ export default {
     VueMarkdown,
     NextArticlesSection,
     CommentSection,
+    unauthModal,
   },
 
   data() {
@@ -230,10 +235,21 @@ export default {
       return moment(date).format("MMMM DD, YYYY");
     },
   },
+
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+  }
 };
 </script>
 
 <style scoped>
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 .article-title {
   font-family: Objectivity;
   font-weight: bold;
