@@ -257,6 +257,18 @@ export default {
   padding-right: 60px;
 }
 
+@media screen and (min-width:1250px) {
+  .breadcrumb {
+    left: 15%;
+  }
+}
+
+@media screen and (max-width:1510px) {
+  .breadcrumb {
+    left: 10%;
+  }
+}
+
 @media screen and (max-width: 1320px) {
   .year-dropdown {
     width: 23%;
