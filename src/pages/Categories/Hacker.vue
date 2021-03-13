@@ -57,7 +57,7 @@
 
 <script>
 // import Loader from "../../components/Loader";
-import unauthModal from "../../components/unauth/unauthModal"
+import unauthModal from "../../components/unauth/unauthModal";
 import cover from "../../components/auth/categories/cover";
 import playlistRow from "../../components/auth/categories/playlistRow";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
@@ -123,6 +123,7 @@ export default {
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
     },
+
     courses() {
       const data = this.$store.state.coursesStore.courses;
       return data;

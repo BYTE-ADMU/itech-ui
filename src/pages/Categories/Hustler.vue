@@ -1,5 +1,8 @@
 <template>
-  <Layout>
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated" class="z-50"/>
+    <!-- END MODAL -->
     <!-- ROOT -->
 
     <div
@@ -54,6 +57,7 @@
 
 <script>
 // import Loader from "../../components/Loader";
+import unauthModal from "../../components/unauth/unauthModal";
 import cover from "../../components/auth/categories/cover";
 import playlistRow from "../../components/auth/categories/playlistRow";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
@@ -72,6 +76,7 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    unauthModal,
   },
 
   name: "Categories",
@@ -115,6 +120,10 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     courses() {
       const data = this.$store.state.coursesStore.courses;
       return data;
