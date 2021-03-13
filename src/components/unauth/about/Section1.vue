@@ -1,19 +1,11 @@
 <template>
-  <div class="relative flex w-full mx-0 overflow-hidden rounded-lg">
-    <g-image
-      src="@/assets/img/unauth/about/section1bg.svg"
-      class="object-cover w-full"
-    />
+  <div>
+    <!-- START: MOBILE VERSION -->
 
-    <div
-      class="absolute flex flex-row-reverse items-center justify-between w-full h-full px-20"
-    >
-      <g-image
-        src="@/assets/img/bitbots/bbwhite.svg"
-        class="absolute whitebb"
-      />
-      <div class="px-10 py-8 bg-fountain-blue-500 about_itech_bg">
-        <h1 class="about_itech_header">About ITECH</h1>
+    <div class="items-center justify-between block md:hidden">
+      <div class="px-4 py-8 bg-fountain-blue-500">
+        <g-image src="@/assets/img/bitbots/bbwhite.svg" class="whitebb" />
+        <h1 class="mt-20 about_itech_header">About ITECH</h1>
         <hr class="mb-5 border-none about_itech_hr" />
         <p class="about_itech_description">
           ITECH, or the Information Technology Entrepreneurship Community Hub,
@@ -23,6 +15,37 @@
         </p>
       </div>
     </div>
+    <!-- END: MOBILE VERSION -->
+
+    <!-- START: DESKTOP VERSION -->
+    <div class="hidden md:block">
+      <div class="relative flex w-full mx-0 overflow-hidden rounded-lg">
+        <g-image
+          src="@/assets/img/unauth/about/section1bg.svg"
+          class="object-cover w-full"
+        />
+
+        <div
+          class="absolute flex flex-row-reverse items-center justify-between w-full h-full px-20"
+        >
+          <g-image
+            src="@/assets/img/bitbots/bbwhite.svg"
+            class="absolute whitebb"
+          />
+          <div class="px-10 py-8 bg-fountain-blue-500 about_itech_bg">
+            <h1 class="about_itech_header">About ITECH</h1>
+            <hr class="mb-5 border-none about_itech_hr" />
+            <p class="about_itech_description">
+              ITECH, or the Information Technology Entrepreneurship Community
+              Hub, is a learning platform made for the members of BYTE, the home
+              organization of BS Information Technology Entrepreneurs students
+              at the Ateneo de Manila University.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: DESKTOP VERSION -->
   </div>
 </template>
 
@@ -45,12 +68,12 @@ export default {
   font-family: Neue Machina;
   font-style: normal;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 20px;
   color: #ffffff;
 }
 
 .about_itech_hr {
-  width: 256px;
+  width: 154px;
   height: 8px;
   background: #3175ed;
   border-radius: 20px;
@@ -60,18 +83,37 @@ export default {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 22px;
   color: #ffffff;
 }
 
 .whitebb {
-  position: absolute;
   width: 116.51px;
   height: 118.99px;
-  left: 86%;
-  top: 15%;
-
   transform: rotate(19.3deg);
+  right: 10px;
+  position: absolute;
+}
+
+@media (min-width: 640px) {
+  .whitebb {
+    position: absolute;
+    left: 86%;
+    top: 15%;
+  }
+
+  .about_itech_header {
+    font-size: 36px;
+  }
+
+  .about_itech_hr {
+    width: 256px;
+  }
+
+  .about_itech_description {
+    font-size: 16px;
+    line-height: 25px;
+  }
 }
 </style>
