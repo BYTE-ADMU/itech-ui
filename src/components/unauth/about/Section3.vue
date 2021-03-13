@@ -7,13 +7,11 @@
 
     <div class="absolute flex items-center justify-between w-full h-full px-20">
       <div class="px-10 py-8 bg-fountain-blue-500 about_byte_bg">
-        <h1 class="about_byte_header">About ITECH</h1>
+        <h1 class="about_byte_header">About BYTE</h1>
         <hr class="mb-5 border-none about_byte_hr" />
         <p class="about_byte_description">
-          ITECH, or the Information Technology Entrepreneurship Community Hub,
-          is a learning platform made for the members of BYTE, the home
-          organization of BS Information Technology Entrepreneurs students at
-          the Ateneo de Manila University.
+          BYTE, the home organization for B.S. Information Technology
+          Entrepreneurship course, is an independent organization under LIONS.
         </p>
       </div>
       <g-image src="@/assets/img/unauth/about/section3bytelogo.svg" class="" />
