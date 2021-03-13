@@ -40,6 +40,26 @@
       <div class="flex items-center flex-grow w-auto">
         <div class="flex-grow text-sm"></div>
 
+        <g-link
+          to="/categories/hacker"
+          class="mx-10 font-bold text-md font-objectivity nav__link"
+        >
+          Hacker
+        </g-link>
+        <g-link
+          to="/categories/hipster"
+          class="mx-10 font-bold text-md font-objectivity nav__link"
+        >
+          Hipster
+        </g-link>
+
+        <g-link
+          to="/categories/hustler"
+          class="mx-10 font-bold text-md font-objectivity nav__link"
+        >
+          Hustler
+        </g-link>
+
         <div v-if="!isAuthenticated">
           <g-link
             class="block px-8 py-3 text-sm form_button ... nav__link"
@@ -55,25 +75,7 @@
           >
             Discover
           </g-link>
-          <!-- <a
-            href="/categories/hacker/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hacker
-          </a>
-          <a
-            href="/categories/hipster/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hipster
-          </a>
 
-          <a
-            href="/categories/hustler/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hustler
-          </a> -->
           <div class="relative p-4 hover-trigger nav__link">
             <svg
               width="24"
