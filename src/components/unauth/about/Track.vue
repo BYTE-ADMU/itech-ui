@@ -12,7 +12,7 @@
         v-if="category === 'Hacker'"
         v-for="topic in threeHackertopics"
         v-bind:key="topic.id"
-        class="flex-auto mx-1 my-3"
+        class="flex-auto mx-2 my-3"
       >
         <g-link
           :to="`/topics/${topic.id}`"
@@ -26,7 +26,7 @@
         v-if="category === 'Hipster'"
         v-for="topic in threeHipstertopics"
         v-bind:key="topic.id"
-        class="flex-auto mx-1 my-3"
+        class="flex-auto mx-2 my-3"
       >
         <g-link
           :to="`/topics/${topic.id}`"
@@ -40,7 +40,7 @@
         v-if="category === 'Hustler'"
         v-for="topic in threeHustlertopics"
         v-bind:key="topic.id"
-        class="flex-auto mx-1 my-3"
+        class="flex-auto mx-2 my-3"
       >
         <g-link
           :to="`/topics/${topic.id}`"
