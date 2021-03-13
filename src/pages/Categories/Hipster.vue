@@ -154,6 +154,11 @@ export default {
 </script>
 
 <style>
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
 div > .tg {
   filter: brightness(80%);
 }
