@@ -172,6 +172,7 @@
       </div>
       <!-- END: DESKTOP MODE -->
 
+      <!-- START: DESKTOP USER PROFILE DROPDOWN -->
       <div
         v-if="isOpenUserDropdown"
         class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
@@ -222,6 +223,122 @@
         </div>
       </div>
     </div>
+    <!-- END: DESKTOP USER PROFILE DROPDOWN -->
+
+    <!-- START: MOBILE MODE -->
+    <button
+      @click="isOpenMobileMenu = !isOpenMobileMenu"
+      class="fixed z-50 block rounded-full mobile-menu lg:hidden"
+    >
+      <g-image
+        v-if="!isOpenMobileMenu"
+        class="p-2"
+        style="width: 120px"
+        src="@/assets/img/icons/MenuIcon.svg"
+      />
+      <g-image
+        v-else
+        class="p-2"
+        style="width: 120px"
+        src="@/assets/img/icons/CloseIcon.svg"
+      />
+    </button>
+
+    <!-- END: MOBILE MODE -->
+
+    <div v-if="isOpenMobileMenu" class="block mt-32 lg:hidden">
+      <div
+        class="fixed z-40 flex flex-wrap justify-between w-screen h-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
+      >
+        <!-- START: SEARCH BAR / EMPTY  -->
+        <div class="flex flex-grow">
+          <!-- Start: If User isn't Authenticated -->
+          <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+          <!-- End: If User isn't Authenticated -->
+
+          <!-- Start: If User is Authenticated -->
+          <div class="relative flex-grow mx-auto">
+            <form v-on:submit.prevent="handleSubmit">
+              <input
+                type="text"
+                placeholder="Search"
+                class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
+                v-model="search"
+                v-on:keyup="discover"
+              />
+              <g-image
+                src="@/assets/img/search-vector.svg"
+                class="mt-36 searchVector"
+              />
+              <div
+                v-if="search"
+                class="absolute z-40 w-full h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+                style="max-height: 360px"
+              >
+                <g-link
+                  v-for="category in filteredCategories"
+                  :key="category.id"
+                  :to="`/categories/${category.name.toLowerCase()}`"
+                  class="block w-full flex justify-between px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                >
+                  <span class="w-3/4 truncate">{{ category.name }}</span>
+                  <span class="flex flex-row-reverse w-1/4">
+                    <span
+                      class="px-2 text-xs text-white bg-blue-600 rounded-full"
+                      >Category</span
+                    >
+                  </span>
+                </g-link>
+                <g-link
+                  v-for="topic in threeFilteredTopics"
+                  :key="topic.id"
+                  :to="`/topics/${topic.id}`"
+                  class="block w-full px-4 py-4 flex justify-between truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                >
+                  <span class="w-3/4 truncate">{{ topic.name }}</span>
+                  <span class="flex flex-row-reverse w-1/4">
+                    <span
+                      class="px-2 text-xs text-white bg-orange-600 rounded-full"
+                      >Topic</span
+                    >
+                  </span>
+                </g-link>
+                <g-link
+                  v-for="course in threeFilteredCourses"
+                  :key="course.id"
+                  :to="`/courses/${course.id}`"
+                  class="block flex justify-between w-full px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                >
+                  <span class="w-3/4 truncate">{{ course.name }}</span>
+                  <span class="flex flex-row-reverse w-1/4">
+                    <span
+                      class="px-2 text-xs text-white bg-purple-600 rounded-full"
+                      >Course</span
+                    >
+                  </span>
+                </g-link>
+                <g-link
+                  v-for="article in threeFilteredArticles"
+                  :key="article.id"
+                  :to="`/articles/${article.id}`"
+                  class="block flex justify-between w-full px-4 py-4 text-sm truncate ... text-gray-800 border-b button-text hover:bg-gray-200"
+                >
+                  <span class="w-3/4 truncate">{{ article.title }}</span>
+                  <span class="flex flex-row-reverse w-1/4">
+                    <span
+                      class="px-2 text-xs text-white bg-yellow-600 rounded-full"
+                      >Article</span
+                    >
+                  </span>
+                </g-link>
+              </div>
+            </form>
+          </div>
+          <!-- End: If User is Authenticated -->
+        </div>
+        <!-- END: SEARCH BAR / EMPTY  -->
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -234,6 +351,7 @@ export default Vue.extend({
   data() {
     return {
       isOpenUserDropdown: false,
+      isOpenMobileMenu: false,
     };
   },
 
@@ -394,8 +512,19 @@ export default Vue.extend({
 }
 
 .searchVector {
-  position: absolute;
+  position: fixed;
   top: 12.8px;
   left: 26px;
+}
+
+.mobile-menu {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 4%;
+  left: 4%;
+  background: #f9f7f2;
+  box-shadow: 0px 16px 16px rgba(50, 50, 71, 0.08),
+    0px 24px 32px rgba(50, 50, 71, 0.08);
 }
 </style>
