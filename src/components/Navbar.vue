@@ -246,12 +246,33 @@
 
     <!-- END: MOBILE MODE -->
 
-    <div v-if="isOpenMobileMenu" class="block mt-32 lg:hidden">
+    <div v-if="isOpenMobileMenu" class="block bg-white lg:hidden">
       <div
-        class="fixed z-40 flex flex-wrap justify-between w-screen h-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
+        class="fixed z-40 w-screen h-screen pt-32 pb-2 bg-white md:px-20 nav"
       >
+        <!-- START: ITECH LOGO BUTTON -->
+        <div class="fixed bottom-0 flex justify-center w-full py-4 text-white">
+          <!-- Start: If User isn't Authenticated -->
+          <g-link v-if="!isAuthenticated" to="/">
+            <g-image
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+            />
+          </g-link>
+          <!-- End: If User isn't Authenticated -->
+
+          <!-- Start: If User is Authenticated -->
+          <g-link v-else to="/dashboard">
+            <g-image
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+            />
+          </g-link>
+
+          <!-- End: If User is Authenticated -->
+        </div>
+        <!-- END: ITECH LOGO BUTTON -->
+
         <!-- START: SEARCH BAR / EMPTY  -->
-        <div class="flex flex-grow">
+        <div class="flex flex-grow px-4">
           <!-- Start: If User isn't Authenticated -->
           <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
           <!-- End: If User isn't Authenticated -->
@@ -268,7 +289,7 @@
               />
               <g-image
                 src="@/assets/img/search-vector.svg"
-                class="mt-36 searchVector"
+                class="searchVector"
               />
               <div
                 v-if="search"
@@ -512,7 +533,7 @@ export default Vue.extend({
 }
 
 .searchVector {
-  position: fixed;
+  position: absolute;
   top: 12.8px;
   left: 26px;
 }
