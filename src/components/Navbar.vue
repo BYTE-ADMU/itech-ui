@@ -1,215 +1,225 @@
 <template>
   <nav>
     <!-- START: DESKTOP MODE -->
-    <div
-      class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
-    >
+    <div class="hidden lg:block">
       <div
-        class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
+        class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
       >
-        <!-- START: ITECH LOGO BUTTON -->
-        <div class="flex items-center text-white flex-no-shrink">
-          <!-- Start: If User isn't Authenticated -->
-          <g-link v-if="!isAuthenticated" class="nav__link" to="/">
-            <g-image
-              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-              class="w-40 py-2"
-            />
-          </g-link>
-          <!-- End: If User isn't Authenticated -->
-
-          <!-- Start: If User is Authenticated -->
-          <g-link v-else class="nav__link" to="/dashboard">
-            <g-image
-              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-              class="w-40 py-2"
-            />
-          </g-link>
-          <!-- End: If User is Authenticated -->
-        </div>
-        <!-- END: ITECH LOGO BUTTON -->
-
-        <div class="flex items-center flex-grow ml-8">
-          <!-- START: SEARCH BAR / EMPTY  -->
-          <div class="flex items-center flex-grow">
+        <div
+          class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
+        >
+          <!-- START: ITECH LOGO BUTTON -->
+          <div class="flex items-center text-white flex-no-shrink">
             <!-- Start: If User isn't Authenticated -->
-            <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+            <g-link v-if="!isAuthenticated" class="nav__link" to="/">
+              <g-image
+                :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+                class="w-40 py-2"
+              />
+            </g-link>
             <!-- End: If User isn't Authenticated -->
 
             <!-- Start: If User is Authenticated -->
-            <div class="relative flex-grow mx-auto">
-              <form v-on:submit.prevent="handleSubmit">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
-                  v-model="search"
-                  v-on:keyup="discover"
-                />
-                <g-image
-                  src="@/assets/img/search-vector.svg"
-                  class="searchVector"
-                />
-                <div
-                  v-if="search"
-                  class="absolute z-40 w-full h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
-                  style="max-height: 360px"
-                >
-                  <g-link
-                    v-for="category in filteredCategories"
-                    :key="category.id"
-                    :to="`/categories/${category.name.toLowerCase()}`"
-                    class="block w-full flex justify-between px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                  >
-                    {{ category.name }}
-                    <span
-                      class="px-2 text-xs text-white bg-blue-600 rounded-full"
-                      >Category</span
-                    >
-                  </g-link>
-                  <g-link
-                    v-for="topic in threeFilteredTopics"
-                    :key="topic.id"
-                    :to="`/topics/${topic.id}`"
-                    class="block w-full px-4 py-4 flex justify-between truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                  >
-                    {{ topic.name }}
-                    <span
-                      class="px-2 text-xs text-white bg-orange-600 rounded-full"
-                      >Topic</span
-                    >
-                  </g-link>
-                  <g-link
-                    v-for="course in threeFilteredCourses"
-                    :key="course.id"
-                    :to="`/courses/${course.id}`"
-                    class="block flex justify-between w-full px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                  >
-                    {{ course.name }}
-                    <span
-                      class="px-2 text-xs text-white bg-purple-600 rounded-full"
-                      >Course</span
-                    >
-                  </g-link>
-                  <g-link
-                    v-for="article in threeFilteredArticles"
-                    :key="article.id"
-                    :to="`/articles/${article.id}`"
-                    class="block flex justify-between w-full px-4 py-4 text-sm truncate ... text-gray-800 border-b button-text hover:bg-gray-200"
-                  >
-                    {{ article.title }}
-                    <span
-                      class="px-2 text-xs text-white bg-yellow-600 rounded-full"
-                      >Article</span
-                    >
-                  </g-link>
-                </div>
-              </form>
-            </div>
+            <g-link v-else class="nav__link" to="/dashboard">
+              <g-image
+                :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+                class="w-40 py-2"
+              />
+            </g-link>
             <!-- End: If User is Authenticated -->
           </div>
-          <!-- END: SEARCH BAR / EMPTY  -->
+          <!-- END: ITECH LOGO BUTTON -->
 
-          <!-- START: CATEGORY BUTTONS -->
-          <g-link
-            to="/categories/hacker"
-            class="mx-10 font-bold text-md font-objectivity nav__link"
-          >
-            Hacker
-          </g-link>
-          <g-link
-            to="/categories/hipster"
-            class="mx-10 font-bold text-md font-objectivity nav__link"
-          >
-            Hipster
-          </g-link>
+          <div class="flex items-center flex-grow ml-8">
+            <!-- START: SEARCH BAR / EMPTY  -->
+            <div class="flex items-center flex-grow">
+              <!-- Start: If User isn't Authenticated -->
+              <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+              <!-- End: If User isn't Authenticated -->
 
-          <g-link
-            to="/categories/hustler"
-            class="mx-10 font-bold text-md font-objectivity nav__link"
-          >
-            Hustler
-          </g-link>
-          <!-- END: CATEGORY BUTTONS -->
+              <!-- Start: If User is Authenticated -->
+              <div class="relative flex-grow mx-auto">
+                <form v-on:submit.prevent="handleSubmit">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
+                    v-model="search"
+                    v-on:keyup="discover"
+                  />
+                  <g-image
+                    src="@/assets/img/search-vector.svg"
+                    class="searchVector"
+                  />
+                  <div
+                    v-if="search"
+                    class="absolute z-40 w-full h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+                    style="max-height: 360px"
+                  >
+                    <g-link
+                      v-for="category in filteredCategories"
+                      :key="category.id"
+                      :to="`/categories/${category.name.toLowerCase()}`"
+                      class="block w-full flex justify-between px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                    >
+                      <span class="w-3/4 truncate">{{ category.name }}</span>
+                      <span class="flex flex-row-reverse w-1/4">
+                        <span
+                          class="px-2 text-xs text-white bg-blue-600 rounded-full"
+                          >Category</span
+                        >
+                      </span>
+                    </g-link>
+                    <g-link
+                      v-for="topic in threeFilteredTopics"
+                      :key="topic.id"
+                      :to="`/topics/${topic.id}`"
+                      class="block w-full px-4 py-4 flex justify-between truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                    >
+                      <span class="w-3/4 truncate">{{ topic.name }}</span>
+                      <span class="flex flex-row-reverse w-1/4">
+                        <span
+                          class="px-2 text-xs text-white bg-orange-600 rounded-full"
+                          >Topic</span
+                        >
+                      </span>
+                    </g-link>
+                    <g-link
+                      v-for="course in threeFilteredCourses"
+                      :key="course.id"
+                      :to="`/courses/${course.id}`"
+                      class="block flex justify-between w-full px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                    >
+                      <span class="w-3/4 truncate">{{ course.name }}</span>
+                      <span class="flex flex-row-reverse w-1/4">
+                        <span
+                          class="px-2 text-xs text-white bg-purple-600 rounded-full"
+                          >Course</span
+                        >
+                      </span>
+                    </g-link>
+                    <g-link
+                      v-for="article in threeFilteredArticles"
+                      :key="article.id"
+                      :to="`/articles/${article.id}`"
+                      class="block flex justify-between w-full px-4 py-4 text-sm truncate ... text-gray-800 border-b button-text hover:bg-gray-200"
+                    >
+                      <span class="w-3/4 truncate">{{ article.title }}</span>
+                      <span class="flex flex-row-reverse w-1/4">
+                        <span
+                          class="px-2 text-xs text-white bg-yellow-600 rounded-full"
+                          >Article</span
+                        >
+                      </span>
+                    </g-link>
+                  </div>
+                </form>
+              </div>
+              <!-- End: If User is Authenticated -->
+            </div>
+            <!-- END: SEARCH BAR / EMPTY  -->
 
-          <!-- START: LOGIN/USER BUTTON -->
-          <!-- Start: If User is NOT Authenticated -->
-          <div v-if="!isAuthenticated">
+            <!-- START: CATEGORY BUTTONS -->
             <g-link
-              class="block px-8 py-3 text-sm form_button ... nav__link"
-              to="/login/"
+              to="/categories/hacker"
+              class="mx-10 font-bold text-md font-objectivity nav__link"
             >
-              Log In
+              Hacker
             </g-link>
-          </div>
-          <!-- End: If User is NOT Authenticated -->
-
-          <!-- Start: If User IS Authenticated -->
-          <div class="flex" v-else>
-            <button
-              @click="isOpenUserDropdown = !isOpenUserDropdown"
-              class="relative p-5 nav__link"
+            <g-link
+              to="/categories/hipster"
+              class="mx-10 font-bold text-md font-objectivity nav__link"
             >
-              <!-- Start: UserAccountIcon -->
-              <g-image class="" src="@/assets/img/icons/UserAccount.svg" />
-              <!-- End: UserAccountIcon -->
-            </button>
-          </div>
+              Hipster
+            </g-link>
 
-          <!-- End: If User IS Authenticated -->
-          <!-- END: LOGIN/USER BUTTON -->
+            <g-link
+              to="/categories/hustler"
+              class="mx-10 font-bold text-md font-objectivity nav__link"
+            >
+              Hustler
+            </g-link>
+            <!-- END: CATEGORY BUTTONS -->
+
+            <!-- START: LOGIN/USER BUTTON -->
+            <!-- Start: If User is NOT Authenticated -->
+            <div v-if="!isAuthenticated">
+              <g-link
+                class="block px-8 py-3 text-sm form_button ... nav__link"
+                to="/login/"
+              >
+                Log In
+              </g-link>
+            </div>
+            <!-- End: If User is NOT Authenticated -->
+
+            <!-- Start: If User IS Authenticated -->
+            <div class="flex" v-else>
+              <button
+                @click="isOpenUserDropdown = !isOpenUserDropdown"
+                class="relative p-5 nav__link"
+              >
+                <!-- Start: UserAccountIcon -->
+                <g-image class="" src="@/assets/img/icons/UserAccount.svg" />
+                <!-- End: UserAccountIcon -->
+              </button>
+            </div>
+
+            <!-- End: If User IS Authenticated -->
+            <!-- END: LOGIN/USER BUTTON -->
+          </div>
         </div>
       </div>
-    </div>
-    <!-- END: DESKTOP MODE -->
+      <!-- END: DESKTOP MODE -->
 
-    <div
-      v-if="isOpenUserDropdown"
-      class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
-    >
       <div
-        class="flex flex-row-reverse flex-wrap items-center justify-between w-screen mx-auto lg:container"
+        v-if="isOpenUserDropdown"
+        class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
       >
-        <!-- Start:UserAccountDropdown -->
-
         <div
-          class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
-          style="width: 285px"
+          class="flex flex-row-reverse flex-wrap items-center justify-between w-screen mx-auto lg:container"
         >
-          <g-link
-            to="/user-profile/"
-            class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
-          >
-            <g-image
-              class="mr-4"
-              src="@/assets/img/icons/DefaultUserIcon.svg"
-            />
+          <!-- Start:UserAccountDropdown -->
 
-            <div class="overflow-hidden">
-              <p class="welcome-back">Welcome back,</p>
-              <p class="truncate username ...">{{ username }}</p>
-            </div>
-          </g-link>
-          <g-link
-            to="/my-list/"
-            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+          <div
+            class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
+            style="width: 285px"
           >
-            My List
-          </g-link>
-          <g-link
-            to="/user-profile/"
-            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
-          >
-            My Account
-          </g-link>
-          <button
-            @click="logout"
-            class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
-          >
-            Sign out
-          </button>
+            <g-link
+              to="/user-profile/"
+              class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
+            >
+              <g-image
+                class="mr-4"
+                src="@/assets/img/icons/DefaultUserIcon.svg"
+              />
+
+              <div class="overflow-hidden">
+                <p class="welcome-back">Welcome back,</p>
+                <p class="truncate username ...">{{ username }}</p>
+              </div>
+            </g-link>
+            <g-link
+              to="/my-list/"
+              class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              My List
+            </g-link>
+            <g-link
+              to="/user-profile/"
+              class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              My Account
+            </g-link>
+            <button
+              @click="logout"
+              class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              Sign out
+            </button>
+          </div>
+          <!-- End:UserAccountDropdown -->
         </div>
-        <!-- End:UserAccountDropdown -->
       </div>
     </div>
   </nav>

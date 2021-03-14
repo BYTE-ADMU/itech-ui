@@ -4,18 +4,18 @@
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <h1
-        class="pb-8 text-xl not-italic text-center sm:hidden discoverTitle font-objectivity"
+        class="pb-8 text-xl not-italic text-center lg:hidden discoverTitle font-objectivity"
       >
         Discover
       </h1>
 
       <!-- search bar -->
-      <div class="relative block w-full mx-auto mb-12 md:hidden md:w-2/3">
+      <div class="relative block w-full mx-auto mb-12 lg:hidden md:w-2/3">
         <input
           type="text"
           placeholder="Search"
           class="w-full h-10 pt-2 rounded-3xl searchBar font-objectivity"
-          v-model="searchBar"
+          v-model="userSearch"
         />
         <g-image
           :src="require('../assets/img/search-vector.svg')"
@@ -24,7 +24,7 @@
       </div>
 
       <!-- filter buttons -->
-      <div class="hidden text-center md:block">
+      <div class="hidden text-center lg:block">
         <button
           v-for="category in categories"
           v-bind:key="category.id"
@@ -36,7 +36,7 @@
         </button>
 
         <button
-          v-for="topic in topics"
+          v-for="topic in someTopics"
           v-bind:key="topic.id"
           v-bind:value="topic.name"
           @click="searchButton = topic.categories[0].name"
@@ -102,7 +102,6 @@ export default {
   },
   data() {
     return {
-      searchBar: "",
       searchButton: "",
     };
   },
@@ -138,40 +137,36 @@ export default {
       return data;
     },
 
-    search: {
+    someTopics() {
+      return this.topics.splice(0, 11);
+    },
+
+    userSearch: {
       get() {
         return this.$store.state.userStore.userSearch;
       },
+
       set(value) {
-        if (this.searchBar) {
-          this.$store.dispatch(
-            "userStore/updateUserSearch",
-            this.searchBar.toLowerCase()
-          );
-        } else if (this.searchButton) {
-          this.$store.dispatch(
-            "userStore/updateUserSearch",
-            this.searchButton.toLowerCase()
-          );
-        }
         this.$store.dispatch("userStore/updateUserSearch", value);
       },
     },
 
-    // search() {
-    //   if (this.searchBar) {
-    //     return this.searchBar.toLowerCase();
-    //   } else if (this.searchButton) {
-    //     return this.searchButton.toLowerCase();
-    //   }
-    //   return "";
-    // },
+    search() {
+      if (this.searchButton) {
+        return this.searchButton.toLowerCase();
+      } else if (this.userSearch) {
+        return this.userSearch.toLowerCase();
+      }
+      return "";
+    },
 
     filteredCourses() {
       return this.courses.filter((course) => {
         if (
-          course.categories[0].name.toLowerCase().includes(this.search) ||
-          course.name.toLowerCase().includes(this.search)
+          course.categories[0].name
+            .toLowerCase()
+            .includes(this.search.toLowerCase()) ||
+          course.name.toLowerCase().includes(this.search.toLowerCase())
         ) {
           return course;
         }
@@ -186,9 +181,10 @@ export default {
     filteredArticles() {
       return this.articles.filter((article) => {
         if (
-          article.title.toLowerCase().includes(this.search) ||
-          article.categories[0].topics[0].includes(this.search) ||
-          article.categories[0].name.toLowerCase().includes(this.search)
+          article.title.toLowerCase().includes(this.search.toLowerCase()) ||
+          article.categories[0].name
+            .toLowerCase()
+            .includes(this.search.toLowerCase())
         ) {
           return article;
         }
