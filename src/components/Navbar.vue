@@ -103,7 +103,7 @@
             class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
           >
             <g-image
-              class="mr-2"
+              class="mr-4"
               src="@/assets/img/icons/DefaultUserIcon.svg"
             />
 
