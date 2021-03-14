@@ -29,8 +29,86 @@
         </div>
         <!-- END: ITECH LOGO BUTTON -->
 
-        <div class="flex items-center flex-grow w-auto">
-          <div class="flex-grow text-sm"></div>
+        <div class="flex items-center flex-grow ml-8">
+          <!-- START: SEARCH BAR / EMPTY  -->
+          <div class="flex items-center flex-grow">
+            <!-- Start: If User isn't Authenticated -->
+            <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+            <!-- End: If User isn't Authenticated -->
+
+            <!-- Start: If User is Authenticated -->
+            <div class="relative flex-grow mx-auto">
+              <form v-on:submit.prevent="handleSubmit">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
+                  v-model="search"
+                  v-on:keyup="discover"
+                />
+                <g-image
+                  src="@/assets/img/search-vector.svg"
+                  class="searchVector"
+                />
+                <div
+                  v-if="search"
+                  class="absolute z-40 w-full h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+                  style="max-height: 360px"
+                >
+                  <g-link
+                    v-for="category in filteredCategories"
+                    :key="category.id"
+                    :to="`/categories/${category.name.toLowerCase()}`"
+                    class="block w-full flex justify-between px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                  >
+                    {{ category.name }}
+                    <span
+                      class="px-2 text-xs text-white bg-blue-600 rounded-full"
+                      >Category</span
+                    >
+                  </g-link>
+                  <g-link
+                    v-for="topic in threeFilteredTopics"
+                    :key="topic.id"
+                    :to="`/topics/${topic.id}`"
+                    class="block w-full px-4 py-4 flex justify-between truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                  >
+                    {{ topic.name }}
+                    <span
+                      class="px-2 text-xs text-white bg-orange-600 rounded-full"
+                      >Topic</span
+                    >
+                  </g-link>
+                  <g-link
+                    v-for="course in threeFilteredCourses"
+                    :key="course.id"
+                    :to="`/courses/${course.id}`"
+                    class="block flex justify-between w-full px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                  >
+                    {{ course.name }}
+                    <span
+                      class="px-2 text-xs text-white bg-purple-600 rounded-full"
+                      >Course</span
+                    >
+                  </g-link>
+                  <g-link
+                    v-for="article in threeFilteredArticles"
+                    :key="article.id"
+                    :to="`/articles/${article.id}`"
+                    class="block flex justify-between w-full px-4 py-4 text-sm truncate ... text-gray-800 border-b button-text hover:bg-gray-200"
+                  >
+                    {{ article.title }}
+                    <span
+                      class="px-2 text-xs text-white bg-yellow-600 rounded-full"
+                      >Article</span
+                    >
+                  </g-link>
+                </div>
+              </form>
+            </div>
+            <!-- End: If User is Authenticated -->
+          </div>
+          <!-- END: SEARCH BAR / EMPTY  -->
 
           <!-- START: CATEGORY BUTTONS -->
           <g-link
@@ -150,15 +228,94 @@ export default Vue.extend({
   },
 
   computed: {
+    //START: USER RELATED
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
     },
     username() {
       return this.$store.state.userStore.user.username;
     },
+    search: {
+      get() {
+        return this.$store.state.userStore.userSearch;
+      },
+      set(value) {
+        this.$store.dispatch("userStore/updateUserSearch", value);
+      },
+    },
+    //END: USER RELATED
+
+    //START: GETTING DATA RELATED
+    categories() {
+      const data = this.$store.state.categoriesStore.categories;
+      return data;
+    },
+
+    topics() {
+      const data = this.$store.state.topicsStore.topics;
+      return data;
+    },
+
+    courses() {
+      const data = this.$store.state.coursesStore.courses;
+      return data;
+    },
+
+    articles() {
+      const data = this.$store.state.articlesStore.articles;
+      return data;
+    },
+    //END: GETTING DATA RELATED
+
+    //START: PROCESSING DATA RELATED
+    filteredCategories() {
+      return this.categories.filter((category) => {
+        return category.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+
+    filteredTopics() {
+      return this.topics.filter((topic) => {
+        return topic.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+
+    filteredCourses() {
+      return this.courses.filter((course) => {
+        return (
+          course.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          course.categories[0].name
+            .toLowerCase()
+            .includes(this.search.toLowerCase())
+        );
+      });
+    },
+
+    filteredArticles() {
+      return this.articles.filter((article) => {
+        return (
+          article.title.toLowerCase().includes(this.search.toLowerCase()) ||
+          article.categories[0].name
+            .toLowerCase()
+            .includes(this.search.toLowerCase())
+        );
+      });
+    },
+
+    threeFilteredTopics() {
+      return this.filteredTopics.slice(0, 3);
+    },
+    threeFilteredCourses() {
+      return this.filteredCourses.slice(0, 3);
+    },
+    threeFilteredArticles() {
+      return this.filteredArticles.slice(0, 3);
+    },
+    //END: PROCESSING DATA RELATED
   },
 
   methods: {
+    // START: LOGOUT
     async logout() {
       if (confirm("Are you sure you want to log out? ")) {
         await this.$store.dispatch("userStore/logout", this.user);
@@ -168,6 +325,20 @@ export default Vue.extend({
         }
       }
     },
+    // END: LOGOUT
+
+    // START: DISCOVER
+    discover(e) {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        this.$router.replace("/discover/");
+      }
+    },
+
+    handleSubmit() {
+      // Code
+    },
+    // END: DISCOVER
   },
 });
 </script>
@@ -203,5 +374,18 @@ export default Vue.extend({
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
+}
+
+.searchBar {
+  border: 1px solid #64c0c1;
+  padding-left: 60px;
+  background-color: rgba(100, 192, 193, 0.05);
+  color: #64c0c1;
+}
+
+.searchVector {
+  position: absolute;
+  top: 12.8px;
+  left: 26px;
 }
 </style>

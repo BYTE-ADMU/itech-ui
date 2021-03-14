@@ -1,36 +1,47 @@
 <template>
   <Layout>
-    <div 
+    <div
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <h1 class="sm:hidden discoverTitle text-center text-xl font-objectivity not-italic pb-8">
+      <h1
+        class="pb-8 text-xl not-italic text-center sm:hidden discoverTitle font-objectivity"
+      >
         Discover
       </h1>
 
       <!-- search bar -->
-      <div class="md:w-2/3 w-full mx-auto relative mb-12">
-        <input type="text" placeholder="Search" class="w-full h-10 rounded-3xl searchBar pt-2 font-objectivity"
-          v-model="searchBar">
-        <img 
-        :src="require('../assets/img/search-vector.svg')"
-        class="searchVector">
+      <div class="relative block w-full mx-auto mb-12 md:hidden md:w-2/3">
+        <input
+          type="text"
+          placeholder="Search"
+          class="w-full h-10 pt-2 rounded-3xl searchBar font-objectivity"
+          v-model="searchBar"
+        />
+        <g-image
+          :src="require('../assets/img/search-vector.svg')"
+          class="searchVector"
+        />
       </div>
 
       <!-- filter buttons -->
-      <div class="hidden sm:block text-center">
-        <button v-for="category in categories"
+      <div class="hidden text-center md:block">
+        <button
+          v-for="category in categories"
           v-bind:key="category.id"
           v-bind:value="category.name"
           @click="searchButton = category.name"
-          class="filterButton text-center py-2 px-6 rounded-full font-bold font-objectvitity mx-2 my-2">
+          class="px-6 py-2 mx-2 my-2 font-bold text-center rounded-full filterButton font-objectvitity"
+        >
           {{ category.name }}
         </button>
 
-        <button v-for="topic in topics"
+        <button
+          v-for="topic in topics"
           v-bind:key="topic.id"
           v-bind:value="topic.name"
           @click="searchButton = topic.categories[0].name"
-          class="filterButton text-center py-2 px-6 rounded-full font-bold font-objectvitity mx-2 my-2">
+          class="px-6 py-2 mx-2 my-2 font-bold text-center rounded-full filterButton font-objectvitity"
+        >
           {{ topic.name }}
         </button>
       </div>
@@ -38,7 +49,10 @@
       <!-- suggested courses -->
       <div class="w-full mt-12 sm:flex">
         <div class="w-full sm:w-3/12">
-          <h2 class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina" v-if="!search">
+          <h2
+            class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina"
+            v-if="!search"
+          >
             Suggested Courses ✨
           </h2>
           <h2 class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina" v-else>
@@ -58,8 +72,12 @@
       </div>
 
       <!-- suggested articles -->
-      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-if="!search">Suggested Articles ✨</h2>
-      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-else>Related Articles ✨</h2>
+      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-if="!search">
+        Suggested Articles ✨
+      </h2>
+      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-else>
+        Related Articles ✨
+      </h2>
 
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <articleEntry
@@ -80,7 +98,7 @@ import playlistEntry from "../components/auth/dashboard/playlistEntry";
 export default {
   name: "Discover",
   metaInfo: {
-    title: "Discover"
+    title: "Discover",
   },
   data() {
     return {
@@ -106,7 +124,7 @@ export default {
     },
 
     topics() {
-      const data = this.$store.state.topicsStore.topics;
+      const data = this.$store.state.topicsStore.topics.reverse();
       return data;
     },
 
@@ -120,19 +138,41 @@ export default {
       return data;
     },
 
-    search() {
-      if (this.searchBar) {
-        return this.searchBar.toLowerCase();
-      } else if (this.searchButton) {
-        return this.searchButton.toLowerCase();
-      }
-      return "";
+    search: {
+      get() {
+        return this.$store.state.userStore.userSearch;
+      },
+      set(value) {
+        if (this.searchBar) {
+          this.$store.dispatch(
+            "userStore/updateUserSearch",
+            this.searchBar.toLowerCase()
+          );
+        } else if (this.searchButton) {
+          this.$store.dispatch(
+            "userStore/updateUserSearch",
+            this.searchButton.toLowerCase()
+          );
+        }
+        this.$store.dispatch("userStore/updateUserSearch", value);
+      },
     },
+
+    // search() {
+    //   if (this.searchBar) {
+    //     return this.searchBar.toLowerCase();
+    //   } else if (this.searchButton) {
+    //     return this.searchButton.toLowerCase();
+    //   }
+    //   return "";
+    // },
 
     filteredCourses() {
       return this.courses.filter((course) => {
-        if (course.categories[0].name.toLowerCase().includes(this.search) ||
-          course.name.toLowerCase().includes(this.search)) {
+        if (
+          course.categories[0].name.toLowerCase().includes(this.search) ||
+          course.name.toLowerCase().includes(this.search)
+        ) {
           return course;
         }
         return "";
@@ -140,31 +180,31 @@ export default {
     },
 
     threeFilteredCourses() {
-      return this.filteredCourses.slice(0,3);
+      return this.filteredCourses.slice(0, 3);
     },
 
     filteredArticles() {
       return this.articles.filter((article) => {
-        if (article.title.toLowerCase().includes(this.search) ||
+        if (
+          article.title.toLowerCase().includes(this.search) ||
           article.categories[0].topics[0].includes(this.search) ||
-          article.categories[0].name.toLowerCase().includes(this.search)) {
-          
+          article.categories[0].name.toLowerCase().includes(this.search)
+        ) {
           return article;
         }
         return "";
       });
     },
-
   },
-}
+};
 </script>
 
 <style scoped>
 .searchBar {
-  border: 1px solid #64C0C1;
+  border: 1px solid #64c0c1;
   padding-left: 60px;
   background-color: rgba(100, 192, 193, 0.05);
-  color: #64C0C1;
+  color: #64c0c1;
 }
 
 .searchVector {
@@ -174,28 +214,28 @@ export default {
 }
 
 ::placeholder {
-  color: #64C0C1;
+  color: #64c0c1;
 }
 
 :-ms-input-placeholder {
-  color: #64C0C1;
+  color: #64c0c1;
 }
 
 ::-ms-input-placeholder {
-  color: #64C0C1;
+  color: #64c0c1;
 }
 
 .filterButton {
   max-width: fit-content;
-  border: 1px solid #64C0C1;
-  color: #64C0C1;
+  border: 1px solid #64c0c1;
+  color: #64c0c1;
   transition: all ease-in-out 200ms;
   cursor: pointer;
   outline: none;
 }
 
 .filterButton:hover {
-  background-color: #64C0C1;
+  background-color: #64c0c1;
   color: #ffffff;
 }
 
@@ -208,7 +248,6 @@ export default {
 }
 
 @media screen and (max-width: 640px) {
-
   .filterBtns {
     display: none;
   }
