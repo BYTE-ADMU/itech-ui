@@ -34,11 +34,11 @@
             <!-- START: SEARCH BAR / EMPTY  -->
             <div class="flex items-center flex-grow">
               <!-- Start: If User isn't Authenticated -->
-              <div v-if="!isAuthenticated" class="mx-auto"></div>
+              <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
               <!-- End: If User isn't Authenticated -->
 
               <!-- Start: If User is Authenticated -->
-              <div v-else class="relative flex-grow mx-auto">
+              <div class="relative flex-grow mx-auto">
                 <form v-on:submit.prevent="handleSubmit">
                   <input
                     type="text"
@@ -132,7 +132,6 @@
             >
               Hipster
             </g-link>
-
             <g-link
               to="/categories/hustler"
               class="mx-10 font-bold text-md font-objectivity nav__link"
@@ -248,7 +247,7 @@
 
     <div v-if="isOpenMobileMenu" class="block bg-white lg:hidden">
       <div
-        class="fixed z-40 w-screen h-screen pt-32 pb-2 bg-white md:px-20 nav"
+        class="fixed z-40 w-screen h-screen pt-24 pb-2 bg-white md:px-20 nav"
       >
         <!-- START: ITECH LOGO BUTTON -->
         <div class="fixed bottom-0 flex justify-center w-full py-4 text-white">
@@ -259,14 +258,12 @@
             />
           </g-link>
           <!-- End: If User isn't Authenticated -->
-
           <!-- Start: If User is Authenticated -->
           <g-link v-else to="/dashboard">
             <g-image
               :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
             />
           </g-link>
-
           <!-- End: If User is Authenticated -->
         </div>
         <!-- END: ITECH LOGO BUTTON -->
@@ -274,7 +271,7 @@
         <!-- START: SEARCH BAR / EMPTY  -->
         <div class="flex flex-grow px-4">
           <!-- Start: If User is Authenticated -->
-          <div v-if="isAuthenticated" class="relative flex-grow mx-auto">
+          <div class="relative flex-grow mx-auto">
             <form v-on:submit.prevent="handleSubmit">
               <input
                 type="text"
@@ -354,6 +351,27 @@
           <!-- End: If User is Authenticated -->
         </div>
         <!-- END: SEARCH BAR / EMPTY  -->
+
+        <!-- START: CATEGORY BUTTONS -->
+        <g-link
+          to="/categories/hacker"
+          class="mx-10 text-xl font-bold font-objectivity"
+        >
+          Hacker
+        </g-link>
+        <g-link
+          to="/categories/hipster"
+          class="mx-10 text-xl font-bold font-objectivity"
+        >
+          Hipster
+        </g-link>
+        <g-link
+          to="/categories/hustler"
+          class="mx-10 text-xl font-bold font-objectivity"
+        >
+          Hustler
+        </g-link>
+        <!-- END: CATEGORY BUTTONS -->
       </div>
     </div>
   </nav>
