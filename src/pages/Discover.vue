@@ -39,7 +39,7 @@
           v-for="topic in someTopics"
           v-bind:key="topic.id"
           v-bind:value="topic.name"
-          @click="searchButton = topic.categories[0].name"
+          @click="searchButton = topic.name"
           class="px-6 py-2 mx-2 my-2 font-bold text-center rounded-full filterButton font-objectvitity"
         >
           {{ topic.name }}
@@ -102,7 +102,7 @@ export default {
   },
   data() {
     return {
-      searchButton: "",
+      searchButton: null,
     };
   },
   components: {
@@ -147,16 +147,20 @@ export default {
       },
 
       set(value) {
+        this.searchButton = null;
+
         this.$store.dispatch("userStore/updateUserSearch", value);
       },
     },
 
     search() {
-      if (this.searchButton) {
+      if (this.searchButton !== null) {
+        this.userSearch = this.searchButton;
         return this.searchButton.toLowerCase();
       } else if (this.userSearch) {
         return this.userSearch.toLowerCase();
       }
+
       return "";
     },
 
