@@ -610,8 +610,8 @@ export default Vue.extend({
 
 .mobile-menu {
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   top: 4%;
   left: 4%;
   background: #f9f7f2;

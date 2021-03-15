@@ -6,30 +6,53 @@
     >
       <!-- <div v-if="topic === null" class="mb-10 breadcrumb">
       </div> -->
-      <!-- <div v-else class="mb-10 breadcrumb flex">
+      <!-- <div v-else class="flex mb-10 breadcrumb">
         <button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text">
             Back
         </button>
-        <p class="pr-6 hidden sm:block">/</p>
+        <p class="hidden pr-6 sm:block">/</p>
         <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden sm:block breadcrumb-text">
+          class="hidden pr-6 sm:block breadcrumb-text">
             {{topic.categories[0].name}}
         </button>
-        <p class="pr-6 hidden sm:block">/</p>
+        <p class="hidden pr-6 sm:block">/</p>
         <p class="hidden sm:block breadcrumb-text">{{ topic.name }}</p>
       </div> -->
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text flex">
+
+      <span class="mb-10">
+        <button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
+          Back
+        </button>
+        <span v-if="topic !== null" class="hidden pr-6 breadcrumb">/</span>
+        <button
+          v-if="topic !== null"
+          @click="
+            $router.push(
+              `/categories/${topic.categories[0].name.toLowerCase()}`
+            )
+          "
+          class="hidden pr-6 breadcrumb-text"
+        >
+          {{ topic.categories[0].name }}
+        </button>
+        <span v-if="topic !== null" class="hidden pr-6 breadcrumb">/</span>
+        <span v-if="topic !== null" class="hidden breadcrumb-text">{{
+          topic.name
+        }}</span>
+      </span>
+
+      <!-- <button @click="$router.go(-1)"
+          class="flex pr-6 breadcrumb-text">
             Back
         </button>
-        <p v-if="topic !== null" class="pr-6 hidden sm:flex">/</p>
+        <p v-if="topic !== null" class="hidden pr-6 sm:flex">/</p>
         <button v-if="topic !== null" @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden breadcrumb-text sm:flex">
+          class="hidden pr-6 breadcrumb-text sm:flex">
             {{topic.categories[0].name}}
         </button>
-        <p v-if="topic !== null" class="pr-6 hidden sm:flex">/</p>
-        <p v-if="topic !== null" class="hidden breadcrumb-text sm:flex">{{ topic.name }}</p>
+        <p v-if="topic !== null" class="hidden pr-6 sm:flex">/</p>
+        <p v-if="topic !== null" class="hidden breadcrumb-text sm:flex">{{ topic.name }}</p> -->
 
       <div v-if="topic === null">
         <Loader />
@@ -65,14 +88,15 @@
 
         <hr class="mt-12 mb-6" />
 
-        <h3
-          class="mb-4 text-xl font-bold uppercase font-objectivity"
-        >
+        <h3 class="mb-4 text-xl font-bold uppercase font-objectivity">
           Articles ✨
         </h3>
 
         <div v-if="!articles.length > 0">No Articles Yet</div>
-        <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <div
+          v-else
+          class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
+        >
           <articleEntry
             v-for="article in filteredArticles"
             v-bind:key="article.id"
@@ -225,10 +249,10 @@ div > .tg {
 }
 
 .breadcrumb-text {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .breadcrumb-text:hover {
