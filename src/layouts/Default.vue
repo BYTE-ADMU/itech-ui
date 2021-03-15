@@ -36,6 +36,13 @@ export default {
 
 @font-face {
   font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
   src: url("../assets/font/Objectivity/Objectivity-BoldSlanted.otf")
     format("truetype");
   font-weight: bold;
@@ -107,8 +114,6 @@ export default {
 
 .font-objectivity {
   font-family: Objectivity;
-  font-weight: normal;
-  font-style: normal;
 }
 
 .font-neuemachina {
@@ -141,7 +146,7 @@ export default {
 }
 
 .form_button:hover {
-  background-color: #40A5A6;
+  background-color: #40a5a6;
 }
 
 .form_button:active {

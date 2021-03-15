@@ -11,7 +11,7 @@
           <!-- START: ITECH LOGO BUTTON -->
           <div class="flex items-center text-white flex-no-shrink">
             <!-- Start: If User isn't Authenticated -->
-            <g-link v-if="!isAuthenticated" class="nav__link" to="/">
+            <g-link v-if="!isAuthenticated" to="/">
               <g-image
                 :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
                 class="w-40 py-2"
@@ -20,7 +20,7 @@
             <!-- End: If User isn't Authenticated -->
 
             <!-- Start: If User is Authenticated -->
-            <g-link v-else class="nav__link" to="/dashboard">
+            <g-link v-else to="/dashboard">
               <g-image
                 :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
                 class="w-40 py-2"
@@ -122,19 +122,19 @@
             <!-- START: CATEGORY BUTTONS -->
             <g-link
               to="/categories/hacker"
-              class="mx-10 font-bold text-md font-objectivity nav__link"
+              class="mx-10 font-bold text-md font-objectivity"
             >
               Hacker
             </g-link>
             <g-link
               to="/categories/hipster"
-              class="mx-10 font-bold text-md font-objectivity nav__link"
+              class="mx-10 font-bold text-md font-objectivity"
             >
               Hipster
             </g-link>
             <g-link
               to="/categories/hustler"
-              class="mx-10 font-bold text-md font-objectivity nav__link"
+              class="mx-10 font-bold text-md font-objectivity"
             >
               Hustler
             </g-link>
@@ -144,7 +144,7 @@
             <!-- Start: If User is NOT Authenticated -->
             <div v-if="!isAuthenticated">
               <g-link
-                class="block px-8 py-3 text-sm form_button ... nav__link"
+                class="block px-8 py-3 text-sm form_button ..."
                 to="/login/"
               >
                 Log In
@@ -156,7 +156,7 @@
             <div class="flex" v-else>
               <button
                 @click="isOpenUserDropdown = !isOpenUserDropdown"
-                class="relative p-5 nav__link"
+                class="relative p-5"
               >
                 <!-- Start: UserAccountIcon -->
                 <g-image class="" src="@/assets/img/icons/UserAccount.svg" />
@@ -368,7 +368,7 @@
             <!-- Start: If User is NOT Authenticated -->
             <div v-if="!isAuthenticated">
               <g-link
-                class="mx-auto block px-8 py-3 text-xl form_button ... nav__link"
+                class="mx-auto block px-8 py-3 text-xl form_button ..."
                 to="/login/"
                 style="max-width: 150px"
               >
@@ -396,7 +396,7 @@
             <button
               v-if="isAuthenticated"
               @click="logout"
-              class="mx-auto block px-8 py-3 text-xl form_button ... nav__link"
+              class="mx-auto block px-8 py-3 text-xl form_button ..."
               to="/login/"
               style="max-width: 150px"
             >

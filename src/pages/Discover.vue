@@ -30,7 +30,7 @@
           v-bind:key="category.id"
           v-bind:value="category.name"
           @click="searchButton = category.name"
-          class="px-6 py-2 mx-2 my-2 font-bold text-center rounded-full filterButton font-objectvitity"
+          class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
         >
           {{ category.name }}
         </button>
@@ -40,7 +40,7 @@
           v-bind:key="topic.id"
           v-bind:value="topic.name"
           @click="searchButton = topic.name"
-          class="px-6 py-2 mx-2 my-2 font-bold text-center rounded-full filterButton font-objectvitity"
+          class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
         >
           {{ topic.name }}
         </button>
@@ -232,6 +232,9 @@ export default {
   transition: all ease-in-out 200ms;
   cursor: pointer;
   outline: none;
+  font-weight: bold;
+  font-style: normal;
+  font-family: Objectivity;
 }
 
 .filterButton:hover {
