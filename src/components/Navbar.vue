@@ -245,31 +245,15 @@
 
     <!-- END: MOBILE MODE -->
 
-    <div v-if="isOpenMobileMenu" class="block bg-white lg:hidden">
+    <div
+      v-if="isOpenMobileMenu"
+      class="flex flex-col block overflow-y-auto bg-white lg:hidden"
+    >
       <div
-        class="fixed z-40 w-screen h-screen pt-24 pb-2 bg-white md:px-20 nav"
+        class="fixed z-40 w-screen h-auto min-h-screen pt-24 pb-2 bg-white md:px-20 nav"
       >
-        <!-- START: ITECH LOGO BUTTON -->
-        <div class="fixed bottom-0 flex justify-center w-full py-4 text-white">
-          <!-- Start: If User isn't Authenticated -->
-          <g-link v-if="!isAuthenticated" to="/">
-            <g-image
-              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            />
-          </g-link>
-          <!-- End: If User isn't Authenticated -->
-          <!-- Start: If User is Authenticated -->
-          <g-link v-else to="/dashboard">
-            <g-image
-              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            />
-          </g-link>
-          <!-- End: If User is Authenticated -->
-        </div>
-        <!-- END: ITECH LOGO BUTTON -->
-
         <!-- START: SEARCH BAR / EMPTY  -->
-        <div class="flex flex-grow px-4">
+        <div class="flex flex-none flex-grow px-4">
           <!-- Start: If User is Authenticated -->
           <div class="relative flex-grow mx-auto">
             <form v-on:submit.prevent="handleSubmit">
@@ -352,26 +336,98 @@
         </div>
         <!-- END: SEARCH BAR / EMPTY  -->
 
-        <!-- START: CATEGORY BUTTONS -->
-        <g-link
-          to="/categories/hacker"
-          class="mx-10 text-xl font-bold font-objectivity"
+        <div
+          style="height: calc(100vh - 150px)"
+          class="overflow-y-auto oveflow-x-hidden"
         >
-          Hacker
-        </g-link>
-        <g-link
-          to="/categories/hipster"
-          class="mx-10 text-xl font-bold font-objectivity"
-        >
-          Hipster
-        </g-link>
-        <g-link
-          to="/categories/hustler"
-          class="mx-10 text-xl font-bold font-objectivity"
-        >
-          Hustler
-        </g-link>
-        <!-- END: CATEGORY BUTTONS -->
+          <div
+            class="grid flex-grow h-auto grid-cols-1 gap-10 pt-10 pb-24 mx-auto"
+          >
+            <!-- START: CATEGORY BUTTONS -->
+            <g-link
+              to="/categories/hacker"
+              class="mx-auto text-xl font-bold font-objectivity"
+            >
+              Hacker
+            </g-link>
+            <g-link
+              to="/categories/hipster"
+              class="mx-auto text-xl font-bold font-objectivity"
+            >
+              Hipster
+            </g-link>
+            <g-link
+              to="/categories/hustler"
+              class="mx-auto text-xl font-bold font-objectivity"
+            >
+              Hustler
+            </g-link>
+            <!-- END: CATEGORY BUTTONS -->
+
+            <!-- START: LOGIN/USER BUTTON -->
+            <!-- Start: If User is NOT Authenticated -->
+            <div v-if="!isAuthenticated">
+              <g-link
+                class="mx-auto block px-8 py-3 text-xl form_button ... nav__link"
+                to="/login/"
+                style="max-width: 150px"
+              >
+                Log In
+              </g-link>
+            </div>
+            <!-- End: If User is NOT Authenticated -->
+            <!-- Start: If User IS Authenticated -->
+
+            <g-link
+              v-if="isAuthenticated"
+              to="/my-list/"
+              class="mx-auto text-xl font-bold font-objectivity"
+            >
+              My List
+            </g-link>
+            <g-link
+              v-if="isAuthenticated"
+              to="/user-profile/"
+              class="mx-auto text-xl font-bold font-objectivity"
+            >
+              My Account
+            </g-link>
+
+            <button
+              v-if="isAuthenticated"
+              @click="logout"
+              class="mx-auto block px-8 py-3 text-xl form_button ... nav__link"
+              to="/login/"
+              style="max-width: 150px"
+            >
+              Log out
+            </button>
+            <!-- End: If User is NOT Authenticated -->
+            <!-- END: LOGIN/USER BUTTON -->
+          </div>
+        </div>
+        <!-- START: ITECH LOGO BUTTON -->
+        <div class="fixed bottom-0 w-full py-4 bg-white">
+          <!-- Start: If User isn't Authenticated -->
+          <g-link v-if="!isAuthenticated" to="/">
+            <g-image
+              class="mx-auto text-xl font-bold font-objectivity"
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+              style="max-width: 150px"
+            />
+          </g-link>
+          <!-- End: If User isn't Authenticated -->
+          <!-- Start: If User is Authenticated -->
+          <g-link class="w-full" v-else to="/dashboard">
+            <g-image
+              class="mx-auto text-xl font-bold font-objectivity"
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+              style="max-width: 150px"
+            />
+          </g-link>
+          <!-- End: If User is Authenticated -->
+        </div>
+        <!-- END: ITECH LOGO BUTTON -->
       </div>
     </div>
   </nav>
