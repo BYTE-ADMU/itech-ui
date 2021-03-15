@@ -5,17 +5,35 @@
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <span class="mb-10 breadcrumb-container">
-        <button button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text ">
-            Back
+        <button button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
+          Back
         </button>
-        <span v-if="course !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
-        <button v-if="course !== null" @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
-          class="pr-6  breadcrumb-text hidden sm:inline-block">
-            {{course.categories[0].name}}
+        <span
+          v-if="course !== null"
+          class="hidden pr-6 breadcrumb-slash sm:inline"
+          >/</span
+        >
+        <button
+          v-if="course !== null"
+          @click="
+            $router.push(
+              `/categories/${course.categories[0].name.toLowerCase()}`
+            )
+          "
+          class="hidden pr-6 breadcrumb-text sm:inline-block"
+        >
+          {{ course.categories[0].name }}
         </button>
-        <span v-if="course !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
-        <span v-if="course !== null" class=" breadcrumb-text hidden sm:inline-block">{{ course.name }}</span>
+        <span
+          v-if="course !== null"
+          class="hidden pr-6 breadcrumb-slash sm:inline"
+          >/</span
+        >
+        <span
+          v-if="course !== null"
+          class="hidden breadcrumb-text sm:inline-block"
+          >{{ course.name }}</span
+        >
       </span>
 
       <div v-if="course === null">
@@ -39,7 +57,10 @@
         </h3> -->
 
         <div v-if="!course.articles.length > 0">No Articles Yet</div>
-        <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 mt-10 mb-24">
+        <div
+          v-else
+          class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
+        >
           <articleEntry
             v-for="article in filteredArticles"
             v-bind:key="article.id"
@@ -104,6 +125,11 @@ export default {
       return this.$route.params.id;
     },
 
+    courses() {
+      const data = this.$store.state.coursesStore.courses;
+      return data;
+    },
+
     articles() {
       const data = this.$store.state.articlesStore.articles;
       return data;
@@ -148,7 +174,8 @@ div > .tg {
   filter: brightness(80%);
 }
 
-.breadcrumb, .breadcrumb-text {
+.breadcrumb,
+.breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -168,10 +195,10 @@ div > .tg {
 }
 
 .breadcrumb-text {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .breadcrumb-text:hover {

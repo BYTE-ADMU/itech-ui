@@ -11,16 +11,7 @@
 
       <!-- search bar -->
       <div class="relative block w-full mx-auto mb-12 lg:hidden md:w-2/3">
-        <input
-          type="text"
-          placeholder="Search"
-          class="w-full h-10 pt-2 rounded-lg searchBar font-objectivity"
-          v-model="userSearch"
-        />
-        <g-image
-          :src="require('../assets/img/search-vector.svg')"
-          class="searchVector"
-        />
+        <SearchBar />
       </div>
 
       <!-- filter buttons -->
@@ -94,6 +85,7 @@
 <script>
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
+import SearchBar from "../components/SearchBar";
 
 export default {
   name: "Discover",
@@ -108,6 +100,7 @@ export default {
   components: {
     articleEntry,
     playlistEntry,
+    SearchBar,
   },
 
   async mounted() {
