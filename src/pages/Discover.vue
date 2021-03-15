@@ -14,7 +14,7 @@
         <input
           type="text"
           placeholder="Search"
-          class="w-full h-10 pt-2 rounded-3xl searchBar font-objectivity"
+          class="w-full h-10 pt-2 rounded-lg searchBar font-objectivity"
           v-model="userSearch"
         />
         <g-image

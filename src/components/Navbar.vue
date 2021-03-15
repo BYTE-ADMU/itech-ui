@@ -120,31 +120,33 @@
             <!-- END: SEARCH BAR / EMPTY  -->
 
             <!-- START: CATEGORY BUTTONS -->
-            <g-link
-              to="/categories/hacker"
-              class="mx-10 font-bold text-md font-objectivity"
-            >
-              Hacker
-            </g-link>
-            <g-link
-              to="/categories/hipster"
-              class="mx-10 font-bold text-md font-objectivity"
-            >
-              Hipster
-            </g-link>
-            <g-link
-              to="/categories/hustler"
-              class="mx-10 font-bold text-md font-objectivity"
-            >
-              Hustler
-            </g-link>
+            <div class="hidden xl:block">
+              <g-link
+                to="/categories/hacker"
+                class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
+              >
+                Hacker
+              </g-link>
+              <g-link
+                to="/categories/hipster"
+                class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
+              >
+                Hipster
+              </g-link>
+              <g-link
+                to="/categories/hustler"
+                class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
+              >
+                Hustler
+              </g-link>
+            </div>
             <!-- END: CATEGORY BUTTONS -->
 
             <!-- START: LOGIN/USER BUTTON -->
             <!-- Start: If User is NOT Authenticated -->
             <div v-if="!isAuthenticated">
               <g-link
-                class="block px-8 py-3 text-sm form_button ..."
+                class="ml-10 xl:ml-16 block px-8 py-3 text-sm form_button ..."
                 to="/login/"
               >
                 Log In
@@ -250,10 +252,10 @@
       class="flex flex-col block overflow-y-auto bg-white lg:hidden"
     >
       <div
-        class="fixed z-40 w-screen h-auto min-h-screen pt-24 pb-2 bg-white md:px-20 nav"
+        class="fixed z-40 w-screen h-auto min-h-screen pt-24 pb-2 bg-white nav"
       >
         <!-- START: SEARCH BAR / EMPTY  -->
-        <div class="flex flex-none flex-grow px-4">
+        <div class="flex flex-none flex-grow px-4 md:px-32">
           <!-- Start: If User is Authenticated -->
           <div class="relative flex-grow mx-auto">
             <form v-on:submit.prevent="handleSubmit">
