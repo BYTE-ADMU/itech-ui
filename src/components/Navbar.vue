@@ -34,11 +34,11 @@
             <!-- START: SEARCH BAR / EMPTY  -->
             <div class="flex items-center flex-grow">
               <!-- Start: If User isn't Authenticated -->
-              <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+              <div v-if="!isAuthenticated" class="mx-auto"></div>
               <!-- End: If User isn't Authenticated -->
 
               <!-- Start: If User is Authenticated -->
-              <div class="relative flex-grow mx-auto">
+              <div v-else class="relative flex-grow mx-auto">
                 <form v-on:submit.prevent="handleSubmit">
                   <input
                     type="text"
@@ -273,12 +273,8 @@
 
         <!-- START: SEARCH BAR / EMPTY  -->
         <div class="flex flex-grow px-4">
-          <!-- Start: If User isn't Authenticated -->
-          <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
-          <!-- End: If User isn't Authenticated -->
-
           <!-- Start: If User is Authenticated -->
-          <div class="relative flex-grow mx-auto">
+          <div v-if="isAuthenticated" class="relative flex-grow mx-auto">
             <form v-on:submit.prevent="handleSubmit">
               <input
                 type="text"
