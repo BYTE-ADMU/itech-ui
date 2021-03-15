@@ -4,10 +4,10 @@
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
         <div class="mb-10 breadcrumb-container pl-12 md:pl-0">
           <span>
-              <g-link to="/dashboard/"
+              <button button @click="$router.go(-1)"
                 class="pr-6 breadcrumb-text ">
-                  Home
-              </g-link>
+                  Back
+              </button>
               <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
               <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
                 class="pr-6  breadcrumb-text hidden md:inline-block">
