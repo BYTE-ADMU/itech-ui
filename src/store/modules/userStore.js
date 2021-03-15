@@ -9,6 +9,7 @@ const userStore = {
     user: {},
     isAuthenticated: false,
     savedArticles: [],
+    userSearch: ""
   }),
 
   // to handle state
@@ -83,7 +84,12 @@ const userStore = {
     },
     async logout({ state, commit }) {
       commit('toggleLogout');
+    },
+
+    updateUserSearch({ state, commit }, value) {
+      commit('setUserSearch', value);
     }
+
   },
 
   // to handle mutations
@@ -102,7 +108,13 @@ const userStore = {
 
     toggleLogout(state) {
       state.isAuthenticated = false;
-    }
+    },
+
+    setUserSearch(state, value) {
+      state.userSearch = value
+    },
+
+
   }
 }
 
