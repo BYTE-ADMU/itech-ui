@@ -4,55 +4,19 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <!-- <div v-if="topic === null" class="mb-10 breadcrumb">
-      </div> -->
-      <!-- <div v-else class="flex mb-10 breadcrumb">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
+      <span class="mb-10 breadcrumb-container">
+        <button button @click="$router.go(-1)"
+          class="pr-6 breadcrumb-text ">
             Back
         </button>
-        <p class="hidden pr-6 sm:block">/</p>
-        <button @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="hidden pr-6 sm:block breadcrumb-text">
-            {{topic.categories[0].name}}
-        </button>
-        <p class="hidden pr-6 sm:block">/</p>
-        <p class="hidden sm:block breadcrumb-text">{{ topic.name }}</p>
-      </div> -->
-
-      <span class="mb-10">
-        <button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
-          Back
-        </button>
-        <span v-if="topic !== null" class="hidden pr-6 breadcrumb">/</span>
-        <button
-          v-if="topic !== null"
-          @click="
-            $router.push(
-              `/categories/${topic.categories[0].name.toLowerCase()}`
-            )
-          "
-          class="hidden pr-6 breadcrumb-text"
-        >
-          {{ topic.categories[0].name }}
-        </button>
-        <span v-if="topic !== null" class="hidden pr-6 breadcrumb">/</span>
-        <span v-if="topic !== null" class="hidden breadcrumb-text">{{
-          topic.name
-        }}</span>
-      </span>
-
-      <!-- <button @click="$router.go(-1)"
-          class="flex pr-6 breadcrumb-text">
-            Back
-        </button>
-        <p v-if="topic !== null" class="hidden pr-6 sm:flex">/</p>
+        <span v-if="topic !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
         <button v-if="topic !== null" @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="hidden pr-6 breadcrumb-text sm:flex">
+          class="pr-6  breadcrumb-text hidden sm:inline-block">
             {{topic.categories[0].name}}
         </button>
-        <p v-if="topic !== null" class="hidden pr-6 sm:flex">/</p>
-        <p v-if="topic !== null" class="hidden breadcrumb-text sm:flex">{{ topic.name }}</p> -->
+        <span v-if="topic !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
+        <span v-if="topic !== null" class=" breadcrumb-text hidden sm:inline-block">{{ topic.name }}</span>
+      </span>
 
       <div v-if="topic === null">
         <Loader />
@@ -239,7 +203,7 @@ div > .tg {
   filter: brightness(80%);
 }
 
-.breadcrumb {
+.breadcrumb, .breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -257,5 +221,11 @@ div > .tg {
 
 .breadcrumb-text:hover {
   color: #83827f;
+}
+
+@media screen and (max-width: 950px) {
+  .breadcrumb-container {
+    margin-top: 80px;
+  }
 }
 </style>

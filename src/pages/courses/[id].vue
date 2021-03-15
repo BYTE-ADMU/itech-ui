@@ -4,38 +4,18 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <!-- <div v-if="course === null" class="mb-10 breadcrumb flex">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
-            Back
-        </button>
-      </div> -->
-
-      <!-- <div v-else class="mb-10 breadcrumb flex">
-        <button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text">
-            Back
-        </button>
-        <p class="pr-6 hidden sm:block">/</p>
-        <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden sm:block breadcrumb-text">
-            {{course.categories[0].name}}
-        </button>
-        <p class="pr-6 hidden sm:block">/</p>
-        <p class="hidden sm:block breadcrumb-text">{{ course.name }}</p>
-      </div> -->
-      <span class="mb-10">
-      <button @click="$router.go(-1)"
+      <span class="mb-10 breadcrumb-container">
+        <button button @click="$router.go(-1)"
           class="pr-6 breadcrumb-text ">
             Back
         </button>
-        <span v-if="course !== null" class="pr-6 hidden breadcrumb ">/</span>
+        <span v-if="course !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
         <button v-if="course !== null" @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
-          class="pr-6 hidden breadcrumb-text ">
+          class="pr-6  breadcrumb-text hidden sm:inline-block">
             {{course.categories[0].name}}
         </button>
-        <span v-if="course !== null" class="pr-6 hidden breadcrumb ">/</span>
-        <span v-if="course !== null" class="hidden breadcrumb-text ">{{ course.name }}</span>
+        <span v-if="course !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
+        <span v-if="course !== null" class=" breadcrumb-text hidden sm:inline-block">{{ course.name }}</span>
       </span>
 
       <div v-if="course === null">
@@ -175,7 +155,16 @@ div > .tg {
   font-size: 16px;
   line-height: 24px;
   color: #dbdad5;
-  display: inline-block;
+  /* display: inline-block; */
+}
+
+.breadcrumb-slash {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #dbdad5;
 }
 
 .breadcrumb-text {
@@ -187,5 +176,11 @@ div > .tg {
 
 .breadcrumb-text:hover {
   color: #83827f;
+}
+
+@media screen and (max-width: 950px) {
+  .breadcrumb-container {
+    margin-top: 80px;
+  }
 }
 </style>
