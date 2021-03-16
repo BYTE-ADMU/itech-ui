@@ -1,8 +1,5 @@
 <template>
-  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
-    <!-- MODAL -->
-    <unauthModal v-if="!isAuthenticated && course !== null" class="z-50"/>
-    <!-- END MODAL -->
+  <Layout>
     <!-- ROOT -->
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
@@ -79,7 +76,6 @@
 
 <script>
 import Loader from "../../components/Loader";
-import unauthModal from "../../components/unauth/unauthModal";
 import cover from "../../components/auth/courses/cover";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
@@ -103,7 +99,6 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
-    unauthModal,
   },
 
   data() {
@@ -178,11 +173,6 @@ export default {
 
 
 <style>
-.no-scroll {
-  max-height: 100vh;
-  overflow: hidden;
-}
-
 div > .tg {
   filter: brightness(80%);
 }

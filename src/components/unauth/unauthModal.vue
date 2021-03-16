@@ -11,7 +11,7 @@
           Oops! You don't have access!
         </h1>
         <p class="font-objectivity font-bold text-2xl mb-12" style="color: #40A5A6">
-          Join us on ITECH to view this.
+          Join us on ITECH to view this article.
         </p>
         <g-link to="/login/" class="form_button py-3 px-6">
           <button class="font-bold">
