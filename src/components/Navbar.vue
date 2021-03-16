@@ -84,7 +84,7 @@
             <div class="flex" v-else>
               <button
                 @click="isOpenUserDropdown = !isOpenUserDropdown"
-                class="relative p-5"
+                class="relative p-5 ml-8 xl:ml-10"
               >
                 <!-- Start: UserAccountIcon -->
                 <g-image class="" src="@/assets/img/icons/UserAccount.svg" />

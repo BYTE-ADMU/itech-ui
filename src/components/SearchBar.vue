@@ -7,7 +7,6 @@
       v-model="search"
       v-on:keyup="discover"
       @focus="handleFocus"
-      @focusout="handleFocusOut"
       tabindex="0"
     />
 
