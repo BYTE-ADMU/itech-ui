@@ -9,7 +9,8 @@ const userStore = {
     user: {},
     isAuthenticated: false,
     savedArticles: [],
-    userSearch: ""
+    userSearch: "",
+    isOpenSearchDropdown: false,
   }),
 
   // to handle state
@@ -88,6 +89,10 @@ const userStore = {
 
     updateUserSearch({ state, commit }, value) {
       commit('setUserSearch', value);
+    },
+
+    updateIsOpenSearchDropdown({ state, commit }, value) {
+      commit('setIsOpenSearchDropdown', value);
     }
 
   },
@@ -112,6 +117,10 @@ const userStore = {
 
     setUserSearch(state, value) {
       state.userSearch = value
+    },
+
+    setIsOpenSearchDropdown(state, value) {
+      state.isOpenSearchDropdown = value
     },
 
 

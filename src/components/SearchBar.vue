@@ -6,8 +6,7 @@
       class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
       v-model="search"
       v-on:keyup="discover"
-      @focus="handleFocus"
-      tabindex="0"
+      @focus="isShowSearchDropdown = true"
     />
 
     <g-image src="@/assets/img/search-vector.svg" class="searchVector" />
@@ -93,6 +92,15 @@ export default {
       },
       set(value) {
         this.$store.dispatch("userStore/updateUserSearch", value);
+      },
+    },
+
+    isOpenSearchDropdown: {
+      get() {
+        return this.$store.state.userStore.isOpenSearchDropdown;
+      },
+      set(value) {
+        this.$store.dispatch("userStore/setIsOpenSearchDropdown", value);
       },
     },
 
