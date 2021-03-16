@@ -1,16 +1,16 @@
 <template>
-  <div class="h-screen w-screen fixed table" style="margin-top: -81px">
+  <div class="h-screen w-screen fixed table modal-margin">
     <div class="bg-modal text-center table-cell align-middle">
-      <div class="bg-white mx-auto border border-white rounded-xl py-16 relative" style="width:57%">
+      <div class="bg-white mx-auto border border-white rounded-xl py-16 relative px-6 modal-size">
         <g-link to="/login/" class="w-full">
           <g-image
             :src="require('@/assets/img/unauth/close-modal-vector.svg')"
-            class="absolute" style="right: 23px; top: 23px"/>
+            class="absolute x-icon" style="right: 23px; top: 23px"/>
         </g-link>
-        <h1 class="font-neuemachina text-4xl mb-12">
+        <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-4 sm:mb-12">
           Oops! You don't have access!
         </h1>
-        <p class="font-objectivity font-bold text-2xl mb-12" style="color: #40A5A6">
+        <p class="font-objectivity font-bold text-lg sm:text-xl md:text-2xl mb-12" style="color: #40A5A6">
           Join us on ITECH to view this article.
         </p>
         <g-link to="/login/" class="form_button py-3 px-6">

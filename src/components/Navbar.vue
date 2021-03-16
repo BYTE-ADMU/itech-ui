@@ -3,22 +3,36 @@
     <!-- START: MODAL -->
     <div id="logoutModal" class="h-screen w-screen fixed hidden z-50">
       <div class="bg-modal text-center table-cell align-middle">
-        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative" style="width:57%">
-          <h1 class="font-neuemachina text-4xl mb-12">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-6 sm:mb-12 px-5">
             Are you sure you want to sign out?
           </h1>
-          <div class="flex justify-center align-middle">
-            <button @click="closeModal" class="form_button py-3 px-6 font-bold mr-10">
+          <div class="flex flex-col sm:flex-row justify-center align-middle">
+            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold sm:mr-10 mb-3 sm:mb-0">
               Cancel
             </button>
-            <button @click="logout" class="signout_button py-3 px-6 font-bold">
+            <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
               Sign out
             </button>
           </div>
         </div>
       </div>
     </div>
-    <successfulLogoutModal id="successfulLogout" class="z-50 hidden"/>
+    <!-- logout -->
+    <div id="successfulLogout" class="h-screen w-screen fixed z-50 hidden">
+      <div class="bg-modal text-center table-cell align-middle">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <g-link @click="closeSuccess" to="/login/" class="w-full">
+            <g-image
+              :src="require('@/assets/img/unauth/close-modal-vector.svg')"
+              class="absolute x-icon" style="right: 23px; top: 23px"/>
+          </g-link>
+          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl px-6">
+            You have signed out.
+          </h1>
+        </div>
+      </div>
+    </div>
     <!-- END: MODAL -->
     <!-- START: DESKTOP MODE -->
     <div class="hidden lg:block ">
@@ -310,14 +324,12 @@
 <script>
 import Vue from "vue";
 import SearchBar from "./SearchBar";
-import successfulLogoutModal from './successfulLogoutModal'
 
 export default Vue.extend({
   name: "Navbar",
 
   components: {
     SearchBar,
-    successfulLogoutModal,
   },
 
   data() {
@@ -350,6 +362,10 @@ export default Vue.extend({
       const modal = document.getElementById('logoutModal');
       modal.classList.add('hidden');
     },
+    closeSuccess() {
+      const modal = document.getElementById('successfulLogout');
+      modal.classList.add('hidden');
+    },
     // START: LOGOUT
     async logout() {
       const modal = document.getElementById('logoutModal');
@@ -358,6 +374,7 @@ export default Vue.extend({
       if (!this.$store.state.userStore.isAuthenticated) {
         const successfulLogout = document.getElementById('successfulLogout');
         successfulLogout.classList.remove('hidden');
+        successfulLogout.classList.add('table');
         // alert("You have logged out!");
         // this.$router.replace("/login/");
       }
@@ -417,6 +434,10 @@ export default Vue.extend({
   outline: none;
 }
 
+.signout_button:hover {
+  color: #990000;
+}
+
 .mobile-menu {
   position: fixed;
   width: 50px;
@@ -426,5 +447,11 @@ export default Vue.extend({
   background: #f9f7f2;
   box-shadow: 0px 16px 16px rgba(50, 50, 71, 0.08),
     0px 24px 32px rgba(50, 50, 71, 0.08);
+}
+
+@media screen and (max-width: 640px) {
+  .signout_button {
+    font-size: 14px;
+  }
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen w-screen fixed table" style="margin-top: -81px">
+  <div class="h-screen w-screen fixed table modal-margin">
     <div class="bg-modal text-center table-cell align-middle">
-      <div class="bg-white mx-auto border border-white rounded-xl py-16 relative" style="width:57%">
-        <h1 class="font-neuemachina text-4xl loading">
+      <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+        <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl loading">
           Logging in
         </h1>
       </div>
