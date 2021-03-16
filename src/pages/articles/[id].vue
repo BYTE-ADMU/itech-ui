@@ -5,10 +5,24 @@
     <!-- END MODAL -->
     <section class="flex justify-center min-h-screen pt-16 pb-32">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
+        <div class="mb-10 breadcrumb-container pl-12 md:pl-0">
+          <span>
+              <button button @click="$router.go(-1)"
+                class="pr-6 breadcrumb-text ">
+                  Back
+              </button>
+              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
+              <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
+                class="pr-6  breadcrumb-text hidden md:inline-block">
+                  {{article.courses[0].name}}
+              </button>
+              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
+              <span v-if="article !== null" class=" breadcrumb-text hidden md:inline-block">{{ article.title }}</span>
+            </span>
+        </div>
 
         <!-- START:LOADER -->
         <div v-if="article === null" >
-          <p class="mb-10 breadcrumb"><g-link to="/dashboard/">Home</g-link></p>
           <Loader/>
         </div>
         <!-- END:LOADER -->
@@ -16,21 +30,6 @@
 
       <!-- START:ARTICLE -->
         <div v-else >
-          <!-- START: BREADCRUMB -->
-          <p class="px-12 mb-10 md:px-0 breadcrumb">
-            <g-link to="/dashboard/" class="breadcrumb-text">Home</g-link
-            >
-            <span class="mx-5"> / </span>
-            <g-link
-              v-if="article.courses.length !== 0"
-              :to="`/courses/${article.courses[0].id}`"
-              class="breadcrumb-text"
-            >
-              {{ article.courses[0].name }}</g-link
-            >
-          </p>
-           <!-- END: BREADCRUMB -->
-
           <div class="px-12 mb-12 md:px-24">
 
             <!-- START: TITLE -->
@@ -308,14 +307,34 @@ export default {
   color: #b4b4b4;
 }
 
-.breadcrumb {
+.breadcrumb, .breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
-
   color: #dbdad5;
+  /* display: inline-block; */
+}
+
+.breadcrumb-slash {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #dbdad5;
+}
+
+.breadcrumb-text {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.breadcrumb-text:hover {
+  color: #83827f;
 }
 
 .bookmark-hover, .bookmark-hover > span, .bookmark-hover > .bookmark-icon {
@@ -338,5 +357,11 @@ export default {
 
 .bookmark-hover:hover > span {
   display: none;
+}
+
+@media screen and (max-width: 950px) {
+  .breadcrumb-container {
+    margin-top: 80px;
+  }
 }
 </style>

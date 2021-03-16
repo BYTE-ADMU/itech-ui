@@ -22,7 +22,7 @@
       >
       <g-link
         v-else
-        :to="`/categories/${article.categories[0].name}`"
+        :to="`/categories/${article.categories[0].name.toLowerCase()}`"
         class="sm:mb-2 articleEntry-topic truncate ..."
         v-bind:class="articleTopic"
         >{{ article.categories[0].name }}</g-link
@@ -102,15 +102,16 @@ export default {
 }
 
 .article-hover {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .article-hover:hover {
   transform: scale(1.06);
-  box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1), 0 3px 5px 1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 5px 7px 1px rgba(0, 0, 0, 0.1),
+    0 3px 5px 1px rgba(0, 0, 0, 0.06);
 }
 
 @media screen and (min-width: 640px) and (max-width: 1024px) {

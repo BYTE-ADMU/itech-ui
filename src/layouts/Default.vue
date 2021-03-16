@@ -1,8 +1,10 @@
 <template>
   <div class="layout">
     <Navbar />
-    <slot />
-    <Footer />
+    <div class="w-full" @click="closeDropdowns">
+      <slot />
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -23,6 +25,13 @@ export default {
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
   },
+
+  methods: {
+    closeDropdowns() {
+      this.$store.dispatch("userStore/updateIsOpenSearchDropdown", false);
+      this.$store.dispatch("userStore/updateIsOpenUserDropdown", false);
+    },
+  },
 };
 </script>
 
@@ -31,6 +40,13 @@ export default {
   font-family: Objectivity;
   src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -107,8 +123,6 @@ export default {
 
 .font-objectivity {
   font-family: Objectivity;
-  font-weight: normal;
-  font-style: normal;
 }
 
 .font-neuemachina {
@@ -141,7 +155,7 @@ export default {
 }
 
 .form_button:hover {
-  background-color: #40A5A6;
+  background-color: #40a5a6;
 }
 
 .form_button:active {
