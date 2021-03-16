@@ -5,17 +5,35 @@
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <span class="mb-10 breadcrumb-container">
-        <button button @click="$router.go(-1)"
-          class="pr-6 breadcrumb-text ">
-            Back
+        <button button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
+          Back
         </button>
-        <span v-if="topic !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
-        <button v-if="topic !== null" @click="$router.push(`/categories/${topic.categories[0].name.toLowerCase()}`)"
-          class="pr-6  breadcrumb-text hidden sm:inline-block">
-            {{topic.categories[0].name}}
+        <span
+          v-if="topic !== null"
+          class="hidden pr-6 breadcrumb-slash sm:inline"
+          >/</span
+        >
+        <button
+          v-if="topic !== null"
+          @click="
+            $router.push(
+              `/categories/${topic.categories[0].name.toLowerCase()}`
+            )
+          "
+          class="hidden pr-6 breadcrumb-text sm:inline-block"
+        >
+          {{ topic.categories[0].name }}
         </button>
-        <span v-if="topic !== null" class="pr-6 breadcrumb-slash hidden sm:inline">/</span>
-        <span v-if="topic !== null" class=" breadcrumb-text hidden sm:inline-block">{{ topic.name }}</span>
+        <span
+          v-if="topic !== null"
+          class="hidden pr-6 breadcrumb-slash sm:inline"
+          >/</span
+        >
+        <span
+          v-if="topic !== null"
+          class="hidden breadcrumb-text sm:inline-block"
+          >{{ topic.name }}</span
+        >
       </span>
 
       <div v-if="topic === null">
@@ -202,8 +220,18 @@ export default {
 div > .tg {
   filter: brightness(80%);
 }
+.breadcrumb,
+.breadcrumb-text {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #dbdad5;
+  /* display: inline-block; */
+}
 
-.breadcrumb, .breadcrumb-text {
+.breadcrumb-slash {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
