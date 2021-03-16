@@ -11,6 +11,8 @@ const userStore = {
     savedArticles: [],
     userSearch: "",
     isOpenSearchDropdown: false,
+    isOpenUserDropdown: false,
+
   }),
 
   // to handle state
@@ -93,6 +95,10 @@ const userStore = {
 
     updateIsOpenSearchDropdown({ state, commit }, value) {
       commit('setIsOpenSearchDropdown', value);
+    },
+
+    updateIsOpenUserDropdown({ state, commit }, value) {
+      commit('setIsOpenUserDropdown', value);
     }
 
   },
@@ -122,6 +128,12 @@ const userStore = {
     setIsOpenSearchDropdown(state, value) {
       state.isOpenSearchDropdown = value
     },
+
+    setIsOpenUserDropdown(state, value) {
+      state.isOpenUserDropdown = value
+    },
+
+
 
 
   }

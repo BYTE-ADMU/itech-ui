@@ -1,8 +1,10 @@
 <template>
   <div class="layout">
     <Navbar />
-    <slot />
-    <Footer />
+    <div class="w-full" @click="closeDropdowns">
+      <slot />
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,13 @@ export default {
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
+  },
+
+  methods: {
+    closeDropdowns() {
+      this.$store.dispatch("userStore/updateIsOpenSearchDropdown", false);
+      this.$store.dispatch("userStore/updateIsOpenUserDropdown", false);
+    },
   },
 };
 </script>

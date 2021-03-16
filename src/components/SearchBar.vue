@@ -6,12 +6,12 @@
       class="w-full h-10 py-2 rounded-lg searchBar font-objectivity"
       v-model="search"
       v-on:keyup="discover"
-      @focus="isShowSearchDropdown = true"
+      @focus="openSearchDropdown"
     />
 
     <g-image src="@/assets/img/search-vector.svg" class="searchVector" />
     <div
-      v-if="search && isShowSearchDropdown"
+      v-if="search && isOpenSearchDropdown"
       class="absolute z-40 w-full h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
       style="max-height: 360px"
     >
@@ -95,13 +95,8 @@ export default {
       },
     },
 
-    isOpenSearchDropdown: {
-      get() {
-        return this.$store.state.userStore.isOpenSearchDropdown;
-      },
-      set(value) {
-        this.$store.dispatch("userStore/setIsOpenSearchDropdown", value);
-      },
+    isOpenSearchDropdown() {
+      return this.$store.state.userStore.isOpenSearchDropdown;
     },
 
     //START: GETTING DATA RELATED
@@ -179,6 +174,10 @@ export default {
     },
     handleFocusOut() {
       this.isShowSearchDropdown = false;
+    },
+
+    openSearchDropdown() {
+      this.$store.dispatch("userStore/updateIsOpenSearchDropdown", true);
     },
 
     // START: DISCOVER

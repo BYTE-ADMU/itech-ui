@@ -83,7 +83,7 @@
             <!-- Start: If User IS Authenticated -->
             <div class="flex" v-else>
               <button
-                @click="isOpenUserDropdown = !isOpenUserDropdown"
+                @click="openUserDropdown"
                 class="relative p-5 ml-8 xl:ml-10"
               >
                 <!-- Start: UserAccountIcon -->
@@ -101,7 +101,6 @@
 
       <!-- START: DESKTOP USER PROFILE DROPDOWN -->
       <div
-        v-if="isOpenUserDropdown"
         class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
       >
         <div
@@ -110,6 +109,7 @@
           <!-- Start:UserAccountDropdown -->
 
           <div
+            v-if="isOpenUserDropdown"
             class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
             style="width: 285px"
           >
@@ -300,7 +300,6 @@ export default Vue.extend({
 
   data() {
     return {
-      isOpenUserDropdown: false,
       isOpenMobileMenu: false,
     };
   },
@@ -312,6 +311,9 @@ export default Vue.extend({
     },
     username() {
       return this.$store.state.userStore.user.username;
+    },
+    isOpenUserDropdown() {
+      return this.$store.state.userStore.isOpenUserDropdown;
     },
     //END: USER RELATED
   },
@@ -328,6 +330,10 @@ export default Vue.extend({
       }
     },
     // END: LOGOUT
+
+    openUserDropdown() {
+      this.$store.dispatch("userStore/updateIsOpenUserDropdown", true);
+    },
   },
 });
 </script>
