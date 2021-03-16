@@ -1,7 +1,27 @@
 <template>
   <nav>
+    <!-- START: MODAL -->
+    <div id="logoutModal" class="h-screen w-screen fixed hidden z-50">
+      <div class="bg-modal text-center table-cell align-middle">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative" style="width:57%">
+          <h1 class="font-neuemachina text-4xl mb-12">
+            Are you sure you want to sign out?
+          </h1>
+          <div class="flex justify-center align-middle">
+            <button @click="closeModal" class="form_button py-3 px-6 font-bold mr-10">
+              Cancel
+            </button>
+            <button @click="logout" class="signout_button py-3 px-6 font-bold">
+              Sign out
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <successfulLogoutModal id="successfulLogout" class="z-50 hidden"/>
+    <!-- END: MODAL -->
     <!-- START: DESKTOP MODE -->
-    <div class="hidden lg:block">
+    <div class="hidden lg:block ">
       <div
         class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
       >
@@ -140,7 +160,7 @@
               My Account
             </g-link>
             <button
-              @click="logout"
+              @click="logoutModal"
               class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
             >
               Sign out
@@ -249,7 +269,7 @@
 
             <button
               v-if="isAuthenticated"
-              @click="logout"
+              @click="logoutModal"
               class="mx-auto block px-8 py-3 text-xl form_button ..."
               to="/login/"
               style="max-width: 150px"
@@ -290,12 +310,14 @@
 <script>
 import Vue from "vue";
 import SearchBar from "./SearchBar";
+import successfulLogoutModal from './successfulLogoutModal'
 
 export default Vue.extend({
   name: "Navbar",
 
   components: {
     SearchBar,
+    successfulLogoutModal,
   },
 
   data() {
@@ -319,14 +341,25 @@ export default Vue.extend({
   },
 
   methods: {
+    logoutModal() {
+      const modal = document.getElementById('logoutModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('table');
+    },
+    closeModal() {
+      const modal = document.getElementById('logoutModal');
+      modal.classList.add('hidden');
+    },
     // START: LOGOUT
     async logout() {
-      if (confirm("Are you sure you want to log out? ")) {
-        await this.$store.dispatch("userStore/logout", this.user);
-        if (!this.$store.state.userStore.isAuthenticated) {
-          alert("You have logged out!");
-          this.$router.replace("/login/");
-        }
+      const modal = document.getElementById('logoutModal');
+      modal.classList.add('hidden');
+      await this.$store.dispatch("userStore/logout", this.user);
+      if (!this.$store.state.userStore.isAuthenticated) {
+        const successfulLogout = document.getElementById('successfulLogout');
+        successfulLogout.classList.remove('hidden');
+        // alert("You have logged out!");
+        // this.$router.replace("/login/");
       }
     },
     // END: LOGOUT
@@ -369,6 +402,19 @@ export default Vue.extend({
   font-weight: bold;
   font-size: 16px;
   line-height: 25px;
+}
+
+.signout_button {
+  background: #ff0000;
+  border-radius: 34px;
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
 }
 
 .mobile-menu {
