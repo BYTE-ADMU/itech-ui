@@ -4,11 +4,17 @@
     <div id="logoutModal" class="h-screen w-screen fixed hidden z-50">
       <div class="bg-modal text-center table-cell align-middle">
         <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <button @click="closeModal" class="w-full">
+            <g-image
+              :src="require('@/assets/img/unauth/close-modal-vector.svg')"
+              class="absolute x-icon" style="right: 23px; top: 23px"/>
+          </button>
           <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-6 sm:mb-12 px-5">
             Are you sure you want to sign out?
           </h1>
-          <div class="flex flex-col sm:flex-row justify-center align-middle">
-            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold sm:mr-10 mb-3 sm:mb-0">
+          <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
+            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mb-3 sm:mb-0">
               Cancel
             </button>
             <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
