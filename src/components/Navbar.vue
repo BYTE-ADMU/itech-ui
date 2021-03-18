@@ -435,7 +435,7 @@ export default Vue.extend({
 }
 
 .signout_button:hover {
-  color: #990000;
+  background-color: #b80202;
 }
 
 .mobile-menu {
