@@ -1,8 +1,5 @@
 <template>
-  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
-    <!-- MODAL -->
-    <unauthModal v-if="!isAuthenticated && articles !== null && courses !== null && topics !== null" class="z-50"/>
-    <!-- END MODAL -->
+  <Layout>
     <!-- ROOT -->
     <div
       v-if="articles === null && courses === null && topics === null"
