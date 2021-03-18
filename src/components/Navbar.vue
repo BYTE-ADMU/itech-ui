@@ -9,7 +9,7 @@
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
               class="absolute x-icon" style="right: 23px; top: 23px"/>
           </button>
-          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-6 sm:mb-12 px-5">
+          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-10 sm:mb-12 px-5">
             Are you sure you want to sign out?
           </h1>
           <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
