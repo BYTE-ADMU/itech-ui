@@ -8,7 +8,7 @@
       <!-- end cover -->
 
       <!-- content -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-10 mx-auto w-full lg:w-4/5">
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 lg:gap-10 mx-auto w-full lg:w-4/5">
         <!-- account info -->
         <div>
           <!-- name -->
@@ -35,13 +35,13 @@
             {{ userYearAndCourse }}
           </div> -->
           <!-- delete account -->
-          <div>
+          <div class="mt-16 sm:mt-20">
             <button class="update-button font-objectivity font-bold py-3 px-5">Update Profile</button>
           </div>
         </div>
         <!-- end account info -->
         <!-- profile picture -->
-        <div class="mx-auto hidden lg:block">
+        <div class="mx-auto mb-16 lg:mb-0">
           <!-- <g-image :src="profilePic"/> -->
           <g-image :src="require('../assets/img/icons/DefaultUserIcon.svg')"
             class="w-40"/>
