@@ -13,8 +13,8 @@
             Are you sure you want to sign out?
           </h1>
           <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
-            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mb-3 sm:mb-0">
+          <div class="flex flex-col-reverse sm:grid sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
+            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mt-2 sm:mt-0">
               Cancel
             </button>
             <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
