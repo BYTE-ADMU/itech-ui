@@ -1,7 +1,7 @@
 <template lang="html">
 <section>
   <div v-bind:tabsData="tabsData" v-for="tabData in tabsData" v-bind:key="tabData.id">
-
+    <registerModal id="regModal" class="z-50 hidden"/>
     <Tab>
       <!-- START: BACK BUTTON -->
       <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb">Back</button></g-link></div>
@@ -111,9 +111,10 @@
 
 <script>
 import Tab from "./Tab.vue";
+import registerModal from "./registerModal";
 
 export default {
-  components: { Tab },
+  components: { Tab, registerModal },
   props: ["tabsData"],
   data() {
     return {
@@ -196,17 +197,20 @@ export default {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
-      }
+      };
       const infoObj = {
         course: `${this.user.year} ${this.user.course}`,
         email: this.user.email,
         username: this.user.username,
-      }
+      };
       this.$store.dispatch('userStore/register', regObj)
         .then(() => {
           this.$store.dispatch('userStore/infoReg', infoObj)
-          this.$router.replace('/login/');
-        })
+          // this.$router.replace('/login/');
+        });
+      
+      const modal = document.getElementById("regModal");
+      modal.classList.remove('hidden');
     }
   },
 };

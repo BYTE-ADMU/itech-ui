@@ -8,10 +8,10 @@
             class="absolute x-icon" style="right: 23px; top: 23px"/>
         </g-link>
         <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-4 sm:mb-12">
-          Oops! You don't have access!
+          Successfully registered!
         </h1>
         <p class="font-objectivity font-bold text-lg sm:text-xl md:text-2xl mb-12" style="color: #40A5A6">
-          Join us on ITECH to view this article.
+          Log in to continue to ITECH.
         </p>
         <g-link to="/login/" class="form_button py-3 px-6">
           <button class="font-bold">
@@ -25,8 +25,7 @@
 
 <script>
 export default {
-  name: "unauthModal",
-
+  name: "registerModal",
 }
 </script>
 
