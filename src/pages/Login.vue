@@ -83,6 +83,7 @@ export default {
       },
     };
   },
+
   methods: {
     async login() {
       await this.$store.dispatch("userStore/login", this.user);

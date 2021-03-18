@@ -101,6 +101,7 @@
 
       <!-- START: DESKTOP USER PROFILE DROPDOWN -->
       <div
+        v-if="isAuthenticated"
         class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
       >
         <div
@@ -332,7 +333,10 @@ export default Vue.extend({
     // END: LOGOUT
 
     openUserDropdown() {
-      this.$store.dispatch("userStore/updateIsOpenUserDropdown", true);
+      this.$store.dispatch(
+        "userStore/updateIsOpenUserDropdown",
+        !this.isOpenUserDropdown
+      );
     },
   },
 });

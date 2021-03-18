@@ -9,22 +9,22 @@
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
-        <div class="flex justify-center items-center min-h-screen my-20 lg:my-0 " >
+        <div class="flex items-center justify-center min-h-screen my-20 lg:my-0 " >
           <!-- START: CONTENT -->
-          <div class="grid lg:grid-cols-2 gap-3 lg:mx-20">
+          <div class="grid gap-3 lg:grid-cols-2 lg:mx-20">
             <!-- START: IMAGE -->
-            <div v-if="tabData.id === 4" class="block mx-auto px-4 -mt-6 lg:px-0 lg:my-auto">
+            <div v-if="tabData.id === 4" class="block px-4 mx-auto -mt-6 lg:px-0 lg:my-auto">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
-            <div v-else class="block mx-auto px-4 lg:px-0 lg:my-auto ">
+            <div v-else class="block px-4 mx-auto lg:px-0 lg:my-auto ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-6 lg:mt-24 mx-4">
-              <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-3 lg:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+            <div class="mx-4 mt-6 lg:mt-24">
+              <h1 class="text-2xl font-black font-neuemachina md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
+              <h1 class="mb-3 text-lg font-light lg:mb-6 md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -40,8 +40,8 @@
                 </div>
                 <div v-else-if="tabData.id === 6">
                   <div class="mb-10 sm:text-center">
-                  <span class="sm:inline block">
-                    <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
+                  <span class="block sm:inline">
+                    <select v-model="user.year" class="mb-2 text-xl year-dropdown lg:text-2xl sm:mb-0">
                       <option disabled hidden value="">1</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -49,10 +49,10 @@
                       <option value="4">4</option>
                     </select>
                   </span>
-                  <span class="ml-3 sm:inline hidden"></span>
+                  <span class="hidden ml-3 sm:inline"></span>
 
-                  <span class="sm:inline block">
-                    <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
+                  <span class="block sm:inline">
+                    <select v-model="user.course" class="text-xl course-dropdown lg:text-2xl">
                       <option disabled hidden value="">Information Technology</option>
                       <option value="Information Technology">Information Technology</option>
                       <option>Course 2</option>
@@ -82,16 +82,16 @@
           <div class="w-full md:w-3/4">
             <div class="w-full md:text-center lg:mb-12 lg:mt-16">
               <div class="flex flex-col-reverse lg:block">
-                <div class=" md:mb-6 px-4">
+                <div class="px-4 md:mb-6">
                   <!-- START: TEXT -->
-                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
-                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <h1 class="text-2xl font-black md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
+                  <h1 class="w-full mb-4 text-lg font-light md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
                   <!-- START: TEXT -->
                 </div>
 
                 <div>
                   <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="px-4 pb-6 mx-auto md:mt-0"/>
                   <!-- START: IMAGE -->
                 </div>
               </div>
@@ -192,22 +192,17 @@ export default {
       });
     },
     register() {
-      const regObj = {
+      const newUser = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
-      }
-      const infoObj = {
-        course: `${this.user.year} ${this.user.course}`,
-        email: this.user.email,
-        username: this.user.username,
-      }
-      this.$store.dispatch('userStore/register', regObj)
-        .then(() => {
-          this.$store.dispatch('userStore/infoReg', infoObj)
-          this.$router.replace('/login/');
-        })
-    }
+        year: this.user.year,
+        course: this.user.course,
+      };
+      this.$store.dispatch("userStore/register", newUser).then(() => {
+        this.$router.replace("/login/");
+      });
+    },
   },
 };
 </script>
@@ -225,14 +220,14 @@ export default {
   line-height: 24px;
   color: #dbdad5;
   position: absolute;
-  left:140px;
-  top:140px;
+  left: 140px;
+  top: 140px;
 }
 
 .year-dropdown {
   /* position: relative; */
   appearance: none;
-  background-image: url('../../../assets/img/unauth/register/icons/yeardropdown.svg');
+  background-image: url("../../../assets/img/unauth/register/icons/yeardropdown.svg");
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: right center;
@@ -245,7 +240,7 @@ export default {
 
 .course-dropdown {
   appearance: none;
-  background-image: url('../../../assets/img/unauth/register/icons/coursedropdown.svg');
+  background-image: url("../../../assets/img/unauth/register/icons/coursedropdown.svg");
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: right center;
@@ -257,13 +252,13 @@ export default {
   padding-right: 60px;
 }
 
-@media screen and (min-width:1250px) {
+@media screen and (min-width: 1250px) {
   .breadcrumb {
     left: 15%;
   }
 }
 
-@media screen and (max-width:1510px) {
+@media screen and (max-width: 1510px) {
   .breadcrumb {
     left: 10%;
   }
