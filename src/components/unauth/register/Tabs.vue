@@ -1,8 +1,8 @@
 <template lang="html">
 <section>
   <div v-bind:tabsData="tabsData" v-for="tabData in tabsData" v-bind:key="tabData.id">
-    <registerModal id="regModal" class="z-50 hidden"/>
     <Tab>
+      <registerModal id="regModal" class="z-50 hidden"/>
       <!-- START: BACK BUTTON -->
       <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb">Back</button></g-link></div>
       <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb">Back</button></div>
