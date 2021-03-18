@@ -40,39 +40,6 @@
                 </div>
                 <div v-else-if="tabData.id === 6">
                   <div class="mb-10 flex flex-col sm:flex-row">
-                    <!-- <span class="sm:inline block">
-                      <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
-                        <option disabled hidden value="">1</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                    </span>
-                    <span class="ml-3 sm:inline hidden"></span>
-
-                    <span class="sm:inline block">
-                      <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
-                        <option disabled hidden value="">Information Technology</option>
-                        <option value="Information Technology">Information Technology</option>
-                        <option>Course 2</option>
-                        <option>Course 3</option>
-                        <option>Course 4</option>
-                      </select>
-                      <courses class="" @setCourse="setCourse($event)"/>
-                    </span> -->
-
-                    <!-- <div class="w-1/6 yearContainer-margin">
-                      <select v-model="user.year" class="year-dropdown text-base sm:text-lg md:text-xl sm:mb-0 mb-2">
-                        <option disabled hidden value="">1</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                      </select>
-                    </div> -->
 
                     <div class="w-1/6 yearContainer-margin relative">
                       <input
@@ -312,20 +279,6 @@ export default {
   outline: none;
   padding-left: 12px;
 }
-
-/* .course-dropdown {
-  appearance: none;
-  background-image: url('../../../assets/img/unauth/register/icons/coursedropdown.svg');
-  background-repeat: no-repeat;
-  background-size: auto 100%;
-  background-position: right center;
-  width: 66%;
-  border-radius: 10px;
-  box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
-  outline: none;
-  padding-left: 12px;
-  padding-right: 60px;
-} */
 
 .courses-container {
   width: 100%;
