@@ -23,7 +23,7 @@
     </div>
     <!-- unsuccessful login modal end -->
     <!-- modals end -->
-    <section id="page" class="z-0 no-scroll">
+    <section>
       <div
         class="grid items-center w-screen px-4 py-8 md:flex sm:px-12 lg:px-16"
       >
