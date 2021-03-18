@@ -3,7 +3,7 @@
     <input
       type="text"
       placeholder="Course"
-      class="w-full h-10 pb-2 pt-3 pl-5 pr-2 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity course-input truncate"
+      class=" w-full text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity course-input truncate"
       v-model="searchCourse"
       @focus="typing = true"
     /> 
@@ -59,5 +59,15 @@ export default {
 <style>
 .course-input {
   border: 1px solid #dbdad5;
+  appearance: none;
+  background-image: url('../../../assets/img/unauth/register/icons/coursedropdown.svg');
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: right center;
+  border-radius: 10px;
+  box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
+  outline: none;
+  padding-left: 12px;
+  padding-right: 60px;
 }
 </style>

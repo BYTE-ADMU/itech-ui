@@ -39,7 +39,7 @@
                   <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
                 <div v-else-if="tabData.id === 6">
-                  <div class="mb-10 flex">
+                  <div class="mb-10 flex flex-col sm:flex-row">
                     <!-- <span class="sm:inline block">
                       <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
                         <option disabled hidden value="">1</option>
@@ -264,7 +264,7 @@ export default {
   padding-left: 12px;
 }
 
-.course-dropdown {
+/* .course-dropdown {
   appearance: none;
   background-image: url('../../../assets/img/unauth/register/icons/coursedropdown.svg');
   background-repeat: no-repeat;
@@ -276,7 +276,7 @@ export default {
   outline: none;
   padding-left: 12px;
   padding-right: 60px;
-}
+} */
 
 .courses-container {
   width: 100%;
@@ -316,10 +316,6 @@ export default {
   .yearContainer-margin {
     margin-right: 1.5rem;
   }
-
-  .courses-container {
-    width: 75%;
-  }
 }
 
 @media screen and (max-width:370px) {
@@ -330,27 +326,11 @@ export default {
   .year-dropdown {
     padding-left: 5px;
   }
-
-  .courses-container {
-    width: 80%;
-  }
 }
 
-/* @media screen and (max-width:1510px) {
+@media screen and (max-width:1510px) {
   .breadcrumb {
     left: 10%;
-  }
-}
-
-@media screen and (max-width: 1320px) {
-  .year-dropdown {
-    width: 23%;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .year-dropdown {
-    width: 12%;
   }
 }
 
@@ -361,10 +341,4 @@ export default {
     font-size: 14px;
   }
 }
-
-@media screen and (max-width: 490px) {
-  .year-dropdown {
-    width: 20%;
-  }
-} */
 </style>
