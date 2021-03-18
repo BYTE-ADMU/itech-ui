@@ -39,27 +39,43 @@
                   <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
                 <div v-else-if="tabData.id === 6">
-                  <div class="mb-10 sm:text-center">
-                  <span class="sm:inline block">
-                    <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
-                      <option disabled hidden value="">1</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                  </span>
-                  <span class="ml-3 sm:inline hidden"></span>
+                  <div class="mb-10 flex">
+                    <!-- <span class="sm:inline block">
+                      <select v-model="user.year" class="year-dropdown text-xl lg:text-2xl sm:mb-0 mb-2">
+                        <option disabled hidden value="">1</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </span>
+                    <span class="ml-3 sm:inline hidden"></span>
 
-                  <span class="sm:inline block">
-                    <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
-                      <option disabled hidden value="">Information Technology</option>
-                      <option value="Information Technology">Information Technology</option>
-                      <option>Course 2</option>
-                      <option>Course 3</option>
-                      <option>Course 4</option>
-                    </select>
-                  </span>
+                    <span class="sm:inline block">
+                      <select v-model="user.course" class="course-dropdown text-xl lg:text-2xl">
+                        <option disabled hidden value="">Information Technology</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option>Course 2</option>
+                        <option>Course 3</option>
+                        <option>Course 4</option>
+                      </select>
+                      <courses class="" @setCourse="setCourse($event)"/>
+                    </span> -->
+                    <div class="w-1/6 yearContainer-margin">
+                      <select v-model="user.year" class="year-dropdown text-base sm:text-lg md:text-xl sm:mb-0 mb-2">
+                        <option disabled hidden value="">1</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </div>
+
+                    <div class="courses-container">
+                      <courses @setCourse="setCourse($event)"/>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -111,9 +127,10 @@
 
 <script>
 import Tab from "./Tab.vue";
+import courses from "./courses"
 
 export default {
-  components: { Tab },
+  components: { Tab, courses },
   props: ["tabsData"],
   data() {
     return {
@@ -207,7 +224,11 @@ export default {
           this.$store.dispatch('userStore/infoReg', infoObj)
           this.$router.replace('/login/');
         })
-    }
+    },
+
+    setCourse(admuCourse) {
+      this.user.course = admuCourse;
+    },
   },
 };
 </script>
@@ -236,7 +257,7 @@ export default {
   background-repeat: no-repeat;
   background-size: auto 100%;
   background-position: right center;
-  width: 15%;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
   outline: none;
@@ -257,13 +278,65 @@ export default {
   padding-right: 60px;
 }
 
+.courses-container {
+  width: 100%;
+}
+
+.yearContainer-margin {
+  margin-right: 1.25rem;
+}
+
 @media screen and (min-width:1250px) {
   .breadcrumb {
     left: 15%;
   }
 }
 
-@media screen and (max-width:1510px) {
+@media screen and (max-width:1220px) {
+  .yearContainer-margin {
+    margin-right: 0.5rem;
+  }
+
+  .courses-container {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  .yearContainer-margin {
+    margin-right: 1.25rem;
+  }
+
+  .courses-container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:465px) {
+  .yearContainer-margin {
+    margin-right: 1.5rem;
+  }
+
+  .courses-container {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width:370px) {
+  .yearContainer-margin {
+    margin-right: 0.5rem;
+  }
+
+  .year-dropdown {
+    padding-left: 5px;
+  }
+
+  .courses-container {
+    width: 80%;
+  }
+}
+
+/* @media screen and (max-width:1510px) {
   .breadcrumb {
     left: 10%;
   }
@@ -293,5 +366,5 @@ export default {
   .year-dropdown {
     width: 20%;
   }
-}
+} */
 </style>
