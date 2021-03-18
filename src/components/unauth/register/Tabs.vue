@@ -62,7 +62,8 @@
                       </select>
                       <courses class="" @setCourse="setCourse($event)"/>
                     </span> -->
-                    <div class="w-1/6 yearContainer-margin">
+
+                    <!-- <div class="w-1/6 yearContainer-margin">
                       <select v-model="user.year" class="year-dropdown text-base sm:text-lg md:text-xl sm:mb-0 mb-2">
                         <option disabled hidden value="">1</option>
                         <option value="1">1</option>
@@ -71,6 +72,53 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                       </select>
+                    </div> -->
+
+                    <div class="w-1/6 yearContainer-margin relative">
+                      <input
+                        type="text"
+                        placeholder="1"
+                        class="year-dropdown cursor-pointer text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
+                        v-model="user.year"
+                        @focus="choosingYear = true"
+                      /> 
+                      
+                      <div
+                        v-if="choosingYear"
+                        class="absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+                        style="max-height: 220px;"
+                      >
+                        <button
+                          @click="user.year = '1'; choosingYear = false"
+                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                        >
+                          <span class="font-bold truncate">1</span>
+                        </button>
+                        <button
+                          @click="user.year = '2'; choosingYear = false"
+                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                        >
+                          <span class="font-bold truncate">2</span>
+                        </button>
+                        <button
+                          @click="user.year = '3'; choosingYear = false"
+                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                        >
+                          <span class="font-bold truncate">3</span>
+                        </button>
+                        <button
+                          @click="user.year = '4'; choosingYear = false"
+                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                        >
+                          <span class="font-bold truncate">4</span>
+                        </button>
+                        <button
+                          @click="user.year = '5'; choosingYear = false"
+                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                        >
+                          <span class="font-bold truncate">5</span>
+                        </button>
+                      </div>
                     </div>
 
                     <div class="courses-container">
@@ -173,6 +221,7 @@ export default {
         // timeAMPM: "",
       },
       isCompleted: false,
+      choosingYear: false,
     };
   },
   computed: {
