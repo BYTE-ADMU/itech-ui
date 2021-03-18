@@ -82,7 +82,7 @@
           <!-- Start: If User IS Authenticated -->
           <div class="flex" v-else>
             <button
-              @click="openUserDropdown"
+              @click="toggleUserDropdown"
               class="relative p-5 ml-8 xl:ml-10"
             >
               <!-- Start: UserAccountIcon -->
@@ -90,6 +90,48 @@
               <!-- End: UserAccountIcon -->
             </button>
           </div>
+
+          <!-- Start:UserAccountDropdown -->
+
+          <div
+            v-if="isOpenUserDropdown"
+            class="absolute z-40 overflow-hidden bg-white shadow-md r-0"
+            style="width: 285px"
+          >
+            <g-link
+              to="/user-profile/"
+              class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
+            >
+              <g-image
+                class="mr-4"
+                src="@/assets/img/icons/DefaultUserIcon.svg"
+              />
+
+              <div class="overflow-hidden">
+                <p class="welcome-back">Welcome back,</p>
+                <p class="truncate username ...">{{ username }}</p>
+              </div>
+            </g-link>
+            <g-link
+              to="/my-list/"
+              class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              My List
+            </g-link>
+            <g-link
+              to="/user-profile/"
+              class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              My Account
+            </g-link>
+            <button
+              @click="logout"
+              class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+            >
+              Sign out
+            </button>
+          </div>
+          <!-- End:UserAccountDropdown -->
 
           <!-- End: If User IS Authenticated -->
           <!-- END: LOGIN/USER BUTTON -->
@@ -99,15 +141,15 @@
     <!-- END: DESKTOP MODE -->
 
     <!-- START: DESKTOP USER PROFILE DROPDOWN -->
-    <div
+    <!-- <div
       class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
     >
       <div
         class="flex flex-row-reverse flex-wrap items-center justify-between w-screen mx-auto lg:container"
-      >
-        <!-- Start:UserAccountDropdown -->
+      > -->
+    <!-- Start:UserAccountDropdown -->
 
-        <div
+    <!-- <div
           v-if="isOpenUserDropdown"
           class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
           style="width: 285px"
@@ -119,9 +161,9 @@
             <g-image
               class="mr-4"
               src="@/assets/img/icons/DefaultUserIcon.svg"
-            />
+            /> -->
 
-            <div class="overflow-hidden">
+    <!-- <div class="overflow-hidden">
               <p class="welcome-back">Welcome back,</p>
               <p class="truncate username ...">{{ username }}</p>
             </div>
@@ -144,10 +186,10 @@
           >
             Sign out
           </button>
-        </div>
-        <!-- End:UserAccountDropdown -->
-      </div>
-    </div>
+        </div> -->
+    <!-- End:UserAccountDropdown -->
+    <!-- </div>
+    </div> -->
     <!-- END: DESKTOP USER PROFILE DROPDOWN -->
   </nav>
 </template>
@@ -190,8 +232,11 @@ export default Vue.extend({
     },
     // END: LOGOUT
 
-    openUserDropdown() {
-      this.$store.dispatch("userStore/updateIsOpenUserDropdown", true);
+    toggleUserDropdown() {
+      this.$store.dispatch(
+        "userStore/updateIsOpenUserDropdown",
+        !this.isOpenUserDropdown
+      );
     },
   },
 });
