@@ -14,7 +14,7 @@
           </h1>
           <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
           <div class="flex flex-col-reverse sm:grid sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
-            <button @click="closeModal" class="form_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mt-2 sm:mt-0">
+            <button @click="closeModal" class="cancel_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mt-2 sm:mt-0">
               Cancel
             </button>
             <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
@@ -433,7 +433,6 @@ export default Vue.extend({
   font-family: Objectivity;
   font-style: normal;
   font-weight: bold;
-  font-size: 16px;
   text-align: center;
   color: #f9f7f2;
   transition: all ease-in-out 200ms;
@@ -442,6 +441,22 @@ export default Vue.extend({
 
 .signout_button:hover {
   background-color: #b80202;
+}
+
+.cancel_button {
+  background: #64c0c1;
+  border-radius: 34px;
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
+}
+
+.cancel_button:hover {
+  background-color: #40a5a6;
 }
 
 .mobile-menu {
@@ -456,8 +471,10 @@ export default Vue.extend({
 }
 
 @media screen and (max-width: 640px) {
-  .signout_button {
+  .signout_button, .cancel_button {
     font-size: 14px;
+    width: 110px;
   }
+  
 }
 </style>
