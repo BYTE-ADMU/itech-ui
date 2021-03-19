@@ -146,15 +146,15 @@
               <!-- <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div> -->
               <!-- <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div> -->
 
-              <div  v-if="tabData.id === 7" class="flex flex-row justify-center align-middle lg:block">
+              <div  v-if="tabData.id === 7" class="flex flex-row justify-center align-middle ">
                 <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
                 <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
-                <button @click="register" class="px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ...">{{tabData.buttonText}}</button>
+                <button @click="register" class="px-8 pt-3 pb-2 lg:mx-auto lg:float-right form_button font-objectivity ...">{{tabData.buttonText}}</button>
               </div>
-              <div v-else class="flex flex-row justify-center align-middle lg:block">
+              <div v-else class="flex flex-row justify-center align-middle ">
                 <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
                 <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
-                <button class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
+                <button class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:mx-auto lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
               </div>
               <!-- END: NEXT BUTTON -->
             </div>    
