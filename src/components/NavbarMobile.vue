@@ -3,11 +3,12 @@
     <!-- START: MODAL -->
     <div
       id="logoutModal"
-      class="fixed z-50 hidden table-cell w-screen h-screen text-center align-middle bg-modal"
+      ref="logoutModal"
+      class="fixed logout-modal hidden w-screen h-screen"
     >
-      <div class="">
+      <div class="table-cell text-center align-middle bg-modal">
         <div
-          class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
+          class="relative py-16 my-auto mx-auto align-middle bg-white border border-white rounded-xl modal-size"
         >
           <button @click="closeModal" class="w-full">
             <g-image
@@ -42,8 +43,8 @@
       </div>
     </div>
     <!-- logout -->
-    <div id="successfulLogout" class="fixed z-40 hidden w-screen h-screen">
-      <div class="table-cell text-center align-middle bg-modal">
+    <div id="successfulLogout" ref="successfulLogout" class="fixed hidden w-screen h-screen logout-modal">
+      <div class="table-cell h-screen w-screen text-center align-middle bg-modal">
         <div
           class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
         >
@@ -229,27 +230,32 @@ export default Vue.extend({
 
   methods: {
     logoutModal() {
-      const modal = document.getElementById("logoutModal");
+      // const modal = document.getElementById("logoutModal");
+      const modal = this.$refs.logoutModal;
       modal.classList.remove("hidden");
       modal.classList.add("table");
     },
     closeModal() {
-      const modal = document.getElementById("logoutModal");
+      // const modal = document.getElementById("logoutModal");
+      const modal = this.$refs.logoutModal;
       modal.classList.add("hidden");
     },
     closeSuccess() {
-      const modal = document.getElementById("successfulLogout");
+      // const modal = document.getElementById("successfulLogout");
+      const modal = this.$refs.successfulLogout;
       modal.classList.add("hidden");
     },
     // START: LOGOUT
     async logout() {
-      const modal = document.getElementById("logoutModal");
+      // const modal = document.getElementById("logoutModal");
+      const modal = this.$refs.logoutModal;
       modal.classList.add("hidden");
       await this.$store.dispatch("userStore/logout", this.user);
       if (!this.$store.state.userStore.isAuthenticated) {
-        const successfulLogout = document.getElementById("successfulLogout");
+        // const successfulLogout = document.getElementById("successfulLogout");
+        const successfulLogout = this.$refs.successfulLogout;
         successfulLogout.classList.remove("hidden");
-        successfulLogout.classList.add("table");
+        successfulLogout.classList.add("table-cell");
         // alert("You have logged out!");
         // this.$router.replace("/login/");
       }
@@ -269,6 +275,10 @@ export default Vue.extend({
   background: #f9f7f2;
   box-shadow: 0px 16px 16px rgba(50, 50, 71, 0.08),
     0px 24px 32px rgba(50, 50, 71, 0.08);
+}
+
+.logout-modal {
+  z-index: 1000;
 }
 
 .signout_button {
