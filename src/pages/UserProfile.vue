@@ -34,7 +34,7 @@
             <h1 class="font-bold accountdetails mb-3">Year and Course</h1>
             {{ userYearAndCourse }}
           </div> -->
-          <!-- delete account -->
+          <!-- update account -->
           <div class="mt-16 sm:mt-20">
             <button class="update-button font-objectivity font-bold py-3 px-5">Update Profile</button>
           </div>
@@ -43,8 +43,8 @@
         <!-- profile picture -->
         <div class="mx-auto mb-16 lg:mb-0">
           <!-- <g-image :src="profilePic"/> -->
-          <g-image :src="require('../assets/img/icons/DefaultUserIcon.svg')"
-            class="w-40"/>
+          <g-image :src="userImage"
+            class="w-40 h-40 rounded-full"/>
         </div>
         <!-- end profile picture -->
       </div>
@@ -57,24 +57,49 @@
 import cover from '../components/auth/userprofile/cover'
 export default {
   name: "UserProfile",
-  metaInfo: {
-    title: "UserProfile",
+  metaInfo() {
+    return {
+      title: this.title,
+    }
+  },
+  data() {
+    return {
+      title: "User Profile",
+    }
   },
   components: {
     cover,
   },
   computed: {
     username() {
-      return this.$store.state.userStore.user.username;
+      const data = this.$store.state.userStore.user.username;
+      if (data !== null) {
+        this.title = data;
+      }
+      return data;
     },
     userEmail() {
       return this.$store.state.userStore.user.email;
     },
-    // userYearAndCourse() {
-    //   console.log(this.$store.state.userStore.user.course);
-    //   return this.$store.state.userStore.user.course;
-    // },
-
+    userYear() {
+      return this.$store.state.userStore.user.year;
+    },
+    userCourse() {
+      return this.$store.state.userStore.user.course;
+    },
+    userImage() {
+      // const data = this.$store.state.userStore.user.profileImage.url;
+      // if (data !== null) {
+      //   return data;
+      // }
+      try {
+        const data = this.$store.state.userStore.user.profileImage.url;
+        return data;
+      } catch (error) {
+        // console.log(error);
+        return require('../assets/img/icons/DefaultUserIcon.svg');
+      }
+    }
   }
 }
 </script>
