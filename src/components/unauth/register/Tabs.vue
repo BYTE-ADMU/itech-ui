@@ -4,8 +4,8 @@
 
     <Tab>
       <!-- START: BACK BUTTON -->
-      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="float-left breadcrumb">Back</button></g-link></div>
-      <div v-else><button @click='selectTab(selectedIndex-1)' class="float-left breadcrumb">Back</button></div>
+      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="hidden lg:block float-left breadcrumb">Back</button></g-link></div>
+      <div v-else><button @click='selectTab(selectedIndex-1)' class="hidden lg:block float-left breadcrumb">Back</button></div>
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
@@ -105,8 +105,16 @@
 
               <!-- START: NEXT BUTTON -->
               
-              <div  v-if="tabData.id === 7"><g-link to="/login/"><button class="px-8 pt-3 pb-2 float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link></div>
-              <div v-else><button :disabled="!isDisabled" class="block mx-auto lg:mt-0 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button></div>
+              <div  v-if="tabData.id === 7" class="flex flex-row justify-center align-middle lg:block">
+                <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
+                <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
+                <g-link to="/login/"><button class="px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ...">{{tabData.buttonText}}</button></g-link>
+              </div>
+              <div v-else class="flex flex-row justify-center align-middle lg:block">
+                <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
+                <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
+                <button :disabled="!isDisabled" class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
+              </div>
               <!-- END: NEXT BUTTON -->
             </div>
             <!-- END: FORM -->
@@ -135,8 +143,19 @@
               </div>
 
               <!-- START: NEXT BUTTON -->
-              <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div>
-              <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div>
+              <!-- <div  v-if="tabData.id === 7"><button @click="register" class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button></div> -->
+              <!-- <div v-else><button class="block mt-12 md:mt-0 px-8 pt-3 pb-2 mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)' >{{tabData.buttonText}}</button></div> -->
+
+              <div  v-if="tabData.id === 7" class="flex flex-row justify-center align-middle lg:block">
+                <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
+                <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
+                <button @click="register" class="px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ...">{{tabData.buttonText}}</button>
+              </div>
+              <div v-else class="flex flex-row justify-center align-middle lg:block">
+                <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
+                <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
+                <button class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
+              </div>
               <!-- END: NEXT BUTTON -->
             </div>    
           </div>
@@ -271,6 +290,17 @@ export default {
   position: absolute;
   left:140px;
   top:140px;
+}
+
+.mobile-breadcrumb {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #dbdad5;
+  padding-top: 0.70rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .year-dropdown {
