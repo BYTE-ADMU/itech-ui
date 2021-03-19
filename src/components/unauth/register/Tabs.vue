@@ -41,18 +41,19 @@
                 <div v-else-if="tabData.id === 6">
                   <div class="mb-10 flex flex-col sm:flex-row">
 
-                    <div class="w-1/6 yearContainer-margin relative">
+                    <div class="yearContainer-margin relative">
                       <input
                         type="text"
                         placeholder="1"
-                        class="year-dropdown cursor-pointer text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
+                        class="year-dropdown cursor-pointer pt-1 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
                         v-model="user.year"
-                        @focus="choosingYear = true"
+                        @focus="choosingYear"
                       /> 
                       
-                      <div
+                      <div>
+                        <div
                         v-if="choosingYear"
-                        class="absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+                        class="relative lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
                         style="max-height: 220px;"
                       >
                         <button
@@ -85,6 +86,12 @@
                         >
                           <span class="font-bold truncate">5</span>
                         </button>
+                      </div>
+                        <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="absolute year-icon" @click="choosingYear = true">
+                          <path d="M48 -4.37114e-07C53.5228 -1.95702e-07 58 4.47715 58 10L58 48C58 53.5229 53.5228 58 48 58L10 58C4.47715 58 1.47514e-06 53.5228 1.71655e-06 48L3.37758e-06 10C3.61899e-06 4.47715 4.47716 -2.33956e-06 10 -2.09815e-06L48 -4.37114e-07Z" fill="#F5A64A"/>
+                          <path d="M18 23L29.25 34.25L40.5 23" stroke="#F9F7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                       </div>
                     </div>
 
@@ -267,17 +274,26 @@ export default {
 }
 
 .year-dropdown {
+  border: 1px solid #dbdad5;
   /* position: relative; */
   appearance: none;
-  background-image: url('../../../assets/img/unauth/register/icons/yeardropdown.svg');
+  /* background-image: url('../../../assets/img/unauth/register/icons/yeardropdown.svg');
   background-repeat: no-repeat;
   background-size: auto 100%;
-  background-position: right center;
+  background-position: right center; */
   width: 100%;
   border-radius: 10px;
-  box-shadow: 0 0 0.5pt 1.5pt #dbdad5;
+  /* box-shadow: 0 0 0.5pt 1.5pt #dbdad5; */
   outline: none;
-  padding-left: 12px;
+  padding-left: 1.5rem;
+  height: 58px;
+}
+
+.year-icon {
+  right: 0;
+  top: 0.5px;
+  width: 57px;
+  height: 57px;
 }
 
 .courses-container {
@@ -285,7 +301,8 @@ export default {
 }
 
 .yearContainer-margin {
-  margin-right: 1.25rem;
+  margin-right: 1rem;
+  width: 28%;
 }
 
 @media screen and (min-width:1250px) {
@@ -318,15 +335,25 @@ export default {
   .yearContainer-margin {
     margin-right: 1.5rem;
   }
+
+  .year-dropdown {
+    height: 47px;
+  }
+
+  .year-icon {
+    width: 46px;
+    height: 46px;
+    top: 0;
+  }
 }
 
-@media screen and (max-width:370px) {
+@media screen and (max-width:400px) {
   .yearContainer-margin {
     margin-right: 0.5rem;
   }
 
   .year-dropdown {
-    padding-left: 5px;
+    padding-left: 1rem;
   }
 }
 
