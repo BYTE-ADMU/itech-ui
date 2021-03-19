@@ -1,9 +1,51 @@
 <template>
   <nav>
+    <!-- START: MODAL -->
+    <div id="logoutModal" class="h-screen w-screen fixed hidden z-50">
+      <div class="bg-modal text-center table-cell align-middle">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <button @click="closeModal" class="w-full">
+            <g-image
+              :src="require('@/assets/img/unauth/close-modal-vector.svg')"
+              class="absolute x-icon" style="right: 23px; top: 23px"/>
+          </button>
+          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-10 sm:mb-12 px-5">
+            Are you sure you want to sign out?
+          </h1>
+          <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
+          <div class="flex flex-col-reverse sm:grid sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
+            <button @click="closeModal" class="cancel_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mt-2 sm:mt-0">
+              Cancel
+            </button>
+            <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
+              Sign out
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- logout -->
+    <div id="successfulLogout" class="h-screen w-screen fixed z-50 hidden">
+      <div class="bg-modal text-center table-cell align-middle">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <g-link @click="closeSuccess" to="/login/" class="w-full">
+            <g-image
+              :src="require('@/assets/img/unauth/close-modal-vector.svg')"
+              class="absolute x-icon" style="right: 23px; top: 23px"/>
+          </g-link>
+          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl px-6">
+            You have signed out.
+          </h1>
+        </div>
+      </div>
+    </div>
+    <!-- END: MODAL -->
     <!-- START: DESKTOP MODE -->
+
     <div
       class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
     >
+
       <div
         class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
       >
@@ -121,7 +163,7 @@
                 My Account
               </g-link>
               <button
-                @click="logout"
+                @click="logoutModal"
                 class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
               >
                 Sign out
@@ -137,6 +179,7 @@
       <!-- END: DESKTOP MODE -->
 
       <!-- START: DESKTOP USER PROFILE DROPDOWN -->
+
       <!-- <div
       class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
     >
@@ -163,6 +206,7 @@
               <p class="welcome-back">Welcome back,</p>
               <p class="truncate username ...">{{ username }}</p>
             </div>
+
           </g-link>
           <g-link
             to="/my-list/"
@@ -217,14 +261,30 @@ export default Vue.extend({
   },
 
   methods: {
+    logoutModal() {
+      const modal = document.getElementById('logoutModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('table');
+    },
+    closeModal() {
+      const modal = document.getElementById('logoutModal');
+      modal.classList.add('hidden');
+    },
+    closeSuccess() {
+      const modal = document.getElementById('successfulLogout');
+      modal.classList.add('hidden');
+    },
     // START: LOGOUT
     async logout() {
-      if (confirm("Are you sure you want to log out? ")) {
-        await this.$store.dispatch("userStore/logout", this.user);
-        if (!this.$store.state.userStore.isAuthenticated) {
-          alert("You have logged out!");
-          this.$router.replace("/login/");
-        }
+      const modal = document.getElementById('logoutModal');
+      modal.classList.add('hidden');
+      await this.$store.dispatch("userStore/logout", this.user);
+      if (!this.$store.state.userStore.isAuthenticated) {
+        const successfulLogout = document.getElementById('successfulLogout');
+        successfulLogout.classList.remove('hidden');
+        successfulLogout.classList.add('table');
+        // alert("You have logged out!");
+        // this.$router.replace("/login/");
       }
     },
     // END: LOGOUT
@@ -263,4 +323,57 @@ export default Vue.extend({
   font-size: 16px;
   line-height: 25px;
 }
+
+
+.signout_button {
+  background: #ff0000;
+  border-radius: 34px;
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
+}
+
+.signout_button:hover {
+  background-color: #b80202;
+}
+
+.cancel_button {
+  background: #64c0c1;
+  border-radius: 34px;
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  text-align: center;
+  color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
+}
+
+.cancel_button:hover {
+  background-color: #40a5a6;
+}
+
+.mobile-menu {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  top: 4%;
+  left: 4%;
+  background: #f9f7f2;
+  box-shadow: 0px 16px 16px rgba(50, 50, 71, 0.08),
+    0px 24px 32px rgba(50, 50, 71, 0.08);
+}
+
+@media screen and (max-width: 640px) {
+  .signout_button, .cancel_button {
+    font-size: 14px;
+    width: 110px;
+  }
+  
+}
+
 </style>

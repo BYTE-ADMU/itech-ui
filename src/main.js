@@ -10,22 +10,21 @@ export default function (Vue, { appOptions, router, head, isClient }) {
   appOptions.store = store;
   appOptions.router = router;
 
-  if (process.isClient) {
-    router.beforeEach((to, from, next) => {
-      if (
-        to.path.includes("dashboard") ||
-        to.path.includes("articles")
-      ) {
-        if (!store.state.userStore.isAuthenticated) {
-          next("/login/");
-        } else {
-          next();
-        }
-      } else {
-        next();
-      }
-    });
-  }
+  // if (process.isClient) {
+  //   router.beforeEach((to, from, next) => {
+  //     if (
+  //       // to.path.includes("articles")
+  //     ) {
+  //       if (!store.state.userStore.isAuthenticated) {
+  //         next("/login/");
+  //       } else {
+  //         next();
+  //       }
+  //     } else {
+  //       next();
+  //     }
+  //   });
+  // }
 
 
 
