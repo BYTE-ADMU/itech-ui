@@ -42,56 +42,57 @@
                   <div class="mb-10 flex flex-col sm:flex-row">
 
                     <div class="yearContainer-margin relative">
-                      <input
-                        type="text"
-                        placeholder="1"
-                        class="year-dropdown cursor-pointer pt-1 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
-                        v-model="user.year"
-                        @focus="choosingYear"
-                      /> 
-                      
                       <div>
-                        <div
-                        v-if="choosingYear"
-                        class="relative lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
-                        style="max-height: 220px;"
-                      >
-                        <button
-                          @click="user.year = '1'; choosingYear = false"
-                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                        >
-                          <span class="font-bold truncate">1</span>
-                        </button>
-                        <button
-                          @click="user.year = '2'; choosingYear = false"
-                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                        >
-                          <span class="font-bold truncate">2</span>
-                        </button>
-                        <button
-                          @click="user.year = '3'; choosingYear = false"
-                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                        >
-                          <span class="font-bold truncate">3</span>
-                        </button>
-                        <button
-                          @click="user.year = '4'; choosingYear = false"
-                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                        >
-                          <span class="font-bold truncate">4</span>
-                        </button>
-                        <button
-                          @click="user.year = '5'; choosingYear = false"
-                          class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
-                        >
-                          <span class="font-bold truncate">5</span>
-                        </button>
-                      </div>
+                        <input
+                          type="text"
+                          placeholder="1"
+                          class="relative year-dropdown cursor-pointer pt-1 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
+                          v-model="user.year"
+                          @focus="choosingYear"
+                        /> 
                         <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        class="absolute year-icon" @click="choosingYear = !choosingYear">
+                        class="absolute year-icon" @click="toggleYearOptions()">
                           <path d="M48 -4.37114e-07C53.5228 -1.95702e-07 58 4.47715 58 10L58 48C58 53.5229 53.5228 58 48 58L10 58C4.47715 58 1.47514e-06 53.5228 1.71655e-06 48L3.37758e-06 10C3.61899e-06 4.47715 4.47716 -2.33956e-06 10 -2.09815e-06L48 -4.37114e-07Z" fill="#F5A64A"/>
                           <path d="M18 23L29.25 34.25L40.5 23" stroke="#F9F7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
+                      </div>
+                      <div>
+                        <div
+                          :class="[yearOptionsClasses, (user.year ? 'block':'hidden')]"
+                          style="max-height: 220px;"
+                          id="yearOptions"
+                        >
+                          <button
+                            @click="user.year = '1'; hideOptions();"
+                            class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                          >
+                            <span class="font-bold truncate">1</span>
+                          </button>
+                          <button
+                            @click="user.year = '2'; hideOptions()"
+                            class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                          >
+                            <span class="font-bold truncate">2</span>
+                          </button>
+                          <button
+                            @click="user.year = '3'; hideOptions()"
+                            class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                          >
+                            <span class="font-bold truncate">3</span>
+                          </button>
+                          <button
+                            @click="user.year = '4'; hideOptions()"
+                            class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                          >
+                            <span class="font-bold truncate">4</span>
+                          </button>
+                          <button
+                            @click="user.year = '5'; hideOptions()"
+                            class="w-full text-left px-4 py-4 truncate ... text-sm text-gray-800 border-b button-text hover:bg-gray-200"
+                          >
+                            <span class="font-bold truncate">5</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
 
@@ -149,12 +150,12 @@
               <div  v-if="tabData.id === 7" class="flex flex-row justify-center align-middle ">
                 <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
                 <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
-                <button @click="register" class="px-8 pt-3 pb-2 lg:mx-auto lg:float-right form_button font-objectivity ...">{{tabData.buttonText}}</button>
+                <button @click="register" class="px-8 pt-3 pb-2 lg:mx-auto form_button font-objectivity ...">{{tabData.buttonText}}</button>
               </div>
               <div v-else class="flex flex-row justify-center align-middle ">
                 <div  v-if="selectedIndex === 0"><g-link to="/"><button class="mobile-breadcrumb lg:hidden">Back</button></g-link></div>
                 <div v-else><button @click='selectTab(selectedIndex-1)' class="mobile-breadcrumb lg:hidden">Back</button></div>
-                <button class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:mx-auto lg:float-right form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
+                <button class="lg:mt-0 ml-8 px-8 pt-3 pb-2 lg:mx-auto form_button font-objectivity ..." @click='selectTab(selectedIndex+1)'>{{tabData.buttonText}}</button>
               </div>
               <!-- END: NEXT BUTTON -->
             </div>    
@@ -234,6 +235,10 @@ export default {
         return this.isCompleted;
       }
     },
+
+    yearOptionsClasses() {
+      return "absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7";
+    }
   },
   created() {
     this.tabs = this.$children;
@@ -271,6 +276,20 @@ export default {
     setCourse(admuCourse) {
       this.user.course = admuCourse;
     },
+
+    hideOptions() {
+      const yearOptions = document.getElementById('yearOptions');
+      yearOptions.classList.add('hidden');
+    },
+
+    toggleYearOptions() {
+      const yearOptions = document.getElementById('yearOptions');
+      if (yearOptions.classList.contains('hidden')) {
+        yearOptions.classList.remove('hidden');
+      } else {
+        yearOptions.classList.add('hidden');
+      }
+    }
   },
 };
 </script>
