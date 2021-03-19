@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
-    <Navbar />
+    <Navbar class="lg:block hidden" />
+    <NavbarMobile class="lg:hidden block" />
     <div class="w-full" @click="closeDropdowns">
       <slot />
       <Footer />
@@ -11,11 +12,13 @@
 
 <script>
 import Navbar from "~/components/Navbar.vue";
+import NavbarMobile from "~/components/NavbarMobile.vue";
 import Footer from "~/components/Footer.vue";
 export default {
   name: "unauth-index",
   components: {
     Navbar,
+    NavbarMobile,
     Footer,
   },
 

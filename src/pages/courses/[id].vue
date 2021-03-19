@@ -76,7 +76,6 @@
 
 <script>
 import Loader from "../../components/Loader";
-
 import cover from "../../components/auth/courses/cover";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
@@ -121,6 +120,10 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     id() {
       return this.$route.params.id;
     },

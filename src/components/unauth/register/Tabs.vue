@@ -1,8 +1,8 @@
 <template lang="html">
 <section>
   <div v-bind:tabsData="tabsData" v-for="tabData in tabsData" v-bind:key="tabData.id">
-
     <Tab>
+      <registerModal id="regModal" class="z-50 hidden"/>
       <!-- START: BACK BUTTON -->
       <div  v-if="selectedIndex === 0"><g-link to="/"><button class="hidden lg:block float-left breadcrumb">Back</button></g-link></div>
       <div v-else><button @click='selectTab(selectedIndex-1)' class="hidden lg:block float-left breadcrumb">Back</button></div>
@@ -168,10 +168,15 @@
 
 <script>
 import Tab from "./Tab.vue";
+import registerModal from "./registerModal";
+
 import courses from "./courses"
 
 export default {
-  components: { Tab, courses },
+  components: { Tab, courses, registerModal },
+
+import registerModal from "./registerModal";
+
   props: ["tabsData"],
   data() {
     return {
@@ -258,12 +263,12 @@ export default {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
-      }
+      };
       const infoObj = {
         course: `${this.user.year} ${this.user.course}`,
         email: this.user.email,
         username: this.user.username,
-      }
+      };
       this.$store.dispatch('userStore/register', regObj)
         .then(() => {
           this.$store.dispatch('userStore/infoReg', infoObj)
@@ -287,6 +292,11 @@ export default {
       } else {
         yearOptions.classList.add('hidden');
       }
+          // this.$router.replace('/login/');
+        });
+      
+      const modal = document.getElementById("regModal");
+      modal.classList.remove('hidden');
     }
   },
 };
