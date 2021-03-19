@@ -10,4 +10,5 @@ Tech Stacks: Vue.js, Gridsome, TailwindCSS
 ## To run this repository:
 
 1. `npm install --global @gridsome/cli` Install Gridsome CLI tool if you don't have
-2. `gridsome develop` to start a local dev server at `http://localhost:8080`
+2. `npm install` / `yarn install` To install dependecies
+3. `gridsome develop` to start a local dev server at `http://localhost:8080`
