@@ -4,27 +4,27 @@
     <Tab>
       <registerModal id="regModal" class="z-50 hidden"/>
       <!-- START: BACK BUTTON -->
-      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="hidden lg:block float-left breadcrumb">Back</button></g-link></div>
-      <div v-else><button @click='selectTab(selectedIndex-1)' class="hidden lg:block float-left breadcrumb">Back</button></div>
+      <div  v-if="selectedIndex === 0"><g-link to="/"><button class="hidden float-left lg:block breadcrumb">Back</button></g-link></div>
+      <div v-else><button @click='selectTab(selectedIndex-1)' class="hidden float-left lg:block breadcrumb">Back</button></div>
       <!-- END: BACK BUTTON -->
 
       <div v-if="!tabData.isLayoutCentered">
-        <div class="flex justify-center items-center min-h-screen my-20 lg:my-0 " >
+        <div class="flex items-center justify-center min-h-screen my-20 lg:my-0 " >
           <!-- START: CONTENT -->
-          <div class="grid lg:grid-cols-2 gap-3 lg:mx-20">
+          <div class="grid gap-3 lg:grid-cols-2 lg:mx-20">
             <!-- START: IMAGE -->
-            <div v-if="tabData.id === 4" class="block mx-auto px-4 -mt-6 lg:px-0 lg:my-auto">
+            <div v-if="tabData.id === 4" class="block px-4 mx-auto -mt-6 lg:px-0 lg:my-auto">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
-            <div v-else class="block mx-auto px-4 lg:px-0 lg:my-auto ">
+            <div v-else class="block px-4 mx-auto lg:px-0 lg:my-auto ">
               <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')"/>
             </div>
             <!-- END: IMAGE -->
 
             <!-- START: FORM -->
-            <div class="mt-6 lg:mt-24 mx-4">
-              <h1 class="font-neuemachina font-black text-2xl md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
-              <h1 class="mb-3 lg:mb-6 font-light text-lg md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
+            <div class="mx-4 mt-6 lg:mt-24">
+              <h1 class="text-2xl font-black font-neuemachina md:text-3xl lg:text-4xl">{{tabData.header}}</h1>
+              <h1 class="mb-3 text-lg font-light lg:mb-6 md:text-xl lg:text-2xl font-objectivity">{{tabData.text}}</h1>
 
               <!-- START: FORM -->
               <div class="form_inputs">
@@ -39,14 +39,14 @@
                   <input v-model="user.confirmPassword" class="w-full px-8 py-4 mb-5 border rounded-md text-grey-darker" id="confirm_password" type="password" placeholder="confirm password"/>
                 </div>
                 <div v-else-if="tabData.id === 6">
-                  <div class="mb-10 flex flex-col sm:flex-row">
+                  <div class="flex flex-col mb-10 sm:flex-row">
 
-                    <div class="yearContainer-margin relative">
+                    <div class="relative yearContainer-margin">
                       <div>
                         <input
                           type="text"
                           placeholder="1"
-                          class="relative year-dropdown cursor-pointer pt-1 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
+                          class="relative pt-1 mb-2 text-base rounded-lg cursor-pointer year-dropdown sm:text-lg md:text-xl lg:text-2xl font-objectivity sm:mb-0"
                           v-model="user.year"
                         /> 
                         <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -128,16 +128,16 @@
           <div class="w-full md:w-3/4">
             <div class="w-full md:text-center lg:mb-12 lg:mt-16">
               <div class="flex flex-col-reverse lg:block">
-                <div class=" md:mb-6 px-4">
+                <div class="px-4 md:mb-6">
                   <!-- START: TEXT -->
-                  <h1 class="font-black text-2xl md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
-                  <h1 class="w-full mb-4 font-light text-lg md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
+                  <h1 class="text-2xl font-black md:text-3xl lg:text-4xl font-neuemachina">{{tabData.header}}</h1>
+                  <h1 class="w-full mb-4 text-lg font-light md:text-xl lg:text-2xl font-objectivity"><div class="lg:mx-auto" style="max-width:650px">{{tabData.text}}</div></h1>
                   <!-- START: TEXT -->
                 </div>
 
                 <div>
                   <!-- START: IMAGE -->
-                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="pb-6 mx-auto px-4 md:mt-0"/>
+                  <img :src="require('@/assets/img/unauth/register/' + tabData.image + '')" class="px-4 pb-6 mx-auto md:mt-0"/>
                   <!-- START: IMAGE -->
                 </div>
               </div>
@@ -169,13 +169,10 @@
 <script>
 import Tab from "./Tab.vue";
 import registerModal from "./registerModal";
-
-import courses from "./courses"
+import courses from "./courses";
 
 export default {
   components: { Tab, courses, registerModal },
-
-import registerModal from "./registerModal";
 
   props: ["tabsData"],
   data() {
@@ -241,7 +238,7 @@ import registerModal from "./registerModal";
 
     yearOptionsClasses() {
       return "absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7";
-    }
+    },
   },
   created() {
     this.tabs = this.$children;
@@ -269,11 +266,10 @@ import registerModal from "./registerModal";
         email: this.user.email,
         username: this.user.username,
       };
-      this.$store.dispatch('userStore/register', regObj)
-        .then(() => {
-          this.$store.dispatch('userStore/infoReg', infoObj)
-          this.$router.replace('/login/');
-        })
+      this.$store.dispatch("userStore/register", regObj).then(() => {
+        this.$store.dispatch("userStore/infoReg", infoObj);
+        this.$router.replace("/login/");
+      });
     },
 
     setCourse(admuCourse) {
@@ -281,23 +277,22 @@ import registerModal from "./registerModal";
     },
 
     hideOptions() {
-      const yearOptions = document.getElementById('yearOptions');
-      yearOptions.classList.add('hidden');
+      const yearOptions = document.getElementById("yearOptions");
+      yearOptions.classList.add("hidden");
     },
 
     toggleYearOptions() {
-      const yearOptions = document.getElementById('yearOptions');
-      if (yearOptions.classList.contains('hidden')) {
-        yearOptions.classList.remove('hidden');
+      const yearOptions = document.getElementById("yearOptions");
+      if (yearOptions.classList.contains("hidden")) {
+        yearOptions.classList.remove("hidden");
       } else {
-        yearOptions.classList.add('hidden');
+        yearOptions.classList.add("hidden");
       }
-          // this.$router.replace('/login/');
-        });
-      
+      // this.$router.replace('/login/');
+
       const modal = document.getElementById("regModal");
-      modal.classList.remove('hidden');
-    }
+      modal.classList.remove("hidden");
+    },
   },
 };
 </script>
@@ -315,8 +310,8 @@ import registerModal from "./registerModal";
   line-height: 24px;
   color: #dbdad5;
   position: absolute;
-  left:140px;
-  top:140px;
+  left: 140px;
+  top: 140px;
 }
 
 .mobile-breadcrumb {
@@ -325,7 +320,7 @@ import registerModal from "./registerModal";
   font-weight: normal;
   font-size: 16px;
   color: #dbdad5;
-  padding-top: 0.70rem;
+  padding-top: 0.7rem;
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -362,13 +357,13 @@ import registerModal from "./registerModal";
   width: 28%;
 }
 
-@media screen and (min-width:1250px) {
+@media screen and (min-width: 1250px) {
   .breadcrumb {
     left: 15%;
   }
 }
 
-@media screen and (max-width:1220px) {
+@media screen and (max-width: 1220px) {
   .yearContainer-margin {
     margin-right: 0.5rem;
   }
@@ -378,7 +373,7 @@ import registerModal from "./registerModal";
   }
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (max-width: 1024px) {
   .yearContainer-margin {
     margin-right: 1.25rem;
   }
@@ -388,7 +383,7 @@ import registerModal from "./registerModal";
   }
 }
 
-@media screen and (max-width:465px) {
+@media screen and (max-width: 465px) {
   .yearContainer-margin {
     margin-right: 1.5rem;
   }
@@ -404,7 +399,7 @@ import registerModal from "./registerModal";
   }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width: 400px) {
   .yearContainer-margin {
     margin-right: 0.5rem;
   }
@@ -414,7 +409,7 @@ import registerModal from "./registerModal";
   }
 }
 
-@media screen and (max-width:1510px) {
+@media screen and (max-width: 1510px) {
   .breadcrumb {
     left: 10%;
   }
