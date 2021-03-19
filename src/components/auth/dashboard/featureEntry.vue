@@ -1,6 +1,6 @@
 <template>
   <g-link :to="`/articles/${article.id}`">
-    <div class="relative mx-0 sm:mx-2 bg-gray-400 rounded-none sm:rounded-lg feature-height tg">
+    <div class="relative mx-0 sm:mx-2 bg-gray-400 rounded-none sm:rounded-lg feature-height tg overflow-hidden feature-hover">
       <div class="absolute z-30 w-full h-full px-4 sm:px-10 py-8 rounded-none sm:rounded-lg group">
         <p
           class="relative w-48 pt-24 pb-2 sm:py-3 text-2xl sm:text-3xl text-white uppercase font-neuemachina hover:opacity-100"
@@ -26,7 +26,7 @@
       </div>
       <g-image
         :src="article.thumbnailImage.url"
-        class="relative object-cover w-full h-full rounded-none sm:rounded-lg tg"
+        class="relative object-cover w-full h-full rounded-none sm:rounded-lg tg feature-image"
       />
     </div>
   </g-link>
@@ -66,6 +66,18 @@ export default {
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
+}
+
+.feature-image {
+  transition: .20s ease-in-out;
+  -webkit-transition: .20s ease-in-out;
+  -moz-transition: .20s ease-in-out;
+  -o-transition: .20s ease-in-out;
+}
+
+.feature-hover:hover > .feature-image {
+  transform: scale(1.1);
+  box-shadow: 0 10px 15px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 @media screen and (max-width: 640px) {

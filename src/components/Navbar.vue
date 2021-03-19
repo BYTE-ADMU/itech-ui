@@ -1,137 +1,223 @@
 <template>
-  <nav
-    class="flex flex-wrap items-center justify-between w-screen px-4 py-5 bg-white shadow-md md:px-20 nav"
-  >
+  <nav>
+    <!-- START: DESKTOP MODE -->
     <div
-      class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
+      class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
     >
-      <!-- LINK CONDITION START -->
-      <div class="flex items-center text-white flex-no-shrink">
-        <g-link v-if="!isAuthenticated" class="nav__link" to="/">
-          <g-image
-            :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            class="w-40 py-2"
-          />
-        </g-link>
-
-        <g-link v-else class="nav__link" to="/dashboard">
-          <g-image
-            :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
-            class="w-40 py-2"
-          />
-        </g-link>
-      </div>
-      <!-- LINK CONDITION END -->
-      <!-- <div class="block lg:hidden">
-      <button
-        class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white"
+      <div
+        class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
       >
-        <svg
-          class="w-3 h-3"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-        </svg>
-      </button>
-    </div> -->
-
-      <div class="flex items-center flex-grow w-auto">
-        <div class="flex-grow text-sm"></div>
-
-        <div v-if="!isAuthenticated">
-          <g-link
-            class="block px-8 py-3 text-sm form_button ... nav__link"
-            to="/login/"
-          >
-            Log In
+        <!-- START: ITECH LOGO BUTTON -->
+        <div class="flex items-center text-white flex-no-shrink">
+          <!-- Start: If User isn't Authenticated -->
+          <g-link v-if="!isAuthenticated" to="/">
+            <g-image
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+              class="w-40 py-2"
+            />
           </g-link>
+          <!-- End: If User isn't Authenticated -->
+
+          <!-- Start: If User is Authenticated -->
+          <g-link v-else to="/dashboard">
+            <g-image
+              :src="require('@/assets/img/BB3-PrimaryWithBlackText.svg')"
+              class="w-40 py-2"
+            />
+          </g-link>
+          <!-- End: If User is Authenticated -->
         </div>
-        <div class="flex" v-else>
-          <g-link
-            to="/discover/"
-            class="mx-2 my-auto font-bold uppercase md:mx-8 text-md font-neuemachina nav__link"
-          >
-            Discover
-          </g-link>
-          <!-- <a
-            href="/categories/hacker/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hacker
-          </a>
-          <a
-            href="/categories/hipster/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hipster
-          </a>
+        <!-- END: ITECH LOGO BUTTON -->
 
-          <a
-            href="/categories/hustler/"
-            class="mx-8 font-bold uppercase text-md font-neuemachina nav__link"
-          >
-            Hustler
-          </a> -->
-          <div class="relative p-4 hover-trigger nav__link">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        <div class="flex items-center flex-grow ml-8">
+          <!-- START: SEARCH BAR / EMPTY  -->
+          <div class="flex items-center flex-grow">
+            <!-- Start: If User isn't Authenticated -->
+            <!-- <div v-if="!isAuthenticated" class="mx-auto"></div> -->
+            <!-- End: If User isn't Authenticated -->
+
+            <!-- Start: If User is Authenticated -->
+            <div class="relative flex-grow mx-auto">
+              <SearchBar />
+            </div>
+            <!-- End: If User is Authenticated -->
+          </div>
+          <!-- END: SEARCH BAR / EMPTY  -->
+
+          <!-- START: CATEGORY BUTTONS -->
+          <div class="hidden xl:block">
+            <g-link
+              to="/categories/hacker"
+              class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
             >
-              <path
-                d="M8 8.8C8 6.59086 9.79086 4.8 12 4.8C14.2091 4.8 16 6.59086 16 8.8C16 11.0091 14.2091 12.8 12 12.8C9.79086 12.8 8 11.0091 8 8.8Z"
-                fill="#151316"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0ZM1.6 12C1.6 6.25624 6.25624 1.6 12 1.6C17.7438 1.6 22.4 6.25624 22.4 12C22.4 14.9593 21.164 17.6299 19.1801 19.5238C18.9385 16.6538 16.5324 14.4 13.6 14.4H10.4C7.46758 14.4 5.06152 16.6538 4.81995 19.5238C2.83601 17.6299 1.6 14.9593 1.6 12Z"
-                fill="#151316"
-              />
-            </svg>
+              Hacker
+            </g-link>
+            <g-link
+              to="/categories/hipster"
+              class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
+            >
+              Hipster
+            </g-link>
+            <g-link
+              to="/categories/hustler"
+              class="ml-10 font-bold xl:ml-16 text-md font-objectivity"
+            >
+              Hustler
+            </g-link>
+          </div>
+          <!-- END: CATEGORY BUTTONS -->
+
+          <!-- START: LOGIN/USER BUTTON -->
+          <!-- Start: If User is NOT Authenticated -->
+          <div v-if="!isAuthenticated">
+            <g-link
+              class="ml-10 xl:ml-16 block px-8 py-3 text-sm form_button ..."
+              to="/login/"
+            >
+              Log In
+            </g-link>
+          </div>
+          <!-- End: If User is NOT Authenticated -->
+
+          <!-- Start: If User IS Authenticated -->
+          <div class="relative inline-block ml-8 xl:ml-10" v-else>
+            <button @click="toggleUserDropdown" class="p-5">
+              <!-- Start: UserAccountIcon -->
+              <g-image class="" src="@/assets/img/icons/UserAccount.svg" />
+              <!-- End: UserAccountIcon -->
+            </button>
+
+            <!-- Start:UserAccountDropdown -->
 
             <div
-              class="absolute right-0 z-20 mt-2 overflow-hidden bg-white rounded-md shadow-xl hover-target"
+              v-if="isOpenUserDropdown"
+              class="absolute right-0 z-40 mt-2 overflow-hidden bg-white shadow-md"
+              style="width: 285px"
             >
-              <a
-                href="#"
-                class="block px-4 py-2 text-sm text-gray-800 border-b hover-trigger hover:bg-gray-200"
-                >{{ identifier }}</a
+              <g-link
+                to="/user-profile/"
+                class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
               >
+                <g-image
+                  class="mr-4"
+                  src="@/assets/img/icons/DefaultUserIcon.svg"
+                />
+
+                <div class="overflow-hidden">
+                  <p class="welcome-back">Welcome back,</p>
+                  <p class="truncate username ...">{{ username }}</p>
+                </div>
+              </g-link>
+              <g-link
+                to="/my-list/"
+                class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+              >
+                My List
+              </g-link>
+              <g-link
+                to="/user-profile/"
+                class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+              >
+                My Account
+              </g-link>
               <button
                 @click="logout"
-                class="block w-full px-4 py-2 text-sm text-right text-gray-800 border-b hover-trigger hover:bg-gray-200"
+                class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
               >
-                Logout
+                Sign out
               </button>
             </div>
+            <!-- End:UserAccountDropdown -->
+
+            <!-- End: If User IS Authenticated -->
+            <!-- END: LOGIN/USER BUTTON -->
           </div>
         </div>
       </div>
+      <!-- END: DESKTOP MODE -->
+
+      <!-- START: DESKTOP USER PROFILE DROPDOWN -->
+      <!-- <div
+      class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
+    >
+      <div
+        class="flex flex-row-reverse flex-wrap items-center justify-between w-screen mx-auto lg:container"
+      > -->
+      <!-- Start:UserAccountDropdown -->
+
+      <!-- <div
+          v-if="isOpenUserDropdown"
+          class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
+          style="width: 285px"
+        >
+          <g-link
+            to="/user-profile/"
+            class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
+          >
+            <g-image
+              class="mr-4"
+              src="@/assets/img/icons/DefaultUserIcon.svg"
+            /> -->
+
+      <!-- <div class="overflow-hidden">
+              <p class="welcome-back">Welcome back,</p>
+              <p class="truncate username ...">{{ username }}</p>
+            </div>
+          </g-link>
+          <g-link
+            to="/my-list/"
+            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+          >
+            My List
+          </g-link>
+          <g-link
+            to="/user-profile/"
+            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+          >
+            My Account
+          </g-link>
+          <button
+            @click="logout"
+            class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
+          >
+            Sign out
+          </button>
+        </div> -->
+      <!-- End:UserAccountDropdown -->
+      <!-- </div>
+    </div> -->
+      <!-- END: DESKTOP USER PROFILE DROPDOWN -->
     </div>
   </nav>
 </template>
 
 <script>
 import Vue from "vue";
+import SearchBar from "./SearchBar";
 
 export default Vue.extend({
   name: "Navbar",
 
+  components: {
+    SearchBar,
+  },
+
   computed: {
+    //START: USER RELATED
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
     },
-    identifier() {
-      return this.$store.state.userStore.user.email;
+    username() {
+      return this.$store.state.userStore.user.username;
     },
+    isOpenUserDropdown() {
+      return this.$store.state.userStore.isOpenUserDropdown;
+    },
+    //END: USER RELATED
   },
 
   methods: {
+    // START: LOGOUT
     async logout() {
       if (confirm("Are you sure you want to log out? ")) {
         await this.$store.dispatch("userStore/logout", this.user);
@@ -141,16 +227,40 @@ export default Vue.extend({
         }
       }
     },
+    // END: LOGOUT
+
+    toggleUserDropdown() {
+      this.$store.dispatch(
+        "userStore/updateIsOpenUserDropdown",
+        !this.isOpenUserDropdown
+      );
+    },
   },
 });
 </script>
 
-<style>
-.hover-trigger .hover-target {
-  display: none;
+<style scoped>
+.welcome-back {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 25px;
 }
 
-.hover-trigger:hover .hover-target {
-  display: block;
+.username {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.button-text {
+  font-family: Objectivity;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 25px;
 }
 </style>
