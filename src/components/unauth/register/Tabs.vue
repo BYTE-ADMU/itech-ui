@@ -48,7 +48,6 @@
                           placeholder="1"
                           class="relative year-dropdown cursor-pointer pt-1 text-base sm:text-lg md:text-xl lg:text-2xl rounded-lg font-objectivity sm:mb-0 mb-2"
                           v-model="user.year"
-                          @focus="choosingYear"
                         /> 
                         <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"
                         class="absolute year-icon" @click="toggleYearOptions()">
@@ -215,7 +214,6 @@ export default {
         // timeAMPM: "",
       },
       isCompleted: false,
-      choosingYear: false,
     };
   },
   computed: {

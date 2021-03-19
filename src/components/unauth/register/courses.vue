@@ -8,17 +8,17 @@
         v-model="searchCourse"
       /> 
       <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg"
-      class="absolute course-icon">
+      class="absolute course-icon" @click="toggleCourseOptions()">
         <path d="M48 -4.37114e-07C53.5228 -1.95702e-07 58 4.47715 58 10L58 48C58 53.5229 53.5228 58 48 58L10 58C4.47715 58 1.47514e-06 53.5228 1.71655e-06 48L3.37758e-06 10C3.61899e-06 4.47715 4.47716 -2.33956e-06 10 -2.09815e-06L48 -4.37114e-07Z" fill="#C7A8F4"/>
         <path d="M18 23L29.25 34.25L40.5 23" stroke="#F9F7F2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
     
     <div
-      v-if="searchCourse"
-      class="absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7"
+      :class="[courseOptionsClasses, (searchCourse ? 'block':'hidden')]"
       style="max-height: 220px;"
       ref="courseBtns"
+      id="courseOptions"
     >
       <button
         v-for="course in filteredAdmuCourses"
@@ -51,6 +51,10 @@ export default {
       return this.admuCourses.filter((course) => {
         return course.name.toLowerCase().includes(this.searchCourse.toLowerCase());
       });
+    },
+
+    courseOptionsClasses() {
+      return "absolute lg w-full course-options z-40 h-auto overflow-x-hidden overflow-y-auto bg-white shadow-md r-0 mt-7";
     }
   },
 
@@ -62,6 +66,15 @@ export default {
     hideBtns() {
       const btns = this.$refs.courseBtns;
       btns.classList.add('hidden');
+    },
+
+    toggleCourseOptions() {
+      const courseOptions = document.getElementById('courseOptions');
+      if (courseOptions.classList.contains('hidden')) {
+        courseOptions.classList.remove('hidden');
+      } else {
+        courseOptions.classList.add('hidden');
+      }
     }
   }
 }
