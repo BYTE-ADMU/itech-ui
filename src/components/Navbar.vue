@@ -1,23 +1,23 @@
 <template>
   <nav>
     <!-- START: MODAL -->
-    <div id="logoutModal" class="h-screen w-screen fixed hidden z-50">
-      <div class="bg-modal text-center table-cell align-middle">
-        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+    <div id="logoutModal" class="fixed z-50 hidden w-screen h-screen">
+      <div class="table-cell text-center align-middle bg-modal">
+        <div class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size">
           <button @click="closeModal" class="w-full">
             <g-image
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
               class="absolute x-icon" style="right: 23px; top: 23px"/>
           </button>
-          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl mb-10 sm:mb-12 px-5">
+          <h1 class="px-5 mb-10 text-xl font-neuemachina sm:text-2xl md:text-4xl sm:mb-12">
             Are you sure you want to sign out?
           </h1>
-          <!-- class="flex flex-col sm:flex-row justify-center align-middle px-20" -->
-          <div class="flex flex-col-reverse sm:grid sm:grid-cols-2 w-2/3 lg:w-1/2 mx-auto">
-            <button @click="closeModal" class="cancel_button mx-auto text-sm sm:text-base py-3 px-6 font-bold mt-2 sm:mt-0">
+          <!-- class="flex flex-col justify-center px-20 align-middle sm:flex-row" -->
+          <div class="flex flex-col-reverse w-2/3 mx-auto sm:grid sm:grid-cols-2 lg:w-1/2">
+            <button @click="closeModal" class="px-6 py-3 mx-auto mt-2 text-sm font-bold cancel_button sm:text-base sm:mt-0">
               Cancel
             </button>
-            <button @click="logout" class="signout_button mx-auto text-sm sm:text-base py-3 px-6 font-bold">
+            <button @click="logout" class="px-6 py-3 mx-auto text-sm font-bold signout_button sm:text-base">
               Sign out
             </button>
           </div>
@@ -25,15 +25,15 @@
       </div>
     </div>
     <!-- logout -->
-    <div id="successfulLogout" class="h-screen w-screen fixed z-50 hidden">
-      <div class="bg-modal text-center table-cell align-middle">
-        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+    <div id="successfulLogout" class="fixed z-50 hidden w-screen h-screen">
+      <div class="table-cell text-center align-middle bg-modal">
+        <div class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size">
           <g-link @click="closeSuccess" to="/login/" class="w-full">
             <g-image
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
               class="absolute x-icon" style="right: 23px; top: 23px"/>
           </g-link>
-          <h1 class="font-neuemachina text-xl sm:text-2xl md:text-4xl px-6">
+          <h1 class="px-6 text-xl font-neuemachina sm:text-2xl md:text-4xl">
             You have signed out.
           </h1>
         </div>
@@ -177,60 +177,6 @@
         </div>
       </div>
       <!-- END: DESKTOP MODE -->
-
-      <!-- START: DESKTOP USER PROFILE DROPDOWN -->
-
-      <!-- <div
-      class="absolute flex flex-wrap items-center justify-between w-screen px-4 md:px-20 nav"
-    >
-      <div
-        class="flex flex-row-reverse flex-wrap items-center justify-between w-screen mx-auto lg:container"
-      > -->
-      <!-- Start:UserAccountDropdown -->
-
-      <!-- <div
-          v-if="isOpenUserDropdown"
-          class="z-40 overflow-hidden bg-white shadow-md r-0 mt-7"
-          style="width: 285px"
-        >
-          <g-link
-            to="/user-profile/"
-            class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
-          >
-            <g-image
-              class="mr-4"
-              src="@/assets/img/icons/DefaultUserIcon.svg"
-            /> -->
-
-      <!-- <div class="overflow-hidden">
-              <p class="welcome-back">Welcome back,</p>
-              <p class="truncate username ...">{{ username }}</p>
-            </div>
-
-          </g-link>
-          <g-link
-            to="/my-list/"
-            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
-          >
-            My List
-          </g-link>
-          <g-link
-            to="/user-profile/"
-            class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
-          >
-            My Account
-          </g-link>
-          <button
-            @click="logout"
-            class="block w-full px-4 py-4 text-sm text-left text-gray-800 uppercase border-b button-text hover:bg-gray-200"
-          >
-            Sign out
-          </button>
-        </div> -->
-      <!-- End:UserAccountDropdown -->
-      <!-- </div>
-    </div> -->
-      <!-- END: DESKTOP USER PROFILE DROPDOWN -->
     </div>
   </nav>
 </template>
