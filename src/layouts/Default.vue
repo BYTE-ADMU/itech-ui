@@ -24,6 +24,7 @@ export default {
     this.$store.dispatch("coursesStore/getCourses");
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
+    this.$store.dispatch("admuCoursesStore/getAdmuCourses");
   },
 
   methods: {
