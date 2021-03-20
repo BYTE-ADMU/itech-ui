@@ -2,7 +2,7 @@
 <section>
   <div v-bind:tabsData="tabsData" v-for="tabData in tabsData" v-bind:key="tabData.id">
     <Tab>
-      <registerModal id="regModal" class="z-50 hidden"/>
+      <registerModal v-if="tabData.id === 7" id="regModal" class="z-50 hidden"/>
       <!-- START: BACK BUTTON -->
       <div  v-if="selectedIndex === 0"><g-link to="/"><button class="hidden float-left lg:block breadcrumb">Back</button></g-link></div>
       <div v-else><button @click='selectTab(selectedIndex-1)' class="hidden float-left lg:block breadcrumb">Back</button></div>
@@ -268,8 +268,11 @@ export default {
       };
       this.$store.dispatch("userStore/register", regObj).then(() => {
         this.$store.dispatch("userStore/infoReg", infoObj);
-        this.$router.replace("/login/");
+        // this.$router.replace("/login/");
       });
+
+      const modal = document.getElementById("regModal");
+      modal.classList.remove("hidden");
     },
 
     setCourse(admuCourse) {
@@ -288,10 +291,6 @@ export default {
       } else {
         yearOptions.classList.add("hidden");
       }
-      // this.$router.replace('/login/');
-
-      const modal = document.getElementById("regModal");
-      modal.classList.remove("hidden");
     },
   },
 };
