@@ -80,8 +80,41 @@ const userStore = {
           commit('setUser', response.data); //Set Current User Data
         })
         .catch((error) => console.log(error));
-    }
+    },
     // End: Update User
+
+    //Start:Update User profileImage
+    async updateUserImage({ state, commit }, imageFile) {
+      const oldUserImageId = (state.user.profileImage !== null) ? state.user.profileImage.id : null; //Old User Profile Image Id for Deletion
+
+      //Formatting Data of New User Profile Image
+      const updatedUserImage = new FormData();
+      updatedUserImage.append("files", imageFile);
+      updatedUserImage.append("path", `user/${state.user.id}`);
+      updatedUserImage.append("refId", state.user.id);
+      updatedUserImage.append("ref", "user");
+      updatedUserImage.append("field", "profileImage");
+      updatedUserImage.append("source", "users-permissions");
+
+      try {
+        //Add and Replace User Profile Image
+        const updateUserImageResponse = await axios.post(
+          `${state.API_URL}/upload`,
+          updatedUserImage
+        );
+
+        //Delete Old User Profile Image IF user has before
+        if (oldUserImageId !== null) {
+          const deleteOldUserImageResponse = await axios.delete(`${state.API_URL}/upload/files/${oldUserImageId}`);
+        }
+
+        return updateUserImageResponse.data[0];
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    //End:Update User profileImage
+
 
   },
   //END: ACTIONS ===== ===== ===== ===== =====

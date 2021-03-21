@@ -10,8 +10,9 @@
       <!-- end cover -->
 
       <!-- content -->
-      <div
+      <form
         class="flex flex-col-reverse w-full mx-auto lg:grid lg:grid-cols-2 lg:gap-10 lg:w-4/5"
+        @submit="updateUser"
       >
         <!-- account info -->
         <div>
@@ -161,7 +162,7 @@
           <div class="mt-16 sm:mt-20">
             <button
               class="px-5 py-3 font-bold update-button font-objectivity"
-              @click="updateUser"
+              type="Submit"
             >
               Update Profile
             </button>
@@ -173,15 +174,23 @@
           <!-- <g-image :src="profilePic"/> -->
           <div class="relative">
             <g-image :src="userImage" class="w-40 h-40 rounded-full" />
-            <div class="edit-button absolute" @click="$refs.selectFile.click()">
-              <g-image src="../assets/img/icons/editIcon.png" class="block w-1/2" />
+            <div class="absolute edit-button" @click="$refs.selectFile.click()">
+              <g-image
+                src="../assets/img/icons/editIcon.png"
+                class="block w-1/2"
+              />
             </div>
           </div>
 
-          <input type="file" @change="onFileSelected" class="hidden" ref="selectFile" />
+          <input
+            type="file"
+            @change="onImageSelected"
+            class="hidden"
+            ref="selectFile"
+          />
         </div>
         <!-- end profile picture -->
-      </div>
+      </form>
       <!-- end content -->
     </div>
   </Layout>
@@ -190,6 +199,7 @@
 <script>
 import cover from "../components/auth/userprofile/cover";
 import courses from "../components/auth/userprofile/courses";
+import axios from "axios";
 
 export default {
   name: "UserProfile",
@@ -216,7 +226,8 @@ export default {
         { id: 4, name: "4" },
         { id: 5, name: "5" },
       ],
-      selectedFile: null,
+      imageFile: null,
+      isUpdateImage: false,
     };
   },
 
@@ -300,13 +311,28 @@ export default {
       btns.classList.add("hidden");
     },
 
-    updateUser() {
-      this.$store.dispatch("userStore/updateUser", this.user);
+    onImageSelected(event) {
+      this.imageFile = event.target.files[0];
+      this.isUpdateImage = true;
     },
 
-    onFileSelected(event) {
-      this.selectedFile = event.target.files[0];
-    }
+    updateUser(event) {
+      event.preventDefault();
+
+      //If user DOES select a new profileImage
+      if (this.isUpdateImage) {
+        this.isUpdateImage = false;
+        this.$store
+          .dispatch("userStore/updateUserImage", this.imageFile)
+          .then((response) => {
+            this.user.profileImage = response;
+            this.$store.dispatch("userStore/updateUser", this.user);
+          })
+          .catch((error) => console.log(error));
+      } else {
+        this.$store.dispatch("userStore/updateUser", this.user);
+      }
+    },
   },
   // END: METHODS
 };
@@ -357,8 +383,8 @@ export default {
 .edit-button {
   right: 0;
   bottom: 0;
-  background: #F9F7F2;
-  border: 4px solid #C7A8F4;
+  background: #f9f7f2;
+  border: 4px solid #c7a8f4;
   border-radius: 100%;
   width: 48px;
   height: 48px;
@@ -373,7 +399,7 @@ export default {
   }
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width: 400px) {
   .yearContainer {
     width: 40%;
   }
