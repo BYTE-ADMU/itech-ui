@@ -207,7 +207,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dissapear {
   display: none;
 }
