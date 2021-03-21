@@ -14,7 +14,9 @@ export default function (Vue, { appOptions, router, head, isClient }) {
     router.beforeEach((to, from, next) => {
       if (
         to.path.includes("dashboard") ||
-        to.path.includes("articles")
+        to.path.includes("articles") ||
+        to.path.includes("user-profile")
+
       ) {
         if (!store.state.userStore.isAuthenticated) {
           next("/login/");

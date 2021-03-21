@@ -73,15 +73,16 @@ const userStore = {
     },
     // End: Register
 
-    updateProfile({state, commit}, updatedUser) { 
-      // console.log(updatedUser);
-      // console.log(state.user.id);
+    // Start: Update User
+    updateUser({ state, commit }, updatedUser) {
       axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
-      .then((response) => {
-        commit('setUser', response.data.user);
-      })
-      .catch((error) => console.log(error));
+        .then((response) => {
+          commit('setUser', response.data); //Set Current User Data
+        })
+        .catch((error) => console.log(error));
     }
+    // End: Update User
+
   },
   //END: ACTIONS ===== ===== ===== ===== =====
 
