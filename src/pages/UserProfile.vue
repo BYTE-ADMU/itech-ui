@@ -171,7 +171,14 @@
         <!-- profile picture -->
         <div class="mx-auto mb-16 lg:mb-0">
           <!-- <g-image :src="profilePic"/> -->
-          <g-image :src="userImage" class="w-40 h-40 rounded-full" />
+          <div class="relative">
+            <g-image :src="userImage" class="w-40 h-40 rounded-full" />
+            <div class="edit-button absolute" @click="$refs.selectFile.click()">
+              <g-image src="../assets/img/icons/editIcon.png" class="block w-1/2" />
+            </div>
+          </div>
+
+          <input type="file" @change="onFileSelected" class="hidden" ref="selectFile" />
         </div>
         <!-- end profile picture -->
       </div>
@@ -209,6 +216,7 @@ export default {
         { id: 4, name: "4" },
         { id: 5, name: "5" },
       ],
+      selectedFile: null,
     };
   },
 
@@ -295,6 +303,10 @@ export default {
     updateUser() {
       this.$store.dispatch("userStore/updateUser", this.user);
     },
+
+    onFileSelected(event) {
+      this.selectedFile = event.target.files[0];
+    }
   },
   // END: METHODS
 };
@@ -340,6 +352,19 @@ export default {
   top: 0.5px;
   width: 57px;
   height: 57px;
+}
+
+.edit-button {
+  right: 0;
+  bottom: 0;
+  background: #F9F7F2;
+  border: 4px solid #C7A8F4;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 500px) {
