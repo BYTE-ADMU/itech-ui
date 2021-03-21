@@ -217,6 +217,7 @@ export default {
     // Start: User Data
     user() {
       const data = this.$store.state.userStore.user;
+      this.title = data.username;
       return data;
     },
     userImage() {
