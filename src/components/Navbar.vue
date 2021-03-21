@@ -119,8 +119,8 @@
               class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
             >
               <g-image
-                class="mr-4"
-                src="@/assets/img/icons/DefaultUserIcon.svg"
+                class="mr-4 rounded-full w-16 h-16"
+                :src="userProfileImage"
               />
 
               <div class="overflow-hidden">
@@ -316,6 +316,14 @@ export default Vue.extend({
     isOpenUserDropdown() {
       return this.$store.state.userStore.isOpenUserDropdown;
     },
+    userProfileImage() {
+      try {
+        const data = this.$store.state.userStore.user.profileImage.url;
+        return data;
+      } catch (error) {
+        return require("../assets/img/icons/DefaultUserIcon.svg");
+      }
+    }
     //END: USER RELATED
   },
 
