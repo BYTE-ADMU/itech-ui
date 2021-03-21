@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-full mb-12 md:mb-0 md:w-3/12 px-2">
     <g-link :to="`/categories/${bb3}`">
-      <div :class="botStyle">
+      <div :class="botStyle" class="border border-green-700">
         <div>
           <h2
             class="px-6 pt-6 pb-2 leading-tight text-white select-none text-feature font-neuemachina"
@@ -14,7 +14,7 @@
             >View All</g-link
           >
         </div>
-        <g-image :src="botImage" class="bitBot" />
+        <g-image :src="botImage" class="bitBot border border-red-600" />
       </div>
     </g-link>
   </div>
@@ -94,9 +94,9 @@ export default {
 <style scoped>
 .bitBot {
   width: 189px;
-  position: absolute;
   right: 0;
-  bottom: -30px;
+  /* bottom: -30px; */
+  top: 150px;
   transition: .20s ease-in-out;
   -webkit-transition: .20s ease-in-out;
   -moz-transition: .20s ease-in-out;
@@ -142,6 +142,7 @@ export default {
 @media screen and (max-width: 1280px) {
   .bitBot {
     width: 170px;
+    top: 180px;
   }
 
   .heighter {
@@ -156,6 +157,7 @@ export default {
 @media screen and (max-width: 1025px) {
   .bitBot {
     width: 130px;
+    top: 220px;
   }
 
   .heighter {
@@ -171,7 +173,8 @@ export default {
   .bitBot {
     position: absolute;
     width: 140px;
-    bottom: -20px;
+    top: auto;
+    bottom: -45px;
   }
 
   .heighter {
