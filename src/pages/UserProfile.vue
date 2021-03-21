@@ -347,4 +347,10 @@ export default {
     font-size: 16px;
   }
 }
+
+@media screen and (max-width:400px) {
+  .yearContainer {
+    width: 40%;
+  }
+}
 </style>
