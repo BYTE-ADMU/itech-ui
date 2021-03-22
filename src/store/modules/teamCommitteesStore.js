@@ -27,7 +27,7 @@ const teamCommitteesStore = {
 
   // to handle mutations
   mutations: {
-    SSET_TEAMCOMMITTEES: (state, teamCommittees) => state.teamCommittees = teamCommittees,
+    SET_TEAMCOMMITTEES: (state, teamCommittees) => state.teamCommittees = teamCommittees,
   }
 }
 
