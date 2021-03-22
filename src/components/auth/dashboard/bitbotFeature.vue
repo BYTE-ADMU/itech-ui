@@ -95,7 +95,8 @@ export default {
 .bitBot {
   width: 189px;
   right: 0;
-  bottom: -30px;
+  /* bottom: -30px; */
+  top: 150px;
   transition: .20s ease-in-out;
   -webkit-transition: .20s ease-in-out;
   -moz-transition: .20s ease-in-out;
@@ -141,7 +142,7 @@ export default {
 @media screen and (max-width: 1280px) {
   .bitBot {
     width: 170px;
-    /* top: 180px; */
+    top: 195px;
   }
 
   .heighter {
@@ -156,7 +157,7 @@ export default {
 @media screen and (max-width: 1025px) {
   .bitBot {
     width: 130px;
-    /* top: 220px; */
+    top: 250px;
   }
 
   .heighter {
@@ -172,8 +173,9 @@ export default {
   .bitBot {
     position: absolute;
     width: 140px;
-    /* top: auto; */
-    bottom: -45px;
+    top: auto;
+    /* bottom: -45px; */
+    bottom: -20px;
   }
 
   .heighter {
