@@ -256,19 +256,15 @@ export default {
       });
     },
     register() {
-      const regObj = {
+      const newUser = {
         username: this.user.username,
         email: this.user.email,
         password: this.user.password,
+        year: this.user.year,
+        course: this.user.course,
       };
-      const infoObj = {
-        course: `${this.user.year} ${this.user.course}`,
-        email: this.user.email,
-        username: this.user.username,
-      };
-      this.$store.dispatch("userStore/register", regObj).then(() => {
-        this.$store.dispatch("userStore/infoReg", infoObj);
-        // this.$router.replace("/login/");
+      this.$store.dispatch("userStore/register", newUser).then(() => {
+        this.$router.replace("/login/");
       });
 
       const modal = document.getElementById("regModal");
@@ -296,7 +292,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dissapear {
   display: none;
 }

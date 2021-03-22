@@ -108,7 +108,6 @@
 </template>
 
 <script>
-import unauthModal from "../components/unauth/unauthModal";
 import Loader from "../components/Loader";
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import featureEntry from "../components/auth/dashboard/featureEntry";
@@ -133,7 +132,6 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
-    unauthModal,
   },
 
   data() {
@@ -273,11 +271,6 @@ export default {
 </script>
 
 <style>
-.no-scroll {
-  max-height: 100vh;
-  overflow: hidden;
-}
-
 div > .tg {
   filter: brightness(80%);
 }

@@ -114,6 +114,7 @@ export default {
       modalsClosed: true,
     };
   },
+
   methods: {
     async login() {
       this.modalsClosed = false;
