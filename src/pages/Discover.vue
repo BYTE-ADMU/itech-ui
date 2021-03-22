@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div
+    <div 
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <h1
@@ -110,6 +110,10 @@ export default {
   },
 
   computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     categories() {
       const data = this.$store.state.categoriesStore.categories;
       return data;

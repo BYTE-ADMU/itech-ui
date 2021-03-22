@@ -170,6 +170,10 @@ export default {
 
     // END: GET DATA FROM STORE
 
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     hackerArticles() {
       return this.articles.filter((article) => {
         return article.categories[0].name.includes("Hacker");

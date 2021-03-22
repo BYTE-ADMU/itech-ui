@@ -8,6 +8,7 @@ import articlesStore from "./modules/articlesStore"
 import coursesStore from "./modules/coursesStore"
 import topicsStore from "./modules/topicsStore"
 import categoriesStore from "./modules/categoriesStore"
+import admuCoursesStore from "./modules/admuCoursesStore"
 
 //END: MODULES
 
@@ -21,7 +22,7 @@ const store = new Vuex.Store({
         topicsStore: topicsStore,
         coursesStore: coursesStore,
         articlesStore: articlesStore,
-
+        admuCoursesStore: admuCoursesStore,
     }
 });
 
@@ -31,5 +32,6 @@ store.state.categoriesStore;
 store.state.topicsStore;
 store.state.coursesStore;
 store.state.articlesStore;
+store.state.admuCoursesStore;
 
 export default store;

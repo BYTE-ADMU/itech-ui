@@ -3,7 +3,7 @@
     <!-- ROOT -->
 
     <div
-      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24 z-0"
     >
       <span class="mb-10 breadcrumb-container">
         <button button @click="$router.go(-1)"
