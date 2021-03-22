@@ -157,7 +157,7 @@ export default {
 @media screen and (max-width: 1025px) {
   .bitBot {
     width: 130px;
-    top: 250px;
+    top: 220px;
   }
 
   .heighter {
@@ -174,8 +174,7 @@ export default {
     position: absolute;
     width: 140px;
     top: auto;
-    /* bottom: -45px; */
-    bottom: -20px;
+    bottom: -45px;
   }
 
   .heighter {
