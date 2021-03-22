@@ -1,9 +1,16 @@
 <template>
   <div class="w-screen h-screen meet-bg relative">
-    <g-image src="../../../assets/img/unauth/meetTheTeam/top-confetti.png" class="absolute w-screen top-confetti z-0"/>
-    <g-image src="../../../assets/img/unauth/meetTheTeam/bottom-confetti.png" class="absolute w-screen bottom-confetti z-0"/>
+    <g-image src="@/assets/img/unauth/meetTheTeam/top-confetti.png" class="absolute w-screen top-confetti z-0" />
+    <g-image src="@/assets/img/unauth/meetTheTeam/bottom-confetti.png" class="absolute w-screen bottom-confetti z-0" />
 
-    <h1 class="font-neuemachina text-white font-extrabold text-5xl text-center px-8 z-20 relative">Meet the Team</h1>
+    <div class="table text-center w-screen h-screen">
+      <h1 class="font-neuemachina text-white font-extrabold text-6xl z-20 table-cell align-middle relative px-16">Meet the Team</h1>
+    </div>
+
+    <g-image src="@/assets/img/unauth/meetTheTeam/BB3-2mobile.png" class="absolute" style="top:33%" />
+    <g-image src="@/assets/img/unauth/meetTheTeam/BB3mobile.png" class="absolute" style="top:33%; right:0" />
+    <g-image src="@/assets/img/unauth/meetTheTeam/BB3-3mobile.png" class="absolute" style="top:42%" />
+    <g-image src="@/assets/img/unauth/meetTheTeam/BB3-1mobile.png" class="absolute" style="top:42%; right:0" />
   </div>
 </template>
 
