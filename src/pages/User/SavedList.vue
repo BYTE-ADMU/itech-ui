@@ -24,7 +24,7 @@
 
       <!-- Start: Courses -->
       <div
-        v-if="courses.length > 0"
+        v-if="savedCourses.length > 0 && filteredBySearchCourses.length > 0"
         class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
       >
         <div class="w-full py-2">
@@ -39,10 +39,31 @@
 
         <playlistEntry
           class="w-full"
-          v-for="course in filteredCourses"
+          v-for="course in filteredBySearchCourses"
           v-bind:key="course.id"
           v-bind:course="course"
         />
+      </div>
+
+      <div
+        v-else-if="
+          savedCourses.length > 0 && filteredBySearchCourses.length === 0
+        "
+        class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
+      >
+        <div class="w-full py-2">
+          <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+            Saved <br class="hidden md:block" />Courses ✨
+          </h2>
+
+          <p class="text-l font-objectivity">
+            Readily-set series of articles and videos you can go through!
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center w-full h-full col-span-3">
+          <p class="no-message">no matches found</p>
+        </div>
       </div>
 
       <div
@@ -66,18 +87,34 @@
       <!-- End: Courses -->
 
       <!-- Start: Articles -->
-      <div v-if="articles.length > 0">
+      <div
+        v-if="savedArticles.length > 0 && filteredBySearchArticles.length > 0"
+      >
         <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
           Saved Articles ✨
         </h2>
 
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
           <articleEntry
-            v-for="article in filteredArticles"
+            v-for="article in filteredBySearchArticles"
             v-bind:key="article.id"
             v-bind:article="article"
             class="w-full mb-0 sm:mb-1 md:mb-2"
           ></articleEntry>
+        </div>
+      </div>
+
+      <div
+        v-else-if="
+          savedArticles.length > 0 && filteredBySearchArticles.length === 0
+        "
+      >
+        <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
+          Saved Articles ✨
+        </h2>
+
+        <div class="grid grid-cols-1 text-center no-message">
+          no matches found
         </div>
       </div>
 
@@ -132,12 +169,12 @@ export default {
     },
 
     courses() {
-      const data = this.$store.state.userStore.user.courses;
+      const data = this.$store.state.coursesStore.courses;
       return data;
     },
 
     articles() {
-      const data = this.$store.state.userStore.user.articles;
+      const data = this.$store.state.articlesStore.articles;
       return data;
     },
     // End: Data
@@ -162,34 +199,62 @@ export default {
       }
       return "";
     },
+
+    savedCourses() {
+      const data = this.$store.state.userStore.user.courses;
+      return data;
+    },
+
+    savedArticles() {
+      const data = this.$store.state.userStore.user.articles;
+      return data;
+    },
     // End: User Experience
 
     // Start: Processes
     filteredCourses() {
-      return this.courses.filter((course) => {
-        if (
+      if (this.savedCourses.length > 0) {
+        for (const eachSavedCourse of this.savedCourses) {
+          return this.courses.filter((course) => {
+            if (course.id === eachSavedCourse.id) {
+              return course;
+            }
+          });
+        }
+      }
+    },
+
+    filteredBySearchCourses() {
+      return this.filteredCourses.filter((course) => {
+        return (
           course.categories[0].name
             .toLowerCase()
             .includes(this.search.toLowerCase()) ||
           course.name.toLowerCase().includes(this.search.toLowerCase())
-        ) {
-          return course;
-        }
-        return "";
+        );
       });
     },
 
     filteredArticles() {
-      return this.articles.filter((article) => {
-        if (
+      if (this.savedArticles.length > 0) {
+        for (const eachSavedArticle of this.savedArticles) {
+          return this.articles.filter((article) => {
+            if (article.id === eachSavedArticle.id) {
+              return article;
+            }
+          });
+        }
+      }
+    },
+
+    filteredBySearchArticles() {
+      return this.filteredArticles.filter((article) => {
+        return (
           article.title.toLowerCase().includes(this.search.toLowerCase()) ||
           article.categories[0].name
             .toLowerCase()
             .includes(this.search.toLowerCase())
-        ) {
-          return article;
-        }
-        return "";
+        );
       });
     },
     // End: Processes

@@ -73,6 +73,18 @@ const userStore = {
     },
     // End: Register
 
+    // Start: Get User
+    getUser({ state, commit }) {
+      axios.get(`${state.API_URL}/users/${state.user.id}`)
+        .then((response) => {
+          console.log("Get User", response.data)
+          commit('setUser', response.data); //Set Current User Data
+        })
+        .catch((error) => console.log(error));
+    },
+    // End: Get User
+
+
     // Start: Update User
     updateUser({ state, commit }, updatedUser) {
       axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
