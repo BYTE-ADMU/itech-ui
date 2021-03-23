@@ -19,7 +19,7 @@
       </div>
       <!-- dev -->
       <div class="devs">
-        <h1>{{ teamCommittees[1].name }}</h1>
+        <h1>Development Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in developmentComm"
             :key="member.id"
@@ -29,7 +29,7 @@
       </div>
       <!-- ux/ui -->
       <div class="uxui">
-        <h1>{{ teamCommittees[2].name }}</h1>
+        <h1>UX/UI Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in uxuiComm"
             :key="member.id"
@@ -40,7 +40,7 @@
 
       <!-- secretariat -->
       <div class="secretariats">
-        <h1>{{ teamCommittees[3].name }}</h1>
+        <h1>Secretariat Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in secretariats"
             :key="member.id"
@@ -51,7 +51,7 @@
 
       <!-- content -->
       <div class="content">
-        <h1>{{ teamCommittees[4].name }}</h1>
+        <h1>Content Committee</h1>
         <div class="flex flex-wrap-reverse flex-row-reverse justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in contentComm"
             :key="member.id"
@@ -62,7 +62,7 @@
 
       <!-- comms -->
       <div class="comms">
-        <h1>{{ teamCommittees[5].name }}</h1>
+        <h1>Communications Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in communicationsComm"
             :key="member.id"
@@ -73,7 +73,7 @@
 
       <!-- creatives -->
       <div class="creatives">
-        <h1>{{ teamCommittees[6].name }}</h1>
+        <h1>Creatives Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mx-auto cards">
           <teamMemberCard v-for="member in creativesComm"
             :key="member.id"
@@ -84,7 +84,7 @@
 
       <!-- documentations -->
       <div class="documentations">
-        <h1>{{ teamCommittees[7].name }}</h1>
+        <h1>Documentations Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in documentationsComm"
             :key="member.id"
@@ -95,7 +95,7 @@
 
       <!-- fin -->
       <div class="fin">
-        <h1>{{ teamCommittees[8].name }}</h1>
+        <h1>Finance Committee</h1>
         <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in finComm"
             :key="member.id"
