@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
-    <Navbar class="lg:block hidden" />
-    <NavbarMobile class="lg:hidden block" />
+    <Navbar class="hidden lg:block" />
+    <NavbarMobile class="block lg:hidden" />
     <div class="w-full" @click="closeDropdowns">
       <slot />
       <Footer />
@@ -28,6 +28,7 @@ export default {
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
     this.$store.dispatch("admuCoursesStore/getAdmuCourses");
+    this.$store.dispatch("articlesStore/getComments");
   },
 
   methods: {

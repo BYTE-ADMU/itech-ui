@@ -98,9 +98,7 @@
         </div>
 
         
-            <div class="flex">
-              
-            </div>
+
             <!-- END: Second Row -->
           </div>
           <!-- END: ARTICLE INFO -->
@@ -147,9 +145,9 @@
 
           <!-- START: NEXT ARTICLES & COMMENTS SECTION-->
         <div class="grid grid-cols-1 px-12 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
-          <CommentSection class="block mb-24 md:hidden" :comments="article.comments"/>
+          <CommentSection class="block mb-24 md:hidden" :article="article"/>
           <NextArticlesSection :nextArticles="nextArticles"/>
-          <CommentSection class="hidden md:block" :comments="article.comments"/>
+          <CommentSection class="hidden md:block" :article="article"/>
         </div>
           <!-- END: NEXT ARTICLES & COMMENTS SECTION-->
           </div>
