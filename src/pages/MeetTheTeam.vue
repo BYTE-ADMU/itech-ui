@@ -5,78 +5,115 @@
     <coverMobile class="block lg:hidden"/>
     <!-- end of covers -->
 
+    <!-- committees & members -->
+    <div class="container mx-auto my-20 px-10">
     <!-- project heads -->
-    <div class=" mx-auto px-10">
-      <div>
-        <h1 class="project-heads">{{ teamCommittees[0].name }}</h1>
-        <div class="flex justify-center mt-10 mb-20">
+      <div class="project-heads">
+        <h1>{{ teamCommittees[0].name }}</h1>
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in projectHeads"
             :key="member.id"
             :member="member" 
-            class="mx-5"/>
+            class="lg:mx-5"/>
         </div>
       </div>
       <!-- dev -->
       <div class="devs">
         <h1>{{ teamCommittees[1].name }}</h1>
-        <teamMemberCard v-for="member in developmentComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in developmentComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
       <!-- ux/ui -->
       <div class="uxui">
         <h1>{{ teamCommittees[2].name }}</h1>
-        <teamMemberCard v-for="member in uxuiComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in uxuiComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- secretariat -->
       <div class="secretariats">
         <h1>{{ teamCommittees[3].name }}</h1>
-        <teamMemberCard v-for="member in secretariats"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in secretariats"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- content -->
       <div class="content">
         <h1>{{ teamCommittees[4].name }}</h1>
-        <teamMemberCard v-for="member in contentComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mx-auto cards">
+          <teamMemberCard v-for="member in threeContentComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in restOfContentComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- comms -->
       <div class="comms">
         <h1>{{ teamCommittees[5].name }}</h1>
-        <teamMemberCard v-for="member in communicationsComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in communicationsComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- creatives -->
       <div class="creatives">
         <h1>{{ teamCommittees[6].name }}</h1>
-        <teamMemberCard v-for="member in creativesComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mt-2 mx-auto cards">
+          <teamMemberCard v-for="member in fourCreativesComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
+        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in restOfCreativesComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- documentations -->
       <div class="documentations">
         <h1>{{ teamCommittees[7].name }}</h1>
-        <teamMemberCard v-for="member in documentationsComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in documentationsComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
 
       <!-- fin -->
       <div class="fin">
         <h1>{{ teamCommittees[8].name }}</h1>
-        <teamMemberCard v-for="member in finComm"
-          :key="member.id"
-          :member="member" />
+        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in finComm"
+            :key="member.id"
+            :member="member" 
+            class="lg:mx-5"/>
+        </div>
       </div>
     </div>
   </Layout>
@@ -145,6 +182,14 @@ export default {
       });
     },
 
+    threeContentComm() {
+      return this.contentComm.slice(0,3);
+    },
+
+    restOfContentComm() {
+      return this.contentComm.slice(3,);
+    },
+
     communicationsComm() {
       return this.teamMembers.filter((member) => {
         return member.team_committees[0].name.includes("Communications Committee");
@@ -155,6 +200,14 @@ export default {
       return this.teamMembers.filter((member) => {
         return member.team_committees[0].name.includes("Creatives Committee");
       });
+    },
+
+    fourCreativesComm() {
+      return this.creativesComm.slice(0,4);
+    },
+
+    restOfCreativesComm() {
+      return this.creativesComm.slice(4,);
     },
 
     documentationsComm() {
@@ -173,6 +226,10 @@ export default {
 </script>
 
 <style>
+.cards {
+  max-width: fit-content
+}
+
 .project-heads, .devs, .uxui, .secretariats, .content, .comms, .creatives, .documentations, .fin {
   font-family: 'Neue Machina';
   font-style: normal;
@@ -215,5 +272,26 @@ export default {
 
 .fin {
   color: #F3748A;
+}
+
+@media screen and (max-width: 1024px) {
+  .cards {
+    max-width: none;
+    width: 440px;
+  }
+}
+
+@media screen and (max-width:560px) {
+  .cards {
+    min-width: none;
+    width: auto;
+  }
+}
+
+@media screen and (max-width:470px) {
+  .project-heads, .devs, .uxui, .secretariats, .content, .comms, .creatives, .documentations, .fin {
+    font-size: 20px;
+    line-height: 28px;
+  }
 }
 </style>

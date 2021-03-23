@@ -1,20 +1,20 @@
 <template>
-  <div class="shadow-md w-1/5 rounded-2xl">
+  <div class="flex lg:block shadow-md rounded-2xl px-3 sm:px-6 lg:px-0 pt-2 my-1 lg:my-5 member-card">
     <div
-      class="block w-40 minWidth mx-auto sm:mb-2"
+      class="block w-24 sm:w-40 sm:h-48 lg:mx-auto mb-2 relative overflow-y-hidden"
     >
       <g-image
         :src="member.image.url"
-        class="object-cover w-full h-full rounded-lg"
+        class="object-cover lg:mx-auto w-full sm:h-full"
       />
     </div>
-    <div class="p-3 my-auto text-center">
+    <div class="px-3 pt-1 lg:pb-6 my-auto mx-auto text-center">
       <h1
-        class="sm:mb-2 member-name text-black ..."
+        class="mb-1 sm:mb-3 member-name text-black ..."
         >{{ member.name }}</h1
       >
 
-      <p class="sm:mb-2 member-role">
+      <p class="mb-1 sm:mb-2 member-role">
         {{ member.role }}
       </p>
     </div>
@@ -31,8 +31,8 @@ export default {
 </script>
 
 <style>
-.minWidth {
-  min-width: 206px;
+.member-card {
+  min-width: 255px; max-width: 255px
 }
 
 .member-name {
@@ -40,7 +40,7 @@ export default {
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
-  line-height: 22px;
+  line-height: 18px;
 }
 
 .member-role {
@@ -50,5 +50,22 @@ export default {
   font-weight: normal;
   font-size: 15px;
   line-height: 8px;
+}
+
+@media screen and (max-width:1024px) {
+  .member-card {
+    max-width: none;
+    min-width: none;
+  }
+}
+
+@media screen and (max-width:470px) {
+  .member-name {
+    font-size: 14px;
+  }
+
+  .member-role {
+    font-size: 10px;
+  }
 }
 </style>
