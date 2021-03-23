@@ -5,19 +5,24 @@
     <!-- END MODAL -->
     <section class="flex justify-center min-h-screen pt-16 pb-32">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
-        <div class="mb-10 breadcrumb-container pl-12 md:pl-0">
+        <div class="pl-12 mb-10 breadcrumb-container md:pl-0">
           <span>
               <button button @click="$router.go(-1)"
                 class="pr-6 breadcrumb-text ">
                   Back
               </button>
-              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
-              <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
-                class="pr-6  breadcrumb-text hidden md:inline-block">
+              <span v-if="article !== null" class="hidden pr-6 breadcrumb-slash md:inline">/</span>
+              
+              <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/courses/${article.courses[0].id}`)"
+                class="hidden pr-6 breadcrumb-text md:inline-block">
                   {{article.courses[0].name}}
               </button>
-              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
-              <span v-if="article !== null" class=" breadcrumb-text hidden md:inline-block">{{ article.title }}</span>
+                            <button v-else-if="article !== null && article.categories.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
+                class="hidden pr-6 breadcrumb-text md:inline-block">
+                  {{article.categories[0].name}}
+              </button>
+              <span v-if="article !== null" class="hidden pr-6 breadcrumb-slash md:inline">/</span>
+              <span v-if="article !== null" class="hidden breadcrumb-text md:inline-block">{{ article.title }}</span>
             </span>
         </div>
 
@@ -81,8 +86,11 @@
                     class="mx-2"
                     ></a>
 
-<button class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
+<button v-if="!isBooked" @click="saveArticle" class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
   <span>Bookmark</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
+</button>
+<button v-else  @click="removeArticle" class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
+  <span>Bookmarked</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
 </button>
                 </div>
               </div>
@@ -233,13 +241,44 @@ export default {
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
     },
+
+    saveArticle() {
+      this.user.articles.push(this.article);
+      this.$store.dispatch("userStore/updateUser", this.user);
+    },
+
+    removeArticle() {
+      this.user.articles = this.user.articles.filter(
+        (article) => article.id !== this.article.id
+      );
+      this.$store.dispatch("userStore/updateUser", this.user);
+    },
   },
 
   computed: {
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
     },
-  }
+
+    user() {
+      if (this.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+
+    isBooked() {
+      if (this.isAuthenticated) {
+        for (const eachArticle of this.user.articles) {
+          if (this.article.id === eachArticle.id) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+  },
 };
 </script>
 
@@ -307,7 +346,8 @@ export default {
   color: #b4b4b4;
 }
 
-.breadcrumb, .breadcrumb-text {
+.breadcrumb,
+.breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -327,21 +367,23 @@ export default {
 }
 
 .breadcrumb-text {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .breadcrumb-text:hover {
   color: #83827f;
 }
 
-.bookmark-hover, .bookmark-hover > span, .bookmark-hover > .bookmark-icon {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+.bookmark-hover,
+.bookmark-hover > span,
+.bookmark-hover > .bookmark-icon {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .bookmark-hover:hover {

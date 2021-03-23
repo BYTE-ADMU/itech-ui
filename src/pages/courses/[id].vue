@@ -43,7 +43,7 @@
         <div class="flex items-start justify-between w-full">
           <!-- Featured & New On ITECH -->
           <div class="flex flex-col w-full">
-            <cover :course="course" />
+            <cover :course="course" :isBooked="isBooked" />
           </div>
         </div>
 
@@ -150,6 +150,25 @@ export default {
       }
 
       return [];
+    },
+
+    user() {
+      if (this.$store.state.userStore.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+
+    isBooked() {
+      if (this.$store.state.userStore.isAuthenticated) {
+        for (const eachCourse of this.user.courses) {
+          if (this.course.id === eachCourse.id) {
+            return true;
+          }
+        }
+      }
+      return false;
     },
   },
 

@@ -4,11 +4,11 @@
     <div
       id="logoutModal"
       ref="logoutModal"
-      class="fixed logout-modal hidden w-screen h-screen"
+      class="fixed hidden w-screen h-screen logout-modal"
     >
       <div class="table-cell text-center align-middle bg-modal">
         <div
-          class="relative py-16 my-auto mx-auto align-middle bg-white border border-white rounded-xl modal-size"
+          class="relative py-16 mx-auto my-auto align-middle bg-white border border-white rounded-xl modal-size"
         >
           <button @click="closeModal" class="w-full">
             <g-image
@@ -43,8 +43,14 @@
       </div>
     </div>
     <!-- logout -->
-    <div id="successfulLogout" ref="successfulLogout" class="fixed hidden w-screen h-screen logout-modal">
-      <div class="table-cell h-screen w-screen text-center align-middle bg-modal">
+    <div
+      id="successfulLogout"
+      ref="successfulLogout"
+      class="fixed hidden w-screen h-screen logout-modal"
+    >
+      <div
+        class="table-cell w-screen h-screen text-center align-middle bg-modal"
+      >
         <div
           class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
         >
@@ -144,14 +150,14 @@
 
             <g-link
               v-if="isAuthenticated"
-              to="/my-list/"
+              to="/user/saved-list/"
               class="mx-auto text-xl font-bold font-objectivity"
             >
               My List
             </g-link>
             <g-link
               v-if="isAuthenticated"
-              to="/user-profile/"
+              to="/user/account/"
               class="mx-auto text-xl font-bold font-objectivity"
             >
               My Account

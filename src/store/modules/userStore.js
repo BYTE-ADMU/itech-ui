@@ -73,6 +73,18 @@ const userStore = {
     },
     // End: Register
 
+
+    // Start: Get User
+    getUser({ state, commit }) {
+      axios.get(`${state.API_URL}/users/${state.user.id}`)
+        .then((response) => {
+          commit('setUser', response.data); //Set Current User Data
+        })
+        .catch((error) => console.log(error));
+    },
+    // End: Get User
+
+
     // Start: Update User
     updateUser({ state, commit }, updatedUser) {
       axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
@@ -114,7 +126,6 @@ const userStore = {
       }
     },
     //End:Update User profileImage
-
 
   },
   //END: ACTIONS ===== ===== ===== ===== =====
