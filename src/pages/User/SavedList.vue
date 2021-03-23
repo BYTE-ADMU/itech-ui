@@ -12,10 +12,9 @@
       <div class="hidden mb-12 text-center lg:block">
         <button
           v-for="category in categories"
-          v-bind:key="category.id"
-          v-bind:value="category.name"
-          @click="searchButton = category.name"
-          class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
+          :key="category.id"
+          @click="userSearch = category.name"
+          :class="filterBtnStyle(category.name)"
         >
           {{ category.name }}
         </button>
@@ -24,7 +23,7 @@
 
       <!-- Start: Courses -->
       <div
-        v-if="savedCourses.length > 0 && filteredBySearchCourses.length > 0"
+        v-if="filteredCourses.length > 0 && filteredBySearchCourses.length > 0"
         class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
       >
         <div class="w-full py-2">
@@ -47,7 +46,7 @@
 
       <div
         v-else-if="
-          savedCourses.length > 0 && filteredBySearchCourses.length === 0
+          filteredCourses.length > 0 && filteredBySearchCourses.length === 0
         "
         class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
       >
@@ -88,7 +87,9 @@
 
       <!-- Start: Articles -->
       <div
-        v-if="savedArticles.length > 0 && filteredBySearchArticles.length > 0"
+        v-if="
+          filteredArticles.length > 0 && filteredBySearchArticles.length > 0
+        "
       >
         <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
           Saved Articles ✨
@@ -106,7 +107,7 @@
 
       <div
         v-else-if="
-          savedArticles.length > 0 && filteredBySearchArticles.length === 0
+          filteredArticles.length > 0 && filteredBySearchArticles.length === 0
         "
       >
         <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
@@ -123,7 +124,7 @@
           Saved Articles ✨
         </h2>
 
-        <div class="grid grid-cols-1 text-center no-message">
+        <div class="grid grid-cols-1 py-10 text-center no-message">
           no saved articles yet
         </div>
       </div>
@@ -200,28 +201,27 @@ export default {
       return "";
     },
 
-    savedCourses() {
-      const data = this.$store.state.userStore.user.courses;
+    user() {
+      const data = this.$store.state.userStore.user;
       return data;
     },
 
-    savedArticles() {
-      const data = this.$store.state.userStore.user.articles;
-      return data;
-    },
     // End: User Experience
 
     // Start: Processes
     filteredCourses() {
-      if (this.savedCourses.length > 0) {
-        for (const eachSavedCourse of this.savedCourses) {
-          return this.courses.filter((course) => {
+      if (typeof this.user.courses !== "undefined") {
+        let filteredCoursesArray = [];
+        for (const eachSavedCourse of this.user.courses) {
+          this.courses.filter((course) => {
             if (course.id === eachSavedCourse.id) {
-              return course;
+              filteredCoursesArray.push(course);
             }
           });
         }
+        return filteredCoursesArray;
       }
+      return [];
     },
 
     filteredBySearchCourses() {
@@ -236,33 +236,52 @@ export default {
     },
 
     filteredArticles() {
-      if (this.savedArticles.length > 0) {
-        for (const eachSavedArticle of this.savedArticles) {
-          return this.articles.filter((article) => {
+      if (typeof this.user.courses !== "undefined") {
+        let filteredArticlesArray = [];
+        for (const eachSavedArticle of this.user.articles) {
+          this.articles.filter((article) => {
             if (article.id === eachSavedArticle.id) {
-              return article;
+              filteredArticlesArray.push(article);
             }
           });
         }
+        return filteredArticlesArray;
       }
+      return [];
     },
 
     filteredBySearchArticles() {
       return this.filteredArticles.filter((article) => {
         return (
-          article.title.toLowerCase().includes(this.search.toLowerCase()) ||
           article.categories[0].name
             .toLowerCase()
-            .includes(this.search.toLowerCase())
+            .includes(this.search.toLowerCase()) ||
+          article.title.toLowerCase().includes(this.search.toLowerCase())
         );
       });
     },
+
     // End: Processes
   },
   // END: COMPUTED
 
   // START: METHODS
-  methods: {},
+  methods: {
+    filterBtnStyle(category) {
+      const defaultStyle =
+        "px-6 py-2 mx-2 my-2 text-center rounded-full filterButton";
+      switch (category.toLowerCase()) {
+        case "hacker":
+          return `hackerBtn ${defaultStyle}`;
+        case "hipster":
+          return `hipsterBtn ${defaultStyle}`;
+        case "hustler":
+          return `hustlerBtn ${defaultStyle}`;
+        default:
+          return `hustlerBtn ${defaultStyle}`;
+      }
+    },
+  },
   // END: METHODS
 };
 </script>
@@ -270,8 +289,6 @@ export default {
 <style>
 .filterButton {
   max-width: fit-content;
-  border: 1px solid #64c0c1;
-  color: #64c0c1;
   transition: all ease-in-out 200ms;
   cursor: pointer;
   outline: none;
@@ -280,13 +297,38 @@ export default {
   font-family: Objectivity;
 }
 
-.filterButton:hover {
-  background-color: #64c0c1;
+.filterButton:active {
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hackerBtn {
+  border: 1px solid #4e6afa;
+  color: #4e6afa;
+}
+
+.hackerBtn:hover {
+  background-color: #4e6afa;
   color: #ffffff;
 }
 
-.filterButton:active {
-  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
+.hipsterBtn {
+  border: 1px solid #f3748a;
+  color: #f3748a;
+}
+
+.hipsterBtn:hover {
+  background-color: #f3748a;
+  color: #ffffff;
+}
+
+.hustlerBtn {
+  border: 1px solid #40a5a6;
+  color: #40a5a6;
+}
+
+.hustlerBtn:hover {
+  background-color: #40a5a6;
+  color: #ffffff;
 }
 
 .no-message {
@@ -295,10 +337,7 @@ export default {
   font-weight: 900;
   font-size: 50px;
   line-height: 71px;
-  /* or 142% */
-
   letter-spacing: 0.04em;
-
   color: #e8e8e8;
 }
 </style>
