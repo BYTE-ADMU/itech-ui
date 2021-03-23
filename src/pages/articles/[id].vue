@@ -17,7 +17,7 @@
                 class="hidden pr-6 breadcrumb-text md:inline-block">
                   {{article.courses[0].name}}
               </button>
-                            <button v-else @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
+                            <button v-else-if="article !== null && article.categories.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
                 class="hidden pr-6 breadcrumb-text md:inline-block">
                   {{article.categories[0].name}}
               </button>
@@ -90,7 +90,7 @@
   <span>Bookmark</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
 </button>
 <button v-else  @click="removeArticle" class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
-  <span>Bookmark</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
+  <span>Bookmarked</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
 </button>
                 </div>
               </div>

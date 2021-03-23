@@ -25,7 +25,7 @@
             class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover"
             type="button"
           >
-            <span>Bookmark</span>
+            <span>Bookmarked</span>
             <g-image
               :src="require('@/assets/img/icons/Bookmark.svg')"
               class="ml-2 bookmark-icon"
