@@ -3,21 +3,35 @@
     <!-- START: MODAL -->
     <div id="logoutModal" class="fixed z-50 hidden w-screen h-screen">
       <div class="table-cell text-center align-middle bg-modal">
-        <div class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size">
+        <div
+          class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
+        >
           <button @click="closeModal" class="w-full">
             <g-image
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
-              class="absolute x-icon" style="right: 23px; top: 23px"/>
+              class="absolute x-icon"
+              style="right: 23px; top: 23px"
+            />
           </button>
-          <h1 class="px-5 mb-10 text-xl font-neuemachina sm:text-2xl md:text-4xl sm:mb-12">
+          <h1
+            class="px-5 mb-10 text-xl font-neuemachina sm:text-2xl md:text-4xl sm:mb-12"
+          >
             Are you sure you want to sign out?
           </h1>
           <!-- class="flex flex-col justify-center px-20 align-middle sm:flex-row" -->
-          <div class="flex flex-col-reverse w-2/3 mx-auto sm:grid sm:grid-cols-2 lg:w-1/2">
-            <button @click="closeModal" class="px-6 py-3 mx-auto mt-2 text-sm font-bold cancel_button sm:text-base sm:mt-0">
+          <div
+            class="flex flex-col-reverse w-2/3 mx-auto sm:grid sm:grid-cols-2 lg:w-1/2"
+          >
+            <button
+              @click="closeModal"
+              class="px-6 py-3 mx-auto mt-2 text-sm font-bold cancel_button sm:text-base sm:mt-0"
+            >
               Cancel
             </button>
-            <button @click="logout" class="px-6 py-3 mx-auto text-sm font-bold signout_button sm:text-base">
+            <button
+              @click="logout"
+              class="px-6 py-3 mx-auto text-sm font-bold signout_button sm:text-base"
+            >
               Sign out
             </button>
           </div>
@@ -27,11 +41,15 @@
     <!-- logout -->
     <div id="successfulLogout" class="fixed z-50 hidden w-screen h-screen">
       <div class="table-cell text-center align-middle bg-modal">
-        <div class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size">
+        <div
+          class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
+        >
           <g-link @click="closeSuccess" to="/login/" class="w-full">
             <g-image
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
-              class="absolute x-icon" style="right: 23px; top: 23px"/>
+              class="absolute x-icon"
+              style="right: 23px; top: 23px"
+            />
           </g-link>
           <h1 class="px-6 text-xl font-neuemachina sm:text-2xl md:text-4xl">
             You have signed out.
@@ -45,7 +63,6 @@
     <div
       class="flex flex-wrap items-center justify-between w-screen px-4 py-2 bg-white shadow-md md:px-20 nav"
     >
-
       <div
         class="flex flex-wrap items-center justify-between w-screen mx-auto lg:container"
       >
@@ -137,11 +154,11 @@
               style="width: 285px"
             >
               <g-link
-                to="/user-profile/"
+                to="/user/account/"
                 class="flex px-4 py-4 text-sm text-gray-800 border-b hover:bg-gray-200"
               >
                 <g-image
-                  class="mr-4 rounded-full w-16 h-16"
+                  class="w-16 h-16 mr-4 rounded-full"
                   :src="userProfileImage"
                 />
 
@@ -151,13 +168,13 @@
                 </div>
               </g-link>
               <g-link
-                to="/my-list/"
+                to="/user/saved-list/"
                 class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
               >
                 My List
               </g-link>
               <g-link
-                to="/user-profile/"
+                to="/user/account/"
                 class="block w-full px-4 py-4 text-sm text-gray-800 uppercase border-b button-text hover:bg-gray-200"
               >
                 My Account
@@ -210,33 +227,33 @@ export default Vue.extend({
       } catch (error) {
         return require("../assets/img/icons/DefaultUserIcon.svg");
       }
-    }
+    },
     //END: USER RELATED
   },
 
   methods: {
     logoutModal() {
-      const modal = document.getElementById('logoutModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('table');
+      const modal = document.getElementById("logoutModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("table");
     },
     closeModal() {
-      const modal = document.getElementById('logoutModal');
-      modal.classList.add('hidden');
+      const modal = document.getElementById("logoutModal");
+      modal.classList.add("hidden");
     },
     closeSuccess() {
-      const modal = document.getElementById('successfulLogout');
-      modal.classList.add('hidden');
+      const modal = document.getElementById("successfulLogout");
+      modal.classList.add("hidden");
     },
     // START: LOGOUT
     async logout() {
-      const modal = document.getElementById('logoutModal');
-      modal.classList.add('hidden');
+      const modal = document.getElementById("logoutModal");
+      modal.classList.add("hidden");
       await this.$store.dispatch("userStore/logout", this.user);
       if (!this.$store.state.userStore.isAuthenticated) {
-        const successfulLogout = document.getElementById('successfulLogout');
-        successfulLogout.classList.remove('hidden');
-        successfulLogout.classList.add('table');
+        const successfulLogout = document.getElementById("successfulLogout");
+        successfulLogout.classList.remove("hidden");
+        successfulLogout.classList.add("table");
         // alert("You have logged out!");
         // this.$router.replace("/login/");
       }
@@ -277,7 +294,6 @@ export default Vue.extend({
   font-size: 16px;
   line-height: 25px;
 }
-
 
 .signout_button {
   background: #ff0000;
@@ -323,11 +339,10 @@ export default Vue.extend({
 }
 
 @media screen and (max-width: 640px) {
-  .signout_button, .cancel_button {
+  .signout_button,
+  .cancel_button {
     font-size: 14px;
     width: 110px;
   }
-  
 }
-
 </style>

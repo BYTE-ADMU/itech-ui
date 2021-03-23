@@ -3,18 +3,27 @@
     <!-- updating modal -->
     <updatingModal id="updatingProfileModal" class="z-50 hidden" />
     <!-- success modal -->
-    <div id="successModal" class="h-screen w-screen fixed hidden modal-margin z-50">
-      <div class="bg-modal text-center table-cell align-middle">
-        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+    <div
+      id="successModal"
+      class="fixed z-50 hidden w-screen h-screen modal-margin"
+    >
+      <div class="table-cell text-center align-middle bg-modal">
+        <div
+          class="relative py-16 mx-auto bg-white border border-white rounded-xl modal-size"
+        >
           <button @click="closeModal()" class="w-full">
             <g-image
               :src="require('@/assets/img/unauth/close-modal-vector.svg')"
-              class="absolute x-icon" style="right: 23px; top: 23px"/>
+              class="absolute x-icon"
+              style="right: 23px; top: 23px"
+            />
           </button>
-          <h1 class="font-neuemachina px-4 text-xl sm:text-2xl md:text-4xl mb-12">
+          <h1
+            class="px-4 mb-12 text-xl font-neuemachina sm:text-2xl md:text-4xl"
+          >
             Updated Profile!
           </h1>
-          <button @click="closeModal()" class="font-bold form_button py-3 px-6">
+          <button @click="closeModal()" class="px-6 py-3 font-bold form_button">
             Continue
           </button>
         </div>
@@ -173,10 +182,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="mb-6">
-            <h1 class="mb-3 font-bold accountdetails">Year and Course</h1>
-            {{ userYearAndCourse }}
-          </div> -->
           <!-- <courses/> -->
 
           <!-- update account -->
@@ -194,11 +199,15 @@
         <div class="mx-auto mb-16 lg:mb-0">
           <!-- <g-image :src="profilePic"/> -->
           <div class="relative">
-            <g-image v-if="!isUpdateImage" :src="userImage" class="w-40 h-40 rounded-full" />
+            <g-image
+              v-if="!isUpdateImage"
+              :src="userImage"
+              class="w-40 h-40 rounded-full"
+            />
             <g-image v-else :src="url" class="w-40 h-40 rounded-full" />
             <div class="absolute edit-button" @click="$refs.selectFile.click()">
               <g-image
-                src="../assets/img/icons/editIcon.png"
+                src="@/assets/img/icons/editIcon.png"
                 class="block w-1/2"
               />
             </div>
@@ -219,13 +228,12 @@
 </template>
 
 <script>
-import cover from "../components/auth/userprofile/cover";
-import courses from "../components/auth/userprofile/courses";
-import updatingModal from "../components/auth/userprofile/updatingModal";
-import axios from "axios";
+import cover from "../../components/auth/userprofile/cover";
+import courses from "../../components/auth/userprofile/courses";
+import updatingModal from "../../components/auth/userprofile/updatingModal";
 
 export default {
-  name: "UserProfile",
+  name: "MyAccount",
   metaInfo() {
     return {
       title: this.title,
@@ -270,7 +278,7 @@ export default {
         return data;
       } catch (error) {
         // console.log(error);
-        return require("../assets/img/icons/DefaultUserIcon.svg");
+        return require("@/assets/img/icons/DefaultUserIcon.svg");
       }
     },
     // End: User Data
@@ -337,9 +345,9 @@ export default {
     },
 
     closeModal() {
-      const success = document.getElementById('successModal');
-      success.classList.remove('table');
-      success.classList.add('hidden');
+      const success = document.getElementById("successModal");
+      success.classList.remove("table");
+      success.classList.add("hidden");
     },
 
     onImageSelected(event) {
@@ -355,27 +363,27 @@ export default {
       //If user DOES select a new profileImage
       if (this.isUpdateImage) {
         this.isUpdateImage = false;
-        const updatingModal = document.getElementById('updatingProfileModal');
-        updatingModal.classList.remove('hidden');
+        const updatingModal = document.getElementById("updatingProfileModal");
+        updatingModal.classList.remove("hidden");
         this.$store
           .dispatch("userStore/updateUserImage", this.imageFile)
           .then((response) => {
             this.user.profileImage = response;
             this.$store.dispatch("userStore/updateUser", this.user);
-            updatingModal.classList.add('hidden');
-            const success = document.getElementById('successModal');
-            success.classList.remove('hidden');
-            success.classList.add('table');
+            updatingModal.classList.add("hidden");
+            const success = document.getElementById("successModal");
+            success.classList.remove("hidden");
+            success.classList.add("table");
           })
           .catch((error) => console.log(error));
       } else {
-        const updatingModal = document.getElementById('updatingProfileModal');
-        updatingModal.classList.remove('hidden');
+        const updatingModal = document.getElementById("updatingProfileModal");
+        updatingModal.classList.remove("hidden");
         this.$store.dispatch("userStore/updateUser", this.user);
-        updatingModal.classList.add('hidden');
-        const success = document.getElementById('successModal');
-        success.classList.remove('hidden');
-        success.classList.add('table');
+        updatingModal.classList.add("hidden");
+        const success = document.getElementById("successModal");
+        success.classList.remove("hidden");
+        success.classList.add("table");
       }
     },
   },
