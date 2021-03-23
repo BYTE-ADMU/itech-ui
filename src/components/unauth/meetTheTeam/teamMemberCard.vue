@@ -54,6 +54,7 @@ export default {
 
 @media screen and (max-width:1024px) {
   .member-card {
+    width: 440px;
     max-width: none;
     min-width: none;
   }
