@@ -6,6 +6,32 @@
       <div
         class="w-full h-full pt-10 pl-10 pr-20 lg:pt-16 lg:pl-56 sm:pr-32 lg:pr-12"
       >
+        <div class="hidden float-right lg:block" v-if="isAuthenticated">
+          <button
+            v-if="!isBooked"
+            @click="saveCourse"
+            class="flex items-center px-6 py-2 overflow-x-hidden font-bold text-white bg-transparent border border-white border-solid rounded-full outline-none hover:border-teal-500 focus:outline-none bookmark-hover"
+            type="button"
+          >
+            <span>Bookmark</span>
+            <g-image
+              :src="require('@/assets/img/icons/BookmarkWhite.svg')"
+              class="ml-2 bookmark-icon"
+            />
+          </button>
+          <button
+            v-else
+            @click="removeCourse"
+            class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover"
+            type="button"
+          >
+            <span>Bookmark</span>
+            <g-image
+              :src="require('@/assets/img/icons/Bookmark.svg')"
+              class="ml-2 bookmark-icon"
+            />
+          </button>
+        </div>
         <div>
           <h2
             class="text-white truncate select-none text-feature font-neuemachina lg:mb-2"
@@ -18,9 +44,36 @@
           >
             Articles
           </h3>
-          <p class="text-sm text-white font-objectivity">
+          <p class="mb-10 text-sm text-white font-objectivity">
             {{ course.description }}
           </p>
+
+          <div class="block lg:hidden">
+            <button
+              v-if="!isBooked"
+              @click="saveCourse"
+              class="flex items-center px-6 py-2 overflow-x-hidden font-bold text-white bg-transparent border border-white border-solid rounded-full outline-none hover:border-teal-500 focus:outline-none bookmark-hover"
+              type="button"
+            >
+              <span>Bookmark</span>
+              <g-image
+                :src="require('@/assets/img/icons/BookmarkWhite.svg')"
+                class="ml-2 bookmark-icon"
+              />
+            </button>
+            <button
+              v-else
+              @click="removeCourse"
+              class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover"
+              type="button"
+            >
+              <span>Bookmark</span>
+              <g-image
+                :src="require('@/assets/img/icons/Bookmark.svg')"
+                class="ml-2 bookmark-icon"
+              />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -29,7 +82,7 @@
 <script>
 export default {
   name: "cover",
-  props: ["course"],
+  props: ["course", "isBooked"],
   computed: {
     botStyle() {
       const hacker = require("../../../assets/img/bitbots/bbhacker.svg");
@@ -58,6 +111,32 @@ export default {
         default:
           return `hackerStyle ${defaultStyle}`;
       }
+    },
+
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
+    user() {
+      if (this.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+  },
+  methods: {
+    saveCourse() {
+      console.log("save");
+      this.user.courses.push(this.course);
+      this.$store.dispatch("userStore/updateUser", this.user);
+    },
+
+    removeCourse() {
+      this.user.courses = this.user.courses.filter(
+        (course) => course.id !== this.course.id
+      );
+      this.$store.dispatch("userStore/updateUser", this.user);
     },
   },
 };
@@ -123,5 +202,29 @@ export default {
     font-size: 36px;
     line-height: 40px;
   }
+}
+
+.bookmark-hover,
+.bookmark-hover > span,
+.bookmark-hover > .bookmark-icon {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+}
+
+.bookmark-hover:hover {
+  width: 151px;
+  height: 42px;
+  background: #38b2ac;
+}
+
+.bookmark-hover:hover > .bookmark-icon {
+  transform: translateX(32px);
+  filter: brightness(500%);
+}
+
+.bookmark-hover:hover > span {
+  display: none;
 }
 </style>

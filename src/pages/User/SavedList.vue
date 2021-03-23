@@ -9,7 +9,7 @@
 
       <!-- START: BODY -->
       <!-- Start: Filter Buttons -->
-      <div class="hidden mb-12 text-center lg:block">
+      <div class="mb-12 text-center">
         <button
           v-for="category in categories"
           :key="category.id"
@@ -60,7 +60,9 @@
           </p>
         </div>
 
-        <div class="flex items-center justify-center w-full h-full col-span-3">
+        <div
+          class="flex items-center justify-center w-full h-full cols-span-1 lg:col-span-3"
+        >
           <p class="no-message">no matches found</p>
         </div>
       </div>
@@ -79,7 +81,9 @@
           </p>
         </div>
 
-        <div class="flex items-center justify-center w-full h-full col-span-3">
+        <div
+          class="flex items-center justify-center w-full h-full col-span-1 sm:col-span-2 md:col-span-3"
+        >
           <p class="no-message">no saved courses yet</p>
         </div>
       </div>
@@ -335,9 +339,21 @@ export default {
   font-family: objectivity;
   font-style: normal;
   font-weight: 900;
-  font-size: 50px;
+  font-size: 20px;
   line-height: 71px;
   letter-spacing: 0.04em;
   color: #e8e8e8;
+}
+
+@media screen and (min-width: 1024px) {
+  .no-message {
+    font-family: objectivity;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 71px;
+    letter-spacing: 0.04em;
+    color: #e8e8e8;
+  }
 }
 </style>

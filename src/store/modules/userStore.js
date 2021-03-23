@@ -73,11 +73,11 @@ const userStore = {
     },
     // End: Register
 
+
     // Start: Get User
     getUser({ state, commit }) {
       axios.get(`${state.API_URL}/users/${state.user.id}`)
         .then((response) => {
-          console.log("Get User", response.data)
           commit('setUser', response.data); //Set Current User Data
         })
         .catch((error) => console.log(error));
@@ -89,6 +89,7 @@ const userStore = {
     updateUser({ state, commit }, updatedUser) {
       axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
         .then((response) => {
+          console.log(response.data);
           commit('setUser', response.data); //Set Current User Data
         })
         .catch((error) => console.log(error));
@@ -126,7 +127,6 @@ const userStore = {
       }
     },
     //End:Update User profileImage
-
 
   },
   //END: ACTIONS ===== ===== ===== ===== =====
