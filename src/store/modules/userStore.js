@@ -89,7 +89,6 @@ const userStore = {
     updateUser({ state, commit }, updatedUser) {
       axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
         .then((response) => {
-          console.log(response.data);
           commit('setUser', response.data); //Set Current User Data
         })
         .catch((error) => console.log(error));
