@@ -2,7 +2,7 @@
   <div class="flex w-full mb-6 rounded-lg">
     <div class="w-1/5">
       <img
-        :src="comment.user.profileImage.url"
+        :src="userImage"
         class="object-cover h-full rounded-lg"
         style="width: 75px; height: 75px"
       />
@@ -28,6 +28,16 @@ export default {
   methods: {
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
+    },
+  },
+  computed: {
+    userImage() {
+      try {
+        const data = this.comment.user.profileImage.url;
+        return data;
+      } catch (error) {
+        return require("@/assets/img/icons/DefaultUserIcon.svg");
+      }
     },
   },
 };
