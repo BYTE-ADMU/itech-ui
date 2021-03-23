@@ -68,7 +68,7 @@
         </div>
 
         <div
-          class="flex items-center justify-center w-full h-full cols-span-1 lg:col-span-3"
+          class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2"
         >
           <p class="no-message">no matches found</p>
         </div>
@@ -89,7 +89,7 @@
         </div>
 
         <div
-          class="flex items-center justify-center w-full h-full col-span-1 sm:col-span-2 md:col-span-3"
+          class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2"
         >
           <p class="no-message">no saved courses yet</p>
         </div>
