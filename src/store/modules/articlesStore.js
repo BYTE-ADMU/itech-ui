@@ -28,6 +28,7 @@ const articlesStore = {
     getComments({ state, commit }) {
       axios.get(`${state.API_URL}/comments`).then(response => {
         commit('SET_COMMENTS', response.data);
+        return response.data;
       }).catch(error => console.log(error))
     },
 

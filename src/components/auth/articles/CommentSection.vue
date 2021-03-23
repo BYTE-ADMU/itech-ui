@@ -50,20 +50,33 @@ export default {
   data() {
     return {
       content: "",
-      filteredComments: null,
     };
-  },
-
-  watch: {
-    "$route.params.id": async function (id) {
-      this.filteredComments = await this.getFiltereComments(id);
-    },
   },
 
   computed: {
     comments() {
       const data = this.$store.state.articlesStore.comments;
       return data;
+    },
+
+    filteredComments() {
+      let filteredCommentsArray = [];
+      if (typeof this.comments !== "undefined") {
+        // for (const eachArticleComment of this.article.comments) {
+        //   for (const comment of this.comments) {
+        //     if (comment.id === eachArticleComment.id) {
+        //       filteredCommentsArray.push(comment);
+        //     }
+        //   }
+        // }
+
+        this.comments.filter((comment) => {
+          if (comment.article.id === this.article.id) {
+            filteredCommentsArray.push(comment);
+          }
+        });
+      }
+      return filteredCommentsArray;
     },
   },
 
@@ -77,26 +90,7 @@ export default {
       };
       this.comments.push(comment);
       this.content = "";
-      this.$store.dispatch("articlesStore/addComment", comment);
-    },
-    getFilteredComments(id) {
-      let filteredCommentsArray = [];
-      if (typeof this.comments !== "undefined") {
-        // for (const eachArticleComment of this.article.comments) {
-        //   for (const comment of this.comments) {
-        //     if (comment.id === eachArticleComment.id) {
-        //       filteredCommentsArray.push(comment);
-        //     }
-        //   }
-        // }
-
-        this.comments.filter((comment) => {
-          if (comment.article.id === id) {
-            filteredCommentsArray.push(comment);
-          }
-        });
-      }
-      return filteredCommentsArray;
+      this.comments = this.$store.dispatch("articlesStore/addComment", comment);
     },
   },
 };
