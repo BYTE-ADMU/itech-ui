@@ -23,7 +23,10 @@
       <!-- End: Filter Buttons -->
 
       <!-- Start: Courses -->
-      <div class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4">
+      <div
+        v-if="courses.length > 0"
+        class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
+      >
         <div class="w-full py-2">
           <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
             Saved <br class="hidden md:block" />Courses ✨
@@ -41,22 +44,53 @@
           v-bind:course="course"
         />
       </div>
+
+      <div
+        v-else
+        class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
+      >
+        <div class="w-full py-2">
+          <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+            Saved <br class="hidden md:block" />Courses ✨
+          </h2>
+
+          <p class="text-l font-objectivity">
+            Readily-set series of articles and videos you can go through!
+          </p>
+        </div>
+
+        <div class="flex items-center justify-center w-full h-full col-span-3">
+          <p class="no-message">no saved courses yet</p>
+        </div>
+      </div>
       <!-- End: Courses -->
 
       <!-- Start: Articles -->
-      <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
-        Saved Articles ✨
-      </h2>
+      <div v-if="articles.length > 0">
+        <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
+          Saved Articles ✨
+        </h2>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
-        <articleEntry
-          v-for="article in filteredArticles"
-          v-bind:key="article.id"
-          v-bind:article="article"
-          class="w-full mb-0 sm:mb-1 md:mb-2"
-        ></articleEntry>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+          <articleEntry
+            v-for="article in filteredArticles"
+            v-bind:key="article.id"
+            v-bind:article="article"
+            class="w-full mb-0 sm:mb-1 md:mb-2"
+          ></articleEntry>
+        </div>
       </div>
-      <!-- End: Courses -->
+
+      <div v-else>
+        <h2 class="py-6 text-xl lg:text-4xl font-neuemachina">
+          Saved Articles ✨
+        </h2>
+
+        <div class="grid grid-cols-1 text-center no-message">
+          no saved articles yet
+        </div>
+      </div>
+      <!-- End: Articles -->
 
       <!-- END: BODY -->
     </div>
@@ -98,15 +132,17 @@ export default {
     },
 
     courses() {
-      const data = this.$store.state.coursesStore.courses.reverse();
+      const data = this.$store.state.userStore.user.courses;
       return data;
     },
 
     articles() {
-      const data = this.$store.state.articlesStore.articles.reverse();
+      const data = this.$store.state.userStore.user.articles;
       return data;
     },
+    // End: Data
 
+    // Start: User Experience
     userSearch: {
       get() {
         return this.$store.state.userStore.userSearch;
@@ -126,7 +162,9 @@ export default {
       }
       return "";
     },
+    // End: User Experience
 
+    // Start: Processes
     filteredCourses() {
       return this.courses.filter((course) => {
         if (
@@ -154,6 +192,7 @@ export default {
         return "";
       });
     },
+    // End: Processes
   },
   // END: COMPUTED
 
@@ -183,5 +222,18 @@ export default {
 
 .filterButton:active {
   box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
+}
+
+.no-message {
+  font-family: objectivity;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 50px;
+  line-height: 71px;
+  /* or 142% */
+
+  letter-spacing: 0.04em;
+
+  color: #e8e8e8;
 }
 </style>
