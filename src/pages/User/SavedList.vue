@@ -8,6 +8,13 @@
       <!-- END: COVER -->
 
       <!-- START: BODY -->
+
+      <!-- Start:Search Bar -->
+      <div class="relative block w-full px-2 mx-auto mb-10 lg:hidden md:w-2/3">
+        <SearchBar />
+      </div>
+      <!-- End: Search Bar -->
+
       <!-- Start: Filter Buttons -->
       <div class="mb-12 text-center">
         <button
@@ -143,6 +150,7 @@
 import cover from "@/components/auth/mylist/cover";
 import articleEntry from "@/components/auth/dashboard/articleEntry";
 import playlistEntry from "@/components/auth/dashboard/playlistEntry";
+import SearchBar from "@/components/SearchBar";
 
 export default {
   name: "MyList",
@@ -156,6 +164,7 @@ export default {
     cover,
     articleEntry,
     playlistEntry,
+    SearchBar,
   },
 
   data() {
