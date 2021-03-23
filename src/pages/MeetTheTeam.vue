@@ -137,49 +137,64 @@ export default {
   },
 
   async mounted() {
-    this.$store.dispatch("teamCommitteesStore/getTeamCommiittees");
-    this.$store.dispatch("teamMembersStore/getTeamMembers");
+    this.$store.dispatch("itechStore/getTeamCommiittees");
+    this.$store.dispatch("itechStore/getTeamMembers");
   },
 
   computed: {
     teamCommittees() {
-      const data = this.$store.state.teamCommitteesStore.teamCommittees;
+      const data = this.$store.state.itechStore.teamCommittees;
       return data;
     },
 
     teamMembers() {
-      const data = this.$store.state.teamMembersStore.teamMembers;
+      const data = this.$store.state.itechStore.teamMembers;
       return data;
     },
 
     projectHeads() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Project Heads");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Project Heads");
+        });
+      } 
+      return [];
     },
 
     developmentComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Development Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Development Committee");
+        });
+      }
+      return [];
     },
 
     uxuiComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("UX/UI Design Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("UX/UI Design Committee");
+        });
+      }
+      return [];
     },
 
     secretariats() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Secretariat Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Secretariat Committee");
+        });
+      }
+      return [];
     },
 
     contentComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Content Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Content Committee");
+        });
+      }
+      return [];
     },
 
     threeContentComm() {
@@ -191,15 +206,21 @@ export default {
     },
 
     communicationsComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Communications Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Communications Committee");
+        });
+      }
+      return [];
     },
 
     creativesComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Creatives Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Creatives Committee");
+        });
+      }
+      return [];
     },
 
     fourCreativesComm() {
@@ -211,15 +232,21 @@ export default {
     },
 
     documentationsComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Documentations Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Documentations Committee");
+        });
+      }
+      return [];
     },
 
     finComm() {
-      return this.teamMembers.filter((member) => {
-        return member.team_committees[0].name.includes("Finance Committee");
-      });
+      if (typeof teamCommittees !== undefined) {
+        return this.teamMembers.filter((member) => {
+          return member.team_committees[0].name.includes("Finance Committee");
+        });
+      }
+      return [];
     },
   }
 }

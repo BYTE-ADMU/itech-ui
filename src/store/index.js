@@ -9,8 +9,7 @@ import coursesStore from "./modules/coursesStore"
 import topicsStore from "./modules/topicsStore"
 import categoriesStore from "./modules/categoriesStore"
 import admuCoursesStore from "./modules/admuCoursesStore"
-import teamCommitteesStore from './modules/teamCommitteesStore';
-import teamMembersStore from './modules/teamMembersStore';
+import itechStore from "./modules/itechStore"
 
 //END: MODULES
 
@@ -25,8 +24,7 @@ const store = new Vuex.Store({
         coursesStore: coursesStore,
         articlesStore: articlesStore,
         admuCoursesStore: admuCoursesStore,
-        teamCommitteesStore: teamCommitteesStore,
-        teamMembersStore: teamMembersStore,
+        itechStore: itechStore,
     }
 });
 
@@ -37,7 +35,6 @@ store.state.topicsStore;
 store.state.coursesStore;
 store.state.articlesStore;
 store.state.admuCoursesStore;
-store.state.teamCommitteesStore;
-store.state.teamMembersStore;
+store.state.itechStore;
 
 export default store;
