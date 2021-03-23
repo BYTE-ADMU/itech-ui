@@ -9,8 +9,8 @@
     <div class="container mx-auto my-20 px-10">
     <!-- project heads -->
       <div class="project-heads">
-        <h1>{{ teamCommittees[0].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+        <h1>Project Heads</h1>
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in projectHeads"
             :key="member.id"
             :member="member" 
@@ -20,7 +20,7 @@
       <!-- dev -->
       <div class="devs">
         <h1>{{ teamCommittees[1].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in developmentComm"
             :key="member.id"
             :member="member" 
@@ -30,7 +30,7 @@
       <!-- ux/ui -->
       <div class="uxui">
         <h1>{{ teamCommittees[2].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in uxuiComm"
             :key="member.id"
             :member="member" 
@@ -41,7 +41,7 @@
       <!-- secretariat -->
       <div class="secretariats">
         <h1>{{ teamCommittees[3].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in secretariats"
             :key="member.id"
             :member="member" 
@@ -52,14 +52,8 @@
       <!-- content -->
       <div class="content">
         <h1>{{ teamCommittees[4].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3 mt-2 mx-auto cards">
-          <teamMemberCard v-for="member in threeContentComm"
-            :key="member.id"
-            :member="member" 
-            class="lg:mx-5"/>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mt-2 mb-16 mx-auto cards">
-          <teamMemberCard v-for="member in restOfContentComm"
+        <div class="flex flex-wrap-reverse flex-row-reverse justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberCard v-for="member in contentComm"
             :key="member.id"
             :member="member" 
             class="lg:mx-5"/>
@@ -69,7 +63,7 @@
       <!-- comms -->
       <div class="comms">
         <h1>{{ teamCommittees[5].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-2 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in communicationsComm"
             :key="member.id"
             :member="member" 
@@ -80,14 +74,8 @@
       <!-- creatives -->
       <div class="creatives">
         <h1>{{ teamCommittees[6].name }}</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 mt-2 mx-auto cards">
-          <teamMemberCard v-for="member in fourCreativesComm"
-            :key="member.id"
-            :member="member" 
-            class="lg:mx-5"/>
-        </div>
-        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
-          <teamMemberCard v-for="member in restOfCreativesComm"
+        <div class="flex flex-wrap justify-center mt-2 mx-auto cards">
+          <teamMemberCard v-for="member in creativesComm"
             :key="member.id"
             :member="member" 
             class="lg:mx-5"/>
@@ -97,7 +85,7 @@
       <!-- documentations -->
       <div class="documentations">
         <h1>{{ teamCommittees[7].name }}</h1>
-        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in documentationsComm"
             :key="member.id"
             :member="member" 
@@ -108,7 +96,7 @@
       <!-- fin -->
       <div class="fin">
         <h1>{{ teamCommittees[8].name }}</h1>
-        <div class="grid grid-cols-1 mt-2 mb-16 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in finComm"
             :key="member.id"
             :member="member" 
@@ -192,17 +180,9 @@ export default {
       if (typeof teamCommittees !== undefined) {
         return this.teamMembers.filter((member) => {
           return member.team_committees[0].name.includes("Content Committee");
-        });
+        }).reverse();
       }
       return [];
-    },
-
-    threeContentComm() {
-      return this.contentComm.slice(0,3);
-    },
-
-    restOfContentComm() {
-      return this.contentComm.slice(3,);
     },
 
     communicationsComm() {
