@@ -1,11 +1,11 @@
 <template>
   <div class="flex lg:block shadow-md rounded-2xl px-3 sm:px-6 lg:px-0 pt-2 my-1 lg:my-5 member-card">
     <div
-      class="flex w-24 sm:w-40 sm:h-48 lg:mx-auto mb-2 relative overflow-y-hidden"
+      class="flex w-16 sm:w-40 sm:h-48 lg:mx-auto mb-2 relative overflow-y-hidden memberImg-container"
     >
       <g-image
         :src="member.image.url"
-        class="object-cover lg:mx-auto w-full sm:h-full"
+        class="object-cover lg:mx-auto w-full sm:h-full member-img"
       />
     </div>
     <div class="px-3 pt-1 lg:pb-6 my-auto mx-auto text-center">
@@ -64,9 +64,28 @@ export default {
   .member-card {
     min-height: 152px;
   }
+
+  .memberImg-container {
+    width: 96px;
+  }
 }
 
 @media screen and (max-width:470px) {
+  .member-card {
+    max-height: 88px;
+    min-height: 88px;
+  }
+
+  .memberImg-container {
+    width: 64px;
+    position: relative;
+  }
+
+  .member-img {
+    position: absolute;
+    top: 0;
+  }
+  
   .member-name {
     font-size: 14px;
   }
