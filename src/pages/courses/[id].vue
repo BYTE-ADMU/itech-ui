@@ -177,7 +177,7 @@ export default {
   watch: {
     "$route.params.id": async function (id) {
       this.course = null;
-      this.course = await this.$store.dispatch("coursesStore/getCourses", id);
+      this.course = await this.$store.dispatch("coursesStore/getCourse", id);
       this.title = this.course.name;
     },
   },

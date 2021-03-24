@@ -24,7 +24,6 @@ const topicsStore = {
     getTopic({ state }, id) {
       for (const topic of state.topics) {
         if (topic.id === id) {
-          console.log(topic, id)
           return topic;
         }
       }

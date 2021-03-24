@@ -153,34 +153,31 @@ export default {
   },
 
   watch: {
-    "this.$route.params.id": async function (id) {
+    "$route.params.id": async function (id) {
       this.topic = null;
-      this.topic = await this.$store.dispatch("topicsStore/getStore", id);
+      this.topic = await this.$store.dispatch("topicsStore/getTopic", id);
       this.title = this.topic.name;
     },
 
     topic(newTopic) {
       this.filteredCourses = this.getFilteredCourses(newTopic);
-      this.getFilteredArticles(newTopic.courses);
+      this.filteredArticles = this.getFilteredArticles(newTopic);
     },
   },
 
   methods: {
-    async getFilteredArticles(courses) {
-      if (courses.length > 0) {
-        for (const eachCourse of courses) {
-          for (const eachCourseArticle of eachCourse.articles) {
-            for (const eachArticle of this.$store.state.articlesStore
-              .articles) {
-              if (eachArticle.id === eachCourseArticle) {
-                this.filteredArticles.push(eachArticle);
-              }
+    getFilteredArticles(topic) {
+      let filteredArticles = [];
+      if (topic.articles.length > 0) {
+        for (const topicArticles of topic.articles) {
+          for (const article of this.articles) {
+            if (article.id === topicArticles.id) {
+              filteredArticles.push(article);
             }
           }
         }
-        return this.filteredArticles;
       }
-      return this.filteredArticles;
+      return filteredArticles;
     },
 
     getFilteredCourses(topic) {

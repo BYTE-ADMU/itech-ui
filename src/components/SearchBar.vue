@@ -123,7 +123,7 @@ export default {
 
     //START: PROCESSING DATA RELATED
     filteredCategories() {
-      if (this.search.toLowerCase().includes("category")) {
+      if (this.search.toLowerCase().includes("categor")) {
         return this.categories;
       }
       return this.categories.filter((category) => {
