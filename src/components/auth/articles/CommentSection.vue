@@ -30,7 +30,9 @@
     </form>
 
     <div class="overflow-y-auto" style="max-height: 480px">
+      <p v-if="isCommentsLoading">Loading</p>
       <CommentCard
+        v-else
         v-for="comment in filteredComments"
         v-bind:key="comment.id"
         v-bind:comment="comment"
@@ -50,33 +52,20 @@ export default {
   data() {
     return {
       content: "",
+      isCommentsLoading: false,
     };
   },
 
   computed: {
-    comments: {
-      get() {
-        const data = this.$store.state.articlesStore.comments;
-        return data;
-      },
-      set(value) {
-        this.$store.dispatch("articlesStore/updateComments", value);
-      },
+    comments() {
+      const data = this.$store.state.articlesStore.comments;
+      return data;
     },
 
     filteredComments() {
       let filteredCommentsArray = [];
       if (typeof this.comments !== "undefined") {
-        // for (const eachArticleComment of this.article.comments) {
-        //   for (const comment of this.comments) {
-        //     if (comment.id === eachArticleComment.id) {
-        //       filteredCommentsArray.push(comment);
-        //     }
-        //   }
-        // }
-
         for (const comment of this.comments) {
-          // console.log(comment);
           if (comment.article.id === this.article.id) {
             filteredCommentsArray.push(comment);
           }
@@ -89,18 +78,21 @@ export default {
   methods: {
     addComment(event) {
       event.preventDefault();
+      this.isCommentsLoading = true;
       let comment = {
         article: this.article,
         user: this.$store.state.userStore.user,
         content: this.content,
       };
       this.content = "";
-      this.filteredComments.push(comment);
+      // this.filteredComments.push(comment);
       this.$store
         .dispatch("articlesStore/addComment", comment)
         .then(() => {
-          console.log("getComments");
-          this.comments = this.$store.dispatch("articlesStore/getComments");
+          this.$store.dispatch("articlesStore/getComments");
+        })
+        .then(() => {
+          this.isCommentsLoading = false;
         })
         .catch((error) => console.log(error));
     },

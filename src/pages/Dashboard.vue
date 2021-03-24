@@ -159,6 +159,7 @@ export default {
     this.courses = await this.getCourses();
     this.articles = await this.getArticles();
     this.$store.dispatch("userStore/getUser");
+
     // this.articles = await this.$store.dispatch("articlesStore/getArticles");
     // this.$store.dispatch("coursesStore/getCourses");
     // this.$store.dispatch("topicsStore/getTopics");
@@ -259,23 +260,14 @@ export default {
 
   methods: {
     async getTopics() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/topics?_sort=published_at`
-      // );
       const data = this.$store.state.topicsStore.topics.reverse();
       return data;
     },
     async getCourses() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/courses?_sort=published_at`
-      // );
       const data = this.$store.state.coursesStore.courses.reverse();
       return data;
     },
     async getArticles() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/articles?_sort=published_at`
-      // );
       const data = this.$store.state.articlesStore.articles.reverse();
       return data;
     },

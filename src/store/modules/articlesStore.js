@@ -44,7 +44,7 @@ const articlesStore = {
 
     addComment({ state, commit }, newComment) {
       axios.post(`${state.API_URL}/comments`, newComment).then(response => {
-        commit('SET_COMMENTS', response.data);
+        state.comments.push(response.data)
       }).catch(error => console.log(error))
     },
 
