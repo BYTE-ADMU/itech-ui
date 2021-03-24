@@ -192,7 +192,6 @@ export default {
   },
 
   async mounted() {
-    // const data = await this.getArticle(this.$route.params.id);
     const data = await this.$store.dispatch(
       "articlesStore/getArticle",
       this.$route.params.id
@@ -219,30 +218,6 @@ export default {
 
   // START: COMPUTED
   computed: {
-    article() {
-      const data = this.$store.state.articlesStore.article;
-      return data;
-    },
-
-    articles() {
-      const data = this.$store.state.articlesStore.articles;
-      return data;
-    },
-
-    // nextArticles() {
-    //   if (typeof this.articles !== undefined) {
-    //     let i = 0;
-    //     const selectedData = [];
-    //     while (i < 3) {
-    //       const randomNumber = Math.floor(Math.random() * this.articles.length);
-    //       selectedData.push(this.articles[randomNumber]);
-    //       i++;
-    //     }
-    //     return selectedData;
-    //   }
-    //   return null;
-    // },
-
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
     },
@@ -270,13 +245,6 @@ export default {
 
   // START: METHODS
   methods: {
-    async getArticle(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/articles/${id}`
-      );
-      return data;
-    },
-
     async getNextArticles() {
       let i = 0;
       const selectedData = [];

@@ -8,8 +8,8 @@ const articlesStore = {
     API_URL: 'https://calm-everglades-39473.herokuapp.com',
     SORT: '?_sort=published_at',
     articles: [],
-    comments: [],
-    article: []
+    // article: [],
+    comments: []
   }),
 
   // to handle state
@@ -29,7 +29,7 @@ const articlesStore = {
     getArticle({ state, commit }, id) {
       for (const article of state.articles) {
         if (article.id === id) {
-          commit('SET_ARTICLE', article);
+          // commit('SET_ARTICLE', article);
           return article;
         }
       }
@@ -58,7 +58,7 @@ const articlesStore = {
   mutations: {
     // Start:Articles
     SET_ARTICLES: (state, articles) => state.articles = articles,
-    SET_ARTICLE: (state, article) => state.article = article,
+    // SET_ARTICLE: (state, article) => state.article = article,
     // End:Articles
 
     // Start:Comments

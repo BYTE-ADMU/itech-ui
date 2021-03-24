@@ -109,23 +109,23 @@ export default {
   },
 
   async mounted() {
-    const data = await this.getCourse(this.$route.params.id);
+    const data = await this.$store.dispatch(
+      "coursesStore/getCourse",
+      this.$route.params.id
+    );
+    console.log("Course: ", data, this.$route.params.id);
     this.course = data;
     this.title = data.name;
 
-    this.$store.dispatch("articlesStore/getArticles");
-    this.$store.dispatch("coursesStore/getCourses");
-    this.$store.dispatch("topicsStore/getTopics");
-    this.$store.dispatch("categoriesStore/getCategories");
+    // this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
+    // this.$store.dispatch("categoriesStore/getCategories");
   },
 
   computed: {
     isAuthenticated() {
       return this.$store.state.userStore.isAuthenticated;
-    },
-
-    id() {
-      return this.$route.params.id;
     },
 
     courses() {
@@ -172,19 +172,13 @@ export default {
     },
   },
 
-  methods: {
-    async getCourse(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/courses/${id}`
-      );
-      return data;
-    },
-  },
+  methods: {},
 
   watch: {
-    id(newId, oldId) {
-      this.topic = this.getCourse(newId);
-      this.title = this.getCourse(newId).name;
+    "$route.params.id": async function (id) {
+      this.course = null;
+      this.course = await this.$store.dispatch("coursesStore/getCourses", id);
+      this.title = this.course.name;
     },
   },
 };

@@ -127,9 +127,12 @@ export default {
   },
 
   async mounted() {
-    const topicData = await this.getTopic(this.$route.params.id);
-    this.topic = topicData;
-    this.title = topicData.name;
+    const data = await this.$store.dispatch(
+      "coursesStore/getCourse",
+      this.$route.params.id
+    );
+    this.topic = data;
+    this.title = data.name;
 
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
@@ -138,10 +141,6 @@ export default {
   },
 
   computed: {
-    id() {
-      return this.$route.params.id;
-    },
-
     articles() {
       const data = this.$store.state.articlesStore.articles;
       return data;
@@ -154,25 +153,19 @@ export default {
   },
 
   watch: {
-    id(newId, oldId) {
-      this.topic = this.getTopic(newId);
-      this.title = this.getTopic(newId).name;
+    "this.$route.params.id": async function (id) {
+      this.topic = null;
+      this.topic = await this.$store.dispatch("topicsStore/getStore", id);
+      this.title = this.topic.name;
     },
 
-    topic(newTopic, oldTopic) {
+    topic(newTopic) {
       this.filteredCourses = this.getFilteredCourses(newTopic);
       this.getFilteredArticles(newTopic.courses);
     },
   },
 
   methods: {
-    async getTopic(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/topics/${id}`
-      );
-      return data;
-    },
-
     async getArticle(id) {
       const { data } = await axios.get(
         `https://calm-everglades-39473.herokuapp.com/articles/${id}`

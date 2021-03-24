@@ -22,8 +22,17 @@ const coursesStore = {
         commit('SET_COURSES', response.data);
         return response.data;
       })
-    }
+    },
+    getCourse({ state }, id) {
+      for (const course of state.courses) {
+        if (course.id === id) {
+          console.log(course, id)
+          return course;
+        }
+      }
+    },
   },
+
 
   // to handle mutations
   mutations: {
