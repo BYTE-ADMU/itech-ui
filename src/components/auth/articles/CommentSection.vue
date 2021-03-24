@@ -54,9 +54,14 @@ export default {
   },
 
   computed: {
-    comments() {
-      const data = this.$store.state.articlesStore.comments;
-      return data;
+    comments: {
+      get() {
+        const data = this.$store.state.articlesStore.comments;
+        return data;
+      },
+      set(value) {
+        this.$store.dispatch("articlesStore/updateComments", value);
+      },
     },
 
     filteredComments() {
@@ -70,11 +75,12 @@ export default {
         //   }
         // }
 
-        this.comments.filter((comment) => {
+        for (const comment of this.comments) {
+          // console.log(comment);
           if (comment.article.id === this.article.id) {
             filteredCommentsArray.push(comment);
           }
-        });
+        }
       }
       return filteredCommentsArray;
     },
@@ -88,9 +94,15 @@ export default {
         user: this.$store.state.userStore.user,
         content: this.content,
       };
-      this.comments.push(comment);
       this.content = "";
-      this.comments = this.$store.dispatch("articlesStore/addComment", comment);
+      this.filteredComments.push(comment);
+      this.$store
+        .dispatch("articlesStore/addComment", comment)
+        .then(() => {
+          console.log("getComments");
+          this.comments = this.$store.dispatch("articlesStore/getComments");
+        })
+        .catch((error) => console.log(error));
     },
   },
 };

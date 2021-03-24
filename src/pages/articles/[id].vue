@@ -192,26 +192,83 @@ export default {
   },
 
   async mounted() {
-    const data = await this.getArticle(this.$route.params.id);
+    // const data = await this.getArticle(this.$route.params.id);
+    const data = await this.$store.dispatch(
+      "articlesStore/getArticle",
+      this.$route.params.id
+    );
     this.article = data;
     this.title = data.title;
 
     this.nextArticles = await this.getNextArticles();
 
-    this.$store.dispatch("articlesStore/getArticles");
-    this.$store.dispatch("coursesStore/getCourses");
-    this.$store.dispatch("topicsStore/getTopics");
-    this.$store.dispatch("categoriesStore/getCategories");
+    // this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
+    // this.$store.dispatch("categoriesStore/getCategories");
   },
 
   watch: {
     "$route.params.id": async function (id) {
-      this.article = await this.getArticle(id);
-      this.nextArticles = await this.getNextArticles();
+      this.article = null;
+      this.article = await this.$store.dispatch("articlesStore/getArticle", id);
       this.title = this.article.title;
+      this.nextArticles = await this.getNextArticles();
     },
   },
 
+  // START: COMPUTED
+  computed: {
+    article() {
+      const data = this.$store.state.articlesStore.article;
+      return data;
+    },
+
+    articles() {
+      const data = this.$store.state.articlesStore.articles;
+      return data;
+    },
+
+    // nextArticles() {
+    //   if (typeof this.articles !== undefined) {
+    //     let i = 0;
+    //     const selectedData = [];
+    //     while (i < 3) {
+    //       const randomNumber = Math.floor(Math.random() * this.articles.length);
+    //       selectedData.push(this.articles[randomNumber]);
+    //       i++;
+    //     }
+    //     return selectedData;
+    //   }
+    //   return null;
+    // },
+
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
+    user() {
+      if (this.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+
+    isBooked() {
+      if (this.isAuthenticated) {
+        for (const eachArticle of this.user.articles) {
+          if (this.article.id === eachArticle.id) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+  },
+  // END: COMPUTED
+
+  // START: METHODS
   methods: {
     async getArticle(id) {
       const { data } = await axios.get(
@@ -252,31 +309,7 @@ export default {
       this.$store.dispatch("userStore/updateUser", this.user);
     },
   },
-
-  computed: {
-    isAuthenticated() {
-      return this.$store.state.userStore.isAuthenticated;
-    },
-
-    user() {
-      if (this.isAuthenticated) {
-        const data = this.$store.state.userStore.user;
-        return data;
-      }
-      return null;
-    },
-
-    isBooked() {
-      if (this.isAuthenticated) {
-        for (const eachArticle of this.user.articles) {
-          if (this.article.id === eachArticle.id) {
-            return true;
-          }
-        }
-      }
-      return false;
-    },
-  },
+  // END: METHODS
 };
 </script>
 
