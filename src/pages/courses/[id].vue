@@ -113,7 +113,7 @@ export default {
       "coursesStore/getCourse",
       this.$route.params.id
     );
-    console.log("Course: ", data, this.$route.params.id);
+
     this.course = data;
     this.title = data.name;
 

@@ -26,7 +26,6 @@ const coursesStore = {
     getCourse({ state }, id) {
       for (const course of state.courses) {
         if (course.id === id) {
-          console.log(course, id)
           return course;
         }
       }

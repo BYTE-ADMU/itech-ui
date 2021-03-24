@@ -123,18 +123,27 @@ export default {
 
     //START: PROCESSING DATA RELATED
     filteredCategories() {
+      if (this.search.toLowerCase().includes("category")) {
+        return this.categories;
+      }
       return this.categories.filter((category) => {
         return category.name.toLowerCase().includes(this.search.toLowerCase());
       });
     },
 
     filteredTopics() {
+      if (this.search.toLowerCase().includes("topic")) {
+        return this.topics;
+      }
       return this.topics.filter((topic) => {
         return topic.name.toLowerCase().includes(this.search.toLowerCase());
       });
     },
 
     filteredCourses() {
+      if (this.search.toLowerCase().includes("course")) {
+        return this.courses;
+      }
       return this.courses.filter((course) => {
         return (
           course.name.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -146,6 +155,9 @@ export default {
     },
 
     filteredArticles() {
+      if (this.search.toLowerCase().includes("article")) {
+        return this.articles;
+      }
       return this.articles.filter((article) => {
         return (
           article.title.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -157,12 +169,21 @@ export default {
     },
 
     threeFilteredTopics() {
+      if (this.search.toLowerCase().includes("topic")) {
+        return this.filteredTopics;
+      }
       return this.filteredTopics.slice(0, 3);
     },
     threeFilteredCourses() {
+      if (this.search.toLowerCase().includes("course")) {
+        return this.filteredCourses;
+      }
       return this.filteredCourses.slice(0, 3);
     },
     threeFilteredArticles() {
+      if (this.search.toLowerCase().includes("article")) {
+        return this.filteredArticles;
+      }
       return this.filteredArticles.slice(0, 3);
     },
     //END: PROCESSING DATA RELATED
