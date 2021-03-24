@@ -51,7 +51,7 @@
               <g-link to="/about" class="hover:underline">About</g-link>
             </li>
             <li class="mt-2">
-              <a href="#" class="hover:underline">Meet the Team</a>
+              <a href="/meet-the-team/" class="hover:underline">Meet the Team</a>
             </li>
           </ul>
         </div>

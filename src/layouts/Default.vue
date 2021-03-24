@@ -28,6 +28,8 @@ export default {
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
     this.$store.dispatch("admuCoursesStore/getAdmuCourses");
+    this.$store.dispatch("itechStore/getTeamCommiittees");
+    this.$store.dispatch("itechStore/getTeamMembers");
   },
 
   methods: {
