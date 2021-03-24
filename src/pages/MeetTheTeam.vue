@@ -74,7 +74,7 @@
       <!-- creatives -->
       <div class="creatives">
         <h1>Creatives Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mx-auto cards">
+        <div class="flex flex-wrap justify-center mt-2 mb-12 mx-auto cards">
           <teamMemberCard v-for="member in creativesComm"
             :key="member.id"
             :member="member" 
@@ -201,14 +201,6 @@ export default {
         });
       }
       return [];
-    },
-
-    fourCreativesComm() {
-      return this.creativesComm.slice(0,4);
-    },
-
-    restOfCreativesComm() {
-      return this.creativesComm.slice(4,);
     },
 
     documentationsComm() {

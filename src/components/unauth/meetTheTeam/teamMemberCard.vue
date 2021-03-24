@@ -1,7 +1,7 @@
 <template>
   <div class="flex lg:block shadow-md rounded-2xl px-3 sm:px-6 lg:px-0 pt-2 my-1 lg:my-5 member-card">
     <div
-      class="block w-24 sm:w-40 sm:h-48 lg:mx-auto mb-2 relative overflow-y-hidden"
+      class="flex w-24 sm:w-40 sm:h-48 lg:mx-auto mb-2 relative overflow-y-hidden"
     >
       <g-image
         :src="member.image.url"
@@ -57,6 +57,12 @@ export default {
     width: 440px;
     max-width: none;
     min-width: none;
+  }
+}
+
+@media screen and (max-width:640px) {
+  .member-card {
+    min-height: 152px;
   }
 }
 
