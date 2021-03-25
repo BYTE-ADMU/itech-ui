@@ -214,26 +214,11 @@ export default {
   },
 
   async mounted() {
-    // this.topics = await this.getTopics();
-    // this.courses = await this.getCourses();
-    // this.articles = await this.getArticles();
     this.$store.dispatch("userStore/getUser");
-
-    // this.articles = await this.$store.dispatch("articlesStore/getArticles");
-    // this.$store.dispatch("coursesStore/getCourses");
-    // this.$store.dispatch("topicsStore/getTopics");
   },
 
   computed: {
     // START: GET DATA FROM STORE
-    // topics() {
-    //   const data = this.$store.state.topicsStore.topics.reverse();
-    //   if (typepof(data) !== undefined) {
-    //     return data;
-    //   }
-    //   return null;
-    // },
-
     courses() {
       const data = this.$store.state.coursesStore.courses.reverse();
       if (typeof data !== undefined || data.length !== 0) {
@@ -288,10 +273,6 @@ export default {
       return null;
     },
 
-    // featuredCourse() {
-    //   return this.courses[Math.floor(Math.random() * this.courses.length)];
-    // },
-
     newOnItech() {
       if (this.articles.length !== 0) {
         return this.articles.slice(0, 4);
@@ -324,48 +305,6 @@ export default {
       }
       return null;
     },
-
-    // TOPICS
-    // hackerTopics() {
-    //   return this.topics.filter((topic) => {
-    //     return topic.categories[0].name.includes("Hacker");
-    //   });
-    // },
-    // hipsterTopics() {
-    //   return this.topics.filter((topic) => {
-    //     return topic.categories[0].name.includes("Hipster");
-    //   });
-    // },
-    // hustlerTopics() {
-    //   return this.topics.filter((topic) => {
-    //     return topic.categories[0].name.includes("Hustler");
-    //   });
-    // },
-
-    // threeHackerTopics() {
-    //   return this.hackerTopics.slice(0, 3);
-    // },
-    // threeHipsterTopics() {
-    //   return this.hipsterTopics.slice(0, 3);
-    // },
-    // threeHustlerTopics() {
-    //   return this.hustlerTopics.slice(0, 3);
-    // },
-  },
-
-  methods: {
-    // async getTopics() {
-    //   const data = this.$store.state.topicsStore.topics.reverse();
-    //   return data;
-    // },
-    // async getCourses() {
-    //   const data = this.$store.state.coursesStore.courses.reverse();
-    //   return data;
-    // },
-    // async getArticles() {
-    //   const data = this.$store.state.articlesStore.articles.reverse();
-    //   return data;
-    // },
   },
 };
 </script>

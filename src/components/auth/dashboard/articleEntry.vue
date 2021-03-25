@@ -1,21 +1,19 @@
 
 <template>
-  <div class="w-full">
+  <div class="relative w-full">
     <g-link
       v-if="article !== null"
       class="flex h-full p-2 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
       :to="`/articles/${article.id}`"
     >
       <!-- PUT IMAGE AND DETAILS INSIDE -->
-      <div
-        class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
-      >
+      <div class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full h-pic">
         <g-image
           :src="article.thumbnailImage.url"
           class="object-cover w-full h-full rounded-lg"
         />
       </div>
-      <div class="p-3 overflow-hidden">
+      <div class="px-2 py-3 overflow-hidden">
         <g-link
           v-if="article.courses.length > 0"
           :to="`/courses/${article.courses[0].id}`"
@@ -34,7 +32,7 @@
         <p class="mt-2 sm:mb-2 articleEntry-title">
           {{ article.title }}
         </p>
-        <p class="self-end sm:mb-2 articleEntry-author">
+        <p class="absolute bottom-0 pb-4 md:pb-0 sm:mb-2 articleEntry-author">
           {{ article.author.name }}
         </p>
       </div>
@@ -122,6 +120,7 @@ export default {
   font-weight: normal;
   font-size: 12px;
   line-height: 20px;
+  color: #757572;
 }
 
 .minWidth {
