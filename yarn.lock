@@ -4785,6 +4785,11 @@
   "resolved" "https://registry.npmjs.org/hex-color-regex/-/hex-color-regex-1.1.0.tgz"
   "version" "1.1.0"
 
+"highlight.js@^10.7.1":
+  "integrity" "sha512-S6G97tHGqJ/U8DsXcEdnACbirtbx58Bx9CzIVeYli8OuswCfYI/LsXH2EiGcoGio1KAC3x4mmUwulOllJ2ZyRA=="
+  "resolved" "https://registry.npmjs.org/highlight.js/-/highlight.js-10.7.1.tgz"
+  "version" "10.7.1"
+
 "hirestime@^3.2.1":
   "integrity" "sha512-X+4w5O6JMW7zlgAhad6OPA/MwYTW1FqrF27+6ItRUmDT4jklsXd4N5S5hNCmd9AIGVp8SLsCoGwRe5ddBp/CKg=="
   "resolved" "https://registry.npmjs.org/hirestime/-/hirestime-3.2.2.tgz"
@@ -6062,6 +6067,11 @@
     "linkify-it" "~1.2.2"
     "mdurl" "~1.0.1"
     "uc.micro" "^1.0.1"
+
+"marked@^2.0.1":
+  "integrity" "sha512-5+/fKgMv2hARmMW7DOpykr2iLhl0NgjyELk5yn92iE7z8Se1IS9n3UsFm86hFXIkvMBmVxki8+ckcpjBeyo/hw=="
+  "resolved" "https://registry.npmjs.org/marked/-/marked-2.0.1.tgz"
+  "version" "2.0.1"
 
 "md5-file@^4.0.0":
   "integrity" "sha512-UC0qFwyAjn4YdPpKaDNw6gNxRf7Mcx7jC1UGCY4boCzgvU2Aoc1mOGzTtrjjLKhM5ivsnhoKpQVxKPp+1j1qwg=="

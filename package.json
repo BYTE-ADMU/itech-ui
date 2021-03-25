@@ -13,6 +13,8 @@
     "babel-runtime": "^6.26.0",
     "globby": "^8.0.2",
     "gridsome": "^0.7.0",
+    "highlight.js": "^10.7.1",
+    "marked": "^2.0.1",
     "prismjs": "^1.23.0",
     "tailwindcss": "^1.9.6",
     "vue-markdown": "^2.1.2",

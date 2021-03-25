@@ -116,8 +116,11 @@
 
           <!-- START: ARTICLE CONTENT -->
           <div class="px-4 overflow-hidden md:px-24 " >
-              <VueMarkdown @rendered="syntaxHighlight" class="mb-6 md:mb-12 article-content" :source="article.content"/>
-              <VueMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":source="article.sources" />
+              <ProcessedMarkdown class="mb-6 md:mb-12 article-content" :markdown="article.content"/>
+              <ProcessedMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":markdown="article.sources" />
+
+              <!-- <VueMarkdown @rendered="syntaxHighlight" class="mb-6 md:mb-12 article-content" :source="article.content"/> -->
+              <!-- <VueMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":source="article.sources" /> -->
           </div>
           <!-- END: ARTICLE CONTENT -->
 
@@ -154,16 +157,11 @@
 </template>
 
 <script>
-import unauthModal from "../../components/unauth/unauthModal";
-import Loader from "../../components/Loader";
-import NextArticlesSection from "../../components/auth/articles/NextArticlesSection";
-import CommentSection from "../../components/auth/articles/CommentSection";
-
-import VueMarkdown from "vue-markdown";
-
-import Prism from "prismjs";
-import "prismjs/themes/prism-okaidia.css"; // theme
-import "prismjs/components/prism-go.min"; // language
+import unauthModal from "@/components/unauth/unauthModal";
+import Loader from "@/components/Loader";
+import NextArticlesSection from "@/components/auth/articles/NextArticlesSection";
+import CommentSection from "@/components/auth/articles/CommentSection";
+import ProcessedMarkdown from "@/components/auth/articles/ProcessedMarkdown";
 
 import moment from "moment";
 
@@ -177,8 +175,7 @@ export default {
 
   components: {
     Loader,
-    VueMarkdown,
-    Prism,
+    ProcessedMarkdown,
     NextArticlesSection,
     CommentSection,
     unauthModal,
@@ -262,12 +259,6 @@ export default {
       return selectedData;
     },
 
-    syntaxHighlight: function () {
-      this.$nextTick(() => {
-        Prism.highlightAll();
-      });
-    },
-
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
     },
@@ -338,10 +329,14 @@ export default {
   font-weight: normal;
   font-size: 14px;
 }
+
+.article-content > code {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
 /* END: ARTICLE CONTENT */
 
 /* START: ARTICLE SOURCES */
-
 .article-sources {
   font-family: Objectivity;
   color: #8c8c8c;
@@ -360,7 +355,6 @@ export default {
   font-size: 14px;
   color: #8c8c8c;
 }
-
 /* END: ARTICLE SOURCES */
 
 @media screen and (min-width: 1024px) {
