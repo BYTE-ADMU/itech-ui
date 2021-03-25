@@ -196,6 +196,8 @@ import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
+import coursesPlaceholder from "../components/auth/dashboard/coursesPlaceholder";
+import articlePlaceholder from "../components/auth/dashboard/articlePlaceholder";
 
 export default {
   name: "Dashboard",
@@ -211,6 +213,8 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    coursesPlaceholder,
+    articlePlaceholder,
   },
 
   async mounted() {

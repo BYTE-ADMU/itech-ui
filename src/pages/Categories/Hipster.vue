@@ -19,7 +19,22 @@
       </div>
 
       <!-- COURSES-->
-      <div class="grid grid-cols-1 gap-4 mb-12  md:grid-cols-4">
+      <div v-if="courses.length === 0" class="grid grid-cols-1 gap-4 mb-12  md:grid-cols-4">
+        <div class="w-full py-2">
+          <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+            Courses ✨
+          </h2>
+
+          <p class="text-l font-objectivity">
+            Readily-set series of articles and videos you can go through!
+          </p>
+        </div>
+
+        <coursesPlaceholder class="w-full" />
+        <coursesPlaceholder class="w-full" />
+        <coursesPlaceholder class="w-full" />
+      </div>
+      <div v-else class="grid grid-cols-1 gap-4 mb-12  md:grid-cols-4">
         <div class="w-full py-2">
           <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
             Courses ✨
@@ -42,7 +57,13 @@
       <!-- ARTICLES -->
       <h2 class="py-6 text-2xl lg:text-4xl font-neuemachina">Articles ✨</h2>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <div v-if="articles.length === 0" class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+      </div>
+      <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <articleEntry
           v-for="article in filteredArticles"
           v-bind:key="article.id"
@@ -65,6 +86,8 @@ import playlistEntry from "../../components/auth/dashboard/playlistEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../../components/auth/dashboard/articleHeader";
+import coursesPlaceholder from "@/components/auth/dashboard/coursesPlaceholder";
+import articlePlaceholder from "../../components/auth/dashboard/articlePlaceholder";
 
 export default {
   components: {
@@ -76,6 +99,8 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    coursesPlaceholder,
+    articlePlaceholder,
   },
 
   name: "Categories",

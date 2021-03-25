@@ -27,7 +27,7 @@
         <!-- START: FIRST COLUMN -->
         <div
           v-if="articles === null || courses === null"
-          class="grid hidden grid-cols-1 mx-auto lg:block"
+          class="grid hidden grid-cols-1 mx-auto lg:block animate-pulse"
         >
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-white rounded-lg small-box"></div>
@@ -51,7 +51,8 @@
         <!-- START: SECOND COLUMN -->
         <g-link
           :to="`/categories/${slide.categories.toLowerCase()}`"
-          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full unauthBot-hover"
+          class="w-2/3 mx-auto rounded-lg lg:w-full unauthBot-hover"
+          :class="botBG"
         >
           <g-image
             :src="botImage"
@@ -63,7 +64,7 @@
         <!-- START: THIRD COLUMN -->
         <div
           v-if="articles === null || courses === null"
-          class="grid hidden grid-cols-1 mx-auto lg:block"
+          class="grid hidden grid-cols-1 mx-auto lg:block animate-pulse"
         >
           <div class="mb-4 bg-white rounded-lg long-box"></div>
           <div class="grid grid-cols-2 gap-4">
@@ -113,6 +114,22 @@ export default {
       const hacker = require("@/assets/img/bitbots/bbhacker.svg");
       const hipster = require("@/assets/img/bitbots/bbhipster.svg");
       const hustler = require("@/assets/img/bitbots/bbhustler.svg");
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return hacker;
+        case "hipster":
+          return hipster;
+        case "hustler":
+          return hustler;
+        default:
+          return hacker;
+      }
+    },
+
+    botBG() {
+      const hacker = "hacker-bg";
+      const hipster = "hipster-bg";
+      const hustler = "hustler-bg";
       switch (this.slide.categories.toLowerCase()) {
         case "hacker":
           return hacker;
@@ -215,6 +232,24 @@ export default {
 
 .hustlerStyle {
   background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
+}
+
+.hacker-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HACKER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.hipster-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HIPSTER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.hustler-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HUSTLER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .unauthBot {

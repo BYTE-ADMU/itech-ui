@@ -25,7 +25,7 @@
     </g-link>
     <g-link v-else>
       <div
-        class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1 course-hover"
+        class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1 course-hover animate-pulse"
       >
         <div class="absolute z-30 w-full h-full px-10 rounded-lg sm:px-5 group">
           <p

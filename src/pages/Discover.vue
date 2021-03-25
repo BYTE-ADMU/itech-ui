@@ -22,6 +22,7 @@
           v-bind:value="category.name"
           @click="searchButton = category.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
+          :class="{'selectedButton': userSearch === category.name}"
         >
           {{ category.name }}
         </button>
@@ -32,6 +33,7 @@
           v-bind:value="topic.name"
           @click="searchButton = topic.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
+          :class="{'selectedButton': userSearch === topic.name}"
         >
           {{ topic.name }}
         </button>
@@ -55,7 +57,11 @@
           </p>
         </div>
 
-        <playlistEntry
+        <div v-if="threeFilteredCourses.length <= 0"
+          class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2">
+          <p class="no-message">no matches found</p>
+        </div>
+        <playlistEntry v-else
           v-for="course in threeFilteredCourses"
           v-bind:key="course.id"
           v-bind:course="course"
@@ -70,7 +76,12 @@
         Related Articles ✨
       </h2>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <div v-if="filteredArticles.length <= 0"
+        class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2">
+        <p class="no-message">no matches found</p>
+      </div>
+
+      <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
         <articleEntry
           v-for="article in filteredArticles"
           v-bind:key="article.id"
@@ -245,6 +256,33 @@ export default {
 
 .discoverTitle {
   font-weight: bold;
+}
+
+.selectedButton {
+  background-color: #64c0c1;
+  color: #ffffff;
+}
+
+.no-message {
+  font-family: objectivity;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 71px;
+  letter-spacing: 0.04em;
+  color: #e8e8e8;
+}
+
+@media screen and (min-width: 1024px) {
+  .no-message {
+    font-family: objectivity;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 50px;
+    line-height: 71px;
+    letter-spacing: 0.04em;
+    color: #e8e8e8;
+  }
 }
 
 @media screen and (max-width: 640px) {
