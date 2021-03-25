@@ -1,10 +1,7 @@
 <template>
   <div class="w-full">
-    <form
-      class="w-full max-w-xl px-4 pt-2 mx-auto bg-white rounded-lg"
-      @submit="addComment"
-    >
-      <div class="flex flex-wrap mb-6 -mx-3">
+    <form class="w-full pt-2 mx-auto bg-white rounded-lg" @submit="addComment">
+      <div class="flex flex-wrap mb-6">
         <div class="mb-5">
           <p class="comment-header">Have a question? A comment?</p>
           <p class="comment-subheader">Leave one below!</p>
@@ -29,7 +26,7 @@
       </div>
     </form>
 
-    <div class="overflow-y-auto" style="max-height: 480px">
+    <div class="mt-12 overflow-y-auto" style="max-height: 480px">
       <p v-if="isCommentsLoading">Loading</p>
       <CommentCard
         v-else

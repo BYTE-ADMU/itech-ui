@@ -1,19 +1,17 @@
 <template>
   <div class="flex w-full mb-6 rounded-lg">
-    <div class="w-1/5">
-      <img
-        :src="userImage"
-        class="object-cover h-full rounded-lg"
-        style="width: 75px; height: 75px"
-      />
-    </div>
-    <div class="w-4/5">
-      <p class="mb-2 truncate">
-        <span class="comment-username">{{ comment.user.username }}</span
-        ><span class="ml-5 comment-comment">{{
-          formatDate(comment.published_at)
-        }}</span>
-      </p>
+    <img
+      :src="userImage"
+      class="mr-4 rounded-full"
+      style="width: 75px; height: 75px"
+    />
+    <div>
+      <div class="flex mb-2">
+        <p class="truncate comment-username">{{ comment.user.username }}</p>
+        <p class="hidden ml-5 comment-comment sm:inline md:hidden lg:inline">
+          {{ formatDate(comment.published_at) }}
+        </p>
+      </div>
       <p class="mb-2 comment-comment">{{ comment.content }}</p>
     </div>
   </div>

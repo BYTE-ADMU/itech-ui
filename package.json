@@ -13,8 +13,10 @@
     "babel-runtime": "^6.26.0",
     "globby": "^8.0.2",
     "gridsome": "^0.7.0",
+    "prismjs": "^1.23.0",
     "tailwindcss": "^1.9.6",
     "vue-markdown": "^2.1.2",
+    "vue-prism-component": "^2.0.0",
     "vuex": "^3.6.0"
   },
   "devDependencies": {

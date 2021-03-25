@@ -3,12 +3,12 @@
     <!-- MODAL -->
     <unauthModal v-if="!isAuthenticated && article !== null" class="z-50"/>
     <!-- END MODAL -->
-    <section class="flex justify-center min-h-screen pt-16 pb-32">
+    <section class="flex justify-center min-h-screen pt-8 pb-32 md:pt-16">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
-        <div class="pl-12 mb-10 breadcrumb-container md:pl-0">
+        <div class="pl-4 mb-4 sm:mb-10 sm:pl-12 md:mx-8 breadcrumb-container md:pl-0">
           <span>
               <button button @click="$router.go(-1)"
-                class="pr-6 breadcrumb-text ">
+                class="pr-6 breadcrumb-text">
                   Back
               </button>
               <span v-if="article !== null" class="hidden pr-6 breadcrumb-slash md:inline">/</span>
@@ -35,15 +35,17 @@
 
       <!-- START:ARTICLE -->
         <div v-else >
-          <div class="px-12 mb-12 md:px-24">
+          <div class="flex justify-center px-4 mb-12 md:px-24">
+            <div class="w-full">
 
             <!-- START: TITLE -->
             <p class="mb-5 article-title">{{ article.title }}</p>
             <!-- END: TITLE -->
 
             <!-- START: Second Row -->
-                    <div class="grid grid-cols-1 md:gap-2 md:grid-cols-2 md:container ">
-<!-- Start: Article Author and Dates -->
+              <div class="grid grid-cols-1 md:gap-2 md:grid-cols-2 md:container ">
+                      
+              <!-- Start: Article Author and Dates -->
               <div class="flex items-center w-full">
                   <g-image
                     alt="author-image"
@@ -101,32 +103,26 @@
 
             <!-- END: Second Row -->
           </div>
+          </div>
           <!-- END: ARTICLE INFO -->
 
           <!-- START: FEATURED IMAGE -->
 
           <g-image
-            class="w-full mb-24 overflow-auto"
+            class="w-full mb-8 overflow-auto md:mb-24"
             :src="article.featuredImage.url"
           />
           <!-- END: FEATURED IMAGE -->
 
           <!-- START: ARTICLE CONTENT -->
-          <div class="px-12 overflow-hidden md:px-24" >
-            <VueMarkdown
-              class="mb-24 article-content "
-              style="font-family:Objectivity; font-weight:normal"
-              :source="article.content"
-            />
-
-            <div class="mb-24 overflow-auto article-sources">
-              <VueMarkdown :source="article.sources" />
-            </div>
+          <div class="px-4 overflow-hidden md:px-24 " >
+              <VueMarkdown @rendered="syntaxHighlight" class="mb-6 md:mb-12 article-content" :source="article.content"/>
+              <VueMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":source="article.sources" />
           </div>
           <!-- END: ARTICLE CONTENT -->
 
           <!-- START: DIVIDER -->
-          <div class="flex justify-center w-full mb-24">
+          <div class="flex justify-center w-full mb-12 md:mb-24">
             <div>
               <svg
                 width="214"
@@ -144,7 +140,7 @@
           <!-- END: DIVIDER -->
 
           <!-- START: NEXT ARTICLES & COMMENTS SECTION-->
-        <div class="grid grid-cols-1 px-12 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
+        <div class="grid grid-cols-1 px-4 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
           <CommentSection class="block mb-24 md:hidden" :article="article"/>
           <NextArticlesSection :nextArticles="nextArticles"/>
           <CommentSection class="hidden md:block" :article="article"/>
@@ -162,10 +158,14 @@ import unauthModal from "../../components/unauth/unauthModal";
 import Loader from "../../components/Loader";
 import NextArticlesSection from "../../components/auth/articles/NextArticlesSection";
 import CommentSection from "../../components/auth/articles/CommentSection";
+
 import VueMarkdown from "vue-markdown";
 
+import Prism from "prismjs";
+import "prismjs/themes/prism-okaidia.css"; // theme
+import "prismjs/components/prism-go.min"; // language
+
 import moment from "moment";
-import axios from "axios";
 
 export default {
   name: "Article",
@@ -178,6 +178,7 @@ export default {
   components: {
     Loader,
     VueMarkdown,
+    Prism,
     NextArticlesSection,
     CommentSection,
     unauthModal,
@@ -261,6 +262,12 @@ export default {
       return selectedData;
     },
 
+    syntaxHighlight: function () {
+      this.$nextTick(() => {
+        Prism.highlightAll();
+      });
+    },
+
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
     },
@@ -281,7 +288,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .no-scroll {
   max-height: 100vh;
   overflow: hidden;
@@ -291,27 +298,111 @@ export default {
   font-family: Objectivity;
   font-weight: bold;
   font-style: normal;
-  font-size: 48px;
-  line-height: 64px;
+  font-size: 20px;
+  line-height: 24px;
   color: #151316;
 }
 
+/* START: ARTICLE CONTENT */
 .article-content {
   font-family: Objectivity;
+  color: #151316;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.article-content > ul {
+  list-style-type: circle;
+}
+
+.article-content > h1 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.article-content > h2 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 16px;
+}
+
+.article-content > h3 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.article-content > p {
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  color: #151316;
-  line-height: 40px;
+  font-size: 14px;
 }
+/* END: ARTICLE CONTENT */
+
+/* START: ARTICLE SOURCES */
 
 .article-sources {
   font-family: Objectivity;
-  font-style: normal;
-  font-weight: italic;
-  font-size: 24px;
   color: #8c8c8c;
-  line-height: 40px;
+  line-height: 22px;
+}
+
+.article-sources > h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.article-sources > p {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8c8c8c;
+}
+
+/* END: ARTICLE SOURCES */
+
+@media screen and (min-width: 1024px) {
+  .article-title {
+    font-size: 48px;
+    line-height: 64px;
+  }
+
+  /* START: ARTICLE CONTENT */
+  .article-content {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .article-content > h1 {
+    font-size: 36px;
+  }
+
+  .article-content > h2 {
+    font-size: 28px;
+  }
+
+  .article-content > h3 {
+    font-size: 24px;
+  }
+
+  .article-content > p {
+    font-size: 24px;
+  }
+  /* END: ARTICLE CONTENT */
+
+  /* START: ARTICLE SOURCES */
+  .article-sources {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  .article-sources > h3,
+  p {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  /* END: ARTICLE SOURCES */
 }
 
 .author-image {
@@ -402,7 +493,7 @@ export default {
 
 @media screen and (max-width: 950px) {
   .breadcrumb-container {
-    margin-top: 80px;
+    margin-top: 60px;
   }
 }
 </style>
