@@ -71,17 +71,29 @@
           Related
         </h3> -->
 
-        <div v-if="!course.articles.length > 0">No Articles Yet</div>
-        <div
-          v-else
-          class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
-        >
-          <articleEntry
-            v-for="article in filteredArticles"
-            v-bind:key="article.id"
-            v-bind:article="article"
-            class="w-full mb-0 sm:mb-1 md:mb-2"
-          ></articleEntry>
+        <div v-if="articles === nulll">
+          <div
+            class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
+          >
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          </div>
+        </div>
+        <div v-else>
+          <div v-if="!course.articles.length > 0">No Articles Yet</div>
+          <div
+            v-else
+            class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
+          >
+            <articleEntry
+              v-for="article in filteredArticles"
+              v-bind:key="article.id"
+              v-bind:article="article"
+              class="w-full mb-0 sm:mb-1 md:mb-2"
+            ></articleEntry>
+          </div>
         </div>
       </div>
     </div>
@@ -124,6 +136,7 @@ export default {
     return {
       title: "Loading...",
       course: null,
+      articles: null,
     };
   },
 
@@ -135,6 +148,7 @@ export default {
 
     this.course = data;
     this.title = data.name;
+    this.articles = this.getArticles();
 
     // this.$store.dispatch("articlesStore/getArticles");
     // this.$store.dispatch("coursesStore/getCourses");
@@ -149,11 +163,6 @@ export default {
 
     courses() {
       const data = this.$store.state.coursesStore.courses;
-      return data;
-    },
-
-    articles() {
-      const data = this.$store.state.articlesStore.articles;
       return data;
     },
 
@@ -191,7 +200,12 @@ export default {
     },
   },
 
-  methods: {},
+  methods: {
+    getArticles() {
+      const data = this.$store.state.articlesStore.articles;
+      return data;
+    }
+  },
 
   watch: {
     "$route.params.id": async function (id) {
