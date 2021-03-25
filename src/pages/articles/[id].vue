@@ -1,20 +1,28 @@
 <template lang="html">
-  <Layout>
-    <section class="flex justify-center min-h-screen pt-16 pb-32">
+  <Layout v-bind:class="{ 'no-scroll': !isAuthenticated}">
+    <!-- MODAL -->
+    <unauthModal v-if="!isAuthenticated && article !== null" class="z-50"/>
+    <!-- END MODAL -->
+    <section class="flex justify-center min-h-screen pt-8 pb-32 md:pt-16">
       <div class="w-screen lg:px-10 2xl:px-0 md:container">
-        <div class="mb-10 breadcrumb-container pl-12 md:pl-0">
+        <div class="pl-4 mb-4 sm:mb-10 sm:pl-12 md:mx-8 breadcrumb-container md:pl-0">
           <span>
               <button button @click="$router.go(-1)"
-                class="pr-6 breadcrumb-text ">
+                class="pr-6 breadcrumb-text">
                   Back
               </button>
-              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
-              <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
-                class="pr-6  breadcrumb-text hidden md:inline-block">
+              <span v-if="article !== null" class="hidden pr-6 breadcrumb-slash md:inline">/</span>
+              
+              <button v-if="article !== null && article.courses.length !== 0" @click="$router.push(`/courses/${article.courses[0].id}`)"
+                class="hidden pr-6 breadcrumb-text md:inline-block">
                   {{article.courses[0].name}}
               </button>
-              <span v-if="article !== null" class="pr-6 breadcrumb-slash hidden md:inline">/</span>
-              <span v-if="article !== null" class=" breadcrumb-text hidden md:inline-block">{{ article.title }}</span>
+                            <button v-else-if="article !== null && article.categories.length !== 0" @click="$router.push(`/categories/${article.categories[0].name.toLowerCase()}`)"
+                class="hidden pr-6 breadcrumb-text md:inline-block">
+                  {{article.categories[0].name}}
+              </button>
+              <span v-if="article !== null" class="hidden pr-6 breadcrumb-slash md:inline">/</span>
+              <span v-if="article !== null" class="hidden breadcrumb-text md:inline-block">{{ article.title }}</span>
             </span>
         </div>
 
@@ -22,20 +30,22 @@
         <div v-if="article === null" >
           <Loader/>
         </div>
-         <!-- END:LOADER -->
-         
+        <!-- END:LOADER -->
+        
 
       <!-- START:ARTICLE -->
         <div v-else >
-          <div class="px-12 mb-12 md:px-24">
+          <div class="flex justify-center px-4 mb-12 md:px-24">
+            <div class="w-full">
 
             <!-- START: TITLE -->
             <p class="mb-5 article-title">{{ article.title }}</p>
             <!-- END: TITLE -->
 
             <!-- START: Second Row -->
-                    <div class="grid grid-cols-1 md:gap-2 md:grid-cols-2 md:container ">
-<!-- Start: Article Author and Dates -->
+              <div class="grid grid-cols-1 md:gap-2 md:grid-cols-2 md:container ">
+                      
+              <!-- Start: Article Author and Dates -->
               <div class="flex items-center w-full">
                   <g-image
                     alt="author-image"
@@ -78,8 +88,11 @@
                     class="mx-2"
                     ></a>
 
-<button class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
+<button v-if="!isBooked" @click="saveArticle" class="flex items-center px-6 py-2 font-bold text-teal-500 bg-transparent border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
   <span>Bookmark</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
+</button>
+<button v-else  @click="removeArticle" class="flex items-center px-6 py-2 font-bold text-white bg-teal-500 border border-teal-500 border-solid rounded-full outline-none focus:outline-none bookmark-hover" type="button">
+  <span>Bookmarked</span> <g-image :src="require('@/assets/img/icons/Bookmark.svg')" class="ml-2 bookmark-icon"/>
 </button>
                 </div>
               </div>
@@ -87,37 +100,32 @@
         </div>
 
         
-            <div class="flex">
-              
-            </div>
+
             <!-- END: Second Row -->
+          </div>
           </div>
           <!-- END: ARTICLE INFO -->
 
           <!-- START: FEATURED IMAGE -->
 
           <g-image
-            class="w-full mb-24 overflow-auto"
+            class="w-full mb-8 overflow-auto md:mb-24"
             :src="article.featuredImage.url"
           />
           <!-- END: FEATURED IMAGE -->
 
           <!-- START: ARTICLE CONTENT -->
-          <div class="px-12 overflow-hidden md:px-24" >
-            <VueMarkdown
-              class="mb-24 article-content "
-              style="font-family:Objectivity; font-weight:normal"
-              :source="article.content"
-            />
+          <div class="px-4 overflow-hidden md:px-24 " >
+              <ProcessedMarkdown class="mb-6 md:mb-12 article-content" :markdown="article.content"/>
+              <ProcessedMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":markdown="article.sources" />
 
-            <div class="mb-24 overflow-auto article-sources">
-              <VueMarkdown :source="article.sources" />
-            </div>
+              <!-- <VueMarkdown @rendered="syntaxHighlight" class="mb-6 md:mb-12 article-content" :source="article.content"/> -->
+              <!-- <VueMarkdown class="mb-12 overflow-auto md:mb-24 article-sources":source="article.sources" /> -->
           </div>
           <!-- END: ARTICLE CONTENT -->
 
           <!-- START: DIVIDER -->
-          <div class="flex justify-center w-full mb-24">
+          <div class="flex justify-center w-full mb-12 md:mb-24">
             <div>
               <svg
                 width="214"
@@ -135,10 +143,10 @@
           <!-- END: DIVIDER -->
 
           <!-- START: NEXT ARTICLES & COMMENTS SECTION-->
-        <div class="grid grid-cols-1 px-12 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
-          <CommentSection class="block mb-24 md:hidden" :comments="article.comments"/>
+        <div class="grid grid-cols-1 px-4 md:px-24 md:gap-4 md:grid-cols-2 md:container ">
+          <CommentSection class="block mb-24 md:hidden" :article="article"/>
           <NextArticlesSection :nextArticles="nextArticles"/>
-          <CommentSection class="hidden md:block" :comments="article.comments"/>
+          <CommentSection class="hidden md:block" :article="article"/>
         </div>
           <!-- END: NEXT ARTICLES & COMMENTS SECTION-->
           </div>
@@ -149,13 +157,13 @@
 </template>
 
 <script>
-import Loader from "../../components/Loader";
-import NextArticlesSection from "../../components/auth/articles/NextArticlesSection";
-import CommentSection from "../../components/auth/articles/CommentSection";
-import VueMarkdown from "vue-markdown";
+import unauthModal from "@/components/unauth/unauthModal";
+import Loader from "@/components/Loader";
+import NextArticlesSection from "@/components/auth/articles/NextArticlesSection";
+import CommentSection from "@/components/auth/articles/CommentSection";
+import ProcessedMarkdown from "@/components/auth/articles/ProcessedMarkdown";
 
 import moment from "moment";
-import axios from "axios";
 
 export default {
   name: "Article",
@@ -167,9 +175,10 @@ export default {
 
   components: {
     Loader,
-    VueMarkdown,
+    ProcessedMarkdown,
     NextArticlesSection,
     CommentSection,
+    unauthModal,
   },
 
   data() {
@@ -181,34 +190,59 @@ export default {
   },
 
   async mounted() {
-    const data = await this.getArticle(this.$route.params.id);
+    const data = await this.$store.dispatch(
+      "articlesStore/getArticle",
+      this.$route.params.id
+    );
     this.article = data;
     this.title = data.title;
 
     this.nextArticles = await this.getNextArticles();
 
-    this.$store.dispatch("articlesStore/getArticles");
-    this.$store.dispatch("coursesStore/getCourses");
-    this.$store.dispatch("topicsStore/getTopics");
-    this.$store.dispatch("categoriesStore/getCategories");
+    // this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
+    // this.$store.dispatch("categoriesStore/getCategories");
   },
 
   watch: {
     "$route.params.id": async function (id) {
-      this.article = await this.getArticle(id);
-      this.nextArticles = await this.getNextArticles();
+      this.article = null;
+      this.article = await this.$store.dispatch("articlesStore/getArticle", id);
       this.title = this.article.title;
+      this.nextArticles = await this.getNextArticles();
     },
   },
 
-  methods: {
-    async getArticle(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/articles/${id}`
-      );
-      return data;
+  // START: COMPUTED
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
     },
 
+    user() {
+      if (this.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+
+    isBooked() {
+      if (this.isAuthenticated) {
+        for (const eachArticle of this.user.articles) {
+          if (this.article.id === eachArticle.id) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
+  },
+  // END: COMPUTED
+
+  // START: METHODS
+  methods: {
     async getNextArticles() {
       let i = 0;
       const selectedData = [];
@@ -228,44 +262,149 @@ export default {
     formatDate(date) {
       return moment(date).format("MMMM DD, YYYY");
     },
+
+    saveArticle() {
+      this.user.articles.push(this.article);
+      this.$store.dispatch("userStore/updateUser", this.user);
+    },
+
+    removeArticle() {
+      this.user.articles = this.user.articles.filter(
+        (article) => article.id !== this.article.id
+      );
+      this.$store.dispatch("userStore/updateUser", this.user);
+    },
   },
+  // END: METHODS
 };
 </script>
 
 <style scoped>
-.article-title {
+::v-deep .no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+::v-deep .article-title {
   font-family: Objectivity;
   font-weight: bold;
   font-style: normal;
-  font-size: 48px;
-  line-height: 64px;
+  font-size: 20px;
+  line-height: 24px;
   color: #151316;
 }
 
-.article-content {
+/* START: ARTICLE CONTENT */
+::v-deep .article-content {
   font-family: Objectivity;
+  color: #151316;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+::v-deep .article-content > ul {
+  list-style-type: circle;
+}
+
+::v-deep .article-content > h1 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 20px;
+}
+
+::v-deep .article-content > h2 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 16px;
+}
+
+::v-deep .article-content > h3 {
+  font-weight: bold;
+  font-style: normal;
+  font-size: 14px;
+}
+
+::v-deep .article-content > p {
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
-  color: #151316;
-  line-height: 40px;
+  font-size: 14px;
 }
 
-.article-sources {
+::v-deep .article-content > code {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+/* END: ARTICLE CONTENT */
+
+/* START: ARTICLE SOURCES */
+::v-deep .article-sources {
   font-family: Objectivity;
-  font-style: normal;
-  font-weight: italic;
-  font-size: 24px;
   color: #8c8c8c;
-  line-height: 40px;
+  line-height: 22px;
 }
 
-.author-image {
+::v-deep .article-sources > h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+::v-deep .article-sources > p {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8c8c8c;
+}
+/* END: ARTICLE SOURCES */
+
+@media screen and (min-width: 1024px) {
+  ::v-deep .article-title {
+    font-size: 48px;
+    line-height: 64px;
+  }
+
+  /* START: ARTICLE CONTENT */
+  ::v-deep .article-content {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  ::v-deep .article-content > h1 {
+    font-size: 36px;
+  }
+
+  ::v-deep .article-content > h2 {
+    font-size: 28px;
+  }
+
+  ::v-deep .article-content > h3 {
+    font-size: 24px;
+  }
+
+  ::v-deep .article-content > p {
+    font-size: 24px;
+  }
+  /* END: ARTICLE CONTENT */
+
+  /* START: ARTICLE SOURCES */
+  ::v-deep .article-sources {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  ::v-deep .article-sources > h3,
+  .article-sources > p {
+    font-size: 24px;
+    line-height: 40px;
+  }
+  /* END: ARTICLE SOURCES */
+}
+
+::v-deep .author-image {
   width: 65px;
   height: 65px;
 }
 
-.author-name {
+::v-deep .author-name {
   font-family: Objectivity;
   font-weight: bold;
   font-style: normal;
@@ -273,7 +412,7 @@ export default {
   line-height: 24px;
 }
 
-.article-publishedDate {
+::v-deep .article-publishedDate {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -282,7 +421,7 @@ export default {
   color: #626262;
 }
 
-.article-lastEditedDate {
+::v-deep .article-lastEditedDate {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -291,7 +430,8 @@ export default {
   color: #b4b4b4;
 }
 
-.breadcrumb, .breadcrumb-text {
+::v-deep .breadcrumb,
+.breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -301,7 +441,7 @@ export default {
   /* display: inline-block; */
 }
 
-.breadcrumb-slash {
+::v-deep .breadcrumb-slash {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -310,42 +450,46 @@ export default {
   color: #dbdad5;
 }
 
-.breadcrumb-text {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+::v-deep .breadcrumb-text {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
-.breadcrumb-text:hover {
+::v-deep .breadcrumb-text:hover {
   color: #83827f;
 }
 
-.bookmark-hover, .bookmark-hover > span, .bookmark-hover > .bookmark-icon {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+::v-deep .bookmark-hover,
+.bookmark-hover > span,
+.bookmark-hover > .bookmark-icon {
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
-.bookmark-hover:hover {
+::v-deep .bookmark-hover:hover {
   width: 151px;
   height: 42px;
   background: #38b2ac;
 }
 
-.bookmark-hover:hover > .bookmark-icon {
+::v-deep .bookmark-hover:hover > .bookmark-icon {
   transform: translateX(32px);
   filter: brightness(500%);
 }
 
-.bookmark-hover:hover > span {
+::v-deep .bookmark-hover:hover > span {
   display: none;
 }
 
 @media screen and (max-width: 950px) {
-  .breadcrumb-container {
-    margin-top: 80px;
+  ::v-deep .breadcrumb-container {
+    margin-top: 60px;
   }
 }
 </style>
+
+

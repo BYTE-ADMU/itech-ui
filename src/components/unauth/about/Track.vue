@@ -62,37 +62,73 @@ export default {
   computed: {
     topics() {
       const data = this.$store.state.topicsStore.topics.reverse();
-      return data;
+      if (typeof data !== undefined && data.length !== 0) {
+        return data;
+      }
+      return [];
     },
 
     filteredHackerTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hacker");
-      });
+      if (this.topics.length !== 0) {
+        return this.topics.filter((topic) => {
+          if (
+            typeof topic.categories[0] !== undefined ||
+            typeof topic.categories[0] !== null
+          ) {
+            return topic.categories[0].name.toLowerCase().includes("hacker");
+          }
+        });
+      }
+      return [];
     },
 
     threeHackertopics() {
-      return this.filteredHackerTopics.slice(0, 3);
+      if (this.filteredHackerTopics.length !== 0) {
+        return this.filteredHackerTopics.slice(0, 3);
+      }
+      return null;
     },
 
     filteredHipsterTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hipster");
-      });
+      if (this.topics.length !== 0) {
+        return this.topics.filter((topic) => {
+          if (
+            typeof topic.categories[0].name === undefined ||
+            typeof topic.categories[0] !== null
+          ) {
+            return topic.categories[0].name.toLowerCase().includes("hipster");
+          }
+        });
+      }
+      return [];
     },
 
     threeHipstertopics() {
-      return this.filteredHipsterTopics.slice(0, 3);
+      if (this.filteredHipsterTopics.length !== 0) {
+        return this.filteredHipsterTopics.slice(0, 3);
+      }
+      return null;
     },
 
     filteredHustlerTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hustler");
-      });
+      if (this.topics.length !== 0) {
+        return this.topics.filter((topic) => {
+          if (
+            typeof topic.categories[0] !== undefined ||
+            typeof topic.categories[0] !== null
+          ) {
+            return topic.categories[0].name.toLowerCase().includes("hustler");
+          }
+        });
+      }
+      return [];
     },
 
     threeHustlertopics() {
-      return this.filteredHustlerTopics.slice(0, 3);
+      if (this.filteredHustlerTopics.length !== 0) {
+        return this.filteredHustlerTopics.slice(0, 3);
+      }
+      return null;
     },
 
     trackerBackground() {

@@ -23,14 +23,6 @@
         />
 
         <div class="carousel__track">
-          <!-- <div
-          class="carousel__slide"
-          style="background-color: blue"
-          v-for="slide in slides"
-          :key="slide.id"
-        >
-          <h1>2</h1>
-        </div> -->
           <Slide
             class="py-24 carousel__slide"
             v-for="slide in slides"
@@ -98,7 +90,6 @@ import CourseButton from "./CourseButton";
 import Slide from "./Slide";
 
 import Loader from "../../../Loader";
-import axios from "axios";
 
 export default {
   name: "Slides",
@@ -109,47 +100,22 @@ export default {
     Slide,
     Loader,
   },
-  data() {
-    return {
-      articles: null,
-      courses: null,
-    };
-  },
-
-  async mounted() {
-    this.articles = await this.getArticles();
-    this.courses = await this.getCourses();
-  },
-
-  methods: {
-    async getArticles() {
-      // const data = this.$store.state.articlesStore.articles.reverse();
-      // return data;
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/articles/?_sort=published_at`
-      );
-      return data.reverse();
-    },
-
-    async getCourses() {
-      // const data = this.$store.state.coursesStore.courses.reverse();
-      // return data;
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/courses/?_sort=published_at`
-      );
-      return data.reverse();
-    },
-  },
 
   computed: {
     articles() {
       const data = this.$store.state.articlesStore.articles.reverse();
-      return data;
+      if (typeof data !== undefined && data.length !== 0) {
+        return data;
+      }
+      return null;
     },
 
     courses() {
       const data = this.$store.state.coursesStore.courses.reverse();
-      return data;
+      if (typeof data !== undefined && data.length !== 0) {
+        return data;
+      }
+      return null;
     },
   },
 };
