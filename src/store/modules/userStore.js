@@ -9,6 +9,10 @@ const userStore = {
     user: {},
     isAuthenticated: false,
     savedArticles: [],
+    userSearch: "",
+    isOpenSearchDropdown: false,
+    isOpenUserDropdown: false,
+
   }),
 
   // to handle state
@@ -83,7 +87,20 @@ const userStore = {
     },
     async logout({ state, commit }) {
       commit('toggleLogout');
+    },
+
+    updateUserSearch({ state, commit }, value) {
+      commit('setUserSearch', value);
+    },
+
+    updateIsOpenSearchDropdown({ state, commit }, value) {
+      commit('setIsOpenSearchDropdown', value);
+    },
+
+    updateIsOpenUserDropdown({ state, commit }, value) {
+      commit('setIsOpenUserDropdown', value);
     }
+
   },
 
   // to handle mutations
@@ -102,7 +119,23 @@ const userStore = {
 
     toggleLogout(state) {
       state.isAuthenticated = false;
-    }
+    },
+
+    setUserSearch(state, value) {
+      state.userSearch = value
+    },
+
+    setIsOpenSearchDropdown(state, value) {
+      state.isOpenSearchDropdown = value
+    },
+
+    setIsOpenUserDropdown(state, value) {
+      state.isOpenUserDropdown = value
+    },
+
+
+
+
   }
 }
 

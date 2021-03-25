@@ -1,19 +1,24 @@
 <template>
   <div class="layout">
-    <Navbar />
-    <slot />
-    <Footer />
+    <Navbar class="lg:block hidden" />
+    <NavbarMobile class="lg:hidden block" />
+    <div class="w-full" @click="closeDropdowns">
+      <slot />
+      <Footer />
+    </div>
   </div>
 </template>
 
 
 <script>
 import Navbar from "~/components/Navbar.vue";
+import NavbarMobile from "~/components/NavbarMobile.vue";
 import Footer from "~/components/Footer.vue";
 export default {
   name: "unauth-index",
   components: {
     Navbar,
+    NavbarMobile,
     Footer,
   },
 
@@ -23,6 +28,13 @@ export default {
     this.$store.dispatch("topicsStore/getTopics");
     this.$store.dispatch("categoriesStore/getCategories");
   },
+
+  methods: {
+    closeDropdowns() {
+      this.$store.dispatch("userStore/updateIsOpenSearchDropdown", false);
+      this.$store.dispatch("userStore/updateIsOpenUserDropdown", false);
+    },
+  },
 };
 </script>
 
@@ -31,6 +43,13 @@ export default {
   font-family: Objectivity;
   src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Objectivity;
+  src: url("../assets/font/Objectivity/Objectivity-Bold.otf") format("truetype");
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -107,8 +126,6 @@ export default {
 
 .font-objectivity {
   font-family: Objectivity;
-  font-weight: normal;
-  font-style: normal;
 }
 
 .font-neuemachina {
@@ -136,6 +153,17 @@ export default {
   font-size: 16px;
   text-align: center;
   color: #f9f7f2;
+  transition: all ease-in-out 200ms;
+  outline: none;
+}
+
+.form_button:hover {
+  background-color: #40a5a6;
+}
+
+.form_button:active {
+  transform: translateY(1px);
+  box-shadow: inset -7px 7px 30px rgba(0, 0, 0, 0.25);
 }
 
 .form_inputs {

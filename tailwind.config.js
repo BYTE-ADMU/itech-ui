@@ -5,7 +5,22 @@ module.exports = {
   },
   purge: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'fountain-blue': {
+          '50': '#f7fcfc',
+          '100': '#f0f9f9',
+          '200': '#d8eff0',
+          '300': '#c1e6e6',
+          '400': '#93d3d4',
+          '500': '#64c0c1',
+          '600': '#5aadae',
+          '700': '#4b9091',
+          '800': '#3c7374',
+          '900': '#315e5f'
+        }
+      },
+    },
     fontSize: {
       'xs': '.75rem',
       'sm': '.875rem',
