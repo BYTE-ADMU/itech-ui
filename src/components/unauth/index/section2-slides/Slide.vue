@@ -27,7 +27,7 @@
         <!-- START: FIRST COLUMN -->
         <div
           v-if="articles === null || courses === null"
-          class="grid hidden grid-cols-1 mx-auto lg:block"
+          class="grid hidden grid-cols-1 mx-auto lg:block animate-pulse"
         >
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-white rounded-lg small-box"></div>
@@ -60,7 +60,7 @@
         <!-- START: THIRD COLUMN -->
         <div
           v-if="articles === null || courses === null"
-          class="grid hidden grid-cols-1 mx-auto lg:block"
+          class="grid hidden grid-cols-1 mx-auto lg:block animate-pulse"
         >
           <div class="mb-4 bg-white rounded-lg long-box"></div>
           <div class="grid grid-cols-2 gap-4">
@@ -69,7 +69,7 @@
           </div>
         </div>
         <div
-          v-else="articles === null || courses === null"
+          v-else
           class="grid hidden grid-cols-1 mx-auto lg:block"
         >
           <ArticleButton
