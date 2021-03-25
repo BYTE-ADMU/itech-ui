@@ -69,14 +69,14 @@
                 </h1>
               </g-link>
 
-              <g-link
+              <!-- <g-link
                 class="text-xs text-right sm:text-sm font-objectivity nav__link"
                 to="/forgotpassword/"
               >
                 <h1 class="my-4 subbutton" style="color: #c0c0c0">
                   forgot password?
                 </h1>
-              </g-link>
+              </g-link> -->
             </div>
             <button
               @click="login"
