@@ -12,9 +12,14 @@ export default function (Vue, { appOptions, router, head, isClient }) {
 
   if (process.isClient) {
     router.beforeEach((to, from, next) => {
+      if (!to.path.includes("discover")) {
+        const value = "";
+        store.dispatch("userStore/updateUserSearch", value);
+      }
       if (
         to.path.includes("dashboard") ||
-        to.path.includes("articles")
+        to.path.includes("user")
+
       ) {
         if (!store.state.userStore.isAuthenticated) {
           next("/login/");

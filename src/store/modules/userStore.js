@@ -2,93 +2,36 @@ import axios from 'axios';
 
 const userStore = {
   namespaced: true,
-  // to handle state
+  // START: STATE ===== ===== ===== ===== =====
   state: () => ({
     API_URL: 'https://calm-everglades-39473.herokuapp.com',
+
+    // Start: User Information
     token: '',
     user: {},
+    // user = {
+    //   id: data.user.id,
+    //   username: data.user.username,
+    //   email: data.user.email,
+    //   year: data.user.year,
+    //   course: data.user.course,
+    //   profileImage: data.user.profileImage.url
+    // }
     isAuthenticated: false,
-    savedArticles: [],
+    // Emd: User Information
+
+    //Start: User Experience
     userSearch: "",
     isOpenSearchDropdown: false,
     isOpenUserDropdown: false,
-
+    //End: User Experience
   }),
+  // END: STATE ===== ===== ===== ===== =====
 
-  // to handle state
-  getters: {},
 
-  //to handle actions
+  //START: ACTIONS ===== ===== ===== ===== =====
   actions: {
-    async login({ state, commit }, { email, password }) {
-      let data = {}
-
-      try {
-        // console.log(`${state.API_URL}/auth/local`);
-        const response = await axios.post(`${state.API_URL}/auth/local`, {
-          identifier: email,
-          password: password,
-        });
-
-        data = response.data;
-
-        try {
-          const response = await axios.get(`${state.API_URL}/user-informations`);
-          const profiles = response.data;
-          const myProfile = profiles.filter(profile => profile.email == email);
-
-          if (myProfile.length == 0) {
-            try {
-              const res = await axios.post(`${state.API_URL}/user-informations`, {
-                email,
-                course: 'BYTE',
-                school_id_number: password,
-                username: '',
-              });
-            } catch (e) {
-              console.log(e);
-            }
-          }
-        } catch (e) {
-          console.log(e);
-        }
-
-        commit('setToken', data.jwt);
-        commit('setUser', data.user);
-        commit('toggleAuthenticated');
-
-      } catch (e) {
-        console.log(e)
-      }
-    },
-    async register({ state, commit }, { username, email, password }) {
-      axios
-        .post(`${state.API_URL}/auth/local/register`, {
-          username,
-          email,
-          password,
-        })
-        .catch(error => {
-          // Handle error.
-          console.log('An error occurred:', error.response);
-        });
-    },
-    async infoReg({ state, commit }, { email, course, username }) {
-      try {
-        const res = await axios.post(`${state.API_URL}/user-informations`, {
-          email,
-          course,
-          username,
-        });
-        // console.log(res);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    async logout({ state, commit }) {
-      commit('toggleLogout');
-    },
-
+    //Start: Actions for User Experience
     updateUserSearch({ state, commit }, value) {
       commit('setUserSearch', value);
     },
@@ -99,44 +42,109 @@ const userStore = {
 
     updateIsOpenUserDropdown({ state, commit }, value) {
       commit('setIsOpenUserDropdown', value);
-    }
+    },
+    //End: Actions for User Experience
+
+    // Start: Login
+    async login({ state, commit }, { email, password }) {
+      try {
+        const { data } = await axios.post(`${state.API_URL}/auth/local`, {
+          identifier: email,
+          password: password,
+        });
+
+        commit('setToken', data.jwt); //Set Current User JWT
+        commit('setUser', data.user); //Set Current User Data
+        commit('toggleAuthenticated'); //Set Current User Status
+
+      } catch (e) { console.log(e) }
+    },
+    // End: Login
+
+    // Start: Logout
+    async logout({ state, commit }) { commit('toggleLogout'); },
+    // End: Logout
+
+    // Start: Register
+    async register({ state, commit }, newUser) {
+      try {
+        const res = await axios.post(`${state.API_URL}/auth/local/register`, newUser)
+      } catch (e) { console.log(e) }
+    },
+    // End: Register
+
+
+    // Start: Get User
+    getUser({ state, commit }) {
+      axios.get(`${state.API_URL}/users/${state.user.id}`)
+        .then((response) => {
+          commit('setUser', response.data); //Set Current User Data
+        })
+        .catch((error) => console.log(error));
+    },
+    // End: Get User
+
+
+    // Start: Update User
+    updateUser({ state, commit }, updatedUser) {
+      axios.put(`${state.API_URL}/users/${state.user.id}`, updatedUser)
+        .then((response) => {
+          commit('setUser', response.data); //Set Current User Data
+        })
+        .catch((error) => console.log(error));
+    },
+    // End: Update User
+
+    //Start:Update User profileImage
+    async updateUserImage({ state, commit }, imageFile) {
+      const oldUserImageId = (state.user.profileImage !== null) ? state.user.profileImage.id : null; //Old User Profile Image Id for Deletion
+
+      //Formatting Data of New User Profile Image
+      const updatedUserImage = new FormData();
+      updatedUserImage.append("files", imageFile);
+      updatedUserImage.append("path", `user/${state.user.id}`);
+      updatedUserImage.append("refId", state.user.id);
+      updatedUserImage.append("ref", "user");
+      updatedUserImage.append("field", "profileImage");
+      updatedUserImage.append("source", "users-permissions");
+
+      try {
+        //Add and Replace User Profile Image
+        const updateUserImageResponse = await axios.post(
+          `${state.API_URL}/upload`,
+          updatedUserImage
+        );
+
+        //Delete Old User Profile Image IF user has before
+        if (oldUserImageId !== null) {
+          const deleteOldUserImageResponse = await axios.delete(`${state.API_URL}/upload/files/${oldUserImageId}`);
+        }
+
+        return updateUserImageResponse.data[0];
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    //End:Update User profileImage
 
   },
+  //END: ACTIONS ===== ===== ===== ===== =====
 
-  // to handle mutations
+  // START: MUTATIONS ===== ===== ===== ===== =====
   mutations: {
-    setToken(state, token) {
-      state.token = token
-    },
+    // Start: User Information
+    setToken(state, token) { state.token = token },
+    setUser(state, user) { state.user = user },
+    toggleAuthenticated(state) { state.isAuthenticated = true },
+    toggleLogout(state) { state.isAuthenticated = false },
+    // End: User Information
 
-    setUser(state, user) {
-      state.user = user
-    },
-
-    toggleAuthenticated(state) {
-      state.isAuthenticated = true
-    },
-
-    toggleLogout(state) {
-      state.isAuthenticated = false;
-    },
-
-    setUserSearch(state, value) {
-      state.userSearch = value
-    },
-
-    setIsOpenSearchDropdown(state, value) {
-      state.isOpenSearchDropdown = value
-    },
-
-    setIsOpenUserDropdown(state, value) {
-      state.isOpenUserDropdown = value
-    },
-
-
-
-
+    //Start: User Experience
+    setUserSearch(state, value) { state.userSearch = value },
+    setIsOpenSearchDropdown(state, value) { state.isOpenSearchDropdown = value },
+    setIsOpenUserDropdown(state, value) { state.isOpenUserDropdown = value },
+    //End: User Experience
   }
+  // END: MUTATIONS ===== ===== ===== ===== =====
 }
-
 export default userStore;

@@ -1,5 +1,28 @@
 <template>
-  <Layout>
+  <Layout v-bind:class="{'no-scroll': !modalsClosed}">
+    <!-- modals -->
+    <loggingInModal id="loggingIn" class="z-50 hidden"/>
+    <successfulLoginModal id="successModal" class="z-50 hidden"/>
+    <!-- unsuccessful login modal -->
+    <div id="unsuccessfulModal" class="h-screen w-screen fixed hidden modal-margin">
+      <div class="bg-modal text-center table-cell align-middle">
+        <div class="bg-white mx-auto border border-white rounded-xl py-16 relative modal-size">
+          <button @click="closeModal()" class="w-full">
+            <g-image
+              :src="require('@/assets/img/unauth/close-modal-vector.svg')"
+              class="absolute x-icon" style="right: 23px; top: 23px"/>
+          </button>
+          <h1 class="font-neuemachina px-4 text-xl sm:text-2xl md:text-4xl mb-12">
+            Incorrect email or password.
+          </h1>
+          <button @click="closeModal()" class="font-bold form_button py-3 px-6">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- unsuccessful login modal end -->
+    <!-- modals end -->
     <section>
       <div
         class="grid items-center w-screen px-4 py-8 md:flex sm:px-12 lg:px-16"
@@ -70,10 +93,17 @@
 </template>
 
 <script>
+import loggingInModal from '../components/loggingInModal'
+import successfulLoginModal from '../components/successfulLoginModal'
+
 export default {
   name: "login",
   metaInfo: {
     title: "Login",
+  },
+  components: {
+    successfulLoginModal,
+    loggingInModal,
   },
   data() {
     return {
@@ -81,16 +111,33 @@ export default {
         email: "",
         password: "",
       },
+      modalsClosed: true,
     };
   },
+
   methods: {
     async login() {
+      this.modalsClosed = false;
+      const loggingIn = document.getElementById('loggingIn');
+      loggingIn.classList.remove('hidden');
       await this.$store.dispatch("userStore/login", this.user);
       if (this.$store.state.userStore.isAuthenticated) {
-        this.$router.replace("/dashboard/");
-        // alert("You have logged in!");
+        const success = document.getElementById('successModal');
+        loggingIn.classList.add('hidden');
+        success.classList.remove('hidden');
+      } else {
+        const unsuccessful = document.getElementById('unsuccessfulModal');
+        loggingIn.classList.add('hidden');
+        unsuccessful.classList.remove('hidden');
+        unsuccessful.classList.add('table');
       }
     },
+    closeModal() {
+      this.modalsClosed = true;
+      const unsuccessful = document.getElementById('unsuccessfulModal');
+      unsuccessful.classList.remove('table');
+      unsuccessful.classList.add('hidden');
+    }
   },
   computed: {
     isFormComplete() {
@@ -99,3 +146,9 @@ export default {
   },
 };
 </script>
+<style>
+.no-scroll {
+  max-height: 100vh;
+  overflow: hidden;
+}
+</style>

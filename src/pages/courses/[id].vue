@@ -43,7 +43,7 @@
         <div class="flex items-start justify-between w-full">
           <!-- Featured & New On ITECH -->
           <div class="flex flex-col w-full">
-            <cover :course="course" />
+            <cover :course="course" :isBooked="isBooked" />
           </div>
         </div>
 
@@ -76,7 +76,6 @@
 
 <script>
 import Loader from "../../components/Loader";
-
 import cover from "../../components/auth/courses/cover";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
@@ -110,19 +109,23 @@ export default {
   },
 
   async mounted() {
-    const data = await this.getCourse(this.$route.params.id);
+    const data = await this.$store.dispatch(
+      "coursesStore/getCourse",
+      this.$route.params.id
+    );
+
     this.course = data;
     this.title = data.name;
 
-    this.$store.dispatch("articlesStore/getArticles");
-    this.$store.dispatch("coursesStore/getCourses");
-    this.$store.dispatch("topicsStore/getTopics");
-    this.$store.dispatch("categoriesStore/getCategories");
+    // this.$store.dispatch("articlesStore/getArticles");
+    // this.$store.dispatch("coursesStore/getCourses");
+    // this.$store.dispatch("topicsStore/getTopics");
+    // this.$store.dispatch("categoriesStore/getCategories");
   },
 
   computed: {
-    id() {
-      return this.$route.params.id;
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
     },
 
     courses() {
@@ -148,21 +151,34 @@ export default {
 
       return [];
     },
-  },
 
-  methods: {
-    async getCourse(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/courses/${id}`
-      );
-      return data;
+    user() {
+      if (this.$store.state.userStore.isAuthenticated) {
+        const data = this.$store.state.userStore.user;
+        return data;
+      }
+      return null;
+    },
+
+    isBooked() {
+      if (this.$store.state.userStore.isAuthenticated) {
+        for (const eachCourse of this.user.courses) {
+          if (this.course.id === eachCourse.id) {
+            return true;
+          }
+        }
+      }
+      return false;
     },
   },
 
+  methods: {},
+
   watch: {
-    id(newId, oldId) {
-      this.topic = this.getCourse(newId);
-      this.title = this.getCourse(newId).name;
+    "$route.params.id": async function (id) {
+      this.course = null;
+      this.course = await this.$store.dispatch("coursesStore/getCourse", id);
+      this.title = this.course.name;
     },
   },
 };

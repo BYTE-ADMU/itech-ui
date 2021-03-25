@@ -1,37 +1,56 @@
 <template>
   <Layout>
     <!-- ROOT -->
-    <div
+    <!-- <div
       v-if="articles === null && courses === null && topics === null"
       class="flex flex-col w-2/3 min-h-screen py-20 mx-auto mb-24"
     >
       <Loader />
-    </div>
+    </div> -->
 
     <div
-      v-else
-      class="container flex flex-col w-screen min-h-screen pb-20 sm:py-20 mx-auto mb-24"
+      class="container flex flex-col w-screen min-h-screen pb-20 mx-auto mb-24 sm:py-20"
     >
       <div class="flex items-start justify-between w-full">
         <!-- Featured & New On ITECH -->
-        <div class="flex flex-col ">
+        <div class="flex flex-col w-full">
           <featureEntry
+            v-if="featuredArticle !== null"
             v-bind:key="featuredArticle.id"
             v-bind:article="featuredArticle"
           />
 
+          <featureEntry v-else v-bind:article="null" />
+
           <div class="px-6">
-            <h3 class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina">
+            <h3
+              class="mx-2 mt-12 text-2xl font-bold uppercase font-neuemachina"
+            >
               New On ITECH
             </h3>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 mt-1 mb-8">
+            <div
+              v-if="newOnItech !== null"
+              class="grid grid-cols-1 gap-4 mt-1 mb-8 sm:grid-cols-2 md:grid-cols-4"
+            >
               <articleEntry
                 class="w-full mb-0 sm:mb-1 md:mb-2"
                 v-for="article in newOnItech"
                 v-bind:key="article.id"
                 v-bind:article="article"
               ></articleEntry>
-          </div>
+            </div>
+
+            <div
+              v-else
+              class="grid grid-cols-1 gap-4 mt-1 mb-8 sm:grid-cols-2 md:grid-cols-4"
+            >
+              <articleEntry
+                class="w-full mb-0 sm:mb-1 md:mb-2"
+                v-for="(article, num) in 4"
+                v-bind:key="num"
+                v-bind:article="null"
+              ></articleEntry>
+            </div>
           </div>
         </div>
       </div>
@@ -39,26 +58,54 @@
       <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="w-full sm:flex mt-4 mb-12 px-6">
-        <div class="w-full sm:w-3/12">
-          <h2 class="py-2 px-3 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina">
+
+      <div
+        class="grid grid-cols-1 gap-4 px-6 mb-12 md:grid-cols-4"
+        v-if="threeFeaturedCourses !== null"
+      >
+        <div class="w-full py-2">
+          <h2
+            class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
+          >
             Featured Courses ✨
           </h2>
         </div>
+
         <playlistEntry
           v-for="course in threeFeaturedCourses"
           v-bind:key="course.id"
           v-bind:course="course"
         />
       </div>
+      <div class="grid grid-cols-1 gap-4 px-6 mb-12 md:grid-cols-4" v-else>
+        <div class="w-full py-2">
+          <h2
+            class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
+          >
+            Featured Courses ✨
+          </h2>
+        </div>
+
+        <playlistEntry
+          v-for="(course, num) in 3"
+          v-bind:key="num"
+          v-bind:course="null"
+        />
+      </div>
+
       <!-- Hacker -->
-      <div class="md:flex w-full mt-8 mb-8 px-6">
+      <div class="w-full px-6 mt-8 mb-8 md:flex">
         <bitbotFeature bb3="hacker" />
         <div class="flex md:flex-col md:w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
+          <h5
+            class="hidden mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text md:block"
+          >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div
+            class="grid grid-cols-1 gap-4 sm:grid-cols-3"
+            v-if="threeHackerArticles !== null"
+          >
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHackerArticles"
@@ -66,16 +113,29 @@
               v-bind:article="article"
             ></articleEntry>
           </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3" v-else>
+            <articleEntry
+              class="w-full mb-0 sm:mb-1 md:mb-2"
+              v-for="(article, num) in 3"
+              v-bind:key="num"
+              v-bind:article="null"
+            ></articleEntry>
+          </div>
         </div>
       </div>
       <!-- Hipster -->
-      <div class="md:flex w-full mt-8 mb-8 px-6">
+      <div class="w-full px-6 mt-8 mb-8 md:flex">
         <bitbotFeature bb3="hipster" />
         <div class="flex md:flex-col md:w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
+          <h5
+            class="hidden mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text md:block"
+          >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div
+            class="grid grid-cols-1 gap-4 sm:grid-cols-3"
+            v-if="threeHipsterArticles !== null"
+          >
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHipsterArticles"
@@ -83,21 +143,42 @@
               v-bind:article="article"
             ></articleEntry>
           </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3" v-else>
+            <articleEntry
+              class="w-full mb-0 sm:mb-1 md:mb-2"
+              v-for="(article, num) in 3"
+              v-bind:key="num"
+              v-bind:article="null"
+            ></articleEntry>
+          </div>
         </div>
       </div>
       <!-- Hustler -->
-      <div class="md:flex w-full mt-8 mb-8 px-6">
+      <div class="w-full px-6 mt-8 mb-8 md:flex">
         <bitbotFeature bb3="hustler" />
         <div class="flex md:flex-col md:w-9/12">
-          <h5 class="mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text hidden md:block">
+          <h5
+            class="hidden mx-2 mb-1 font-bold uppercase text-md font-neuemachina article-text md:block"
+          >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div
+            class="grid grid-cols-1 gap-4 sm:grid-cols-3"
+            v-if="threeHustlerArticles !== null"
+          >
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHustlerArticles"
               v-bind:key="article.id"
               v-bind:article="article"
+            ></articleEntry>
+          </div>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3" v-else>
+            <articleEntry
+              class="w-full mb-0 sm:mb-1 md:mb-2"
+              v-for="(article, num) in 3"
+              v-bind:key="num"
+              v-bind:article="null"
             ></articleEntry>
           </div>
         </div>
@@ -116,8 +197,6 @@ import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
 
-import axios from "axios";
-
 export default {
   name: "Dashboard",
   metaInfo: {
@@ -134,133 +213,97 @@ export default {
     articleHeader,
   },
 
-  data() {
-    return {
-      topics: null,
-      courses: null,
-      articles: null,
-    };
-  },
-
   async mounted() {
-    this.topics = await this.getTopics();
-    this.courses = await this.getCourses();
-    this.articles = await this.getArticles();
-    // this.articles = await this.$store.dispatch("articlesStore/getArticles");
-    // this.$store.dispatch("coursesStore/getCourses");
-    // this.$store.dispatch("topicsStore/getTopics");
+    this.$store.dispatch("userStore/getUser");
   },
 
   computed: {
     // START: GET DATA FROM STORE
-    // topics() {
-    //   const data = this.$store.state.topicsStore.topics.reverse();
-    //   return data;
-    // },
+    courses() {
+      const data = this.$store.state.coursesStore.courses.reverse();
+      if (typeof data !== undefined || data.length !== 0) {
+        return data;
+      }
+      return [];
+    },
 
-    // courses() {
-    //   const data = this.$store.state.coursesStore.courses.reverse();
-    //   return data;
-    // },
-
-    // articles() {
-    //   const data = this.$store.state.articlesStore.articles.reverse();
-    //   return data;
-    // },
+    articles() {
+      const data = this.$store.state.articlesStore.articles.reverse();
+      if (typeof data !== undefined || data.length !== 0) {
+        return data;
+      }
+      return [];
+    },
 
     // END: GET DATA FROM STORE
 
+    isAuthenticated() {
+      return this.$store.state.userStore.isAuthenticated;
+    },
+
     hackerArticles() {
-      return this.articles.filter((article) => {
-        return article.categories[0].name.includes("Hacker");
-      });
+      if (this.articles.length !== 0) {
+        return this.articles.filter((article) => {
+          return article.categories[0].name.includes("Hacker");
+        });
+      }
+      return [];
     },
     hipsterArticles() {
-      return this.articles.filter((article) => {
-        return article.categories[0].name.includes("Hipster");
-      });
+      if (this.articles.length !== 0) {
+        return this.articles.filter((article) => {
+          return article.categories[0].name.includes("Hipster");
+        });
+      }
+      return [];
     },
     hustlerArticles() {
-      return this.articles.filter((article) => {
-        return article.categories[0].name.includes("Hustler");
-      });
+      if (this.articles.length !== 0) {
+        return this.articles.filter((article) => {
+          return article.categories[0].name.includes("Hustler");
+        });
+      }
+      return [];
     },
 
     featuredArticle() {
-      return this.articles[Math.floor(Math.random() * this.articles.length)];
-    },
-
-    featuredCourse() {
-      return this.courses[Math.floor(Math.random() * this.courses.length)];
+      if (this.articles.length !== 0) {
+        return this.articles[Math.floor(Math.random() * this.articles.length)];
+      }
+      return null;
     },
 
     newOnItech() {
-      return this.articles.slice(0, 4);
+      if (this.articles.length !== 0) {
+        return this.articles.slice(0, 4);
+      }
+      return null;
     },
 
     threeFeaturedCourses() {
-      return this.courses.slice(0, 3);
+      if (this.courses.length !== 0) {
+        return this.courses.slice(0, 3);
+      }
+      return null;
     },
 
     threeHackerArticles() {
-      return this.hackerArticles.slice(0, 3);
+      if (this.hackerArticles.length !== 0) {
+        return this.hackerArticles.slice(0, 3);
+      }
+      return null;
     },
     threeHipsterArticles() {
-      return this.hipsterArticles.slice(0, 3);
+      if (this.hipsterArticles.length !== 0) {
+        return this.hipsterArticles.slice(0, 3);
+      }
+      return null;
     },
     threeHustlerArticles() {
-      return this.hustlerArticles.slice(0, 3);
-    },
-
-    // TOPICS
-    hackerTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hacker");
-      });
-    },
-    hipsterTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hipster");
-      });
-    },
-    hustlerTopics() {
-      return this.topics.filter((topic) => {
-        return topic.categories[0].name.includes("Hustler");
-      });
-    },
-
-    threeHackerTopics() {
-      return this.hackerTopics.slice(0, 3);
-    },
-    threeHipsterTopics() {
-      return this.hipsterTopics.slice(0, 3);
-    },
-    threeHustlerTopics() {
-      return this.hustlerTopics.slice(0, 3);
-    },
-  },
-
-  methods: {
-    async getTopics() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/topics?_sort=published_at`
-      // );
-      const data = this.$store.state.topicsStore.topics.reverse();
-      return data;
-    },
-    async getCourses() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/courses?_sort=published_at`
-      // );
-      const data = this.$store.state.coursesStore.courses.reverse();
-      return data;
-    },
-    async getArticles() {
-      // const { data } = await axios.get(
-      //   `https://calm-everglades-39473.herokuapp.com/articles?_sort=published_at`
-      // );
-      const data = this.$store.state.articlesStore.articles.reverse();
-      return data;
+      if (this.hustlerArticles.length !== 0) {
+        return this.hustlerArticles.slice(0, 3);
+      }
+      return null;
     },
   },
 };
