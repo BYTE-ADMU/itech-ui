@@ -3,7 +3,7 @@
   <div class="w-full">
     <g-link
       v-if="article !== null"
-      class="flex p-2 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
+      class="flex h-full p-2 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
       :to="`/articles/${article.id}`"
     >
       <!-- PUT IMAGE AND DETAILS INSIDE -->
@@ -15,7 +15,7 @@
           class="object-cover w-full h-full rounded-lg"
         />
       </div>
-      <div class="p-3 my-auto overflow-hidden">
+      <div class="p-3 overflow-hidden">
         <g-link
           v-if="article.courses.length > 0"
           :to="`/courses/${article.courses[0].id}`"
@@ -31,10 +31,12 @@
           >{{ article.categories[0].name }}</g-link
         >
 
-        <p class="sm:mb-2 articleEntry-title">
+        <p class="mt-2 sm:mb-2 articleEntry-title">
           {{ article.title }}
         </p>
-        <p class="sm:mb-2 articleEntry-author">{{ article.author.name }}</p>
+        <p class="self-end sm:mb-2 articleEntry-author">
+          {{ article.author.name }}
+        </p>
       </div>
     </g-link>
 
@@ -79,6 +81,10 @@ export default {
 };
 </script>
 <style scoped>
+.article-entry {
+  height: 296px;
+}
+
 .hackerColor {
   color: #4e6afa;
 }
