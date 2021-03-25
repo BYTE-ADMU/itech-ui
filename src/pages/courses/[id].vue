@@ -37,7 +37,22 @@
       </span>
 
       <div v-if="course === null">
-        <Loader />
+        <!-- <Loader /> -->
+        <div class="flex items-start justify-between w-full">
+          <!-- Featured & New On ITECH -->
+          <div class="flex flex-col w-full">
+            <coverPlaceholder />
+          </div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
+        >
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        </div>
       </div>
       <div v-else>
         <div class="flex items-start justify-between w-full">
@@ -81,6 +96,8 @@ import articleEntry from "../../components/auth/dashboard/articleEntry";
 import playlistTall from "../../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../../components/auth/dashboard/articleHeader";
+import articlePlaceholder from "../../components/auth/dashboard/articlePlaceholder";
+import coverPlaceholder from "../../components/auth/courses/coverPlaceholder";
 
 import axios from "axios";
 
@@ -99,6 +116,8 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    articlePlaceholder,
+    coverPlaceholder,
   },
 
   data() {
