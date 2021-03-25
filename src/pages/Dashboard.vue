@@ -26,7 +26,15 @@
             >
               New On ITECH
             </h3>
-            <div
+            <div v-if="articles === null"
+              class="grid grid-cols-1 gap-4 mt-1 mb-8 sm:grid-cols-2 md:grid-cols-4"
+            >
+              <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+              <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+              <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+              <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            </div>
+            <div v-else
               class="grid grid-cols-1 gap-4 mt-1 mb-8 sm:grid-cols-2 md:grid-cols-4"
             >
               <articleEntry
@@ -43,7 +51,19 @@
       <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
-      <div class="w-full px-6 mt-4 mb-12 sm:flex">
+      <div v-if="courses === null" class="w-full px-6 mt-4 mb-12 sm:flex">
+        <div class="w-full sm:w-3/12">
+          <h2
+            class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
+          >
+            Featured Courses ✨
+          </h2>
+        </div>
+        <coursePlaceholder />
+        <coursePlaceholder />
+        <coursePlaceholder />
+      </div>
+      <div v-else class="w-full px-6 mt-4 mb-12 sm:flex">
         <div class="w-full sm:w-3/12">
           <h2
             class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
@@ -66,7 +86,12 @@
           >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div v-if="articles === null" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          </div>
+          <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHackerArticles"
@@ -85,7 +110,12 @@
           >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div v-if="articles === null" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          </div>
+          <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHipsterArticles"
@@ -104,7 +134,12 @@
           >
             Articles
           </h5>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div v-if="articles === null" class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+            <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          </div>
+          <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <articleEntry
               class="w-full mb-0 sm:mb-1 md:mb-2"
               v-for="article in threeHustlerArticles"
@@ -127,6 +162,8 @@ import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import playlistTall from "../components/auth/dashboard/playlistTall";
 import bitbotFeature from "../components/auth/dashboard/bitbotFeature";
 import articleHeader from "../components/auth/dashboard/articleHeader";
+import coursesPlaceholder from "../components/auth/dashboard/coursesPlaceholder";
+import articlePlaceholder from "../components/auth/dashboard/articlePlaceholder";
 
 import axios from "axios";
 
@@ -144,6 +181,8 @@ export default {
     playlistTall,
     bitbotFeature,
     articleHeader,
+    coursesPlaceholder,
+    articlePlaceholder,
   },
 
   data() {
