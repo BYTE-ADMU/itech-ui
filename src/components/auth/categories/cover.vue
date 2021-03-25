@@ -13,7 +13,7 @@
             >
               {{ categoryText }}
             </h2>
-            <p class="text-lg font-bold text-white font-objectivity">
+            <p class="text-2xl text-white lg:text-base font-objectivity">
               Articles & Courses
             </p>
           </div>

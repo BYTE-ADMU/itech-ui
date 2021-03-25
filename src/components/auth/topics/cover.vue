@@ -4,17 +4,15 @@
       <img :src="botStyle" class="bitBot" />
 
       <div class="block w-full h-full lg:pl-40 lg:flex">
-        <div
-          class="flex w-full pt-6 pl-6 pr-6 lg:items-center sm:w-1/2 sm:pl-10 sm:pt-10 lg:pt-0"
-        >
+        <div class="flex w-full pt-6 pl-6 pr-6 lg:items-center sm:w-1/2 sm:pl-10 sm:pt-10 lg:pt-0">
           <div>
             <h2
               class="leading-tight text-white select-none text-feature font-neuemachina"
             >
               {{ topic.name }}
             </h2>
-            <p class="text-lg font-bold text-white font-objectivity">
-              Articles & Courses
+            <p class="text-2xl hidden sm:block text-white lg:text-base font-objectivity">
+                Articles
             </p>
             <!-- <p class="mt-4 text-white font-objectivity">
               {{ topic.description }}
@@ -22,7 +20,7 @@
           </div>
         </div>
         <div
-          class="flex w-full pl-6 pr-6 text-white sm:pl-10 lg:pl-48 lg:pr-20 sm:pt-4 lg:items-center mobileWidth sm:w-3/4"
+          class="flex pl-6 pr-6 sm:pl-10 lg:pl-48 lg:pr-20 sm:pt-4 text-white lg:items-center mobileWidth w-full sm:w-3/4"
         >
           <p>
             {{ topic.description }}

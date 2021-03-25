@@ -4,37 +4,26 @@
     <div
       class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <span class="mb-10 breadcrumb-container">
-        <button button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
-          Back
+      <div v-if="course === null" class="mb-10 breadcrumb flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
         </button>
-        <span
-          v-if="course !== null"
-          class="hidden pr-6 breadcrumb-slash sm:inline"
-          >/</span
-        >
-        <button
-          v-if="course !== null"
-          @click="
-            $router.push(
-              `/categories/${course.categories[0].name.toLowerCase()}`
-            )
-          "
-          class="hidden pr-6 breadcrumb-text sm:inline-block"
-        >
-          {{ course.categories[0].name }}
+      </div>
+
+      <div v-else class="mb-10 breadcrumb flex">
+        <button @click="$router.go(-1)"
+          class="pr-6">
+            Back
         </button>
-        <span
-          v-if="course !== null"
-          class="hidden pr-6 breadcrumb-slash sm:inline"
-          >/</span
-        >
-        <span
-          v-if="course !== null"
-          class="hidden breadcrumb-text sm:inline-block"
-          >{{ course.name }}</span
-        >
-      </span>
+        <p class="pr-6 hidden sm:block">/</p>
+        <button @click="$router.push(`/categories/${course.categories[0].name.toLowerCase()}`)"
+          class="pr-6 hidden sm:block">
+            {{course.categories[0].name}}
+        </button>
+        <p class="pr-6 hidden sm:block">/</p>
+        <p class="hidden sm:block">{{ course.name }}</p>
+      </div>
 
       <div v-if="course === null">
         <Loader />
@@ -57,10 +46,7 @@
         </h3> -->
 
         <div v-if="!course.articles.length > 0">No Articles Yet</div>
-        <div
-          v-else
-          class="grid grid-cols-1 gap-4 mt-10 mb-24 sm:grid-cols-3 md:grid-cols-4"
-        >
+        <div v-else class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 mt-10 mb-24">
           <articleEntry
             v-for="article in filteredArticles"
             v-bind:key="article.id"
@@ -125,11 +111,6 @@ export default {
       return this.$route.params.id;
     },
 
-    courses() {
-      const data = this.$store.state.coursesStore.courses;
-      return data;
-    },
-
     articles() {
       const data = this.$store.state.articlesStore.articles;
       return data;
@@ -174,40 +155,13 @@ div > .tg {
   filter: brightness(80%);
 }
 
-.breadcrumb,
-.breadcrumb-text {
+.breadcrumb {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
+
   color: #dbdad5;
-  /* display: inline-block; */
-}
-
-.breadcrumb-slash {
-  font-family: Objectivity;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  color: #dbdad5;
-}
-
-.breadcrumb-text {
-  transition: 0.2s ease-in-out;
-  -webkit-transition: 0.2s ease-in-out;
-  -moz-transition: 0.2s ease-in-out;
-  -o-transition: 0.2s ease-in-out;
-}
-
-.breadcrumb-text:hover {
-  color: #83827f;
-}
-
-@media screen and (max-width: 950px) {
-  .breadcrumb-container {
-    margin-top: 80px;
-  }
 }
 </style>

@@ -5,13 +5,9 @@
     <div
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
-      <span class="mb-10 breadcrumb-container">
-        <button button @click="$router.go(-1)"
-          class="breadcrumb-text">
-            Back
-        </button>
-      </span>
-
+      <p class="mb-10 breadcrumb">
+        <button @click="$router.go(-1)">Back</button>
+      </p>
       <div class="flex items-start justify-between w-full">
         <!-- CATEGORY COVER -->
         <div class="flex flex-col w-full">
@@ -153,27 +149,14 @@ div > .tg {
   filter: brightness(80%);
 }
 
-.breadcrumb-text {
+.breadcrumb {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
+
   color: #dbdad5;
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-}
-
-.breadcrumb-text:hover {
-  color: #83827f;
-}
-
-@media screen and (max-width: 950px) {
-  .breadcrumb-container {
-    margin-top: 80px;
-  }
 }
 </style>
 

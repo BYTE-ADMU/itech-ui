@@ -47,7 +47,7 @@ export default {
     },
     botStyle() {
       const type = this.bb3;
-      const defaultStyle = "w-full heighter rounded-xl relative py-1 catCard-hover";
+      const defaultStyle = "w-full heighter rounded-xl relative py-1";
       switch (type) {
         case "hacker":
           return `hackerStyle ${defaultStyle}`;
@@ -97,11 +97,6 @@ export default {
   position: absolute;
   right: 0;
   bottom: -30px;
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-  
 }
 .heighter {
   height: 315px;
@@ -124,19 +119,6 @@ export default {
 
 .view-all {
   font-size: 16px;
-}
-
-.catCard-hover:hover > .bitBot {
-  animation: sway 900ms infinite;
-}
-
-@keyframes sway {
-  30% {
-    transform: rotate(6deg);
-  }
-  60% {
-    transform: rotate(-8deg);
-  }
 }
 
 @media screen and (max-width: 1280px) {

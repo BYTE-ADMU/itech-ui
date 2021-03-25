@@ -3,26 +3,17 @@
     <div :class="coverStyle">
       <g-image :src="botStyle" class="bitBot" />
 
-      <div
-        class="w-full h-full pt-10 pl-10 pr-20 lg:pt-16 lg:pl-56 sm:pr-32 lg:pr-12"
-      >
-        <div>
-          <h2
-            class="text-white truncate select-none text-feature font-neuemachina lg:mb-2"
-          >
-            {{ course.name }}
-          </h2>
-
-          <h3
-            class="mb-2 text-base text-white font-objectivity articlesBold lg:hidden"
-          >
-            Articles
-          </h3>
-          <p class="text-sm text-white font-objectivity">
-            {{ course.description }}
-          </p>
+        <div class="w-full h-full pt-10 lg:pt-16 pl-10 lg:pl-56 pr-20 sm:pr-32 lg:pr-12">
+          <div>
+            <h2
+              class="text-white select-none text-feature font-neuemachina lg:mb-2 truncate"
+            >
+              {{ course.name }}
+            </h2>
+            <h3 class="text-white text-base font-objectivity articlesBold mb-2 lg:hidden">Articles</h3>
+            <p class="text-white text-sm font-objectivity">{{ course.description }}</p>
+          </div>
         </div>
-      </div>
     </div>
   </div>
 </template>

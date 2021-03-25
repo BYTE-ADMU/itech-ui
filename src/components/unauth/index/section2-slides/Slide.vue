@@ -51,9 +51,9 @@
         <!-- START: SECOND COLUMN -->
         <g-link
           :to="`/categories/${slide.categories.toLowerCase()}`"
-          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full unauthBot-hover"
+          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full"
         >
-          <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4 unauthBot" />
+          <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4" />
         </g-link>
         <!-- END: SECOND COLUMN -->
 
@@ -215,31 +215,5 @@ export default {
 
 .hustlerStyle {
   background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
-}
-
-.unauthBot {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-}
-
-.unauthBot-hover:hover > .unauthBot {
-  animation: botBounce 900ms infinite;
-}
-
-@keyframes botBounce {
-  30% {
-    transform: scale(1.07);
-  }
-  50% {
-    transform: scale(0.95);
-  }
-  80% {
-    transform: scale(1.04);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 </style>

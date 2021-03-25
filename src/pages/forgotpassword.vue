@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <section>
-      <div class="grid md:flex w-screen pt-0 pb-10 md:py-10 lg:pb-10 px-4 sm:px-12 lg:px-16 items-center">
+      <div class="grid md:flex w-screen pt-0 pb-10 md:py-10 lg:pb-10 px-8 sm:px-12 lg:px-16 items-center">
         <img
           :src="require('@/assets/img/unauth/forgotpassword/ForgotPasswordIllustration.svg')"
           class="block mx-auto mb-16 md:ml-0 w-3/4 md:w-1/2 lg:w-3/5"

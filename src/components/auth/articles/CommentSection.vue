@@ -17,7 +17,7 @@
         <div class="w-full">
           <input
             type="submit"
-            class="block float-right px-8 py-3 text-sm comment-button"
+            class="block float-right px-8 py-3 text-sm comment-button form_button"
             value="Comment"
           />
         </div>
@@ -66,18 +66,12 @@ export default {
   padding: 10px 18px;
   background-color: #64c0c1;
   border-radius: 34px;
+
   color: #f9f7f2;
+
   font-family: Objectivity;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-}
-
-.comment-button:hover {
-  background-color: #40A5A6;
 }
 </style>

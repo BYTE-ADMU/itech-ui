@@ -1,7 +1,7 @@
 <template>
   <g-link :to="`/courses/${course.id}`" class="w-3/12">
     <div
-      class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1 course-hover"
+      class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1"
     >
       <div class="absolute z-30 w-full h-full px-10 rounded-lg sm:px-5 group">
         <p
@@ -56,18 +56,6 @@ export default {
   font-weight: normal;
   font-size: 16px;
   line-height: 25px;
-}
-
-.course-hover {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
-}
-
-.course-hover:hover {
-  transform: scale(1.06);
-  box-shadow: 0 10px 15px -2px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 </style>
 
