@@ -170,6 +170,44 @@ export default {
   metaInfo() {
     return {
       title: this.title,
+      meta: [
+        {
+          name: "description",
+          content: this.article.description,
+        },
+        // START: OPENGRAPH DATA
+        {
+          property: "og:title",
+          content: this.article.title,
+        },
+        {
+          property: "og:type",
+          content: "article",
+        },
+        {
+          property: "og:url",
+          content: "https://www.byteitech.com",
+        },
+
+        {
+          property: "og:image",
+          content: this.article.thumbnailImage.url,
+        },
+        {
+          property: "og:description",
+          content: this.article.description,
+        },
+        // END: OPENGRAPH DATA
+
+        {
+          name: "twitter:card",
+          content: this.$page.post.image ? "summary_large_image" : "summary",
+        },
+        {
+          name: "twitter:creator",
+          content: `@${this.article.author.name}`,
+        },
+      ],
     };
   },
 
