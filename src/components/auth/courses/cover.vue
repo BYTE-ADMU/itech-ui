@@ -1,8 +1,8 @@
 <template>
   <div class="w-full mb-12">
-    <div :class="coverStyle">
+    <unauthBookmarkModal id="unauthBookmark" class="hidden z-50 left-0 top-0" style="height: 110vh; width: 100vw" />
+    <div :class="coverStyle" class="z-0">
       <g-image :src="botStyle" class="bitBot" />
-
       <div
         class="w-full h-full pt-10 pl-10 pr-20 lg:pt-16 lg:pl-56 sm:pr-32 lg:pr-12"
       >
@@ -28,6 +28,20 @@
             <span>Bookmarked</span>
             <g-image
               :src="require('@/assets/img/icons/Bookmark.svg')"
+              class="ml-2 bookmark-icon"
+            />
+          </button>
+        </div>
+        <div class="hidden float-right lg:block" v-else>
+          <button
+            v-if="!isBooked"
+            @click="openModal"
+            class="flex items-center px-6 py-2 overflow-x-hidden font-bold text-white bg-transparent border border-white border-solid rounded-full outline-none hover:border-teal-500 focus:outline-none bookmark-hover"
+            type="button"
+          >
+            <span>Bookmark</span>
+            <g-image
+              :src="require('@/assets/img/icons/BookmarkWhite.svg')"
               class="ml-2 bookmark-icon"
             />
           </button>
@@ -80,9 +94,14 @@
   </div>
 </template>
 <script>
+import unauthBookmarkModal from "../../unauth/unauthBookmarkModal"
+
 export default {
   name: "cover",
   props: ["course", "isBooked"],
+  components: {
+    unauthBookmarkModal,
+  },
   computed: {
     botStyle() {
       const hacker = require("../../../assets/img/bitbots/bbhacker.svg");
@@ -138,6 +157,11 @@ export default {
       );
       this.$store.dispatch("userStore/updateUser", this.user);
     },
+
+    openModal() {
+      const modal = document.getElementById('unauthBookmark');
+      modal.classList.remove('hidden');
+    }
   },
 };
 </script>
