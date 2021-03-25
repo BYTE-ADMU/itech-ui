@@ -65,7 +65,7 @@ export default {
       if (typeof data !== undefined && data.length !== 0) {
         return data;
       }
-      return null;
+      return [];
     },
 
     filteredHackerTopics() {
