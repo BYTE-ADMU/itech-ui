@@ -22,6 +22,7 @@
           v-bind:value="category.name"
           @click="searchButton = category.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
+          :class="{'selectedButton': userSearch === category.name}"
         >
           {{ category.name }}
         </button>
@@ -32,6 +33,7 @@
           v-bind:value="topic.name"
           @click="searchButton = topic.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
+          :class="{'selectedButton': userSearch === topic.name}"
         >
           {{ topic.name }}
         </button>
@@ -245,6 +247,11 @@ export default {
 
 .discoverTitle {
   font-weight: bold;
+}
+
+.selectedButton {
+  background-color: #64c0c1;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 640px) {
