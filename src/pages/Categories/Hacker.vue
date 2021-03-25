@@ -3,12 +3,11 @@
     <!-- ROOT -->
 
     <div
-      class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24 z-0"
+      class="container z-0 flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <span class="mb-10 breadcrumb-container">
-        <button button @click="$router.go(-1)"
-          class="breadcrumb-text">
-            Back
+        <button button @click="$router.go(-1)" class="breadcrumb-text">
+          Back
         </button>
       </span>
 
@@ -20,12 +19,15 @@
       </div>
 
       <!-- COURSES-->
-      <div class="w-full mt-12 sm:flex">
-        <div class="w-full sm:w-3/12">
-          <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina">
+      <div
+        class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4"
+      >
+        <div class="w-full py-2">
+          <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
             Courses ✨
           </h2>
-          <p class="p-2 mb-5 sm:mt-10 text-l font-objectivity">
+
+          <p class="text-l font-objectivity">
             Readily-set series of articles and videos you can go through!
           </p>
         </div>
@@ -160,10 +162,10 @@ div > .tg {
   font-size: 16px;
   line-height: 24px;
   color: #dbdad5;
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .breadcrumb-text:hover {

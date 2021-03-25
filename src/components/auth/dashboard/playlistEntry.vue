@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full lg:w-1/4">
+  <div class="w-full">
     <g-link v-if="course !== null" :to="`/courses/${course.id}`">
       <div
         class="relative m-5 mx-2 bg-gray-400 rounded-xl feature-height tg sm:m-1 course-hover"

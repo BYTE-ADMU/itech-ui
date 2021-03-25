@@ -279,13 +279,13 @@ export default {
 };
 </script>
 
-<style >
-.no-scroll {
+<style scoped>
+::v-deep .no-scroll {
   max-height: 100vh;
   overflow: hidden;
 }
 
-.article-title {
+::v-deep .article-title {
   font-family: Objectivity;
   font-weight: bold;
   font-style: normal;
@@ -295,61 +295,61 @@ export default {
 }
 
 /* START: ARTICLE CONTENT */
-.article-content {
+::v-deep .article-content {
   font-family: Objectivity;
   color: #151316;
   font-size: 14px;
   line-height: 22px;
 }
 
-.article-content > ul {
+::v-deep .article-content > ul {
   list-style-type: circle;
 }
 
-.article-content > h1 {
+::v-deep .article-content > h1 {
   font-weight: bold;
   font-style: normal;
   font-size: 20px;
 }
 
-.article-content > h2 {
+::v-deep .article-content > h2 {
   font-weight: bold;
   font-style: normal;
   font-size: 16px;
 }
 
-.article-content > h3 {
+::v-deep .article-content > h3 {
   font-weight: bold;
   font-style: normal;
   font-size: 14px;
 }
 
-.article-content > p {
+::v-deep .article-content > p {
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
 }
 
-.article-content > code {
+::v-deep .article-content > code {
   overflow-y: hidden;
   overflow-x: auto;
 }
 /* END: ARTICLE CONTENT */
 
 /* START: ARTICLE SOURCES */
-.article-sources {
+::v-deep .article-sources {
   font-family: Objectivity;
   color: #8c8c8c;
   line-height: 22px;
 }
 
-.article-sources > h3 {
+::v-deep .article-sources > h3 {
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
 }
 
-.article-sources > p {
+::v-deep .article-sources > p {
   font-style: italic;
   font-weight: normal;
   font-size: 14px;
@@ -358,53 +358,53 @@ export default {
 /* END: ARTICLE SOURCES */
 
 @media screen and (min-width: 1024px) {
-  .article-title {
+  ::v-deep .article-title {
     font-size: 48px;
     line-height: 64px;
   }
 
   /* START: ARTICLE CONTENT */
-  .article-content {
+  ::v-deep .article-content {
     font-size: 24px;
     line-height: 40px;
   }
 
-  .article-content > h1 {
+  ::v-deep .article-content > h1 {
     font-size: 36px;
   }
 
-  .article-content > h2 {
+  ::v-deep .article-content > h2 {
     font-size: 28px;
   }
 
-  .article-content > h3 {
+  ::v-deep .article-content > h3 {
     font-size: 24px;
   }
 
-  .article-content > p {
+  ::v-deep .article-content > p {
     font-size: 24px;
   }
   /* END: ARTICLE CONTENT */
 
   /* START: ARTICLE SOURCES */
-  .article-sources {
+  ::v-deep .article-sources {
     font-size: 24px;
     line-height: 40px;
   }
-  .article-sources > h3,
-  p {
+  ::v-deep .article-sources > h3,
+  .article-sources > p {
     font-size: 24px;
     line-height: 40px;
   }
   /* END: ARTICLE SOURCES */
 }
 
-.author-image {
+::v-deep .author-image {
   width: 65px;
   height: 65px;
 }
 
-.author-name {
+::v-deep .author-name {
   font-family: Objectivity;
   font-weight: bold;
   font-style: normal;
@@ -412,7 +412,7 @@ export default {
   line-height: 24px;
 }
 
-.article-publishedDate {
+::v-deep .article-publishedDate {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -421,7 +421,7 @@ export default {
   color: #626262;
 }
 
-.article-lastEditedDate {
+::v-deep .article-lastEditedDate {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -430,7 +430,7 @@ export default {
   color: #b4b4b4;
 }
 
-.breadcrumb,
+::v-deep .breadcrumb,
 .breadcrumb-text {
   font-family: Objectivity;
   font-style: normal;
@@ -441,7 +441,7 @@ export default {
   /* display: inline-block; */
 }
 
-.breadcrumb-slash {
+::v-deep .breadcrumb-slash {
   font-family: Objectivity;
   font-style: normal;
   font-weight: normal;
@@ -450,18 +450,18 @@ export default {
   color: #dbdad5;
 }
 
-.breadcrumb-text {
+::v-deep .breadcrumb-text {
   transition: 0.2s ease-in-out;
   -webkit-transition: 0.2s ease-in-out;
   -moz-transition: 0.2s ease-in-out;
   -o-transition: 0.2s ease-in-out;
 }
 
-.breadcrumb-text:hover {
+::v-deep .breadcrumb-text:hover {
   color: #83827f;
 }
 
-.bookmark-hover,
+::v-deep .bookmark-hover,
 .bookmark-hover > span,
 .bookmark-hover > .bookmark-icon {
   transition: 0.2s ease-in-out;
@@ -470,24 +470,26 @@ export default {
   -o-transition: 0.2s ease-in-out;
 }
 
-.bookmark-hover:hover {
+::v-deep .bookmark-hover:hover {
   width: 151px;
   height: 42px;
   background: #38b2ac;
 }
 
-.bookmark-hover:hover > .bookmark-icon {
+::v-deep .bookmark-hover:hover > .bookmark-icon {
   transform: translateX(32px);
   filter: brightness(500%);
 }
 
-.bookmark-hover:hover > span {
+::v-deep .bookmark-hover:hover > span {
   display: none;
 }
 
 @media screen and (max-width: 950px) {
-  .breadcrumb-container {
+  ::v-deep .breadcrumb-container {
     margin-top: 60px;
   }
 }
 </style>
+
+
