@@ -58,11 +58,12 @@
       <hr class="mb-8" />
 
       <!-- Featured Courses & Playlists-->
+
       <div
-        class="w-full px-6 mt-4 mb-12 sm:flex"
+        class="grid grid-cols-1 gap-4 px-6 mb-12 md:grid-cols-4"
         v-if="threeFeaturedCourses !== null"
       >
-        <div class="w-full sm:w-3/12">
+        <div class="w-full py-2">
           <h2
             class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
           >
@@ -76,8 +77,8 @@
           v-bind:course="course"
         />
       </div>
-      <div class="w-full px-6 mt-4 mb-12 sm:flex" v-else>
-        <div class="w-full sm:w-3/12">
+      <div class="grid grid-cols-1 gap-4 px-6 mb-12 md:grid-cols-4" v-else>
+        <div class="w-full py-2">
           <h2
             class="px-3 py-2 mx-auto text-2xl sm:text-3xl md:text-4xl font-neuemachina"
           >
@@ -91,6 +92,7 @@
           v-bind:course="null"
         />
       </div>
+
       <!-- Hacker -->
       <div class="w-full px-6 mt-8 mb-8 md:flex">
         <bitbotFeature bb3="hacker" />

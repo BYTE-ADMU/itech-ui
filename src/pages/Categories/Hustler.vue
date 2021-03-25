@@ -42,7 +42,7 @@
       <!-- ARTICLES -->
       <h2 class="py-6 text-2xl lg:text-4xl font-neuemachina">Articles ✨</h2>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
         <articleEntry
           v-for="article in filteredArticles"
           v-bind:key="article.id"

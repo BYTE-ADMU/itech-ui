@@ -19,7 +19,7 @@
       </div>
 
       <!-- COURSES-->
-      <div class="grid grid-cols-1 gap-4 mb-12 sm:grid-cols-3 md:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 mb-12  md:grid-cols-4">
         <div class="w-full py-2">
           <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
             Courses ✨
