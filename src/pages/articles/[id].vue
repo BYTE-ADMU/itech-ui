@@ -156,6 +156,16 @@
   </Layout>
 </template>
 
+<static-query>
+    query {
+        metadata {
+          siteName,
+          siteDescription,
+          siteUrl,
+        }
+    }
+</static-query>
+
 <script>
 import unauthModal from "@/components/unauth/unauthModal";
 import Loader from "@/components/Loader";
@@ -198,7 +208,10 @@ export default {
 
         {
           property: "og:image",
-          content: this.article === null ? "" : this.article.thumbnailImage.url,
+          content:
+            this.article === null
+              ? "../../assets/img/unauth/about/section3bytelogo.svg"
+              : this.article.thumbnailImage.url,
         },
         {
           property: "og:description",
@@ -327,15 +340,7 @@ export default {
 };
 </script>
 
-<static-query>
-    query {
-        metadata {
-          siteName,
-          siteDescription,
-          siteUrl,
-        }
-    }
-</static-query>
+
 
 <style scoped>
 ::v-deep .no-scroll {
