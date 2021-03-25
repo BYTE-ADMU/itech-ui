@@ -1,14 +1,14 @@
-# Default starter for Gridsome
+# ITECH
+ITECH is an online resource library that serves as a learning accelerator to lead the process of  Building Young Tech Entrepreneurs.                                          
 
-This is the project you get when you run `gridsome create new-project`.
+This repository is the frontend of the ITECH web app.
 
-### 1. Install Gridsome CLI tool if you don't have
 
-`npm install --global @gridsome/cli`
+Tech Stacks: Vue.js, Gridsome, TailwindCSS
 
-### 2. Create a Gridsome project
 
-1. `gridsome create my-gridsome-site` to install default starter
-2. `cd my-gridsome-site` to open the folder
+## To run this repository:
+
+1. `npm install --global @gridsome/cli` Install Gridsome CLI tool if you don't have
+2. `npm install` / `yarn install` To install dependecies
 3. `gridsome develop` to start a local dev server at `http://localhost:8080`
-4. Happy coding 🎉🙌

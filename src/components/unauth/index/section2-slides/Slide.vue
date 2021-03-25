@@ -53,7 +53,10 @@
           :to="`/categories/${slide.categories.toLowerCase()}`"
           class="w-2/3 mx-auto bg-white rounded-lg lg:w-full unauthBot-hover"
         >
-          <g-image :src="botImage" class="w-full pt-20 mx-auto md:px-4 unauthBot" />
+          <g-image
+            :src="botImage"
+            class="w-full pt-20 mx-auto md:px-4 unauthBot"
+          />
         </g-link>
         <!-- END: SECOND COLUMN -->
 
@@ -68,10 +71,7 @@
             <div class="bg-white rounded-lg small-box"></div>
           </div>
         </div>
-        <div
-          v-else
-          class="grid hidden grid-cols-1 mx-auto lg:block"
-        >
+        <div v-else class="grid hidden grid-cols-1 mx-auto lg:block">
           <ArticleButton
             class="mb-4"
             v-bind:article="filteredArticles[1]"
@@ -218,10 +218,10 @@ export default {
 }
 
 .unauthBot {
-  transition: .20s ease-in-out;
-  -webkit-transition: .20s ease-in-out;
-  -moz-transition: .20s ease-in-out;
-  -o-transition: .20s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
 }
 
 .unauthBot-hover:hover > .unauthBot {

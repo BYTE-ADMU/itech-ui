@@ -146,7 +146,6 @@ export default {
   },
   methods: {
     saveCourse() {
-      console.log("save");
       this.user.courses.push(this.course);
       this.$store.dispatch("userStore/updateUser", this.user);
     },

@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <div 
+    <div
       class="container flex flex-col w-full min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
     >
       <h1
@@ -40,19 +40,19 @@
       </div>
 
       <!-- suggested courses -->
-      <div class="w-full mt-12 sm:flex">
-        <div class="w-full sm:w-3/12">
+      <div class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
+        <div class="w-full py-2">
           <h2
-            class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina"
+            class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina"
             v-if="!search"
           >
             Suggested Courses ✨
           </h2>
-          <h2 class="p-2 mx-auto text-xl lg:text-4xl font-neuemachina" v-else>
+          <h2 v-else class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
             Related Courses ✨
           </h2>
 
-          <p class="p-2 mb-5 sm:mt-10 text-l font-objectivity">
+          <p class="text-l font-objectivity">
             Readily-set series of articles and videos you can go through!
           </p>
         </div>
@@ -67,6 +67,7 @@
           v-bind:course="course"
         />
       </div>
+    </div>
 
       <!-- suggested articles -->
       <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-if="!search">
