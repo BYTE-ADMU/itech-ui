@@ -40,7 +40,7 @@
 
     <g-link
       v-else
-      class="flex p-2 bg-gray-400 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
+      class="flex p-2 bg-gray-400 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover animate-pulse"
     >
       <!-- PUT IMAGE AND DETAILS INSIDE -->
       <div

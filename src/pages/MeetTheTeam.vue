@@ -10,7 +10,10 @@
     <!-- project heads -->
       <div class="project-heads">
         <h1>Project Heads</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in projectHeads"
             :key="member.id"
             :member="member" 
@@ -20,7 +23,10 @@
       <!-- dev -->
       <div class="devs">
         <h1>Development Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in developmentComm"
             :key="member.id"
             :member="member" 
@@ -30,7 +36,10 @@
       <!-- ux/ui -->
       <div class="uxui">
         <h1>UX/UI Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in uxuiComm"
             :key="member.id"
             :member="member" 
@@ -41,7 +50,10 @@
       <!-- secretariat -->
       <div class="secretariats">
         <h1>Secretariat Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in secretariats"
             :key="member.id"
             :member="member" 
@@ -52,7 +64,10 @@
       <!-- content -->
       <div class="content">
         <h1>Content Committee</h1>
-        <div class="flex flex-wrap-reverse flex-row-reverse justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap-reverse flex-row-reverse justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in contentComm"
             :key="member.id"
             :member="member" 
@@ -63,7 +78,10 @@
       <!-- comms -->
       <div class="comms">
         <h1>Communications Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in communicationsComm"
             :key="member.id"
             :member="member" 
@@ -74,7 +92,10 @@
       <!-- creatives -->
       <div class="creatives">
         <h1>Creatives Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-12 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-12 mx-auto cards">
           <teamMemberCard v-for="member in creativesComm"
             :key="member.id"
             :member="member" 
@@ -85,7 +106,10 @@
       <!-- documentations -->
       <div class="documentations">
         <h1>Documentations Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in documentationsComm"
             :key="member.id"
             :member="member" 
@@ -96,7 +120,10 @@
       <!-- fin -->
       <div class="fin">
         <h1>Finance Committee</h1>
-        <div class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+        <div v-if="teamMembers.length === 0" class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
+          <teamMemberPlaceholder class="lg:mx-5" />
+        </div>
+        <div v-else class="flex flex-wrap justify-center mt-2 mb-16 mx-auto cards">
           <teamMemberCard v-for="member in finComm"
             :key="member.id"
             :member="member" 
@@ -110,6 +137,7 @@
 <script>
 import cover from '../components/unauth/meetTheTeam/cover'
 import coverMobile from '../components/unauth/meetTheTeam/coverMobile'
+import teamMemberPlaceholder from '../components/unauth/meetTheTeam/teamMemberPlaceholder'
 import teamMemberCard from '../components/unauth/meetTheTeam/teamMemberCard'
 
 export default {
@@ -121,6 +149,7 @@ export default {
   components: {
     cover,
     coverMobile,
+    teamMemberPlaceholder,
     teamMemberCard,
   },
 

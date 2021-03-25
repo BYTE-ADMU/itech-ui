@@ -38,7 +38,7 @@
 
     <div
       v-else
-      class="relative mx-0 overflow-hidden bg-gray-300 rounded-none sm:mx-2 sm:rounded-lg feature-height tg feature-hover"
+      class="relative mx-0 overflow-hidden bg-gray-300 rounded-none sm:mx-2 sm:rounded-lg feature-height tg feature-hover animate-pulse"
     >
       <div
         class="absolute z-30 w-full h-full px-4 py-8 rounded-none sm:px-10 sm:rounded-lg group"
