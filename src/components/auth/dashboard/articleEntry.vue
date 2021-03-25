@@ -1,40 +1,61 @@
-<template>
-  <g-link
-    class="flex w-1/3 p-2 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
-    :to="`/articles/${article.id}`"
-  >
-    <!-- PUT IMAGE AND DETAILS INSIDE -->
-    <div
-      class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
-    >
-      <g-image
-        :src="article.thumbnailImage.url"
-        class="object-cover w-full h-full rounded-lg"
-      />
-    </div>
-    <div class="p-3 my-auto overflow-hidden">
-      <g-link
-        v-if="article.courses.length > 0"
-        :to="`/courses/${article.courses[0].id}`"
-        class="sm:mb-2 articleEntry-topic truncate ..."
-        v-bind:class="articleTopic"
-        >{{ article.courses[0].name }}</g-link
-      >
-      <g-link
-        v-else
-        :to="`/categories/${article.categories[0].name.toLowerCase()}`"
-        class="sm:mb-2 articleEntry-topic truncate ..."
-        v-bind:class="articleTopic"
-        >{{ article.categories[0].name }}</g-link
-      >
 
-      <p class="sm:mb-2 articleEntry-title">
-        {{ article.title }}
-      </p>
-      <p class="sm:mb-2 articleEntry-author">{{ article.author.name }}</p>
-    </div>
-  </g-link>
+<template>
+  <div class="w-full">
+    <g-link
+      v-if="article !== null"
+      class="flex p-2 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
+      :to="`/articles/${article.id}`"
+    >
+      <!-- PUT IMAGE AND DETAILS INSIDE -->
+      <div
+        class="block w-1/3 bg-blue-400 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
+      >
+        <g-image
+          :src="article.thumbnailImage.url"
+          class="object-cover w-full h-full rounded-lg"
+        />
+      </div>
+      <div class="p-3 my-auto overflow-hidden">
+        <g-link
+          v-if="article.courses.length > 0"
+          :to="`/courses/${article.courses[0].id}`"
+          class="sm:mb-2 articleEntry-topic truncate ..."
+          v-bind:class="articleTopic"
+          >{{ article.courses[0].name }}</g-link
+        >
+        <g-link
+          v-else
+          :to="`/categories/${article.categories[0].name.toLowerCase()}`"
+          class="sm:mb-2 articleEntry-topic truncate ..."
+          v-bind:class="articleTopic"
+          >{{ article.categories[0].name }}</g-link
+        >
+
+        <p class="sm:mb-2 articleEntry-title">
+          {{ article.title }}
+        </p>
+        <p class="sm:mb-2 articleEntry-author">{{ article.author.name }}</p>
+      </div>
+    </g-link>
+
+    <g-link
+      v-else
+      class="flex p-2 bg-gray-400 rounded-lg shadow-md sm:flex-col md:mb-6 article-hover"
+    >
+      <!-- PUT IMAGE AND DETAILS INSIDE -->
+      <div
+        class="block w-1/3 bg-gray-300 rounded-lg minWidth sm:w-full sm:mb-2 h-pic"
+      ></div>
+      <div class="p-3 my-auto overflow-hidden">
+        <g-link class="sm:mb-2 articleEntry-topic truncate ...">&nbsp;</g-link>
+
+        <p class="sm:mb-2 articleEntry-title">&nbsp;</p>
+        <p class="sm:mb-2 articleEntry-author">&nbsp;</p>
+      </div>
+    </g-link>
+  </div>
 </template>
+
 
 <script>
 export default {
