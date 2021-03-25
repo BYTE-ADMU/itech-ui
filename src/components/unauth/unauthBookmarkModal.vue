@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen w-screen fixed table modal-margin">
+  <div class="w-screen fixed table modal-margin">
     <div class="bg-modal text-center table-cell align-middle">
       <div class="bg-white mx-auto border border-white rounded-xl py-16 relative px-6 modal-size">
         <g-link to="/login/" class="w-full">
@@ -11,7 +11,7 @@
           Oops! You don't have access to this feature!
         </h1>
         <p class="font-objectivity font-bold text-lg sm:text-xl md:text-2xl mb-12" style="color: #40A5A6">
-          Join us on ITECH to start bookmarking courses and articles.
+          Join us on ITECH to start bookmarking.
         </p>
         <g-link to="/login/" class="form_button py-3 px-6">
           <button class="font-bold">
