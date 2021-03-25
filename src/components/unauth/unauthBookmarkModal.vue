@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen fixed table modal-margin">
+  <div class="h-screen w-screen fixed table modal-margin">
     <div class="bg-modal text-center table-cell align-middle">
       <div class="bg-white mx-auto border border-white rounded-xl py-16 relative px-6 modal-size">
         <g-link to="/login/" class="w-full">
