@@ -20,7 +20,14 @@ const topicsStore = {
         commit('SET_TOPICS', response.data);
         return response.data;
       })
-    }
+    },
+    getTopic({ state }, id) {
+      for (const topic of state.topics) {
+        if (topic.id === id) {
+          return topic;
+        }
+      }
+    },
   },
 
   // to handle mutations

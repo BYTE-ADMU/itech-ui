@@ -49,12 +49,13 @@
         </div>
 
         <!-- COURSES-->
-        <div class="w-full mt-12 sm:flex">
-          <div class="w-full sm:w-3/12">
-            <h2 class="p-2 mx-auto text-2xl lg:text-4xl font-neuemachina">
+        <div class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+          <div class="w-full py-2">
+            <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
               Courses ✨
             </h2>
-            <p class="p-2 mb-5 sm:mt-10 text-l font-objectivity">
+
+            <p class="text-l font-objectivity">
               Readily-set series of articles and videos you can go through!
             </p>
           </div>
@@ -127,9 +128,12 @@ export default {
   },
 
   async mounted() {
-    const topicData = await this.getTopic(this.$route.params.id);
-    this.topic = topicData;
-    this.title = topicData.name;
+    const data = await this.$store.dispatch(
+      "topicsStore/getTopic",
+      this.$route.params.id
+    );
+    this.topic = data;
+    this.title = data.name;
 
     this.$store.dispatch("articlesStore/getArticles");
     this.$store.dispatch("coursesStore/getCourses");
@@ -138,10 +142,6 @@ export default {
   },
 
   computed: {
-    id() {
-      return this.$route.params.id;
-    },
-
     articles() {
       const data = this.$store.state.articlesStore.articles;
       return data;
@@ -154,55 +154,31 @@ export default {
   },
 
   watch: {
-    id(newId, oldId) {
-      this.topic = this.getTopic(newId);
-      this.title = this.getTopic(newId).name;
+    "$route.params.id": async function (id) {
+      this.topic = null;
+      this.topic = await this.$store.dispatch("topicsStore/getTopic", id);
+      this.title = this.topic.name;
     },
 
-    topic(newTopic, oldTopic) {
+    topic(newTopic) {
       this.filteredCourses = this.getFilteredCourses(newTopic);
-      this.getFilteredArticles(newTopic.courses);
+      this.filteredArticles = this.getFilteredArticles(newTopic);
     },
   },
 
   methods: {
-    async getTopic(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/topics/${id}`
-      );
-      return data;
-    },
-
-    async getArticle(id) {
-      const { data } = await axios.get(
-        `https://calm-everglades-39473.herokuapp.com/articles/${id}`
-      );
-      return data;
-    },
-
-    async getFilteredArticles(courses) {
-      if (courses.length > 0) {
-        for (const eachCourse of courses) {
-          // console.log(eachCourse.name + ": ");
-          // console.log(eachCourse);
-          for (const eachCourseArticle of eachCourse.articles) {
-            // const { data } = await axios.get(
-            //   `https://calm-everglades-39473.herokuapp.com/articles/${eachArticle}`
-            // );
-            // console.log(eachCourseArticle);
-
-            for (const eachArticle of this.$store.state.articlesStore
-              .articles) {
-              if (eachArticle.id === eachCourseArticle) {
-                // console.log(eachArticle);
-                this.filteredArticles.push(eachArticle);
-              }
+    getFilteredArticles(topic) {
+      let filteredArticles = [];
+      if (topic.articles.length > 0) {
+        for (const topicArticles of topic.articles) {
+          for (const article of this.articles) {
+            if (article.id === topicArticles.id) {
+              filteredArticles.push(article);
             }
           }
         }
-        return this.filteredArticles;
       }
-      return this.filteredArticles;
+      return filteredArticles;
     },
 
     getFilteredCourses(topic) {
