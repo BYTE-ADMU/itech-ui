@@ -61,7 +61,6 @@
           v-bind:course="course"
         />
       </div>
-    </div>
 
       <!-- suggested articles -->
       <h2 class="py-6 text-xl lg:text-4xl font-neuemachina" v-if="!search">
