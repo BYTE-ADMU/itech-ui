@@ -40,7 +40,28 @@
       </div>
 
       <!-- suggested courses -->
-      <div class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
+      <div v-if="courses.length === 0" class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
+        <div class="w-full py-2">
+          <h2
+            class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina"
+            v-if="!search"
+          >
+            Suggested Courses ✨
+          </h2>
+          <h2 v-else class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+            Related Courses ✨
+          </h2>
+
+          <p class="text-l font-objectivity">
+            Readily-set series of articles and videos you can go through!
+          </p>
+        </div>
+
+        <coursesPlaceholder class="w-full" />
+        <coursesPlaceholder class="w-full" />
+        <coursesPlaceholder class="w-full" />
+      </div>
+      <div v-else class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
         <div class="w-full py-2">
           <h2
             class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina"
@@ -76,7 +97,14 @@
         Related Articles ✨
       </h2>
 
-      <div v-if="filteredArticles.length <= 0"
+      <div v-if="articles.length === 0" class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+      </div>
+
+      <div v-else-if="filteredArticles.length <= 0"
         class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2">
         <p class="no-message">no matches found</p>
       </div>
@@ -97,6 +125,10 @@
 import articleEntry from "../components/auth/dashboard/articleEntry";
 import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import SearchBar from "../components/SearchBar";
+import coursesPlaceholder from "@/components/auth/dashboard/coursesPlaceholder";
+import articlePlaceholder from "@/components/auth/dashboard/articlePlaceholder";
+import ArticlePlaceholder from '../components/auth/dashboard/articlePlaceholder.vue';
+
 
 export default {
   name: "Discover",
@@ -112,6 +144,8 @@ export default {
     articleEntry,
     playlistEntry,
     SearchBar,
+    coursesPlaceholder,
+    articlePlaceholder
   },
 
   async mounted() {

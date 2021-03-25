@@ -37,7 +37,45 @@
       </span>
 
       <div v-if="topic === null">
-        <Loader />
+        <!-- <Loader /> -->
+        <div class="flex items-start justify-between w-full">
+          <!-- Featured & New On ITECH -->
+          <div class="flex flex-col w-full">
+            <coverPlaceholder />
+          </div>
+        </div>
+
+        <!-- courses -->
+        <div class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+          <div class="w-full py-2">
+            <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+              Courses ✨
+            </h2>
+
+            <p class="text-l font-objectivity">
+              Readily-set series of articles and videos you can go through!
+            </p>
+          </div>
+
+          <coursesPlaceholder class="w-full" />
+          <coursesPlaceholder class="w-full" />
+          <coursesPlaceholder class="w-full" />
+        </div>
+
+        <hr class="mt-12 mb-6" />
+
+        <h3 class="mb-4 text-xl font-bold uppercase font-objectivity">
+          Articles ✨
+        </h3>
+
+        <div
+          class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
+        >
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        </div>
       </div>
 
       <div v-else>
@@ -49,7 +87,22 @@
         </div>
 
         <!-- COURSES-->
-        <div class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+        <div v-if="courses.length === 0" class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+          <div class="w-full py-2">
+            <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
+              Courses ✨
+            </h2>
+
+            <p class="text-l font-objectivity">
+              Readily-set series of articles and videos you can go through!
+            </p>
+          </div>
+
+          <coursesPlaceholder class="w-full" />
+          <coursesPlaceholder class="w-full" />
+          <coursesPlaceholder class="w-full" />
+        </div>
+        <div v-else class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
           <div class="w-full py-2">
             <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
               Courses ✨
@@ -75,7 +128,16 @@
           Articles ✨
         </h3>
 
-        <div v-if="!articles.length > 0">No Articles Yet</div>
+        <div
+          v-if="articles.length === 0"
+          class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
+        >
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+          <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
+        </div>
+        <div v-else-if="!articles.length > 0">No Articles Yet</div>
         <div
           v-else
           class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
@@ -99,6 +161,9 @@ import cover from "../../components/auth/topics/cover";
 import playlistEntry from "../../components/auth/dashboard/playlistEntry";
 import articleEntry from "../../components/auth/dashboard/articleEntry";
 import bitbotFeature from "../../components/auth/dashboard/bitbotFeature";
+import articlePlaceholder from "../../components/auth/dashboard/articlePlaceholder";
+import coverPlaceholder from "../../components/auth/courses/coverPlaceholder";
+import coursesPlaceholder from "@/components/auth/dashboard/coursesPlaceholder";
 
 import axios from "axios";
 
@@ -116,6 +181,9 @@ export default {
     articleEntry,
     bitbotFeature,
     playlistEntry,
+    articlePlaceholder,
+    coverPlaceholder,
+    coursesPlaceholder,
   },
 
   data() {
