@@ -51,7 +51,8 @@
         <!-- START: SECOND COLUMN -->
         <g-link
           :to="`/categories/${slide.categories.toLowerCase()}`"
-          class="w-2/3 mx-auto bg-white rounded-lg lg:w-full unauthBot-hover"
+          class="w-2/3 mx-auto rounded-lg lg:w-full unauthBot-hover"
+          :class="botBG"
         >
           <g-image
             :src="botImage"
@@ -113,6 +114,22 @@ export default {
       const hacker = require("@/assets/img/bitbots/bbhacker.svg");
       const hipster = require("@/assets/img/bitbots/bbhipster.svg");
       const hustler = require("@/assets/img/bitbots/bbhustler.svg");
+      switch (this.slide.categories.toLowerCase()) {
+        case "hacker":
+          return hacker;
+        case "hipster":
+          return hipster;
+        case "hustler":
+          return hustler;
+        default:
+          return hacker;
+      }
+    },
+
+    botBG() {
+      const hacker = "hacker-bg";
+      const hipster = "hipster-bg";
+      const hustler = "hustler-bg";
       switch (this.slide.categories.toLowerCase()) {
         case "hacker":
           return hacker;
@@ -215,6 +232,24 @@ export default {
 
 .hustlerStyle {
   background: linear-gradient(283.99deg, #b0ca88 7.28%, #70b9a2 100%);
+}
+
+.hacker-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HACKER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.hipster-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HIPSTER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.hustler-bg {
+  background-image: url("../../../../assets/img/unauth/index/section2/slides/HUSTLER-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .unauthBot {
