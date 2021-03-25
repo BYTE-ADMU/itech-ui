@@ -170,6 +170,54 @@ export default {
   metaInfo() {
     return {
       title: this.title,
+
+      meta: [
+        {
+          name: "description",
+          content:
+            this.article === null
+              ? this.$static.metadata.siteDescription
+              : this.article.description,
+        },
+        // START: OPENGRAPH DATA
+        {
+          property: "og:title",
+          content:
+            this.article === null
+              ? this.$static.metadata.siteName
+              : this.article.description,
+        },
+        {
+          property: "og:type",
+          content: "article",
+        },
+        {
+          property: "og:url",
+          content: this.$static.metadata.siteUrl,
+        },
+
+        {
+          property: "og:image",
+          content: this.article === null ? "" : this.article.thumbnailImage.url,
+        },
+        {
+          property: "og:description",
+          content:
+            this.article === null
+              ? this.$static.metadata.siteName
+              : this.article.description,
+        },
+        // END: OPENGRAPH DATA
+
+        // {
+        //   name: "twitter:card",
+        //   content: this.$page.post.image ? "summary_large_image" : "summary",
+        // },
+        // {
+        //   name: "twitter:creator",
+        //   content: `@${this.article.author.name}`,
+        // },
+      ],
     };
   },
 
@@ -278,6 +326,16 @@ export default {
   // END: METHODS
 };
 </script>
+
+<static-query>
+    query {
+        metadata {
+          siteName,
+          siteDescription,
+          siteUrl,
+        }
+    }
+</static-query>
 
 <style scoped>
 ::v-deep .no-scroll {
