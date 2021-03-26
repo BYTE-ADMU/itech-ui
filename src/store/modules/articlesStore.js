@@ -42,10 +42,22 @@ const articlesStore = {
       }).catch(error => console.log(error))
     },
 
-    addComment({ state, commit }, newComment) {
-      axios.post(`${state.API_URL}/comments`, newComment).then(response => {
-        state.comments.push(response.data)
-      }).catch(error => console.log(error))
+    addComment({ state, commit, dispatch }, newComment) {
+      // Start: temporarily add comment while waiting update to server
+      let temporaryCommentsArray = state.comments;
+      temporaryCommentsArray.push(newComment)
+      commit('SET_COMMENTS', temporaryCommentsArray);
+      // End: temporarily add comment while waiting update to server
+
+      // Start: Send Request to server and wait response 
+      axios.post(`${state.API_URL}/comments`, newComment).then(() => {
+        axios.get(`${state.API_URL}/comments`).then(getCommentsResponse => {
+          // console.log("getComments", getCommentsResponse.data)
+          commit('SET_COMMENTS', getCommentsResponse.data);
+          return getCommentsResponse.data;
+        }).catch(getCommentsResponseError => console.log(getCommentsResponseError))
+      }).catch(addCommentsResponseError => console.log(addCommentsResponseError))
+      // End: Send Request to server and wait response 
     },
 
     updateComments({ state, commit }, newComments) {

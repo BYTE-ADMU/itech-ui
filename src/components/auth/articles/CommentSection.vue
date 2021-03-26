@@ -26,10 +26,16 @@
       </div>
     </form>
 
-    <div class="mt-12 overflow-y-auto" style="max-height: 480px">
-      <p v-if="isCommentsLoading">Loading</p>
+    <div
+      v-if="isCommentsLoading"
+      class="mt-12 overflow-y-auto"
+      style="max-height: 480px"
+    >
+      <p>Loading...</p>
+    </div>
+
+    <div v-else class="mt-12 overflow-y-auto" style="max-height: 480px">
       <CommentCard
-        v-else
         v-for="comment in filteredComments"
         v-bind:key="comment.id"
         v-bind:comment="comment"
@@ -82,12 +88,8 @@ export default {
         content: this.content,
       };
       this.content = "";
-      // this.filteredComments.push(comment);
       this.$store
         .dispatch("articlesStore/addComment", comment)
-        .then(() => {
-          this.$store.dispatch("articlesStore/getComments");
-        })
         .then(() => {
           this.isCommentsLoading = false;
         })

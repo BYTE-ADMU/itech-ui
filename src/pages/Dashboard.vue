@@ -217,10 +217,6 @@ export default {
     articlePlaceholder,
   },
 
-  async mounted() {
-    this.$store.dispatch("userStore/getUser");
-  },
-
   computed: {
     // START: GET DATA FROM STORE
     courses() {
