@@ -22,7 +22,7 @@
           v-bind:value="category.name"
           @click="searchButton = category.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
-          :class="{'selectedButton': userSearch === category.name}"
+          :class="{ selectedButton: userSearch === category.name }"
         >
           {{ category.name }}
         </button>
@@ -33,14 +33,17 @@
           v-bind:value="topic.name"
           @click="searchButton = topic.name"
           class="px-6 py-2 mx-2 my-2 text-center rounded-full filterButton"
-          :class="{'selectedButton': userSearch === topic.name}"
+          :class="{ selectedButton: userSearch === topic.name }"
         >
           {{ topic.name }}
         </button>
       </div>
 
       <!-- suggested courses -->
-      <div v-if="courses.length === 0" class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
+      <div
+        v-if="courses.length === 0"
+        class="grid grid-cols-1 gap-2 mt-12 mb-12 md:grid-cols-4"
+      >
         <div class="w-full py-2">
           <h2
             class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina"
@@ -61,7 +64,7 @@
         <coursesPlaceholder class="w-full" />
         <coursesPlaceholder class="w-full" />
       </div>
-      <div v-else class="grid grid-cols-1 gap-4 mt-12 mb-12 md:grid-cols-4">
+      <div v-else class="grid grid-cols-1 gap-2 mt-12 mb-12 md:grid-cols-4">
         <div class="w-full py-2">
           <h2
             class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina"
@@ -78,11 +81,14 @@
           </p>
         </div>
 
-        <div v-if="threeFilteredCourses.length <= 0"
-          class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2">
+        <div
+          v-if="threeFilteredCourses.length <= 0"
+          class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2"
+        >
           <p class="no-message">no matches found</p>
         </div>
-        <playlistEntry v-else
+        <playlistEntry
+          v-else
           v-for="course in threeFilteredCourses"
           v-bind:key="course.id"
           v-bind:course="course"
@@ -97,15 +103,20 @@
         Related Articles ✨
       </h2>
 
-      <div v-if="articles.length === 0" class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
+      <div
+        v-if="articles.length === 0"
+        class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
+      >
         <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
         <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
         <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
         <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
       </div>
 
-      <div v-else-if="filteredArticles.length <= 0"
-        class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2">
+      <div
+        v-else-if="filteredArticles.length <= 0"
+        class="flex items-center justify-center w-full col-span-1 md:col-span-3 sm:col-span-2"
+      >
         <p class="no-message">no matches found</p>
       </div>
 
@@ -127,8 +138,7 @@ import playlistEntry from "../components/auth/dashboard/playlistEntry";
 import SearchBar from "../components/SearchBar";
 import coursesPlaceholder from "@/components/auth/dashboard/coursesPlaceholder";
 import articlePlaceholder from "@/components/auth/dashboard/articlePlaceholder";
-import ArticlePlaceholder from '../components/auth/dashboard/articlePlaceholder.vue';
-
+import ArticlePlaceholder from "../components/auth/dashboard/articlePlaceholder.vue";
 
 export default {
   name: "Discover",
@@ -145,7 +155,7 @@ export default {
     playlistEntry,
     SearchBar,
     coursesPlaceholder,
-    articlePlaceholder
+    articlePlaceholder,
   },
 
   async mounted() {

@@ -2,9 +2,9 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+      class="container z-0 flex flex-col w-full min-h-screen p-6 pb-20 mx-auto mb-24 sm:pt-10"
     >
-      <span class="mb-10 breadcrumb-container">
+      <span class="mb-4 sm:mb-10 breadcrumb-container">
         <button button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
           Back
         </button>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- courses -->
-        <div class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+        <div class="grid grid-cols-1 gap-2 mb-12 md:grid-cols-4">
           <div class="w-full py-2">
             <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
               Courses ✨
@@ -68,9 +68,7 @@
           Articles ✨
         </h3>
 
-        <div
-          class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4"
-        >
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
           <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
           <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
           <articlePlaceholder class="w-full mb-0 sm:mb-1 md:mb-2" />
@@ -87,7 +85,10 @@
         </div>
 
         <!-- COURSES-->
-        <div v-if="courses.length === 0" class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+        <div
+          v-if="courses.length === 0"
+          class="grid grid-cols-1 gap-2 mb-12 md:grid-cols-4"
+        >
           <div class="w-full py-2">
             <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
               Courses ✨
@@ -102,7 +103,7 @@
           <coursesPlaceholder class="w-full" />
           <coursesPlaceholder class="w-full" />
         </div>
-        <div v-else class="grid grid-cols-1 gap-4 mb-12 md:grid-cols-4">
+        <div v-else class="grid grid-cols-1 gap-2 mb-12 md:grid-cols-4">
           <div class="w-full py-2">
             <h2 class="mx-auto mb-3 text-xl lg:text-4xl font-neuemachina">
               Courses ✨

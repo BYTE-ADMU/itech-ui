@@ -2,9 +2,9 @@
   <Layout>
     <!-- ROOT -->
     <div
-      class="container flex flex-col w-screen min-h-screen p-6 pt-10 pb-20 mx-auto mb-24"
+      class="container z-0 flex flex-col w-full min-h-screen p-6 pb-20 mx-auto mb-24 sm:pt-10"
     >
-      <span class="mb-10 breadcrumb-container">
+      <span class="mb-4 sm:mb-10 breadcrumb-container">
         <button button @click="$router.go(-1)" class="pr-6 breadcrumb-text">
           Back
         </button>
@@ -204,7 +204,7 @@ export default {
     getArticles() {
       const data = this.$store.state.articlesStore.articles;
       return data;
-    }
+    },
   },
 
   watch: {

@@ -1,6 +1,10 @@
 <template>
   <div class="w-full mb-12">
-    <unauthBookmarkModal id="unauthBookmark" class="hidden z-50 left-0 top-0" style="height: 110vh; width: 100vw" />
+    <unauthBookmarkModal
+      id="unauthBookmark"
+      class="top-0 left-0 z-50 hidden"
+      style="height: 110vh; width: 100vw"
+    />
     <div :class="coverStyle" class="z-0">
       <g-image :src="botStyle" class="bitBot" />
       <div
@@ -58,7 +62,10 @@
           >
             Articles
           </h3>
-          <p class="mb-10 text-sm text-white font-objectivity">
+          <p
+            class="mb-10 overflow-y-hidden text-sm text-white font-objectivity overflow-ellipsis"
+            style="max-height: 160px"
+          >
             {{ course.description }}
           </p>
 
@@ -94,7 +101,7 @@
   </div>
 </template>
 <script>
-import unauthBookmarkModal from "../../unauth/unauthBookmarkModal"
+import unauthBookmarkModal from "../../unauth/unauthBookmarkModal";
 
 export default {
   name: "cover",
@@ -158,9 +165,9 @@ export default {
     },
 
     openModal() {
-      const modal = document.getElementById('unauthBookmark');
-      modal.classList.remove('hidden');
-    }
+      const modal = document.getElementById("unauthBookmark");
+      modal.classList.remove("hidden");
+    },
   },
 };
 </script>

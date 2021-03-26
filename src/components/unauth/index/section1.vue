@@ -1,6 +1,7 @@
 <template>
-  <div class="overflow-hidden"
-    style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%) "
+  <div
+    class="overflow-hidden"
+    style="background: linear-gradient(180deg, #6b83ff 53.75%, #b8c3fd 91.98%)"
   >
     <div
       class="flex flex-col w-screen pb-32 mx-auto align-middle lg-pb-0 lg:h-screen 2xl:h-auto 2xl:container lg:pb-0"
@@ -28,7 +29,7 @@
           </g-link>
           <g-link class="text-center font-objectivity nav__link" to="/login/">
             <button
-              class="hidden mx-auto mt-4 text-lg text-white lg:block"
+              class="block mx-auto mt-4 text-lg text-white"
               style="font-weight: medium"
             >
               or Log In here
@@ -100,11 +101,11 @@ export default Vue.extend({
 
 @media only screen and (max-width: 600px) {
   .itech {
-    font-size: 6rem;
-    line-height: 6rem;
+    font-size: 5.8rem;
+    line-height: 5.8rem;
   }
   .hello-welcome-to {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 5rem;
   }
 }
