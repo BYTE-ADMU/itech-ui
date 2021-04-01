@@ -164,6 +164,7 @@ import CommentSection from "@/components/auth/articles/CommentSection";
 import ProcessedMarkdown from "@/components/auth/articles/ProcessedMarkdown";
 
 import moment from "moment";
+import axios from "axios";
 
 export default {
   name: "Article",
@@ -190,26 +191,72 @@ export default {
   },
 
   async mounted() {
-    const data = await this.$store.dispatch(
-      "articlesStore/getArticle",
-      this.$route.params.id
-    );
-    this.article = data;
-    this.title = data.title;
+    const API_URL = "https://calm-everglades-39473.herokuapp.com";
 
-    this.nextArticles = await this.getNextArticles();
+    if (this.$store.state.articlesStore.articles.length > 0) {
+      //If the Store has already stored the data of this article
+      console.log("If the Store has already stored the data of this article");
 
-    // this.$store.dispatch("articlesStore/getArticles");
-    // this.$store.dispatch("coursesStore/getCourses");
-    // this.$store.dispatch("topicsStore/getTopics");
-    // this.$store.dispatch("categoriesStore/getCategories");
+      const dataFromStore = await this.$store.dispatch(
+        "articlesStore/getArticleFromStore",
+        this.$route.params.id
+      );
+
+      this.article = dataFromStore;
+      this.title = dataFromStore.title;
+    } else {
+      //Else get the article from the server while waiting for the store
+
+      console.log(
+        "Else get the article from the server while waiting for the store"
+      );
+
+      const { data } = await axios.get(
+        `${API_URL}/articles/${this.$route.params.id}`
+      );
+      console.log(data);
+
+      this.article = data;
+      this.title = data.title;
+
+      // this.$store
+      //   .dispatch("articlesStore/getArticleFromServer", this.$route.params.id)
+      //   .then((dataFromServer) => {
+      //     while (dataFromServer === undefined) {
+      //       console.log(dataFromServer);
+      //       this.article = dataFromServer;
+      //       this.title = dataFromServer.title;
+      //     }
+      //   })
+      //   .catch((error) => console.log(error));
+    }
+
+    this.nextArticles = this.getNextArticles();
   },
 
   watch: {
     "$route.params.id": async function (id) {
+      console.log(id);
       this.article = null;
-      this.article = await this.$store.dispatch("articlesStore/getArticle", id);
-      this.title = this.article.title;
+
+      if (this.$store.state.articlesStore.articles.length > 0) {
+        //If the Store has already stored the data of this article
+        const dataFromStore = await this.$store.dispatch(
+          "articlesStore/getArticleFromStore",
+          id
+        );
+        this.article = dataFromStore;
+        this.title = dataFromStore.title;
+      } else {
+        //Else get the article from the server while waiting for the store
+        const dataFromServer = await this.$store.dispatch(
+          "articlesStore/getArticleFromServer",
+          id
+        );
+        this.article = dataFromServer;
+        this.title = dataFromServer.title;
+      }
+
       this.nextArticles = await this.getNextArticles();
     },
   },
@@ -280,7 +327,7 @@ export default {
 </script>
 
 <style scoped>
-::v-deep .no-scroll {
+no-scroll {
   max-height: 100vh;
   overflow: hidden;
 }

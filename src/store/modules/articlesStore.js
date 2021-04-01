@@ -26,13 +26,21 @@ const articlesStore = {
       }).catch(error => console.log(error))
     },
 
-    getArticle({ state, commit }, id) {
+    getArticleFromStore({ state }, id) {
       for (const article of state.articles) {
         if (article.id === id) {
-          // commit('SET_ARTICLE', article);
           return article;
         }
       }
+    },
+
+    getArticleFromServer({ state }, id) {
+      axios.get(`${state.API_URL}/articles/${id}`)
+        .then((response) => {
+          console.log(response.data);
+          return response.data;
+        })
+        .catch((error) => console.log(error));
     },
 
     getComments({ state, commit }) {
