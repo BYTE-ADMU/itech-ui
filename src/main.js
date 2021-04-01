@@ -10,7 +10,7 @@ export default function (Vue, { appOptions, router, head, isClient }) {
   appOptions.store = store;
   appOptions.router = router;
 
-  if (process.isClient) {
+  if (isClient) {
     router.beforeEach((to, from, next) => {
       if (!to.path.includes("discover")) {
         const value = "";
