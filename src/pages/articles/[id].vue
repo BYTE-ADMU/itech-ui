@@ -195,8 +195,6 @@ export default {
 
     if (this.$store.state.articlesStore.articles.length > 0) {
       //If the Store has already stored the data of this article
-      console.log("If the Store has already stored the data of this article");
-
       const dataFromStore = await this.$store.dispatch(
         "articlesStore/getArticleFromStore",
         this.$route.params.id
@@ -206,15 +204,9 @@ export default {
       this.title = dataFromStore.title;
     } else {
       //Else get the article from the server while waiting for the store
-
-      console.log(
-        "Else get the article from the server while waiting for the store"
-      );
-
       const { data } = await axios.get(
         `${API_URL}/articles/${this.$route.params.id}`
       );
-      console.log(data);
 
       this.article = data;
       this.title = data.title;
